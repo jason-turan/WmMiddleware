@@ -1,0 +1,4 @@
+CREATE TABLE dbo.Environment(
+EnvironmentId INT unique,
+EnvironmentDescription VARCHAR(5)
+)

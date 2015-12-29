@@ -1,0 +1,10 @@
+DELETE FROM Environment
+
+INSERT INTO Environment (EnvironmentId, EnvironmentDescription)
+VALUES (1, 'DEV')
+
+INSERT INTO Environment (EnvironmentId, EnvironmentDescription)
+VALUES (2, 'QA')
+
+INSERT INTO Environment (EnvironmentId, EnvironmentDescription)
+VALUES (0, 'PROD')

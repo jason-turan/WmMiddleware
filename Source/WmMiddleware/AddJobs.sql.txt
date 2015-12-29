@@ -1,0 +1,83 @@
+
+delete from job;
+
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Pick Job')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('Pick Job', 
+		   '1H', 
+		   'WmMiddleware.Picking.Exe', 
+		    1,
+			'Inbound')
+END
+
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Product Receiving Job')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('Product Receiving Job', '5M', 
+	'WmMiddleware.ProductReceiving.exe', 0,
+			'Inbound')
+END
+
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Transfer Control Job')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('Transfer Control Job', 
+		   '1M', 
+		   'WmMiddleware.TransferControl.exe', 
+		    1,
+			'Inbound')
+END
+
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Shipment Job')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('Shipment Job', 
+		   '5M', 
+		   'WmMiddleware.Shipment.exe', 
+		    0,
+			'Outbound')
+END
+
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Product Updating Job')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('Product Update', 
+		   '5M', 
+		   'WmMiddleware.ProductUpdating.exe', 
+		    0,
+			'Inbound')
+END
+
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Pix')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('Pix', 
+		   '5M', 
+		   'WmMiddleware.Pix.exe', 
+		    0,
+			'Outbound')
+END
+
+
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Inventory Sync')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('Inventory Sync', 
+		   '5M', 
+		   'WmMiddleware.InventorySync.exe', 
+		    0,
+			'Outbound')
+END
+
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Alerts')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('Alerts', 
+		   '1M', 
+		   'Middleware.Alerts.exe', 
+		    0,
+			'Admin')
+END
+
+select * from job

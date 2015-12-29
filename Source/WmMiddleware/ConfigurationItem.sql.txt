@@ -1,0 +1,6 @@
+CREATE TABLE [dbo].[ConfigurationItem](
+	[ConfigurationItemId] INT IDENTITY PRIMARY KEY,
+	[Key] [nvarchar](max) NOT NULL,
+	[Value] [nvarchar](max) NOT NULL,
+	[EnvironmentId] INT NOT NULL FOREIGN KEY REFERENCES Environment(EnvironmentId)
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]

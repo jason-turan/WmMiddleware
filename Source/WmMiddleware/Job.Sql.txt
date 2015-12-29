@@ -1,0 +1,21 @@
+-- DROP TABLE Job;
+--select * from MIDDLEWARE_JOB
+
+select * from job
+update job set IsActive = 0 where jobid = 2
+IF NOT EXISTS (select * from INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Job')
+BEGIN
+	CREATE TABLE Job
+	(
+		JobId INT IDENTITY PRIMARY KEY,
+		JobKey VARCHAR(100) NOT NULL,
+		Schedule VARCHAR(50) NOT NULL,
+		JobExecutable VARCHAR(100) NOT NULL,
+		IsActive BIT NOT NULL,
+		LastRunExecutionTime NUMERIC(15, 10) NULL,
+		LastRunStatus VARCHAR(100) NULL,
+		LastRunDateTime DATETIME NULL,
+		NextRunDateTime DATETIME NULL,
+		JobType NVARCHAR(10)
+	)
+END

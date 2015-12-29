@@ -1,0 +1,7 @@
+create table TransferControlFileType
+(
+	TransferControlFileTypeId INT Primary Key Identity,
+	FilePrefix NVARCHAR(10) NOT NULL,
+	FileDescription NVARCHAR(100) NOT NULL,
+	JobId INT foreign key references Job(JobId)
+)

@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Jobs";
+}
+<div class="container-fluid">
+    <h2 class="text-primary">WM Middleware Integration Job Management</h2>    
+</div>
+
+<div class="container-fluid">
+
+    <table class="table table-hover">
+        <tr>
+            <th>
+                Job Key
+            </th>
+            <th>
+                Schedule
+            </th>
+            <th>
+                Last Run Status    
+            </th>
+            <th>
+                Job Executable
+            </th>
+            <th>
+                Active
+            </th>
+            <th>
+                Last Run Date
+            </th>
+            <th>
+                Last Execution Time
+            </th>
+            <th>
+                Next Run Time
+            </th>
+            <th>
+                Job Type
+            </th>
+        </tr>
+    
+        <tbody data-bind="foreach: $data.jobCollection">
+            <tr>
+                <td data-bind="text: $data.JobKey"></td>
+                <td><a href="#"  data-bind="click: $parent.changeSchedule, text: $data.Schedule"></a></td>
+                <td data-bind="text: $data.LastRunStatus, style: { color: $data.LastRunStatus == 'FAILURE' ? 'red' : 'green' }"></td>
+                <td><a href="#"  data-bind="click: $parent.executeJob, text: $data.JobExecutable"></a></td>          
+                <td><a href="#"  data-bind="click: $parent.toggleActive, text: $data.IsActive"></a></td>
+                <td data-bind="text: $data.LastRunDateTime != null ? moment($data.LastRunDateTime).format('YYYY-MM-DD HH:mm') : 'N/A'"></td>
+                <td data-bind="text: $data.LastRunExecutionTime != null ? $data.LastRunExecutionTime : 'N/A'"></td>
+                <td data-bind="text: $data.NextRunDateTime != null ? moment($data.NextRunDateTime).format('YYYY-MM-DD HH:mm') : 'N/A' "></td>
+                <td data-bind="text: $data.JobType"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h6>Last Update: <span data-bind="text: lastUpdated"> </span></h6>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/moment")
+    @Styles.Render("~/Content/bootstrap.min.css")
+}
