@@ -7,7 +7,7 @@ namespace Middleware.Alerts
     {
         static void Main(string[] args)
         {
-            UnitOfWorkExecutionProxy<IAlertJob>.ExecuteUnitOfWork(new NinjectModuleConfiguration());
+            UnitOfWorkExecutionProxy<IAlertJob>.ExecuteUnitOfWork(new NinjectModuleConfiguration(), args);
         }
     }
 }

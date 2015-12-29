@@ -25,7 +25,7 @@ namespace WmMiddleware.Shipment
             _jobRepository = jobRepository;
         }
 
-        public void RunUnitOfWork()
+        public void RunUnitOfWork(string args)
         {
             var shipmentHeaderRespository = new DataFileRepository<ShipmentHeader>();
             var shipmentDetailRespository = new DataFileRepository<ShipmentLineItem>();

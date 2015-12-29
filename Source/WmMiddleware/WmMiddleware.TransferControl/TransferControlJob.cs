@@ -20,7 +20,7 @@ namespace WmMiddleware.TransferControl
             _transferTransferControlInbound = transferControlInbound;
         }
 
-        public void RunUnitOfWork()
+        public void RunUnitOfWork(string args)
         {
             SetDirectories();
 

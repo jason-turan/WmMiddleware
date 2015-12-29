@@ -10,7 +10,7 @@ namespace WmMiddleware.Pix
         {
             _log = log;
         }
-        public void RunUnitOfWork()
+        public void RunUnitOfWork(string jobKey)
         {
             _log.Info("Pix ran");
         }

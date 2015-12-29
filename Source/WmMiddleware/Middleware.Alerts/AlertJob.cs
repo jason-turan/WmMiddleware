@@ -47,7 +47,7 @@ namespace Middleware.Alerts
             _configurationManager = configurationManager;
         }
 
-        public void RunUnitOfWork()
+        public void RunUnitOfWork(string jobKey)
         {
             ResolveRecoveries();
 

@@ -15,13 +15,22 @@ namespace Middleware.Jobs
     /// <typeparam name="T"></typeparam>
     public static class UnitOfWorkExecutionProxy<T> where T : IUnitOfWork
     {
-        public static void ExecuteUnitOfWork(INinjectModule module)
+        public static void ExecuteUnitOfWork(INinjectModule module, string[] args)
         {
             var kernel = new StandardKernel(new NinjectSettings { LoadExtensions = false }, module);
             var logger = kernel.Get<ILog>();
             var jobRepository = kernel.Get<IJobRepository>();
 
-            var job = GetJob(jobRepository);
+            if (args.Length != 1)
+            {
+                var exception = new NotSupportedException("Mismatch on job key argument.  Job key must be only argument provided by scheduler.  When debugging in Visual Studio job key must be set as a command argument. See http://stackoverflow.com/questions/298708/debugging-with-command-line-parameters-in-visual-studio");
+                logger.Exception(exception);
+                throw exception;
+            }
+
+            var jobKey = args[0];
+
+            var job = jobRepository.GetJob(jobKey);
 
             var stopWatch = new Stopwatch();
             stopWatch.Start();
@@ -30,7 +39,7 @@ namespace Middleware.Jobs
             {
                 job.LastRunStatus = JobRunStatus.Running;
                 jobRepository.UpdateJob(job);
-                ((IUnitOfWork) kernel.Get(typeof (T))).RunUnitOfWork();
+                ((IUnitOfWork)kernel.Get(typeof(T))).RunUnitOfWork(jobKey);
                 job.LastRunStatus = JobRunStatus.Success;
                 logger.Info("Successful execution of " + kernel.Get(typeof (T)));
 
@@ -48,7 +57,7 @@ namespace Middleware.Jobs
                
                 jobRepository.UpdateJob(job);
 
-                jobRepository.InsertJobHistory(new MiddlewareJobHistory()
+                jobRepository.InsertJobHistory(new MiddlewareJobHistory
                 {
                     JobId = job.JobId,
                     RunStatus = job.LastRunStatus,
@@ -59,13 +68,6 @@ namespace Middleware.Jobs
 
                 Environment.Exit(job.LastRunStatus == JobRunStatus.Failure ? 1 : 0);
             }
-        }
-
-        private static MiddlewareJob GetJob(IJobRepository jobRepository)
-        {
-            var executableName = AppDomain.CurrentDomain.FriendlyName.Replace(".vshost", string.Empty);
-            var job = jobRepository.GetJobByExecutable(executableName);  // if running in visual studio, .vshost is appended to exe
-            return job;
         }
     }
 }

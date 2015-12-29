@@ -5,9 +5,9 @@ namespace WmMiddleware.TransferControl
 {
     public class Program
     {
-        static void Main()
+        static void Main(string[] args)
         {
-            UnitOfWorkExecutionProxy<ITransferControlJob>.ExecuteUnitOfWork(new NinjectModuleConfiguration());
+            UnitOfWorkExecutionProxy<ITransferControlJob>.ExecuteUnitOfWork(new NinjectModuleConfiguration(), args);
         }
     }
 }

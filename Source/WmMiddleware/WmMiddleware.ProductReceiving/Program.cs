@@ -5,9 +5,9 @@ namespace WmMiddleware.ProductReceiving
 {
     public class Program
     {
-        static void Main()
+        static void Main(string[] args)
         {
-            UnitOfWorkExecutionProxy<IProductReceivingJob>.ExecuteUnitOfWork(new NinjectModuleConfiguration());
+            UnitOfWorkExecutionProxy<IProductReceivingJob>.ExecuteUnitOfWork(new NinjectModuleConfiguration(), args);
         }
     }
 }

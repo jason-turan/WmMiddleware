@@ -5,9 +5,9 @@ namespace WmMiddleware.ProductUpdating
 {
     class Program
     {
-        static void Main()
+        static void Main(string[] args)
         {
-            UnitOfWorkExecutionProxy<IProductUpdatingJob>.ExecuteUnitOfWork(new NinjectModuleConfiguration());
+            UnitOfWorkExecutionProxy<IProductUpdatingJob>.ExecuteUnitOfWork(new NinjectModuleConfiguration(), args);
         }
     }
 }

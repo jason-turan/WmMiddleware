@@ -19,7 +19,7 @@ namespace WmMiddleware.Picking
             SourceRepository = sourceRepository;
         }
 
-        public void RunUnitOfWork()
+        public void RunUnitOfWork(string jobKey)
         {
             var orders = SourceRepository.GetOrders().ToList();
 

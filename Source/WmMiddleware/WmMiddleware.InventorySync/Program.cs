@@ -7,7 +7,7 @@ namespace WmMiddleware.InventorySync
     {
         static void Main(string[] args)
         {
-            UnitOfWorkExecutionProxy<IInventorySyncJob>.ExecuteUnitOfWork(new NinjectModuleConfiguration());
+            UnitOfWorkExecutionProxy<IInventorySyncJob>.ExecuteUnitOfWork(new NinjectModuleConfiguration(), args);
         }
     }
 }

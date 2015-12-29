@@ -81,7 +81,7 @@ namespace WmMiddleware.TransferControl.Control
                 }
             }
 
-            if (masters.Count <= 0 || !success) return success;
+            if (masters.Count <= 0) return success;
 
             return ProcessMasterControl(transferControlMaster, 
                                         masters, 
@@ -89,8 +89,10 @@ namespace WmMiddleware.TransferControl.Control
                                         unprocessedTransferControls);
         }
 
-        private void ProcessTransferControlFile(TransferControlFile file, Models.TransferControl transferControl,
-            bool enableFtpTransmission, List<TransferControlMaster> masters)
+        private void ProcessTransferControlFile(TransferControlFile file, 
+                                                Models.TransferControl transferControl,
+                                                bool enableFtpTransmission, 
+                                                ICollection<TransferControlMaster> masters)
         {
             var fileInfo = new FileInfo(file.FileLocation);
 

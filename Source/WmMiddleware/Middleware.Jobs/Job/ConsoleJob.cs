@@ -46,7 +46,8 @@ namespace Middleware.Jobs.Job
                     FileName = job.JobExecutable,
                     UseShellExecute = false,
                     CreateNoWindow = true,
-                    WindowStyle = ProcessWindowStyle.Hidden
+                    WindowStyle = ProcessWindowStyle.Hidden,
+                    Arguments = "\"" + job.JobKey + "\""
                 };
 
                 process.StartInfo = startInfo;

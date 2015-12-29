@@ -18,7 +18,7 @@ namespace WmMiddleware.ProductReceiving
             _destination = destination;
         }
 
-        public void RunUnitOfWork()
+        public void RunUnitOfWork(string jobKey)
         {
             _logger.Debug("Getting products received");
             var productReceivedNotifications = _source.GetAutomatedShippingNotifications().Concat(_source.GetPurchaseOrders()).ToList();
