@@ -14,6 +14,11 @@ namespace FlatFileClassGenerator
 
         public void Generate(string flatFileLocation, string destinationFile, string @namespace, string className)
         {
+            if (!Directory.Exists(Path.GetDirectoryName(destinationFile)))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(destinationFile));
+            }
+
             using (var outputWriter = new StreamWriter(File.Open(destinationFile, FileMode.Create)))
             using (new ClassHeaderWriter(outputWriter, @namespace, className))
             {
