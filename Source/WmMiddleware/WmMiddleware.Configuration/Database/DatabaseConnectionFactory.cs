@@ -10,6 +10,11 @@ namespace WmMiddleware.Configuration.Database
             return GetConnection(System.Configuration.ConfigurationManager.ConnectionStrings["WarehouseManagementConnection"].ConnectionString);
         }
 
+        public static IDbConnection GetIntegrationManagementConnection()
+        {
+            return GetConnection(System.Configuration.ConfigurationManager.ConnectionStrings["IntegrationManagementConnection"].ConnectionString);
+        }
+
         public static IDbConnection GetNbxWebConnection()
         {
             return GetConnection(System.Configuration.ConfigurationManager.ConnectionStrings["NbXWebConnection"].ConnectionString);

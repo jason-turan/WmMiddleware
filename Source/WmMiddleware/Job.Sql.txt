@@ -16,6 +16,6 @@ BEGIN
 		LastRunStatus VARCHAR(100) NULL,
 		LastRunDateTime DATETIME NULL,
 		NextRunDateTime DATETIME NULL,
-		JobType NVARCHAR(10)
+		JobType NVARCHAR(50)
 	)
 END

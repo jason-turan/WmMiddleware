@@ -18,7 +18,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.Picking.Tests"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.Common", "WmMiddleware.Common\WmMiddleware.Common.csproj", "{F1691638-045D-49D1-8921-7D7049EBD666}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WMMiddleware.Common.Tests", "WMMiddleware.Common.Tests\WMMiddleware.Common.Tests.csproj", "{347C9D2C-29F2-434A-B373-7320E22EA941}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.Common.Tests", "WMMiddleware.Common.Tests\WmMiddleware.Common.Tests.csproj", "{347C9D2C-29F2-434A-B373-7320E22EA941}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.TransferControl", "WmMiddleware.TransferControl\WmMiddleware.TransferControl.csproj", "{F788DD6F-2DF7-45BA-950A-EC5CBC5731D8}"
 EndProject
@@ -61,9 +61,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Scheduler.Web", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Scheduler.WindowService", "Middleware.WindowService\Middleware.Scheduler.WindowService.csproj", "{BCB72A58-8273-4F9C-82B6-B522EBDE613C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Integration", "Middleware.Integration\Middleware.Integration.csproj", "{BD53A64C-B782-4BD3-A771-4D2938DBEBFC}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 19
+		SccNumberOfProjects = 20
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://10.1.0.80:8080/tfs/business%20applications
 		SccLocalPath0 = .
@@ -121,6 +123,9 @@ Global
 		SccProjectUniqueName18 = Middleware.WindowService\\Middleware.Scheduler.WindowService.csproj
 		SccProjectName18 = Middleware.WindowService
 		SccLocalPath18 = Middleware.WindowService
+		SccProjectUniqueName19 = Middleware.Integration\\Middleware.Integration.csproj
+		SccProjectName19 = Middleware.Integration
+		SccLocalPath19 = Middleware.Integration
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -310,6 +315,16 @@ Global
 		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{BD53A64C-B782-4BD3-A771-4D2938DBEBFC}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{BD53A64C-B782-4BD3-A771-4D2938DBEBFC}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{BD53A64C-B782-4BD3-A771-4D2938DBEBFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD53A64C-B782-4BD3-A771-4D2938DBEBFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD53A64C-B782-4BD3-A771-4D2938DBEBFC}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD53A64C-B782-4BD3-A771-4D2938DBEBFC}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{BD53A64C-B782-4BD3-A771-4D2938DBEBFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD53A64C-B782-4BD3-A771-4D2938DBEBFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD53A64C-B782-4BD3-A771-4D2938DBEBFC}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{BD53A64C-B782-4BD3-A771-4D2938DBEBFC}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

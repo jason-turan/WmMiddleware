@@ -18,6 +18,8 @@ namespace Middleware.Scheduler.Web
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/bootstrap.min.css"));
             // modernizr
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include("~/Scripts/modernizr-*"));
+            // modernizr
+            bundles.Add(new ScriptBundle("~/bundles/json").Include("~/Scripts/json*"));
         }
     }
 }

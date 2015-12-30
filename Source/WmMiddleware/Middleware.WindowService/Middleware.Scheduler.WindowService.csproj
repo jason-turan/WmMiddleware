@@ -148,6 +148,10 @@
       <Project>{cd0375d8-cfd0-4ea4-a7c7-2492cd9c5660}</Project>
       <Name>Middleware.Alerts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Middleware.Integration\Middleware.Integration.csproj">
+      <Project>{bd53a64c-b782-4bd3-a771-4d2938dbebfc}</Project>
+      <Name>Middleware.Integration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WmMiddleware.Common\WmMiddleware.Common.csproj">
       <Project>{F1691638-045D-49D1-8921-7D7049EBD666}</Project>
       <Name>WmMiddleware.Common</Name>
@@ -229,5 +233,6 @@
     <Copy SourceFiles="..\WmMiddleware.InventorySync\bin\$(Configuration)\WmMiddleware.InventorySync.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\WmMiddleware.Pix\bin\$(Configuration)\WmMiddleware.Pix.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\Middleware.Alerts\bin\$(Configuration)\Middleware.Alerts.exe.config" DestinationFolder="$(TargetDir)" />
+    <Copy SourceFiles="..\Middleware.Integration\bin\$(Configuration)\Middleware.Integration.exe.config" DestinationFolder="$(TargetDir)" />
   </Target>
 </Project>

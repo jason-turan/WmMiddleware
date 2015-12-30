@@ -1,0 +1,40 @@
+﻿using Middleware.Integration.Factories;
+using Middleware.Integration.Repositories;
+using Middleware.Jobs.Repositories;
+using MiddleWare.Log;
+
+namespace Middleware.Integration
+{
+    public class IntegrationJob : IIntegrationJob
+    {
+        private readonly ILog _log;
+        private readonly IIntegrationTaskRespository _integrationTaskRespository;
+        private readonly IJobRepository _jobRepository;
+        private readonly IXmlRepositoryFactory _xmlRepositoryFactory;
+
+        public IntegrationJob(ILog log, 
+                              IIntegrationTaskRespository integrationTaskRespository, 
+                              IJobRepository jobRepository,
+                              IXmlRepositoryFactory xmlRepositoryFactory)
+        {
+            _log = log;
+            _integrationTaskRespository = integrationTaskRespository;
+            _jobRepository = jobRepository;
+            _xmlRepositoryFactory = xmlRepositoryFactory;
+        }
+
+        public void RunUnitOfWork(string jobKey)
+        {
+            var job = _jobRepository.GetJob(jobKey);
+            var integrationTask = _integrationTaskRespository.GetTask(job.JobId);
+
+            var reader = _xmlRepositoryFactory.CreateReader(integrationTask.Source);
+            var xml = reader.Read();
+
+            // transform
+
+            var writer = _xmlRepositoryFactory.CreateWriter(integrationTask.Destination);
+            writer.Save(xml);
+        }
+    }
+}

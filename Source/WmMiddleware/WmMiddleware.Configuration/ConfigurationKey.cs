@@ -30,5 +30,8 @@
         public const string WarehouseAddressState = "WarehouseAddress_State";
         public const string WarehouseAddressZipCode = "WarehouseAddress_ZipCode";
         public const string WarehouseAddressCountry = "WarehouseAddress_Country";
+
+        public const string PhoneNumber = "PhoneNumber";
+        public const string UpsAccountNumber = "UpsAccountNumber";
     }
 }

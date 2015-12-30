@@ -3,6 +3,8 @@
     public enum JobType
     {
         Inbound,
-        Outbound
+        Outbound,
+        Admin,
+        Integration
     }
 }

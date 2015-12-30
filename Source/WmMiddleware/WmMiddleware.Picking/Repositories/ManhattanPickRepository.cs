@@ -83,8 +83,10 @@ namespace WmMiddleware.Picking.Repositories
 
         private IEnumerable<ManhattanPickTicketInstruction> GetGlobalInstructions(Order order, string batchControlNumber, int instructionControlNumber)
         {
-            const string phoneNumber = "800-595-9138";
             var warehouseAddress = _configuration.GetWarehouseAddress();
+            var phoneNumber = _configuration.GetKey<string>(ConfigurationKey.PhoneNumber);
+            var upsAccountNumber = _configuration.GetKey<string>(ConfigurationKey.UpsAccountNumber);
+
             var isFromNewBalance = order.Company.Equals("NBWE", StringComparison.InvariantCultureIgnoreCase);
             var warehouseAddress1 = string.Format("{0,-50}{1}", "New Balance", warehouseAddress.Line1);
             var warehouseAddress3 = string.Format("{0,-50}{1,-5}{2,-11}{3}", warehouseAddress.City, warehouseAddress.State, warehouseAddress.Zip, "840");
@@ -99,7 +101,7 @@ namespace WmMiddleware.Picking.Repositories
             yield return new ManhattanPickTicketInstruction("VA", "OR", "PS06" /* + ?? */, batchControlNumber, order.ControlNumber, instructionControlNumber++);
             yield return new ManhattanPickTicketInstruction("VA", "OR", "PS07" /* + ?? */, batchControlNumber, order.ControlNumber, instructionControlNumber++);
             yield return new ManhattanPickTicketInstruction("VA", "OR", "PS08" /* + ?? */, batchControlNumber, order.ControlNumber, instructionControlNumber++);
-            yield return new ManhattanPickTicketInstruction("VA", "OR", "UPS ACCOUNT#AX1842", batchControlNumber, order.ControlNumber, instructionControlNumber++);
+            yield return new ManhattanPickTicketInstruction("VA", "OR", "UPS ACCOUNT#" + phoneNumber, batchControlNumber, order.ControlNumber, instructionControlNumber++);
             yield return new ManhattanPickTicketInstruction("VA", "OR", "APPLY CARTON STICKER AND INSERT", batchControlNumber, order.ControlNumber, instructionControlNumber++);
             yield return new ManhattanPickTicketInstruction("VA", "OR", "RETURN CARD", batchControlNumber, order.ControlNumber, instructionControlNumber++);
             yield return new ManhattanPickTicketInstruction("TP", "TP", warehouseAddress1, batchControlNumber, order.ControlNumber, instructionControlNumber++);
