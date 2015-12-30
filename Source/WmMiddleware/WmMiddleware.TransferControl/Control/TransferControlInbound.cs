@@ -62,7 +62,7 @@ namespace WmMiddleware.TransferControl.Control
 
                     foreach (var file in transferControl.Files)
                     {
-                        UploadTransferControlFile(file, transferControl, fileList);
+                        UploadFile(file, transferControl, fileList);
                     }
 
                     transferControl.ProcessedDate = DateTime.Now;
@@ -85,7 +85,7 @@ namespace WmMiddleware.TransferControl.Control
             return allSucceeded;
         }
 
-        private void UploadTransferControlFile(TransferControlFile file,
+        private void UploadFile(TransferControlFile file,
                                                 Models.TransferControl transferControl,
                                                 ICollection<TransferControlMaster> fileList)
         {
@@ -109,7 +109,7 @@ namespace WmMiddleware.TransferControl.Control
                        " file " +
                        fileInfo.FullName);
 
-            UploadFile(fileInfo);
+            FtpUploadFile(fileInfo);
 
             fileList.Add(master);
         }
@@ -148,7 +148,7 @@ namespace WmMiddleware.TransferControl.Control
             transferControlWriter.Save(masters, Path.Combine(inboundFileDirectory, masterControlFileName));
         }
 
-        private void UploadFile(FileInfo fileInfo)
+        private void FtpUploadFile(FileInfo fileInfo)
         {
             var enableFtpTransmission = _configuration.GetKey<bool>(ConfigurationKey.TransferControlFtpEnable);
 
