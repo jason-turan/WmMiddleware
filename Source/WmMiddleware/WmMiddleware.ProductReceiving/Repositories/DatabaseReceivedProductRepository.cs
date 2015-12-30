@@ -86,7 +86,9 @@ namespace WmMiddleware.ProductReceiving.Repositories
                 var purchaseOrder = group.First().ToPurchaseOrder();
                 foreach (var item in group.GroupBy(po => po.SKU))
                 {
-                    purchaseOrder.Items.Add(item.First().ToLineItem());
+                    var lineItem = item.First().ToLineItem();
+                    lineItem.QuantityOrdered = item.Sum(i => i.QtyOrd);
+                    purchaseOrder.Items.Add(lineItem);
                 }
                 yield return purchaseOrder;
             }
@@ -100,7 +102,11 @@ namespace WmMiddleware.ProductReceiving.Repositories
                 var asn = group.First().ToAutomatedShippingNotification();
                 foreach (var item in group.GroupBy(a => a.SKU))
                 {
-                    asn.Items.Add(item.First().ToAutomatedShippingNotificationItem());
+                    var asnItem = item.First().ToAutomatedShippingNotificationItem();
+                    asnItem.CartonQuantity = item.Sum(i => i.CartonQTY);
+                    asnItem.EachQuantity = item.Sum(i => i.EachQty);
+                    asnItem.PalletQuantity = item.Sum(i => i.PalletQTY);
+                    asn.Items.Add(asnItem);
                 }
                 yield return asn;
             }

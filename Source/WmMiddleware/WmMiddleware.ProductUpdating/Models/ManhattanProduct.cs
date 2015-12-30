@@ -57,6 +57,7 @@ namespace WmMiddleware.ProductUpdating.Models
             LotControlUsed = "N";
             VendorTaggedEpc = "0";
             ProductType = "F";
+            PickDeterminationType = "POP";
         }
 
         public DateTime CreateDate
