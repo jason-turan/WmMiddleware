@@ -65,8 +65,6 @@ namespace WmMiddleware.TransferControl.Control
                         UploadFile(file, transferControl, fileList);
                     }
 
-                    transferControl.ProcessedDate = DateTime.Now;
-
                     var appendMasterControlSuccess = AppendMasterControl(fileList, transferControl);
 
                     if (!appendMasterControlSuccess)
@@ -123,8 +121,9 @@ namespace WmMiddleware.TransferControl.Control
 
                 WriteFile(transferControlWriter, files);
 
-                FtpAppendTransferControl(transferControl);
+                FtpAppendTransferControl();
 
+                transferControl.ProcessedDate = DateTime.Now;
                 _transferControlRepository.UpdateTransferControl(transferControl);
 
                 MoveTransferControlMasterToProcessedFolder();
@@ -170,7 +169,7 @@ namespace WmMiddleware.TransferControl.Control
             _fileIo.Move(fileInfo, new FileInfo(Path.Combine(processedPath, fileInfo.Name)));
         }
 
-        private void FtpAppendTransferControl(Models.TransferControl transferControl)
+        private void FtpAppendTransferControl()
         {
             var enableFtpTransmission = _configuration.GetKey<bool>(ConfigurationKey.TransferControlFtpEnable);
 
