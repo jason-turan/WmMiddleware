@@ -58,11 +58,12 @@ namespace WmMiddleware.TransferControl.Control
             {
                 try
                 {
-                    var fileList = new List<TransferControlMaster>();  // each file of the batch gets its own row
+                    var fileList = new List<TransferControlMaster>();  
 
                     foreach (var file in transferControl.Files)
                     {
-                        UploadFile(file, transferControl, fileList);
+                        // each file of the batch gets its own row
+                       fileList.Add(UploadFile(file, transferControl));
                     }
 
                     var appendMasterControlSuccess = AppendMasterControl(fileList, transferControl);
@@ -83,9 +84,8 @@ namespace WmMiddleware.TransferControl.Control
             return allSucceeded;
         }
 
-        private void UploadFile(TransferControlFile file,
-                                                Models.TransferControl transferControl,
-                                                ICollection<TransferControlMaster> fileList)
+        private TransferControlMaster UploadFile(TransferControlFile file,
+                                                 Models.TransferControl transferControl)
         {
             var fileInfo = new FileInfo(file.FileLocation);
 
@@ -109,7 +109,7 @@ namespace WmMiddleware.TransferControl.Control
 
             FtpUploadFile(fileInfo);
 
-            fileList.Add(master);
+            return master;
         }
 
         private bool AppendMasterControl(IEnumerable<TransferControlMaster> files,
