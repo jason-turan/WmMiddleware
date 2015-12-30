@@ -39,60 +39,55 @@ namespace WmMiddleware.TransferControl.Control
 
         public bool Process()
         {
-            bool success = true;
+            bool allSucceeded = true;
 
-            var enableFtpTransmission = _configuration.GetKey<bool>(ConfigurationKey.TransferControlFtpEnable);
-
-            var masters = new List<TransferControlMaster>();
-            var transferControlMaster = new DataFileRepository<TransferControlMaster>();
-
-            var unprocessedTransferControls =
+            var transferControls =
                 _transferControlRepository.FindTransferControls(new TransferControlSearchCriteria
                 {
                     Processed = false,
                     JobType = JobType.Inbound
                 }).ToList();
 
-            if (unprocessedTransferControls.Count == 0)
+            if (transferControls.Count == 0)
             {
                 _log.Info("Inbound: No records to process");
                 return true;
             }
 
-            foreach (var transferControl in unprocessedTransferControls)
+            foreach (var transferControl in transferControls)
             {
                 try
                 {
+                    var fileList = new List<TransferControlMaster>();  // each file of the batch gets its own row
+
                     foreach (var file in transferControl.Files)
                     {
-                        ProcessTransferControlFile(file, 
-                                                   transferControl, 
-                                                   enableFtpTransmission, 
-                                                   masters);
+                        UploadTransferControlFile(file, transferControl, fileList);
                     }
 
                     transferControl.ProcessedDate = DateTime.Now;
+
+                    var appendMasterControlSuccess = AppendMasterControl(fileList, transferControl);
+
+                    if (!appendMasterControlSuccess)
+                    {
+                        allSucceeded = false;
+                    }
                 }
                 catch (Exception exception)
                 {
                     _log.Exception("Inbound : Fatal exception processing batch " +
                                    transferControl.BatchControlNumber, exception);
-                    success = false;
+                    allSucceeded = false;
                 }
             }
 
-            if (masters.Count <= 0) return success;
-
-            return ProcessMasterControl(transferControlMaster, 
-                                        masters, 
-                                        enableFtpTransmission, 
-                                        unprocessedTransferControls);
+            return allSucceeded;
         }
 
-        private void ProcessTransferControlFile(TransferControlFile file, 
+        private void UploadTransferControlFile(TransferControlFile file,
                                                 Models.TransferControl transferControl,
-                                                bool enableFtpTransmission, 
-                                                ICollection<TransferControlMaster> masters)
+                                                ICollection<TransferControlMaster> fileList)
         {
             var fileInfo = new FileInfo(file.FileLocation);
 
@@ -109,29 +104,30 @@ namespace WmMiddleware.TransferControl.Control
                 UserId = _configuration.GetKey<string>(ConfigurationKey.TransferControlFtpUserName),
             };
 
-            _log.Debug("Inbound : processing batch " + 
-                       transferControl.BatchControlNumber + 
+            _log.Debug("Inbound : processing batch " +
+                       transferControl.BatchControlNumber +
                        " file " +
                        fileInfo.FullName);
 
-            FtpInboundTransferControlFile(enableFtpTransmission, fileInfo);
+            UploadFile(fileInfo);
 
-            masters.Add(master);
+            fileList.Add(master);
         }
 
-        private bool ProcessMasterControl(DataFileRepository<TransferControlMaster> transferControlMaster, 
-                                          IEnumerable<TransferControlMaster> masters, bool enableFtpTransmission,
-                                          IEnumerable<Models.TransferControl> unprocessedTransferControls)
+        private bool AppendMasterControl(IEnumerable<TransferControlMaster> files,
+                                          Models.TransferControl transferControl)
         {
             try
             {
-                var masterControlFileName =
-                    _configuration.GetKey<string>(ConfigurationKey.TransferControlInboundMasterControlFilename);
-                var inboundFileDirectory =
-                    _configuration.GetKey<string>(ConfigurationKey.TransferControlInboundFileDirectory);
+                var transferControlWriter = new DataFileRepository<TransferControlMaster>();
 
-                transferControlMaster.Save(masters, Path.Combine(inboundFileDirectory, masterControlFileName));
-                FtpInboundTransferControl(enableFtpTransmission, unprocessedTransferControls);
+                WriteFile(transferControlWriter, files);
+
+                FtpAppendTransferControl(transferControl);
+
+                _transferControlRepository.UpdateTransferControl(transferControl);
+
+                MoveTransferControlMasterToProcessedFolder();
             }
             catch (Exception exception)
             {
@@ -141,8 +137,21 @@ namespace WmMiddleware.TransferControl.Control
             return true;
         }
 
-        private void FtpInboundTransferControlFile(bool enableFtpTransmission, FileInfo fileInfo)
+        private void WriteFile(DataFileRepository<TransferControlMaster> transferControlWriter,
+                               IEnumerable<TransferControlMaster> masters)
         {
+            var masterControlFileName =
+                _configuration.GetKey<string>(ConfigurationKey.TransferControlInboundMasterControlFilename);
+            var inboundFileDirectory =
+                _configuration.GetKey<string>(ConfigurationKey.TransferControlInboundFileDirectory);
+
+            transferControlWriter.Save(masters, Path.Combine(inboundFileDirectory, masterControlFileName));
+        }
+
+        private void UploadFile(FileInfo fileInfo)
+        {
+            var enableFtpTransmission = _configuration.GetKey<bool>(ConfigurationKey.TransferControlFtpEnable);
+
             if (!enableFtpTransmission)
             {
                 return;
@@ -161,29 +170,37 @@ namespace WmMiddleware.TransferControl.Control
             _fileIo.Move(fileInfo, new FileInfo(Path.Combine(processedPath, fileInfo.Name)));
         }
 
-        private void FtpInboundTransferControl(bool enableFtpTransmission,
-            IEnumerable<Models.TransferControl> unprocessedTransferControls)
+        private void FtpAppendTransferControl(Models.TransferControl transferControl)
         {
+            var enableFtpTransmission = _configuration.GetKey<bool>(ConfigurationKey.TransferControlFtpEnable);
+
             if (!enableFtpTransmission)
             {
                 return;
             }
 
-            var masterControlFileName = _configuration.GetKey<string>(ConfigurationKey.TransferControlInboundMasterControlFilename);
-            var inboundFileDirectory = _configuration.GetKey<string>(ConfigurationKey.TransferControlInboundFileDirectory);
-            var masterControlFile = new FileInfo(inboundFileDirectory + masterControlFileName);
+            var masterControlFile = GetMasterControlFilePath();
 
             _manhattanFtp.AppendInboundMasterControl(masterControlFile);
+        }
 
-            foreach (var transferControl in unprocessedTransferControls)
-            {
-                _transferControlRepository.UpdateTransferControl(transferControl);
-            }
+        private FileInfo GetMasterControlFilePath()
+        {
+            var masterControlFileName =
+                _configuration.GetKey<string>(ConfigurationKey.TransferControlInboundMasterControlFilename);
+            var inboundFileDirectory = _configuration.GetKey<string>(ConfigurationKey.TransferControlInboundFileDirectory);
+            var masterControlFile = new FileInfo(inboundFileDirectory + masterControlFileName);
+            return masterControlFile;
+        }
+
+        private void MoveTransferControlMasterToProcessedFolder()
+        {
+            var masterControlFile = GetMasterControlFilePath();
 
             var processedPath = _configuration.GetKey<string>(ConfigurationKey.TransferControlInboundFileProcessedDirectory);
 
-            _fileIo.Move(masterControlFile, 
-                         new FileInfo(Path.Combine(processedPath, masterControlFile.Name + DateTime.Now.ToString("yyyyMMddHHmmss"))));
+            _fileIo.Move(masterControlFile,
+                new FileInfo(Path.Combine(processedPath, masterControlFile.Name + DateTime.Now.ToString("yyyyMMddHHmmss"))));
         }
     }
 }
