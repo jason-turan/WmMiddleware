@@ -15,21 +15,17 @@ namespace WmMiddleware.ProductReceiving.Models
             BatchControlNumber = batchControlNumber;
             CreateDate = DateTime.Now;
             AsnType = "1";
-            //ShipmentNumber = purchaseOrder.nu
-            PurchaseOrderNumber = "P-" + purchaseOrder.ExternalUid;
-            //PurchaseOrderLineNumber = purchaseOrder.lin
+            ShipmentNumber = purchaseOrder.ExternalUid;
             Company = companyNumber;
             Division = warehouseNumber;
             SeasonYear = item.SeasonYear;
             Style = item.Style;
             Color = item.Color;
             SecDimension = item.Size.ToManhattanSize().Truncate(3);
-            //SequenceNumber = purchaseOrder.linenumber
             InventoryType = "F";
             UnitsShipped = item.QuantityOrdered;//?
             Function = "2";
             ShipmentNumber = purchaseOrder.ExternalUid;
-            PurchaseOrderNumber = purchaseOrder.BuyerReferenceNumber;
         }
 
         public DateTime CreateDate

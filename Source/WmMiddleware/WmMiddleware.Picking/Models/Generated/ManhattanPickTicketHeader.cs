@@ -12,7 +12,7 @@ namespace WmMiddleware.Picking.Models
     internal partial class ManhattanPickTicketHeader
     {
         private int _errorSequence;
-        [FixedLengthField(1, 9, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(1, 9, PaddingChar = '0', Padding = Padding.Left, NullValue = "000000000")]
         public int ErrorSequence
         {
             get { return _errorSequence; }
@@ -24,7 +24,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private int _processedDate;
-        [FixedLengthField(2, 9, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(2, 9, PaddingChar = '0', Padding = Padding.Left, NullValue = "000000000")]
         public int ProcessedDate
         {
             get { return _processedDate; }
@@ -36,7 +36,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private int _processedTime;
-        [FixedLengthField(3, 7, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(3, 7, PaddingChar = '0', Padding = Padding.Left, NullValue = "0000000")]
         public int ProcessedTime
         {
             get { return _processedTime; }
@@ -64,7 +64,7 @@ namespace WmMiddleware.Picking.Models
         // Used by New Balance
         // date created
         private int _dateCreated;
-        [FixedLengthField(5, 9, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(5, 9, PaddingChar = '0', Padding = Padding.Left, NullValue = "000000000")]
         public int DateCreated
         {
             get { return _dateCreated; }
@@ -78,7 +78,7 @@ namespace WmMiddleware.Picking.Models
         // Used by New Balance
         // time created
         private int _timeCreated;
-        [FixedLengthField(6, 7, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(6, 7, PaddingChar = '0', Padding = Padding.Left, NullValue = "0000000")]
         public int TimeCreated
         {
             get { return _timeCreated; }
@@ -664,7 +664,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private int _numberOfTimesApptChg;
-        [FixedLengthField(50, 1, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(50, 1, PaddingChar = '0', Padding = Padding.Left, NullValue = "0")]
         public int NumberOfTimesApptChg
         {
             get { return _numberOfTimesApptChg; }
@@ -676,7 +676,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private int _appointmentDate;
-        [FixedLengthField(51, 9, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(51, 9, PaddingChar = '0', Padding = Padding.Left, NullValue = "000000000")]
         public int AppointmentDate
         {
             get { return _appointmentDate; }
@@ -738,7 +738,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private int _advertisingDate;
-        [FixedLengthField(56, 9, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(56, 9, PaddingChar = '0', Padding = Padding.Left, NullValue = "000000000")]
         public int AdvertisingDate
         {
             get { return _advertisingDate; }
@@ -958,7 +958,7 @@ namespace WmMiddleware.Picking.Models
         // Used by New Balance
         // Do Not Ship Before Date (WM internal format not the same as PHPKTN)
         private int _orderDate;
-        [FixedLengthField(73, 9, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(73, 9, PaddingChar = '0', Padding = Padding.Left, NullValue = "000000000")]
         public int OrderDate
         {
             get { return _orderDate; }
@@ -972,7 +972,7 @@ namespace WmMiddleware.Picking.Models
         // Used by New Balance
         // Pick Ticket Create Date
         private int _pickticketGenerationDate;
-        [FixedLengthField(74, 9, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(74, 9, PaddingChar = '0', Padding = Padding.Left, NullValue = "000000000")]
         public int PickticketGenerationDate
         {
             get { return _pickticketGenerationDate; }
@@ -986,7 +986,7 @@ namespace WmMiddleware.Picking.Models
         // Used by New Balance
         // Order Request Date
         private int _startShipDate;
-        [FixedLengthField(75, 9, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(75, 9, PaddingChar = '0', Padding = Padding.Left, NullValue = "000000000")]
         public int StartShipDate
         {
             get { return _startShipDate; }
@@ -1000,7 +1000,7 @@ namespace WmMiddleware.Picking.Models
         // Used by New Balance
         // Order Cancel Date
         private int _stopShipDate;
-        [FixedLengthField(76, 9, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(76, 9, PaddingChar = '0', Padding = Padding.Left, NullValue = "000000000")]
         public int StopShipDate
         {
             get { return _stopShipDate; }
@@ -1012,7 +1012,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private int _cancelDate;
-        [FixedLengthField(77, 9, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(77, 9, PaddingChar = '0', Padding = Padding.Left, NullValue = "000000000")]
         public int CancelDate
         {
             get { return _cancelDate; }
@@ -1024,7 +1024,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private int _allocShipDate;
-        [FixedLengthField(78, 9, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(78, 9, PaddingChar = '0', Padding = Padding.Left, NullValue = "000000000")]
         public int AllocShipDate
         {
             get { return _allocShipDate; }
@@ -1038,7 +1038,7 @@ namespace WmMiddleware.Picking.Models
         // Used by New Balance
         // This field is used for Rate Shopping (and the USPS special case, USPS keeps this zero).  The complex Rate Shopping logic uses a UPS holiday table to make sure it never selects a delivery date that is a UPS holiday.  The Rate Shopping program on JBA tells the pick what to populate here.  For Friday Guarantee it calculates the next available Friday.  For XPS it calculates 2 days for morning drops, 3 days for afternoon drops.
         private int _scheduleDeliveryDate;
-        [FixedLengthField(79, 9, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(79, 9, PaddingChar = '0', Padding = Padding.Left, NullValue = "000000000")]
         public int ScheduleDeliveryDate
         {
             get { return _scheduleDeliveryDate; }
@@ -1086,7 +1086,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private int _termsPercent;
-        [FixedLengthField(83, 5, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(83, 5, PaddingChar = '0', Padding = Padding.Left, NullValue = "00000")]
         public int TermsPercent_Backing
         {
             get { return _termsPercent; }
@@ -1169,7 +1169,7 @@ namespace WmMiddleware.Picking.Models
         // Used by New Balance
         // Taken from new NB databse Manhattan Customer Master Extension, else default is 1.
         private int _numberOfCartonLabels;
-        [FixedLengthField(89, 3, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(89, 3, PaddingChar = '0', Padding = Padding.Left, NullValue = "000")]
         public int NumberOfCartonLabels
         {
             get { return _numberOfCartonLabels; }
@@ -1195,7 +1195,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private int _numberOfContLabels;
-        [FixedLengthField(91, 3, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(91, 3, PaddingChar = '0', Padding = Padding.Left, NullValue = "000")]
         public int NumberOfContLabels
         {
             get { return _numberOfContLabels; }
@@ -1221,7 +1221,7 @@ namespace WmMiddleware.Picking.Models
         // Used by New Balance
         // Taken from new NB databse Manhattan Customer Master Extension, else default is 1.
         private int _numberOfPackingSlips;
-        [FixedLengthField(93, 3, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(93, 3, PaddingChar = '0', Padding = Padding.Left, NullValue = "000")]
         public int NumberOfPackingSlips
         {
             get { return _numberOfPackingSlips; }
@@ -1397,7 +1397,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private long _estimatedWeightBridged;
-        [FixedLengthField(107, 15, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(107, 15, PaddingChar = '0', Padding = Padding.Left, NullValue = "000000000000000")]
         public long EstimatedWeightBridged_Backing
         {
             get { return _estimatedWeightBridged; }
@@ -1414,7 +1414,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private int _estimatedCartonsBridged;
-        [FixedLengthField(108, 7, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(108, 7, PaddingChar = '0', Padding = Padding.Left, NullValue = "0000000")]
         public int EstimatedCartonsBridged
         {
             get { return _estimatedCartonsBridged; }
@@ -1426,7 +1426,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private long _estimatedVolumeBridged;
-        [FixedLengthField(109, 15, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(109, 15, PaddingChar = '0', Padding = Padding.Left, NullValue = "000000000000000")]
         public long EstimatedVolumeBridged_Backing
         {
             get { return _estimatedVolumeBridged; }
@@ -1443,7 +1443,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private long _totNumberOfUnits;
-        [FixedLengthField(110, 13, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(110, 13, PaddingChar = '0', Padding = Padding.Left, NullValue = "0000000000000")]
         public long TotNumberOfUnits_Backing
         {
             get { return _totNumberOfUnits; }
@@ -1460,7 +1460,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private long _totDlrsUndiscntd;
-        [FixedLengthField(111, 19, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(111, 19, PaddingChar = '0', Padding = Padding.Left, NullValue = "0000000000000000000")]
         public long TotDlrsUndiscntd_Backing
         {
             get { return _totDlrsUndiscntd; }
@@ -1477,7 +1477,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private long _totDlrsDiscounted;
-        [FixedLengthField(112, 19, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(112, 19, PaddingChar = '0', Padding = Padding.Left, NullValue = "0000000000000000000")]
         public long TotDlrsDiscounted_Backing
         {
             get { return _totDlrsDiscounted; }
@@ -1508,7 +1508,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private int _discountDate;
-        [FixedLengthField(114, 9, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(114, 9, PaddingChar = '0', Padding = Padding.Left, NullValue = "000000000")]
         public int DiscountDate
         {
             get { return _discountDate; }
@@ -1520,7 +1520,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private int _numberOfHangers;
-        [FixedLengthField(115, 3, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(115, 3, PaddingChar = '0', Padding = Padding.Left, NullValue = "000")]
         public int NumberOfHangers
         {
             get { return _numberOfHangers; }
@@ -1544,7 +1544,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private int _routeSequenceNumber;
-        [FixedLengthField(117, 5, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(117, 5, PaddingChar = '0', Padding = Padding.Left, NullValue = "00000")]
         public int RouteSequenceNumber
         {
             get { return _routeSequenceNumber; }
@@ -1628,7 +1628,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private long _productValue;
-        [FixedLengthField(124, 19, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(124, 19, PaddingChar = '0', Padding = Padding.Left, NullValue = "0000000000000000000")]
         public long ProductValue_Backing
         {
             get { return _productValue; }
@@ -1669,7 +1669,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private long _creditAmount;
-        [FixedLengthField(127, 19, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(127, 19, PaddingChar = '0', Padding = Padding.Left, NullValue = "0000000000000000000")]
         public long CreditAmount_Backing
         {
             get { return _creditAmount; }
@@ -1686,7 +1686,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private long _orderCharge;
-        [FixedLengthField(128, 19, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(128, 19, PaddingChar = '0', Padding = Padding.Left, NullValue = "0000000000000000000")]
         public long OrderCharge_Backing
         {
             get { return _orderCharge; }
@@ -1703,7 +1703,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private long _handlingCharges;
-        [FixedLengthField(129, 19, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(129, 19, PaddingChar = '0', Padding = Padding.Left, NullValue = "0000000000000000000")]
         public long HandlingCharges_Backing
         {
             get { return _handlingCharges; }
@@ -1720,7 +1720,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private long _insuranceCharges;
-        [FixedLengthField(130, 19, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(130, 19, PaddingChar = '0', Padding = Padding.Left, NullValue = "0000000000000000000")]
         public long InsuranceCharges_Backing
         {
             get { return _insuranceCharges; }
@@ -1737,7 +1737,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private long _taxCharges;
-        [FixedLengthField(131, 19, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(131, 19, PaddingChar = '0', Padding = Padding.Left, NullValue = "0000000000000000000")]
         public long TaxCharges_Backing
         {
             get { return _taxCharges; }
@@ -1754,7 +1754,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private long _miscellaneousCharges;
-        [FixedLengthField(132, 19, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(132, 19, PaddingChar = '0', Padding = Padding.Left, NullValue = "0000000000000000000")]
         public long MiscellaneousCharges_Backing
         {
             get { return _miscellaneousCharges; }
@@ -1771,7 +1771,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private long _pickticketWageValue;
-        [FixedLengthField(133, 19, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(133, 19, PaddingChar = '0', Padding = Padding.Left, NullValue = "0000000000000000000")]
         public long PickticketWageValue_Backing
         {
             get { return _pickticketWageValue; }
@@ -1788,7 +1788,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private int _pickerStdHours;
-        [FixedLengthField(134, 5, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(134, 5, PaddingChar = '0', Padding = Padding.Left, NullValue = "00000")]
         public int PickerStdHours_Backing
         {
             get { return _pickerStdHours; }
@@ -1941,7 +1941,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private long _maxCartonWeight;
-        [FixedLengthField(146, 15, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(146, 15, PaddingChar = '0', Padding = Padding.Left, NullValue = "000000000000000")]
         public long MaxCartonWeight_Backing
         {
             get { return _maxCartonWeight; }
@@ -1958,7 +1958,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private long _maxCartonUnits;
-        [FixedLengthField(147, 11, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(147, 11, PaddingChar = '0', Padding = Padding.Left, NullValue = "00000000000")]
         public long MaxCartonUnits_Backing
         {
             get { return _maxCartonUnits; }
@@ -2183,7 +2183,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private int _earliestDeliveryTime;
-        [FixedLengthField(165, 5, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(165, 5, PaddingChar = '0', Padding = Padding.Left, NullValue = "00000")]
         public int EarliestDeliveryTime
         {
             get { return _earliestDeliveryTime; }
@@ -2563,7 +2563,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private int _customerChargeDiscountPercent;
-        [FixedLengthField(195, 5, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(195, 5, PaddingChar = '0', Padding = Padding.Left, NullValue = "00000")]
         public int CustomerChargeDiscountPercent_Backing
         {
             get { return _customerChargeDiscountPercent; }
@@ -2798,7 +2798,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private long _miscellaneousNum1;
-        [FixedLengthField(213, 13, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(213, 13, PaddingChar = '0', Padding = Padding.Left, NullValue = "0000000000000")]
         public long MiscellaneousNum1_Backing
         {
             get { return _miscellaneousNum1; }
@@ -2815,7 +2815,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private long _miscellaneousNum2;
-        [FixedLengthField(214, 13, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(214, 13, PaddingChar = '0', Padding = Padding.Left, NullValue = "0000000000000")]
         public long MiscellaneousNum2_Backing
         {
             get { return _miscellaneousNum2; }
@@ -2832,7 +2832,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private long _miscellaneousNum3;
-        [FixedLengthField(215, 13, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(215, 13, PaddingChar = '0', Padding = Padding.Left, NullValue = "0000000000000")]
         public long MiscellaneousNum3_Backing
         {
             get { return _miscellaneousNum3; }
@@ -3015,7 +3015,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private int _dayOfWeek;
-        [FixedLengthField(229, 1, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(229, 1, PaddingChar = '0', Padding = Padding.Left, NullValue = "0")]
         public int DayOfWeek
         {
             get { return _dayOfWeek; }
@@ -3051,7 +3051,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private int _scheduledDeliveryEndDate;
-        [FixedLengthField(232, 9, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(232, 9, PaddingChar = '0', Padding = Padding.Left, NullValue = "000000000")]
         public int ScheduledDeliveryEndDate
         {
             get { return _scheduledDeliveryEndDate; }
@@ -3222,7 +3222,7 @@ namespace WmMiddleware.Picking.Models
         // Used by New Balance
         // Est cartons in OSG0G3
         private long _miscellaneousNum4;
-        [FixedLengthField(245, 13, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(245, 13, PaddingChar = '0', Padding = Padding.Left, NullValue = "0000000000000")]
         public long MiscellaneousNum4_Backing
         {
             get { return _miscellaneousNum4; }
@@ -3241,7 +3241,7 @@ namespace WmMiddleware.Picking.Models
         // Used by New Balance
         // Est cartons in OSG0G3
         private long _miscellaneousNum5;
-        [FixedLengthField(246, 13, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(246, 13, PaddingChar = '0', Padding = Padding.Left, NullValue = "0000000000000")]
         public long MiscellaneousNum5_Backing
         {
             get { return _miscellaneousNum5; }
@@ -3260,7 +3260,7 @@ namespace WmMiddleware.Picking.Models
         // Used by New Balance
         // Est cartons in OSG0G3
         private long _miscellaneousNum6;
-        [FixedLengthField(247, 13, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(247, 13, PaddingChar = '0', Padding = Padding.Left, NullValue = "0000000000000")]
         public long MiscellaneousNum6_Backing
         {
             get { return _miscellaneousNum6; }
@@ -3301,7 +3301,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private int _numberOfDetailLines;
-        [FixedLengthField(250, 5, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(250, 5, PaddingChar = '0', Padding = Padding.Left, NullValue = "00000")]
         public int NumberOfDetailLines
         {
             get { return _numberOfDetailLines; }
@@ -3325,7 +3325,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private int _deliveryDate;
-        [FixedLengthField(252, 9, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(252, 9, PaddingChar = '0', Padding = Padding.Left, NullValue = "000000000")]
         public int DeliveryDate
         {
             get { return _deliveryDate; }
@@ -3697,7 +3697,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private int _maxSkusThatCanBeCubed;
-        [FixedLengthField(283, 3, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(283, 3, PaddingChar = '0', Padding = Padding.Left, NullValue = "000")]
         public int MaxSkusThatCanBeCubed
         {
             get { return _maxSkusThatCanBeCubed; }
@@ -3745,7 +3745,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private int _orderPriority;
-        [FixedLengthField(287, 5, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(287, 5, PaddingChar = '0', Padding = Padding.Left, NullValue = "00000")]
         public int OrderPriority
         {
             get { return _orderPriority; }
@@ -3949,7 +3949,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private long _miscellaneousNum7;
-        [FixedLengthField(304, 13, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(304, 13, PaddingChar = '0', Padding = Padding.Left, NullValue = "0000000000000")]
         public long MiscellaneousNum7_Backing
         {
             get { return _miscellaneousNum7; }
@@ -3966,7 +3966,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private long _miscellaneousNum8;
-        [FixedLengthField(305, 13, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(305, 13, PaddingChar = '0', Padding = Padding.Left, NullValue = "0000000000000")]
         public long MiscellaneousNum8_Backing
         {
             get { return _miscellaneousNum8; }
@@ -3983,7 +3983,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private long _miscellaneousNum9;
-        [FixedLengthField(306, 13, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(306, 13, PaddingChar = '0', Padding = Padding.Left, NullValue = "0000000000000")]
         public long MiscellaneousNum9_Backing
         {
             get { return _miscellaneousNum9; }
@@ -4000,7 +4000,7 @@ namespace WmMiddleware.Picking.Models
         }
 
         private long _miscellaneousNum10;
-        [FixedLengthField(307, 13, PaddingChar = '0', Padding = Padding.Left)]
+        [FixedLengthField(307, 13, PaddingChar = '0', Padding = Padding.Left, NullValue = "0000000000000")]
         public long MiscellaneousNum10_Backing
         {
             get { return _miscellaneousNum10; }
@@ -4016,6 +4016,7 @@ namespace WmMiddleware.Picking.Models
             set { MiscellaneousNum10_Backing = (int)(value * 100000.0m); }
         }
 
+        public int TotalFileLength { get { return 2991; } }
     }
 }
 // ReSharper restore InconsistentNaming
