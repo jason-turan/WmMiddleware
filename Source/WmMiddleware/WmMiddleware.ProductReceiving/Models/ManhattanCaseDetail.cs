@@ -10,7 +10,7 @@ namespace WmMiddleware.ProductReceiving.Models
             
         }
 
-        private ManhattanCaseDetail(string batchControlNumber, string companyNumber, string warehouseNumber)
+        public ManhattanCaseDetail(AutomatedShippingNotification shippingNotification, AutomatedShippingNotificationItem item, string batchControlNumber, string companyNumber, string warehouseNumber)
         {
             BatchControlNumber = batchControlNumber;
             CreateDate = DateTime.Now;
@@ -21,11 +21,7 @@ namespace WmMiddleware.ProductReceiving.Models
             Warehouse = warehouseNumber;
             WarehouseTransferFlag = "N";
             StatusCode = "00";
-        }
 
-        public ManhattanCaseDetail(AutomatedShippingNotification shippingNotification, AutomatedShippingNotificationItem item, string batchControlNumber, string companyNumber, string warehouseNumber)
-            : this(batchControlNumber, companyNumber, warehouseNumber)
-        {
             CaseNumber = item.ParentMuId;
             SeasonYear = item.SeasonYear;
             Style = item.Style;
@@ -33,6 +29,7 @@ namespace WmMiddleware.ProductReceiving.Models
             SecDimension = item.Size.ToManhattanSize().Truncate(3);
             ShipmentNumber = shippingNotification.AutomatedShippingNotificationNumber;
             ShippedAsnQuantity = shippingNotification.TotalUnitsShipped;
+            PurchaseOrderNumber = shippingNotification.ExternalUid;
         }
 
         public DateTime CreateDate

@@ -27,17 +27,13 @@ namespace WmMiddleware.ProductReceiving.Models
         {
             AsnType = "1";//1 for manual POs, 3 for inbound ASNs, 4 for returns
             ShipmentNumber = purchaseOrder.ExternalUid;
-            //ShipVia = carriercode
-            //ScacCode = carriercode 4 letter
         }
 
         public ManhattanReceivedProductHeader(AutomatedShippingNotification shippingNotification, string batchControlNumber, string warehouseNumber)
             : this(batchControlNumber, warehouseNumber)
         {
             AsnType = "3";//1 for manual POs, 3 for inbound ASNs, 4 for returns
-            ShipmentNumber = shippingNotification.ExternalUid;
-            //ShipVia = shippingNotification.CarrierCode; "UPS Collect" too large
-            //ScacCode = shippingNotification.CarrierCode.Substring(0, 4);
+            ShipmentNumber = shippingNotification.AutomatedShippingNotificationNumber;
         }
 
         public DateTime CreateDate
