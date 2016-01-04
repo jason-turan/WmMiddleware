@@ -58,7 +58,7 @@ namespace WmMiddleware.Picking.Repositories
                 order.BillingAddress = warehouseAddress;
 
                 headerList.Add(new ManhattanPickTicketHeader(order, batchControlNumber, companyNumber, warehouseNumber, _countryReader));
-                detailList.AddRange(order.Items.Select(item => new ManhattanPickTicketDetail(item, batchControlNumber, order.ControlNumber, companyNumber, warehouseNumber)));
+                detailList.AddRange(GroupItems(order, batchControlNumber, companyNumber, warehouseNumber));
                 var instructionControlNumber = 1;
                 foreach (var instruction in order.SpecialInstructions)
                 {
@@ -81,6 +81,17 @@ namespace WmMiddleware.Picking.Repositories
                                                         _jobRepository.GetJob(JobKey.PickJob).JobId);
         }
 
+        private static IEnumerable<ManhattanPickTicketDetail> GroupItems(Order order, string batchControlNumber, string companyNumber, string warehouseNumber)
+        {
+            var itemGroups = order.Items.GroupBy(i => i.ItemSku);
+            foreach (var itemGroup in itemGroups)
+            {
+                var combinedItem = itemGroup.First().Clone();
+                combinedItem.Quantity = itemGroup.Sum(i => i.Quantity);
+                yield return new ManhattanPickTicketDetail(combinedItem, batchControlNumber, order.ControlNumber, companyNumber, warehouseNumber);
+            }
+        }
+
         private IEnumerable<ManhattanPickTicketInstruction> GetGlobalInstructions(Order order, string batchControlNumber, int instructionControlNumber)
         {
             var warehouseAddress = _configuration.GetWarehouseAddress();
@@ -101,7 +112,7 @@ namespace WmMiddleware.Picking.Repositories
             yield return new ManhattanPickTicketInstruction("VA", "OR", "PS06" /* + ?? */, batchControlNumber, order.ControlNumber, instructionControlNumber++);
             yield return new ManhattanPickTicketInstruction("VA", "OR", "PS07" /* + ?? */, batchControlNumber, order.ControlNumber, instructionControlNumber++);
             yield return new ManhattanPickTicketInstruction("VA", "OR", "PS08" /* + ?? */, batchControlNumber, order.ControlNumber, instructionControlNumber++);
-            yield return new ManhattanPickTicketInstruction("VA", "OR", "UPS ACCOUNT#" + phoneNumber, batchControlNumber, order.ControlNumber, instructionControlNumber++);
+            yield return new ManhattanPickTicketInstruction("VA", "OR", "UPS ACCOUNT#" + upsAccountNumber, batchControlNumber, order.ControlNumber, instructionControlNumber++);
             yield return new ManhattanPickTicketInstruction("VA", "OR", "APPLY CARTON STICKER AND INSERT", batchControlNumber, order.ControlNumber, instructionControlNumber++);
             yield return new ManhattanPickTicketInstruction("VA", "OR", "RETURN CARD", batchControlNumber, order.ControlNumber, instructionControlNumber++);
             yield return new ManhattanPickTicketInstruction("TP", "TP", warehouseAddress1, batchControlNumber, order.ControlNumber, instructionControlNumber++);

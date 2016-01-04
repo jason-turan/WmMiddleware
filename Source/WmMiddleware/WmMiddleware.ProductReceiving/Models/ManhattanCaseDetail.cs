@@ -27,9 +27,9 @@ namespace WmMiddleware.ProductReceiving.Models
             Style = item.Style;
             Color = item.Color;
             SecDimension = item.Size.ToManhattanSize().Truncate(3);
-            ShipmentNumber = shippingNotification.AutomatedShippingNotificationNumber;
+            ShipmentNumber = shippingNotification.ExternalUid;
             ShippedAsnQuantity = shippingNotification.TotalUnitsShipped;
-            PurchaseOrderNumber = shippingNotification.ExternalUid;
+            PurchaseOrderNumber = shippingNotification.CustomerPurchaseOrderReference;
         }
 
         public DateTime CreateDate

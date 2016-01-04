@@ -20,7 +20,6 @@ namespace WmMiddleware.Picking.Models
             
             PickticketLineNumber = (int)item.ItemNumber;//stored as double? truncate?
             Warehouse = warehouseNumber;
-            //WaveProcessingType = ??
             SeasonYear = item.SeasonYear;
             Style = item.Style;
             Color = item.Color;
@@ -32,18 +31,10 @@ namespace WmMiddleware.Picking.Models
             PickticketQuantity = item.Quantity;
             CancelQuantity = 0;
             BoxQuantity = 1;
-            //AssortmentNumber = ??
-            //NumberUnitsInPpacks = ??
             PreCubeFlag = "0";
-            //Price = ??
             RetailPrice = (decimal)item.EachPrice;
-            //InventoryAllocationType = ??
-            //MiscField1 = ??
-            //MiscField2 = ??
-            //MiscField3 = ??
             RecordExpansionField = "N";
             CustomRecordExpansionField = item.ItemDescription;
-            //MiscNumber8 = ??
         }
 
         public DateTime CreateDate

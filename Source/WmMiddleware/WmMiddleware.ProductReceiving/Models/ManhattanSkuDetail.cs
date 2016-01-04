@@ -23,9 +23,8 @@ namespace WmMiddleware.ProductReceiving.Models
             Color = item.Color;
             SecDimension = item.Size.ToManhattanSize().Truncate(3);
             InventoryType = "F";
-            UnitsShipped = item.QuantityOrdered;//?
+            UnitsShipped = item.QuantityOrdered;
             Function = "2";
-            ShipmentNumber = purchaseOrder.ExternalUid;
         }
 
         public DateTime CreateDate

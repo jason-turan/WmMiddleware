@@ -16,14 +16,19 @@ namespace WmMiddleware.Picking.Models
         public string InventoryType { get; set; }
         public string ReturnTo { get; set; }
         public DateTime ShipDate { get; set; }
-        public string DetailGPStatus { get; set; }
-        public int DetailDISRowDownloaded { get; set; }
-        public DateTime DetailDISDownloadedWhen { get; set; }
-        public bool DetailDISDownloadReady { get; set; }
+        public string DetailGpStatus { get; set; }
+        public int DetailDisRowDownloaded { get; set; }
+        public DateTime DetailDisDownloadedWhen { get; set; }
+        public bool DetailDisDownloadReady { get; set; }
         public string DetailCadreStatus { get; set; }
         public string SeasonYear { get; set; }
         public string Style { get; set; }
         public string Color { get; set; }
         public string Size { get; set; }
+
+        public LineItem Clone()
+        {
+            return (LineItem)MemberwiseClone();
+        }
     }
 }
