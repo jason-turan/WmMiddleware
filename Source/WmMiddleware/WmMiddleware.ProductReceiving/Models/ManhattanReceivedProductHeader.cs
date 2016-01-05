@@ -33,7 +33,7 @@ namespace WmMiddleware.ProductReceiving.Models
             : this(batchControlNumber, warehouseNumber)
         {
             AsnType = "3";//1 for manual POs, 3 for inbound ASNs, 4 for returns
-            ShipmentNumber = shippingNotification.AutomatedShippingNotificationNumber;
+            ShipmentNumber = shippingNotification.ExternalUid;
         }
 
         public DateTime CreateDate
