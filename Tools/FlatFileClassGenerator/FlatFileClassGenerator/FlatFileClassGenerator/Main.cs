@@ -8,8 +8,7 @@ namespace FlatFileClassGenerator
     public partial class Main : Form
     {
         private const string OutputDirectory = "Output";
-        private readonly FlatFileClassGenerator _generator = new FlatFileClassGenerator();
-
+        
         public Main()
         {
             InitializeComponent();
@@ -37,6 +36,8 @@ namespace FlatFileClassGenerator
 
         private void generateButton_Click(object sender, EventArgs e)
         {
+            var generator = new FlatFileClassGenerator( Convert.ToInt32(textDataRowStart.Text));
+
             if (string.IsNullOrWhiteSpace(chosenFilenameTextBox.Text))
             {
                 MessageBox.Show(this, "File is required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -55,7 +56,17 @@ namespace FlatFileClassGenerator
                 return;
             }
 
-            _generator.Generate(chosenFilenameTextBox.Text, Path.Combine(OutputDirectory, classNameTextBox.Text + ".cs"), namespaceTextBox.Text, classNameTextBox.Text);
+            generator.GenerateGeneratedModel(chosenFilenameTextBox.Text, 
+                                              Path.Combine(OutputDirectory, classNameTextBox.Text + ".cs"), 
+                                              namespaceTextBox.Text, 
+                                              classNameTextBox.Text);
+
+            if (generateTableScriptCheckbox.Checked)
+            {
+                generator.GenerateTableScript(chosenFilenameTextBox.Text,
+                                         Path.Combine(OutputDirectory, "TableScript_" + classNameTextBox.Text + ".cs"),
+                                         classNameTextBox.Text);
+            }
         }
     }
 }

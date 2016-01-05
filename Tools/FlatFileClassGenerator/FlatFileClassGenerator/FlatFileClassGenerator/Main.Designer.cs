@@ -38,6 +38,9 @@
             this.openOutputDirectoryButton = new System.Windows.Forms.Button();
             this.classNameLabel = new System.Windows.Forms.Label();
             this.classNameTextBox = new System.Windows.Forms.TextBox();
+            this.generateTableScriptCheckbox = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textDataRowStart = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -76,7 +79,7 @@
             this.generateButton.Name = "generateButton";
             this.generateButton.Size = new System.Drawing.Size(89, 43);
             this.generateButton.TabIndex = 4;
-            this.generateButton.Text = "Generate!";
+            this.generateButton.Text = "Generate!!";
             this.generateButton.UseVisualStyleBackColor = true;
             this.generateButton.Click += new System.EventHandler(this.generateButton_Click);
             // 
@@ -98,7 +101,7 @@
             // 
             // openOutputDirectoryButton
             // 
-            this.openOutputDirectoryButton.Location = new System.Drawing.Point(107, 109);
+            this.openOutputDirectoryButton.Location = new System.Drawing.Point(444, 109);
             this.openOutputDirectoryButton.Name = "openOutputDirectoryButton";
             this.openOutputDirectoryButton.Size = new System.Drawing.Size(97, 43);
             this.openOutputDirectoryButton.TabIndex = 5;
@@ -122,11 +125,41 @@
             this.classNameTextBox.Size = new System.Drawing.Size(314, 22);
             this.classNameTextBox.TabIndex = 3;
             // 
+            // generateTableScriptCheckbox
+            // 
+            this.generateTableScriptCheckbox.AutoSize = true;
+            this.generateTableScriptCheckbox.Location = new System.Drawing.Point(124, 130);
+            this.generateTableScriptCheckbox.Name = "generateTableScriptCheckbox";
+            this.generateTableScriptCheckbox.Size = new System.Drawing.Size(176, 21);
+            this.generateTableScriptCheckbox.TabIndex = 9;
+            this.generateTableScriptCheckbox.Text = "Generate Table Script!!";
+            this.generateTableScriptCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(124, 107);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(107, 17);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Data Row Start:";
+            // 
+            // textDataRowStart
+            // 
+            this.textDataRowStart.Location = new System.Drawing.Point(226, 104);
+            this.textDataRowStart.Name = "textDataRowStart";
+            this.textDataRowStart.Size = new System.Drawing.Size(26, 22);
+            this.textDataRowStart.TabIndex = 11;
+            this.textDataRowStart.Text = "5";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(564, 163);
+            this.Controls.Add(this.textDataRowStart);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.generateTableScriptCheckbox);
             this.Controls.Add(this.classNameLabel);
             this.Controls.Add(this.classNameTextBox);
             this.Controls.Add(this.openOutputDirectoryButton);
@@ -155,6 +188,9 @@
         private System.Windows.Forms.Button openOutputDirectoryButton;
         private System.Windows.Forms.Label classNameLabel;
         private System.Windows.Forms.TextBox classNameTextBox;
+        private System.Windows.Forms.CheckBox generateTableScriptCheckbox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textDataRowStart;
     }
 }
 

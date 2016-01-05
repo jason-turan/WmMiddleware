@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
+using FlatFileClassGenerator.Writers;
 using Microsoft.Office.Interop.Excel;
 
 namespace FlatFileClassGenerator
@@ -12,7 +13,17 @@ namespace FlatFileClassGenerator
     {
         private static readonly Regex CamalCaseWordCapturingRegex = new Regex(@"((?<=\p{Ll})\p{Lu})|((?!\A)\p{Lu}(?>\p{Ll}))");
 
-        public void Generate(string flatFileLocation, string destinationFile, string @namespace, string className)
+        private readonly int _beginRow;
+
+        public FlatFileClassGenerator(int beginRow)
+        {
+            _beginRow = beginRow;
+        }
+
+        public void GenerateGeneratedModel(string flatFileLocation, 
+                                           string destinationFile, 
+                                           string @namespace, 
+                                           string className)
         {
             if (!Directory.Exists(Path.GetDirectoryName(destinationFile)))
             {
@@ -20,13 +31,28 @@ namespace FlatFileClassGenerator
             }
 
             using (var outputWriter = new StreamWriter(File.Open(destinationFile, FileMode.Create)))
-            using (new ClassHeaderWriter(outputWriter, @namespace, className))
             {
-                ProcessWorkbook(outputWriter, flatFileLocation);
+                using (new ModelHeaderWriter(outputWriter, @namespace, className))
+                {
+                    ProcessWorkbook(outputWriter, flatFileLocation, CodeGenerationType.Model);
+                }
             }
         }
 
-        private static void ProcessWorkbook(TextWriter outputWriter, string flatFileLocation)
+        public void GenerateTableScript(string flatFileLocation, 
+                                        string destinationFile, 
+                                        string className)
+        {
+            using (var outputWriter = new StreamWriter(File.Open(destinationFile, FileMode.Create)))
+            {
+                using (new TableScriptWriter(outputWriter, className))
+                {
+                    ProcessWorkbook(outputWriter, flatFileLocation, CodeGenerationType.Table);
+                }
+            }
+        }
+        
+        private void ProcessWorkbook(TextWriter outputWriter, string flatFileLocation, CodeGenerationType codeGenerationType)
         {
             Application excelApplication = null;
             Workbook excelBook = null;
@@ -41,34 +67,79 @@ namespace FlatFileClassGenerator
 
                 int totalLength = 0;
 
-                for (var rowIndex = 5; rowIndex <= lastRow; rowIndex++)
+                for (var rowIndex = _beginRow; rowIndex <= lastRow; rowIndex++)
                 {
-                    var cellValues = (Array)excelSheet.Range["A" + rowIndex, "K" + rowIndex].Cells.Value;
+                    var cellValues = (Array) excelSheet.Range["A" + rowIndex, "K" + rowIndex].Cells.Value;
                     var propertyData = cellValues.Cast<object>().Select(v => v == null ? null : v.ToString()).ToArray();
                     totalLength = totalLength + GetFieldLength(propertyData[4]);
-                    ProcessProperty(outputWriter, propertyData);
+
+                    switch (codeGenerationType)
+                    {
+                        case CodeGenerationType.Model:
+                            ProcessPropertyForCodeGenModel(outputWriter, propertyData);
+                            break;
+                        case CodeGenerationType.Table:
+                            ProcessPropertyForTableSql(outputWriter, propertyData);
+                            break;
+                        case CodeGenerationType.Repository:
+                            ProcessPropertyForRepository(outputWriter, propertyData, false);
+                            break;
+                    }
                 }
 
-                string fileLengthProperty =  @"public int TotalFileLength { get { return " + totalLength + @"; } }";
-                outputWriter.WriteLine(fileLengthProperty);
+                if (codeGenerationType != CodeGenerationType.Model) return;
 
+                outputWriter.WriteLine("         [Write(false)] // dapper attribute specifying not to write this property to the database");
+                string fileLengthProperty = @"         public int TotalFileLength { get { return " + totalLength + @"; } }";
+                outputWriter.WriteLine(fileLengthProperty);
             }
             finally
             {
                 if (excelApplication != null) excelApplication.Quit();
-
                 if (excelSheet != null) { Marshal.ReleaseComObject(excelSheet); }
                 if (excelBook != null) { Marshal.ReleaseComObject(excelBook); }
                 if (excelApplication != null) { Marshal.ReleaseComObject(excelApplication); }
             }
         }
 
-        private static void ProcessProperty(TextWriter outputWriter, IList<string> propertyData)
+        private static void ProcessPropertyForRepository(TextWriter outTextWriter, IList<string> propertyData, bool isValues)
         {
-            if (propertyData[4] == "INTYPE")
+            if (CheckIntype(propertyData)) return;
+            var name = GetName(propertyData[2], propertyData[6]);
+            var propertyName = SanitizeName(name);
+            if (isValues)
             {
-                return;
+                outTextWriter.WriteLine(",@" + propertyName);    
             }
+            else
+            {
+                outTextWriter.WriteLine(",[" + propertyName + "]");    
+            }
+        }
+
+        private static void ProcessPropertyForTableSql(TextWriter outTextWriter, IList<string> propertyData)
+        {
+            if (CheckIntype(propertyData)) return;
+
+            var type = GetType(propertyData[4]);
+            var fixedFieldLength = GetFieldLength(propertyData[4]);
+            var name = GetName(propertyData[2], propertyData[6]);
+            var propertyName = SanitizeName(name);
+
+            if (type == "decimal")
+            {
+                var decimalPlaces = GetDecimalPlaces(propertyData[4]);
+                outTextWriter.WriteLine("       ," + propertyName + " DECIMAL(" + fixedFieldLength + "," + decimalPlaces + ") ");
+            }
+            else
+            {
+                outTextWriter.WriteLine("       ," + propertyName + " NVARCHAR(" + fixedFieldLength + ") ");
+            }
+        }
+
+        private static void ProcessPropertyForCodeGenModel(TextWriter outputWriter, IList<string> propertyData)
+        {
+            if (CheckIntype(propertyData)) return;
 
             var index = propertyData[0];
             var name = GetName(propertyData[2], propertyData[6]);
@@ -100,6 +171,7 @@ namespace FlatFileClassGenerator
                 var backingType = GetIntegerType(propertyData[4]);
 
                 outputWriter.WriteLine("        private {1} {0};", variableName, backingType);
+                outputWriter.WriteLine("        [Write(false)] // dapper attribute specifying not to write this property to the database");
                 outputWriter.WriteLine("        [FixedLengthField({0}, {1}, PaddingChar = '{3}', Padding = Padding.{2}{4})]", index, fixedFieldLength, padDirection, padCharacter, nullAttributeString);
                 outputWriter.WriteLine("        public {1} {0}", backingPropertyName, backingType);
                 outputWriter.WriteLine("        {");
@@ -133,6 +205,15 @@ namespace FlatFileClassGenerator
             }
 
             outputWriter.WriteLine();
+        }
+
+        private static bool CheckIntype(IList<string> propertyData)
+        {
+            if (propertyData[4] == "INTYPE")
+            {
+                return true;
+            }
+            return false;
         }
 
         private static string GetName(string descriptiveName, string technicalName)
