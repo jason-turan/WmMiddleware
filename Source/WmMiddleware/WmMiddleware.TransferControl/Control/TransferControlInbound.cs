@@ -58,20 +58,15 @@ namespace WmMiddleware.TransferControl.Control
             {
                 try
                 {
-                    var fileList = new List<TransferControlMaster>();  
+                    var fileList = new List<TransferControlMaster>();
 
                     foreach (var file in transferControl.Files)
                     {
                         // each file of the batch gets its own row
-                       fileList.Add(UploadFile(file, transferControl));
+                        fileList.Add(UploadFile(file, transferControl));
                     }
 
-                    var appendMasterControlSuccess = AppendMasterControl(fileList, transferControl);
-
-                    if (!appendMasterControlSuccess)
-                    {
-                        allSucceeded = false;
-                    }
+                    AppendMasterControl(fileList, transferControl);
                 }
                 catch (Exception exception)
                 {
@@ -112,7 +107,7 @@ namespace WmMiddleware.TransferControl.Control
             return master;
         }
 
-        private bool AppendMasterControl(IEnumerable<TransferControlMaster> files,
+        private void AppendMasterControl(IEnumerable<TransferControlMaster> files,
                                           Models.TransferControl transferControl)
         {
             try
@@ -131,9 +126,8 @@ namespace WmMiddleware.TransferControl.Control
             catch (Exception exception)
             {
                 _log.Exception("Inbound : Failure transmitting outbound master control file ", exception);
-                return false;
+                throw;
             }
-            return true;
         }
 
         private void WriteFile(DataFileRepository<TransferControlMaster> transferControlWriter,

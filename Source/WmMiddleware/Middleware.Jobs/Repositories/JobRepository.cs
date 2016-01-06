@@ -133,7 +133,6 @@ namespace Middleware.Jobs.Repositories
                 using (var connection = DatabaseConnectionFactory.GetWarehouseManagementConnection())
             {
                 connection.Open();
-
                 connection.Execute(insertMiddlewareJobHistory, jobHistory);
             }
         }

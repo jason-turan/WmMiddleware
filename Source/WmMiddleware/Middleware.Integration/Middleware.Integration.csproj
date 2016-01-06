@@ -70,6 +70,9 @@
     <Compile Include="Repositories\IXmlReadRepository.cs" />
     <Compile Include="Repositories\IXmlWriteRepository.cs" />
     <Compile Include="Repositories\XmlDatabaseCommand.cs" />
+    <Compile Include="Repositories\XmlFileCommand.cs" />
+    <Compile Include="Repositories\XmlWebCommand.cs" />
+    <Compile Include="Repositories\XmlZipFileCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

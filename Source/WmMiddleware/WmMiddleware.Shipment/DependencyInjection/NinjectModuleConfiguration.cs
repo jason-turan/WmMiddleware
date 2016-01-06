@@ -2,6 +2,7 @@
 using WmMiddleware.Configuration;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
+using WmMiddleware.Shipment.Repository;
 using WmMiddleware.TransferControl.Control;
 using WmMiddleware.TransferControl.Repositories;
 
@@ -14,10 +15,10 @@ namespace WmMiddleware.Shipment.DependencyInjection
             Bind<IShipmentJob>().To<ShipmentJob>();
             Bind<IJobRepository>().To<JobRepository>();
             Bind<ILog>().To<Log4Net>();
-            Bind<ITransferControlOutbound>().To<TransferControlOutbound>();
             Bind<ITransferControlRepository>().To<TransferControlRepository>();
             Bind<IConfigurationManager>().To<MiddlewareConfigurationManager>();
-            log4net.Config.XmlConfigurator.Configure();
+            Bind<IShipmentRepository>().To<ShipmentRepository>();
+            Bind<IFileIo>().To<FileIo>();
         }
     }
 }

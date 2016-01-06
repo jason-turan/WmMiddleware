@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace WmMiddleware.Configuration.Database
@@ -7,22 +8,38 @@ namespace WmMiddleware.Configuration.Database
     {
         public static IDbConnection GetWarehouseManagementConnection()
         {
-            return GetConnection(System.Configuration.ConfigurationManager.ConnectionStrings["WarehouseManagementConnection"].ConnectionString);
+            return GetConnection("WarehouseManagementConnection");
+        }
+
+        public static IDbConnection GetWarehouseManagementTransactionConnection()
+        {
+            return GetConnection("WarehouseManagementTransactionConnection");
         }
 
         public static IDbConnection GetIntegrationManagementConnection()
         {
-            return GetConnection(System.Configuration.ConfigurationManager.ConnectionStrings["IntegrationManagementConnection"].ConnectionString);
+            return GetConnection("IntegrationManagementConnection");
         }
 
         public static IDbConnection GetNbxWebConnection()
         {
-            return GetConnection(System.Configuration.ConfigurationManager.ConnectionStrings["NbXWebConnection"].ConnectionString);
+            return GetConnection("NbXWebConnection");
         }
 
-        private static IDbConnection GetConnection(string connectionString)
+        private static IDbConnection GetConnection(string connectionName)
         {
-            return new SqlConnection(connectionString);
+            var connectionString = ConfigurationManager.ConnectionStrings[connectionName];
+
+            if (connectionString == null || connectionString.ConnectionString == null)
+            {
+                var errorMessage = "Cannot find connection string key: [" + 
+                                   connectionName +
+                                   "]. Please verify it exists in configuration file.";
+
+                throw new ConfigurationErrorsException(errorMessage);
+            }
+
+            return new SqlConnection(connectionString.ConnectionString);
         }
     }
 }

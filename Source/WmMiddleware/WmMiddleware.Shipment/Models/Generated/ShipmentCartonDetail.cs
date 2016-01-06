@@ -1,17 +1,22 @@
 using System;
 using System.Globalization;
+using Dapper.Contrib.Extensions;
 using FlatFile.FixedLength;
 using FlatFile.FixedLength.Attributes;
 using WmMiddleware.Common.DataFiles;
 
 // ReSharper disable InconsistentNaming
 // ReSharper disable CheckNamespace
-namespace WmMiddleware.Shipment.Models
+namespace WmMiddleware.Shipment.Models.Generated
 {
     // Generated with FlatFileClassGenerator
     [FixedLengthFile]
-    internal partial class CartonDetail : IGeneratedFlatFile
+    [Table("ShipmentCartonDetail")]
+    public partial class ShipmentCartonDetail : IGeneratedFlatFile
     {
+        [Key]
+         public int ShipmentCartonDetailId { get; set; }
+
         private string _processedFlag;
         [FixedLengthField(1, 1, PaddingChar = ' ', Padding = Padding.Right, NullValue=" ")]
         public string ProcessedFlag
@@ -469,6 +474,7 @@ namespace WmMiddleware.Shipment.Models
         }
 
         private long _toBePackedUnits;
+        [Write(false)] // dapper attribute specifying not to write this property to the database
         [FixedLengthField(39, 11, PaddingChar = '0', Padding = Padding.Left, NullValue="00000000000")]
         public long ToBePackedUnits_Backing
         {
@@ -498,6 +504,7 @@ namespace WmMiddleware.Shipment.Models
         }
 
         private long _unitsPacked;
+        [Write(false)] // dapper attribute specifying not to write this property to the database
         [FixedLengthField(41, 11, PaddingChar = '0', Padding = Padding.Left, NullValue="00000000000")]
         public long UnitsPacked_Backing
         {
@@ -527,6 +534,7 @@ namespace WmMiddleware.Shipment.Models
         }
 
         private long _deliveredUnits;
+        [Write(false)] // dapper attribute specifying not to write this property to the database
         [FixedLengthField(43, 11, PaddingChar = '0', Padding = Padding.Left, NullValue="00000000000")]
         public long DeliveredUnits_Backing
         {
@@ -544,6 +552,7 @@ namespace WmMiddleware.Shipment.Models
         }
 
         private long _cancelQuantity;
+        [Write(false)] // dapper attribute specifying not to write this property to the database
         [FixedLengthField(44, 11, PaddingChar = '0', Padding = Padding.Left, NullValue="00000000000")]
         public long CancelQuantity_Backing
         {
@@ -873,6 +882,7 @@ namespace WmMiddleware.Shipment.Models
         }
 
         private long _miscellaneousNum1;
+        [Write(false)] // dapper attribute specifying not to write this property to the database
         [FixedLengthField(71, 13, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000")]
         public long MiscellaneousNum1_Backing
         {
@@ -890,6 +900,7 @@ namespace WmMiddleware.Shipment.Models
         }
 
         private long _miscellaneousNum2;
+        [Write(false)] // dapper attribute specifying not to write this property to the database
         [FixedLengthField(72, 13, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000")]
         public long MiscellaneousNum2_Backing
         {
@@ -907,6 +918,7 @@ namespace WmMiddleware.Shipment.Models
         }
 
         private long _miscellaneousNum3;
+        [Write(false)] // dapper attribute specifying not to write this property to the database
         [FixedLengthField(73, 13, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000")]
         public long MiscellaneousNum3_Backing
         {
@@ -924,6 +936,7 @@ namespace WmMiddleware.Shipment.Models
         }
 
         private long _miscellaneousNum4;
+        [Write(false)] // dapper attribute specifying not to write this property to the database
         [FixedLengthField(74, 13, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000")]
         public long MiscellaneousNum4_Backing
         {
@@ -941,6 +954,7 @@ namespace WmMiddleware.Shipment.Models
         }
 
         private long _miscellaneousNum5;
+        [Write(false)] // dapper attribute specifying not to write this property to the database
         [FixedLengthField(75, 13, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000")]
         public long MiscellaneousNum5_Backing
         {
@@ -958,6 +972,7 @@ namespace WmMiddleware.Shipment.Models
         }
 
         private long _miscellaneousNum6;
+        [Write(false)] // dapper attribute specifying not to write this property to the database
         [FixedLengthField(76, 13, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000")]
         public long MiscellaneousNum6_Backing
         {
@@ -1070,7 +1085,8 @@ namespace WmMiddleware.Shipment.Models
             }
         }
 
-        public int TotalFileLength { get { return 868; } }
+         [Write(false)] // dapper attribute specifying not to write this property to the database
+         public int TotalFileLength { get { return 868; } }
     }
 }
 // ReSharper restore InconsistentNaming
