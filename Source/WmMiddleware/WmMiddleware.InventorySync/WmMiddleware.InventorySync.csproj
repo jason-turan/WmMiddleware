@@ -37,6 +37,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Development\MiddlewareIntegration\Dependencies\Dapper\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper.Contrib">
+      <HintPath>..\..\..\..\Development\MiddlewareIntegration\Dependencies\Dapper\Dapper.Contrib.dll</HintPath>
+    </Reference>
     <Reference Include="FlatFile.Core">
       <HintPath>..\..\..\Dependencies\FlatFile\FlatFile.Core.dll</HintPath>
     </Reference>
@@ -82,6 +89,10 @@
     <ProjectReference Include="..\MiddleWare.Log\Middleware.Log.csproj">
       <Project>{AEEDD741-C346-45BA-A867-3F54B66477A4}</Project>
       <Name>Middleware.Log</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WmMiddleware.Common\WmMiddleware.Common.csproj">
+      <Project>{F1691638-045D-49D1-8921-7D7049EBD666}</Project>
+      <Name>WmMiddleware.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

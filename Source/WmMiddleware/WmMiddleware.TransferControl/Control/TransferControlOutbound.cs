@@ -86,9 +86,7 @@ namespace WmMiddleware.TransferControl.Control
 
                     _log.Debug("Outbound : moving " + controlFile + " to processed at " + outboundProcessedFileDirectory +
                                masterControlFileName);
-                    File.Move(controlFile,
-                        outboundProcessedFileDirectory + masterControlFileName + "_" +
-                        DateTime.Now.ToString("yyyyMMddHHmmss"));
+
                 }
                 catch (Exception exception)
                 {
@@ -97,6 +95,12 @@ namespace WmMiddleware.TransferControl.Control
                 }
             }
 
+            if (success)
+            {
+                File.Move(controlFile,
+                          outboundProcessedFileDirectory + masterControlFileName + "_" + DateTime.Now.ToString("yyyyMMddHHmmss"));
+            }
+            
             return success;
         }
 
