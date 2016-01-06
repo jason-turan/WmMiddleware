@@ -1,7 +1,9 @@
 ﻿using Ninject.Modules;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
+using WmMiddleware.Configuration;
 using WmMiddleware.Pix.Repository;
+using WmMiddleware.TransferControl.Control;
 using WmMiddleware.TransferControl.Repositories;
 
 namespace WmMiddleware.Pix.DependencyInjection
@@ -15,6 +17,9 @@ namespace WmMiddleware.Pix.DependencyInjection
             Bind<IJobRepository>().To<JobRepository>();
             Bind<ITransferControlRepository>().To<TransferControlRepository>();
             Bind<IPerpetualInventoryTransferRepository>().To<PerpetualInventoryTransferRepository>();
+            Bind<IConfigurationManager>().To<MiddlewareConfigurationManager>();
+            Bind<IFileIo>().To<FileIo>();
         }
     }
 }
+       

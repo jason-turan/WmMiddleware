@@ -160,9 +160,9 @@
       <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>
       <Name>WmMiddleware.Configuration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WmMiddleware.InventorySync\WmMiddleware.InventorySync.csproj">
+    <ProjectReference Include="..\WmMiddleware.InventorySync\WmMiddleware.Outbound.InventorySync.csproj">
       <Project>{5afd35b7-fb46-4008-8b46-ad127762d358}</Project>
-      <Name>WmMiddleware.InventorySync</Name>
+      <Name>WmMiddleware.Outbound.InventorySync</Name>
     </ProjectReference>
     <ProjectReference Include="..\Middleware.Jobs\Middleware.Jobs.csproj">
       <Project>{C728CADC-8056-46C9-B2BB-A70C4119F96E}</Project>
@@ -176,9 +176,9 @@
       <Project>{299a19f1-8ddc-4532-9dd9-fff0ffcfeded}</Project>
       <Name>WmMiddleware.Picking</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WmMiddleware.Pix\WmMiddleware.Pix.csproj">
+    <ProjectReference Include="..\WmMiddleware.Pix\WmMiddleware.Outbound.Pix.csproj">
       <Project>{21adff87-bb23-46ba-ae47-07b8eda135bf}</Project>
-      <Name>WmMiddleware.Pix</Name>
+      <Name>WmMiddleware.Outbound.Pix</Name>
     </ProjectReference>
     <ProjectReference Include="..\WmMiddleware.ProductReceiving\WmMiddleware.ProductReceiving.csproj">
       <Project>{81105c89-fd8e-44fc-84c1-b52fffae3508}</Project>
@@ -188,9 +188,9 @@
       <Project>{29b19f64-6443-4a62-a3d1-aec8c8514824}</Project>
       <Name>WmMiddleware.ProductUpdating</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WmMiddleware.Shipment\WmMiddleware.Shipment.csproj">
+    <ProjectReference Include="..\WmMiddleware.Shipment\WmMiddleware.Outbound.Shipment.csproj">
       <Project>{b4c7e72d-cdb6-4fea-abdf-3564a588a762}</Project>
-      <Name>WmMiddleware.Shipment</Name>
+      <Name>WmMiddleware.Outbound.Shipment</Name>
     </ProjectReference>
     <ProjectReference Include="..\WmMiddleware.TransferControl\WmMiddleware.TransferControl.csproj">
       <Project>{f788dd6f-2df7-45ba-950a-ec5cbc5731d8}</Project>

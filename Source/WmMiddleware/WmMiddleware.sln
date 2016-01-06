@@ -36,13 +36,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{110F3F5C-8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.TransferControl.Tests", "WmMiddleware.TransferControl.Tests\WmMiddleware.TransferControl.Tests.csproj", "{F1D97E59-C5C6-4C9F-B83D-30800B159890}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.Shipment", "WmMiddleware.Shipment\WmMiddleware.Shipment.csproj", "{B4C7E72D-CDB6-4FEA-ABDF-3564A588A762}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.Outbound.Shipment", "WmMiddleware.Shipment\WmMiddleware.Outbound.Shipment.csproj", "{B4C7E72D-CDB6-4FEA-ABDF-3564A588A762}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.ProductUpdating", "WmMiddleware.ProductUpdating\WmMiddleware.ProductUpdating.csproj", "{29B19F64-6443-4A62-A3D1-AEC8C8514824}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.InventorySync", "WmMiddleware.InventorySync\WmMiddleware.InventorySync.csproj", "{5AFD35B7-FB46-4008-8B46-AD127762D358}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.Outbound.InventorySync", "WmMiddleware.InventorySync\WmMiddleware.Outbound.InventorySync.csproj", "{5AFD35B7-FB46-4008-8B46-AD127762D358}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.Pix", "WmMiddleware.Pix\WmMiddleware.Pix.csproj", "{21ADFF87-BB23-46BA-AE47-07B8EDA135BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.Outbound.Pix", "WmMiddleware.Pix\WmMiddleware.Outbound.Pix.csproj", "{21ADFF87-BB23-46BA-AE47-07B8EDA135BF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C5BB331B-3C14-4966-AC92-9F5907DD2567}"
 	ProjectSection(SolutionItems) = preProject
@@ -63,9 +63,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Scheduler.Window
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Integration", "Middleware.Integration\Middleware.Integration.csproj", "{BD53A64C-B782-4BD3-A771-4D2938DBEBFC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.Outbound", "WmMiddleware.ManhattanOutboundData\WmMiddleware.Outbound.csproj", "{0C7E1466-F223-4D93-B53D-E896D0271F5D}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 20
+		SccNumberOfProjects = 21
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://10.1.0.80:8080/tfs/business%20applications
 		SccLocalPath0 = .
@@ -78,7 +80,7 @@ Global
 		SccProjectUniqueName3 = WmMiddleware.Common\\WmMiddleware.Common.csproj
 		SccProjectName3 = WmMiddleware.Common
 		SccLocalPath3 = WmMiddleware.Common
-		SccProjectUniqueName4 = WMMiddleware.Common.Tests\\WMMiddleware.Common.Tests.csproj
+		SccProjectUniqueName4 = WMMiddleware.Common.Tests\\WmMiddleware.Common.Tests.csproj
 		SccProjectName4 = WMMiddleware.Common.Tests
 		SccLocalPath4 = WMMiddleware.Common.Tests
 		SccProjectUniqueName5 = WmMiddleware.TransferControl\\WmMiddleware.TransferControl.csproj
@@ -93,39 +95,42 @@ Global
 		SccProjectUniqueName8 = WmMiddleware.TransferControl.Tests\\WmMiddleware.TransferControl.Tests.csproj
 		SccProjectName8 = WmMiddleware.TransferControl.Tests
 		SccLocalPath8 = WmMiddleware.TransferControl.Tests
-		SccProjectUniqueName9 = WmMiddleware.Shipment\\WmMiddleware.Shipment.csproj
-		SccProjectName9 = WmMiddleware.Shipment
-		SccLocalPath9 = WmMiddleware.Shipment
-		SccProjectUniqueName10 = WmMiddleware.ProductUpdating\\WmMiddleware.ProductUpdating.csproj
-		SccProjectName10 = WmMiddleware.ProductUpdating
-		SccLocalPath10 = WmMiddleware.ProductUpdating
-		SccProjectUniqueName11 = WmMiddleware.InventorySync\\WmMiddleware.InventorySync.csproj
-		SccProjectName11 = WmMiddleware.InventorySync
-		SccLocalPath11 = WmMiddleware.InventorySync
-		SccProjectUniqueName12 = WmMiddleware.Pix\\WmMiddleware.Pix.csproj
-		SccProjectName12 = WmMiddleware.Pix
-		SccLocalPath12 = WmMiddleware.Pix
-		SccProjectUniqueName13 = Middleware.Alerts\\Middleware.Alerts.csproj
-		SccProjectName13 = Middleware.Alerts
-		SccLocalPath13 = Middleware.Alerts
-		SccProjectUniqueName14 = Middleware.Jobs\\Middleware.Jobs.csproj
-		SccProjectName14 = Middleware.Jobs
-		SccLocalPath14 = Middleware.Jobs
-		SccProjectUniqueName15 = Middleware.Jobs.Tests\\Middleware.Jobs.Tests.csproj
-		SccProjectName15 = Middleware.Jobs.Tests
-		SccLocalPath15 = Middleware.Jobs.Tests
-		SccProjectUniqueName16 = MiddleWare.Log\\Middleware.Log.csproj
-		SccProjectName16 = MiddleWare.Log
-		SccLocalPath16 = MiddleWare.Log
-		SccProjectUniqueName17 = Middleware.Scheduler.Web\\Middleware.Scheduler.Web.csproj
-		SccProjectName17 = Middleware.Scheduler.Web
-		SccLocalPath17 = Middleware.Scheduler.Web
-		SccProjectUniqueName18 = Middleware.WindowService\\Middleware.Scheduler.WindowService.csproj
-		SccProjectName18 = Middleware.WindowService
-		SccLocalPath18 = Middleware.WindowService
-		SccProjectUniqueName19 = Middleware.Integration\\Middleware.Integration.csproj
-		SccProjectName19 = Middleware.Integration
-		SccLocalPath19 = Middleware.Integration
+		SccProjectUniqueName9 = WmMiddleware.ProductUpdating\\WmMiddleware.ProductUpdating.csproj
+		SccProjectName9 = WmMiddleware.ProductUpdating
+		SccLocalPath9 = WmMiddleware.ProductUpdating
+		SccProjectUniqueName10 = Middleware.Alerts\\Middleware.Alerts.csproj
+		SccProjectName10 = Middleware.Alerts
+		SccLocalPath10 = Middleware.Alerts
+		SccProjectUniqueName11 = Middleware.Jobs\\Middleware.Jobs.csproj
+		SccProjectName11 = Middleware.Jobs
+		SccLocalPath11 = Middleware.Jobs
+		SccProjectUniqueName12 = Middleware.Jobs.Tests\\Middleware.Jobs.Tests.csproj
+		SccProjectName12 = Middleware.Jobs.Tests
+		SccLocalPath12 = Middleware.Jobs.Tests
+		SccProjectUniqueName13 = MiddleWare.Log\\Middleware.Log.csproj
+		SccProjectName13 = MiddleWare.Log
+		SccLocalPath13 = MiddleWare.Log
+		SccProjectUniqueName14 = Middleware.Scheduler.Web\\Middleware.Scheduler.Web.csproj
+		SccProjectName14 = Middleware.Scheduler.Web
+		SccLocalPath14 = Middleware.Scheduler.Web
+		SccProjectUniqueName15 = Middleware.WindowService\\Middleware.Scheduler.WindowService.csproj
+		SccProjectName15 = Middleware.WindowService
+		SccLocalPath15 = Middleware.WindowService
+		SccProjectUniqueName16 = Middleware.Integration\\Middleware.Integration.csproj
+		SccProjectName16 = Middleware.Integration
+		SccLocalPath16 = Middleware.Integration
+		SccProjectUniqueName17 = WmMiddleware.Shipment\\WmMiddleware.Outbound.Shipment.csproj
+		SccProjectName17 = WmMiddleware.Shipment
+		SccLocalPath17 = WmMiddleware.Shipment
+		SccProjectUniqueName18 = WmMiddleware.Pix\\WmMiddleware.Outbound.Pix.csproj
+		SccProjectName18 = WmMiddleware.Pix
+		SccLocalPath18 = WmMiddleware.Pix
+		SccProjectUniqueName19 = WmMiddleware.InventorySync\\WmMiddleware.Outbound.InventorySync.csproj
+		SccProjectName19 = WmMiddleware.InventorySync
+		SccLocalPath19 = WmMiddleware.InventorySync
+		SccProjectUniqueName20 = WmMiddleware.ManhattanOutboundData\\WmMiddleware.Outbound.csproj
+		SccProjectName20 = WmMiddleware.ManhattanOutboundData
+		SccLocalPath20 = WmMiddleware.ManhattanOutboundData
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -325,6 +330,16 @@ Global
 		{BD53A64C-B782-4BD3-A771-4D2938DBEBFC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BD53A64C-B782-4BD3-A771-4D2938DBEBFC}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{BD53A64C-B782-4BD3-A771-4D2938DBEBFC}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{0C7E1466-F223-4D93-B53D-E896D0271F5D}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{0C7E1466-F223-4D93-B53D-E896D0271F5D}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{0C7E1466-F223-4D93-B53D-E896D0271F5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C7E1466-F223-4D93-B53D-E896D0271F5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C7E1466-F223-4D93-B53D-E896D0271F5D}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C7E1466-F223-4D93-B53D-E896D0271F5D}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{0C7E1466-F223-4D93-B53D-E896D0271F5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C7E1466-F223-4D93-B53D-E896D0271F5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C7E1466-F223-4D93-B53D-E896D0271F5D}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{0C7E1466-F223-4D93-B53D-E896D0271F5D}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
