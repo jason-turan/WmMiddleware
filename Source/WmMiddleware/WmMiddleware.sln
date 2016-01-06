@@ -36,13 +36,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{110F3F5C-8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.TransferControl.Tests", "WmMiddleware.TransferControl.Tests\WmMiddleware.TransferControl.Tests.csproj", "{F1D97E59-C5C6-4C9F-B83D-30800B159890}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.Outbound.Shipment", "WmMiddleware.Shipment\WmMiddleware.Outbound.Shipment.csproj", "{B4C7E72D-CDB6-4FEA-ABDF-3564A588A762}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.Shipment", "WmMiddleware.Shipment\WmMiddleware.Shipment.csproj", "{B4C7E72D-CDB6-4FEA-ABDF-3564A588A762}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.ProductUpdating", "WmMiddleware.ProductUpdating\WmMiddleware.ProductUpdating.csproj", "{29B19F64-6443-4A62-A3D1-AEC8C8514824}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.Outbound.InventorySync", "WmMiddleware.InventorySync\WmMiddleware.Outbound.InventorySync.csproj", "{5AFD35B7-FB46-4008-8B46-AD127762D358}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.InventorySync", "WmMiddleware.InventorySync\WmMiddleware.InventorySync.csproj", "{5AFD35B7-FB46-4008-8B46-AD127762D358}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.Outbound.Pix", "WmMiddleware.Pix\WmMiddleware.Outbound.Pix.csproj", "{21ADFF87-BB23-46BA-AE47-07B8EDA135BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.Pix", "WmMiddleware.Pix\WmMiddleware.Pix.csproj", "{21ADFF87-BB23-46BA-AE47-07B8EDA135BF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C5BB331B-3C14-4966-AC92-9F5907DD2567}"
 	ProjectSection(SolutionItems) = preProject
@@ -119,18 +119,18 @@ Global
 		SccProjectUniqueName16 = Middleware.Integration\\Middleware.Integration.csproj
 		SccProjectName16 = Middleware.Integration
 		SccLocalPath16 = Middleware.Integration
-		SccProjectUniqueName17 = WmMiddleware.Shipment\\WmMiddleware.Outbound.Shipment.csproj
-		SccProjectName17 = WmMiddleware.Shipment
-		SccLocalPath17 = WmMiddleware.Shipment
-		SccProjectUniqueName18 = WmMiddleware.Pix\\WmMiddleware.Outbound.Pix.csproj
-		SccProjectName18 = WmMiddleware.Pix
-		SccLocalPath18 = WmMiddleware.Pix
-		SccProjectUniqueName19 = WmMiddleware.InventorySync\\WmMiddleware.Outbound.InventorySync.csproj
-		SccProjectName19 = WmMiddleware.InventorySync
-		SccLocalPath19 = WmMiddleware.InventorySync
-		SccProjectUniqueName20 = WmMiddleware.ManhattanOutboundData\\WmMiddleware.Outbound.csproj
-		SccProjectName20 = WmMiddleware.ManhattanOutboundData
-		SccLocalPath20 = WmMiddleware.ManhattanOutboundData
+		SccProjectUniqueName17 = WmMiddleware.ManhattanOutboundData\\WmMiddleware.Outbound.csproj
+		SccProjectName17 = WmMiddleware.ManhattanOutboundData
+		SccLocalPath17 = WmMiddleware.ManhattanOutboundData
+		SccProjectUniqueName18 = WmMiddleware.InventorySync\\WmMiddleware.InventorySync.csproj
+		SccProjectName18 = WmMiddleware.InventorySync
+		SccLocalPath18 = WmMiddleware.InventorySync
+		SccProjectUniqueName19 = WmMiddleware.Pix\\WmMiddleware.Pix.csproj
+		SccProjectName19 = WmMiddleware.Pix
+		SccLocalPath19 = WmMiddleware.Pix
+		SccProjectUniqueName20 = WmMiddleware.Shipment\\WmMiddleware.Shipment.csproj
+		SccProjectName20 = WmMiddleware.Shipment
+		SccLocalPath20 = WmMiddleware.Shipment
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
