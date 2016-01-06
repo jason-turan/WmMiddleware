@@ -45,7 +45,7 @@ namespace WmMiddleware.Picking.Models
             TelephoneNumber = order.BillingPhone; // Two telephone numbers in source, only 1 in target
             NumberOfPackingSlips = 1;
             PickticketStatus = "00";
-            SingleSkuOrder = order.Items.Select(i => i.ItemSku).Distinct().Count() == 1 ? "1" : "0";
+            SingleItemOrder = order.Items.Sum(i => i.Quantity) == 1 ? "1" : "0";
             Sku100Inventory = "Y";
             ChoppingYn = "N";
             ResidentialAddress = "Y";

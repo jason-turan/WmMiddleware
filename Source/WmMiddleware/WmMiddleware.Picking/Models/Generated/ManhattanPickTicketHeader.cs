@@ -1384,15 +1384,15 @@ namespace WmMiddleware.Picking.Models
 
         // Used by New Balance
         // 1 if order has single unit, else 0
-        private string _singleSkuOrder;
+        private string _singleItemOrder;
         [FixedLengthField(106, 1, PaddingChar = ' ', Padding = Padding.Right, NullValue=" ")]
-        public string SingleSkuOrder
+        public string SingleItemOrder
         {
-            get { return _singleSkuOrder; }
+            get { return _singleItemOrder; }
             set
             {
                 if(value != default(string) && value.Length > 1) throw new ArgumentOutOfRangeException("value");
-                _singleSkuOrder = value;
+                _singleItemOrder = value;
             }
         }
 
