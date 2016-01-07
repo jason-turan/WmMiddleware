@@ -80,4 +80,14 @@ BEGIN
 			'Admin')
 END
 
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Pix Return Job')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('Pix Return Job', 
+		   '15M', 
+		   'WmMiddleware.PixReturn.exe', 
+		    0,
+			'?')
+END
+
 select * from job

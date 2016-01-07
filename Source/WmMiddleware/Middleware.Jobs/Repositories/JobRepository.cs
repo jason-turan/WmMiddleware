@@ -172,7 +172,12 @@ namespace Middleware.Jobs.Repositories
         public int? GetJobIdByFilePrefix(string filePrefix)
         {
             const string getJobIdByFilePrefix =
-                "SELECT JobId FROM TransferControlFileType WHERE FilePrefix = @FilePrefix";
+                @"SELECT j.JobId 
+                  FROM Job j
+                  INNER JOIN TransferControlFileType fcft
+	                ON j.JobId = fcft.JobId
+                  WHERE  FilePrefix = @FilePrefix
+                  AND JobType = 'Outbound'";
 
             var jobArguments = new DynamicParameters();
             jobArguments.Add("@FilePrefix", filePrefix, DbType.String);

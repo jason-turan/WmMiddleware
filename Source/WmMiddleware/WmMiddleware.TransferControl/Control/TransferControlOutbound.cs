@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Transactions;
-using WmMiddleware.Common.DataFiles;
-using WmMiddleware.Configuration;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
+using WmMiddleware.Common.DataFiles;
+using WmMiddleware.Configuration;
 using WmMiddleware.TransferControl.Models;
 using WmMiddleware.TransferControl.Models.Generated;
 using WmMiddleware.TransferControl.Repositories;
@@ -38,11 +38,8 @@ namespace WmMiddleware.TransferControl.Control
         {
             bool success = true;
 
-            var outboundFileDirectory = _configuration.GetKey<string>(ConfigurationKey.TransferControlOutboundFileDirectory);
-            var masterControlFileName =_configuration.GetKey<string>(ConfigurationKey.TransferControlOutboundMasterControlFileName);
-            var transferControlMasterRepository = new DataFileRepository<TransferControlMaster>();
-            var controlFile = Path.Combine(outboundFileDirectory, masterControlFileName);
-
+            string controlFile = GetControlFilePath();
+           
             if (!File.Exists(controlFile))
             {
                 _log.Info("Outbound: No control file to process at " + controlFile);
@@ -51,17 +48,16 @@ namespace WmMiddleware.TransferControl.Control
 
             _log.Debug("Outbound: reading " + controlFile);
 
-            var masterControlMapping = transferControlMasterRepository.Get(controlFile).ToList();
-
-            var batches = masterControlMapping.Select(e => e.BatchControlNumber).Distinct().ToList();
+            var manhattanMasterControl = MapTransforControlFromManhattanFile(controlFile);
 
             using (var transactionScope = new TransactionScope())
             {
-                foreach (var batch in batches)
+                // process each unique batch by grouping batch control number
+                foreach (var batch in manhattanMasterControl.Select(e => e.BatchControlNumber).Distinct().ToList())
                 {
                     try
                     {
-                        var transferControl = CreateTransferControl(batch, masterControlMapping, outboundFileDirectory);
+                        var transferControl = CreateTransferControl(batch, manhattanMasterControl);
                         var transferControlId = _transferControlRepository.InsertTransferControl(transferControl);
                         
                         _log.Debug("Outbound:Created transfer id " + transferControlId + " for batch " + batch);
@@ -75,7 +71,7 @@ namespace WmMiddleware.TransferControl.Control
 
                 if (!success) return false;
 
-                MoveToProcessedFolder(masterControlFileName, controlFile);
+                MoveToProcessedFolder(controlFile);
 
                 transactionScope.Complete();
             }
@@ -83,8 +79,24 @@ namespace WmMiddleware.TransferControl.Control
             return true;
         }
 
-        private void MoveToProcessedFolder(string masterControlFileName, string controlFile)
+        private static List<TransferControlMaster> MapTransforControlFromManhattanFile(string controlFile)
         {
+            var transferControlMasterRepository = new DataFileRepository<TransferControlMaster>();
+            var masterControlMapping = transferControlMasterRepository.Get(controlFile).ToList();
+            return masterControlMapping;
+        }
+
+        private string GetControlFilePath()
+        {
+            var outboundFileDirectory = _configuration.GetKey<string>(ConfigurationKey.TransferControlOutboundFileDirectory);
+            var masterControlFileName = _configuration.GetKey<string>(ConfigurationKey.TransferControlOutboundMasterControlFileName);
+            var controlFile = Path.Combine(outboundFileDirectory, masterControlFileName);
+            return controlFile;
+        }
+
+        private void MoveToProcessedFolder(string controlFile)
+        {
+            var masterControlFileName = _configuration.GetKey<string>(ConfigurationKey.TransferControlOutboundMasterControlFileName);
             var outboundProcessedFileDirectory = _configuration.GetKey<string>(ConfigurationKey.TransferControlOutboundFileProcessedDirectory);
 
             string destFileName = outboundProcessedFileDirectory +
@@ -95,8 +107,10 @@ namespace WmMiddleware.TransferControl.Control
             _fileIo.Move(new FileInfo(controlFile), new FileInfo(destFileName));
         }
 
-        private Models.TransferControl CreateTransferControl(string batch, List<TransferControlMaster> masterControlMapping, string outboundFileDirectory)
+        private Models.TransferControl CreateTransferControl(string batch, List<TransferControlMaster> masterControlMapping)
         {
+            var outboundFileDirectory = _configuration.GetKey<string>(ConfigurationKey.TransferControlOutboundFileDirectory);
+            
             var transferControl = new Models.TransferControl
             {
                 BatchControlNumber = batch,

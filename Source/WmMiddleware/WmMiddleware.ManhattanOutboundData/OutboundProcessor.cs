@@ -69,7 +69,7 @@ namespace WmMiddleware.ManhattanOutboundData
 
                 if (!allSucceeded)
                 {
-                    throw new Exception("At least one shipment batch has failed.");
+                    throw new Exception("At least one batch has failed.");
                 }
             }
         }
