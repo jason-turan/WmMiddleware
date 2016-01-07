@@ -35,4 +35,7 @@ VALUES ('I5', 'Product Updating Product Path', (SELECT JobId FROM JOB WHERE JobK
 INSERT INTO TransferControlFileType(FilePrefix, FileDescription, JobId)
 VALUES ('PX', 'Perpetual Inventory Transfer', (SELECT JobId FROM JOB WHERE JobKey = 'Pix'));
 
+INSERT INTO TransferControlFileType(FilePrefix, FileDescription, JobId)
+VALUES ('IS', 'Inventory Sync', (SELECT JobId FROM JOB WHERE JobKey = 'Inventory Sync'));
+
 select * from TransferControlFileType

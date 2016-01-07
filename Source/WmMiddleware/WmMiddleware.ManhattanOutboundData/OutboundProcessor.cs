@@ -36,7 +36,7 @@ namespace WmMiddleware.ManhattanOutboundData
             _transferControlRepository = transferControlRepository;
         }
 
-        protected abstract void ProcessFilesForBatch(TransferControlFile transferControlFile); 
+        protected abstract void ProcessFile(TransferControlFile transferControlFile); 
 
         public void RunUnitOfWork(string jobKey)
         {
@@ -50,7 +50,7 @@ namespace WmMiddleware.ManhattanOutboundData
                     {
                         foreach (var transferControlFile in transferControl.Files)
                         {
-                            ProcessFilesForBatch(transferControlFile);
+                            ProcessFile(transferControlFile);
                         }
                 
                         UpdateTransferControl(transferControl);

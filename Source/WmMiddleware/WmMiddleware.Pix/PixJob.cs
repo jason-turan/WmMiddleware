@@ -27,7 +27,7 @@ namespace WmMiddleware.Pix
             _perpetualInventoryTransferRepository = perpetualInventoryTransferRepository;
         }
 
-        protected override void ProcessFilesForBatch(TransferControlFile file)
+        protected override void ProcessFile(TransferControlFile file)
         {
                 var pixRepository = new DataFileRepository<PerpetualInventoryTransfer>();
                 var pix = pixRepository.Get(file.FileLocation).ToList();

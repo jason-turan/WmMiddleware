@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Transactions;
 using WmMiddleware.Common.DataFiles;
 using WmMiddleware.Configuration;
 using Middleware.Jobs.Repositories;
@@ -15,34 +16,30 @@ namespace WmMiddleware.TransferControl.Control
     public class TransferControlOutbound : ITransferControlOutbound
     {
         private readonly ITransferControlRepository _transferControlRepository;
-        
         private readonly IConfigurationManager _configuration;
-
         private readonly ILog _log;
-
         private readonly IJobRepository _jobRepository;
+        private readonly IFileIo _fileIo;
 
         public TransferControlOutbound(ITransferControlRepository transferControlRepository,
                                        IJobRepository jobRepository,
                                        IConfigurationManager configuration,
-                                       ILog log)
+                                       ILog log,
+                                       IFileIo fileIo)
         {
             _log = log;
             _transferControlRepository = transferControlRepository;
             _configuration = configuration;
             _jobRepository = jobRepository;
+            _fileIo = fileIo;
         }
 
         public bool Process()
         {
             bool success = true;
 
-            var outboundFileDirectory =
-                _configuration.GetKey<string>(ConfigurationKey.TransferControlOutboundFileDirectory);
-            var outboundProcessedFileDirectory =
-                _configuration.GetKey<string>(ConfigurationKey.TransferControlOutboundFileProcessedDirectory);
-            var masterControlFileName =
-                _configuration.GetKey<string>(ConfigurationKey.TransferControlOutboundMasterControlFileName);
+            var outboundFileDirectory = _configuration.GetKey<string>(ConfigurationKey.TransferControlOutboundFileDirectory);
+            var masterControlFileName =_configuration.GetKey<string>(ConfigurationKey.TransferControlOutboundMasterControlFileName);
             var transferControlMasterRepository = new DataFileRepository<TransferControlMaster>();
             var controlFile = Path.Combine(outboundFileDirectory, masterControlFileName);
 
@@ -53,55 +50,72 @@ namespace WmMiddleware.TransferControl.Control
             }
 
             _log.Debug("Outbound: reading " + controlFile);
+
             var masterControlMapping = transferControlMasterRepository.Get(controlFile).ToList();
 
             var batches = masterControlMapping.Select(e => e.BatchControlNumber).Distinct().ToList();
 
-            foreach (var batch in batches)
+            using (var transactionScope = new TransactionScope())
             {
-                try
+                foreach (var batch in batches)
                 {
-
-                    var transferControl = new Models.TransferControl
+                    try
                     {
-                        BatchControlNumber = batch,
-                        Files = new List<TransferControlFile>(),
-                        ReceivedDate = DateTime.Now,
-                        JobId = DetermineJobId(batch, masterControlMapping)
-                    };
-
-                    foreach (var mapping in masterControlMapping)
-                    {
-                        if (mapping.BatchControlNumber == batch)
-                        {
-                            transferControl.Files.Add(new TransferControlFile
-                            {
-                                FileLocation = Path.Combine(outboundFileDirectory, mapping.Filename)
-                            });
-                        }
+                        var transferControl = CreateTransferControl(batch, masterControlMapping, outboundFileDirectory);
+                        var transferControlId = _transferControlRepository.InsertTransferControl(transferControl);
+                        
+                        _log.Debug("Outbound:Created transfer id " + transferControlId + " for batch " + batch);
                     }
-
-                    var transferControlId = _transferControlRepository.InsertTransferControl(transferControl);
-                    _log.Debug("Outbound:Created transfer id " + transferControlId + " for batch " + batch);
-
-                    _log.Debug("Outbound : moving " + controlFile + " to processed at " + outboundProcessedFileDirectory +
-                               masterControlFileName);
-
+                    catch (Exception exception)
+                    {
+                        _log.Exception("Outbound:Fatal exception processing batch " + batch, exception);
+                        success = false;
+                    }
                 }
-                catch (Exception exception)
-                {
-                    _log.Exception("Outbound:Fatal exception processing batch " + batch, exception);
-                    success = false;
-                }
+
+                if (!success) return false;
+
+                MoveToProcessedFolder(masterControlFileName, controlFile);
+
+                transactionScope.Complete();
             }
 
-            if (success)
+            return true;
+        }
+
+        private void MoveToProcessedFolder(string masterControlFileName, string controlFile)
+        {
+            var outboundProcessedFileDirectory = _configuration.GetKey<string>(ConfigurationKey.TransferControlOutboundFileProcessedDirectory);
+
+            string destFileName = outboundProcessedFileDirectory +
+                                  masterControlFileName +
+                                  "_" +
+                                  DateTime.Now.ToString("yyyyMMddHHmmss");
+
+            _fileIo.Move(new FileInfo(controlFile), new FileInfo(destFileName));
+        }
+
+        private Models.TransferControl CreateTransferControl(string batch, List<TransferControlMaster> masterControlMapping, string outboundFileDirectory)
+        {
+            var transferControl = new Models.TransferControl
             {
-                File.Move(controlFile,
-                          outboundProcessedFileDirectory + masterControlFileName + "_" + DateTime.Now.ToString("yyyyMMddHHmmss"));
+                BatchControlNumber = batch,
+                Files = new List<TransferControlFile>(),
+                ReceivedDate = DateTime.Now,
+                JobId = DetermineJobId(batch, masterControlMapping)
+            };
+
+            foreach (var mapping in masterControlMapping)
+            {
+                if (mapping.BatchControlNumber == batch)
+                {
+                    transferControl.Files.Add(new TransferControlFile
+                    {
+                        FileLocation = Path.Combine(outboundFileDirectory, mapping.Filename)
+                    });
+                }
             }
-            
-            return success;
+            return transferControl;
         }
 
         private int DetermineJobId(string batch, IEnumerable<TransferControlMaster> masterControlMapping)

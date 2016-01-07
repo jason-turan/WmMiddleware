@@ -32,7 +32,7 @@ namespace WmMiddleware.Shipment
             _shipmentRepository = shipmentRepository;
         }
 
-        protected override void ProcessFilesForBatch(TransferControlFile file)
+        protected override void ProcessFile(TransferControlFile file)
         {
             var shipmentHeaderRespository = new DataFileRepository<ShipmentHeader>();
             var shipmentDetailRespository = new DataFileRepository<ShipmentLineItem>();
