@@ -16,7 +16,7 @@ namespace WmMiddleware.Pix
     {
         private readonly IPerpetualInventoryTransferRepository _perpetualInventoryTransferRepository;
 
-        internal PixJob(ILog log, 
+        public PixJob(ILog log, 
                         IConfigurationManager configurationManager,
                         IJobRepository jobRepository, 
                         ITransferControlRepository transferControlRepository,
