@@ -12,7 +12,6 @@ namespace WmMiddleware.PixReturn.Models
             Company = returnOnWeb.Company;
             Condition = returnOnWeb.Condition;
             Exchange = returnOnWeb.Exchange;
-            Note = returnOnWeb.Note;
             Reason = returnOnWeb.Reason;
             ReturnLocation = returnOnWeb.ReturnLocation;
             Size = returnOnWeb.Size;

@@ -13,7 +13,6 @@ namespace WmMiddleware.PixReturn.Models
         public string Condition { get; set; }
         public string Reason { get; set; }
         public bool? Exchange { get; set; }
-        public string Note { get; set; }
         public DateTime? Timestamp { get; set; }
         public string Status { get; set; }
         public string UserId { get; set; }

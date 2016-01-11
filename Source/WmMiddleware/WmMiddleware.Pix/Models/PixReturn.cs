@@ -32,6 +32,11 @@ namespace WmMiddleware.Pix.Models
             return ConditionCode.StartsWith("A");
         }
 
+        public string StockKeepingUnit
+        {
+           get{  return _perpetualInventoryTransfer.SkuBatchnumber;}
+        }
+
         public string ConditionCode
         {
             get { return _perpetualInventoryTransfer.Reference4; }
@@ -53,11 +58,6 @@ namespace WmMiddleware.Pix.Models
         public string Company
         {
             get { return _perpetualInventoryTransfer.Company; }
-        }
-
-        public string Notes
-        {
-            get { return _perpetualInventoryTransfer.Reference1; }
         }
 
         public string ReturnReason

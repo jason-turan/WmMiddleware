@@ -8,7 +8,7 @@ namespace WmMiddleware.PixReturn.Repository
     {
         public void InsertRowReturn(DatabaseRowReturn databaseRowReturn)
         {
-            using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
+            using (var connection = DatabaseConnectionFactory.GetNbxWebConnection())
             {
                 connection.Insert(databaseRowReturn);
             }   

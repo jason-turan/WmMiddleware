@@ -53,18 +53,19 @@ namespace WmMiddleware.PixReturn
                         {
                             Company = unprocessedReturn.Company,
                             Condition = unprocessedReturn.ConditionCode,
-                            Note = unprocessedReturn.Notes,
                             OrderNumber = unprocessedReturn.OrderNumber,
                             Reason = unprocessedReturn.ReturnReason,
                             Size = unprocessedReturn.Size,
-                            Timestamp = DateTime.Now
+                            Timestamp = DateTime.Now, 
+                            StockKeepingUnit = unprocessedReturn.StockKeepingUnit,
+                            
+                            // Status = TODO
+                            // ReturnLocation = TODO
+                            // Exchange = TODO
                         };
 
-                        // map business object to row return
-                        var databaseRowReturn = new DatabaseRowReturn(returnOnWeb);
-
-                        // write
-                        _databaseRowReturnRepository.InsertRowReturn(databaseRowReturn);
+                        // map business object to row return and write to NBXWEB
+                        _databaseRowReturnRepository.InsertRowReturn(new DatabaseRowReturn(returnOnWeb));
 
                         // insert processed row
                         _perpetualInventoryTransferRepository.InsertManhattanPerpetualInventoryTransferProcessing(unprocessedReturn.ManhattanPerpetualInventoryTransferId());
