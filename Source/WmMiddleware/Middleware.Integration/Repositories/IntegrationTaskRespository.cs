@@ -80,7 +80,7 @@ namespace Middleware.Integration.Repositories
                 return new IntegrationTaskEndpointConfiguration
                 {
                     ConfigurationValue = ConfigurationValue,
-                    ConfigurationType = (ConfigurationType) Enum.Parse(typeof(ConfigurationType), IntegrationTaskEndpointConfigurationType)
+                    ConfigurationType = (IntegrationTaskEndpointConfigurationType)Enum.Parse(typeof(IntegrationTaskEndpointConfigurationType), IntegrationTaskEndpointConfigurationType)
                 };
             }
         }

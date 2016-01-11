@@ -2,7 +2,7 @@
 {
     public class IntegrationTaskEndpointConfiguration
     {
-        public IntegrationTaskEndpointConfigurationType IntegrationTaskEndpointConfigurationType { get; set; }
+        public IntegrationTaskEndpointConfigurationType ConfigurationType { get; set; }
         public string ConfigurationValue { get; set; }
     }
 }

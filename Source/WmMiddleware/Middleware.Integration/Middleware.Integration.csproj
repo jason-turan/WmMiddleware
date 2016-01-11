@@ -60,9 +60,9 @@
     <Compile Include="IntegrationJob.cs" />
     <Compile Include="Models\IntegrationTask.cs" />
     <Compile Include="Models\IntegrationTaskEndpoint.cs" />
+    <Compile Include="Models\IntegrationTaskEndpointConfigurationType.cs" />
     <Compile Include="Models\IntegrationTaskEndpointType.cs" />
     <Compile Include="Models\IntegrationTaskEndpointConfiguration.cs" />
-    <Compile Include="Models\ConfigurationType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IIntegrationTaskRespository.cs" />

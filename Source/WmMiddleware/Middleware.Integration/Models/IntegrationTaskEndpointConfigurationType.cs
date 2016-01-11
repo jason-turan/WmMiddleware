@@ -1,6 +1,6 @@
 ﻿namespace Middleware.Integration.Models
 {
-    public enum ConfigurationType
+    public enum IntegrationTaskEndpointConfigurationType
     {
         CommandText,
         Connection
