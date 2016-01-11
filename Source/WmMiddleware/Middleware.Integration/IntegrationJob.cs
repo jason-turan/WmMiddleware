@@ -1,4 +1,8 @@
-﻿using Middleware.Integration.Factories;
+﻿using System.IO;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Xsl;
+using Middleware.Integration.Factories;
 using Middleware.Integration.Repositories;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
@@ -31,10 +35,16 @@ namespace Middleware.Integration
             var reader = _xmlRepositoryFactory.CreateReader(integrationTask.Source);
             var xml = reader.Read();
 
-            // transform
+            XslCompiledTransform transform = new XslCompiledTransform();
+            transform.Load(XmlReader.Create(File.OpenRead(Path.Combine("./Resources/Xslt", integrationTask.XsltTransformName))));
+            var newXml = new XDocument();
+            using (XmlWriter xmlWriter = newXml.CreateWriter())
+            {
+                transform.Transform(xml.CreateReader(), xmlWriter);
+            }
 
             var writer = _xmlRepositoryFactory.CreateWriter(integrationTask.Destination);
-            writer.Save(xml);
+            writer.Save(newXml);
         }
     }
 }

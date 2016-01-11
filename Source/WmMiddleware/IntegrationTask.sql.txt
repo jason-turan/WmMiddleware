@@ -1,0 +1,124 @@
+USE WarehouseManagement
+
+----------------------------------------------------------------
+
+IF OBJECT_ID('dbo.IntegrationTask', 'U') IS NOT NULL
+  DROP TABLE dbo.IntegrationTask; 
+
+IF OBJECT_ID('dbo.IntegrationTaskEndpointConfiguration', 'U') IS NOT NULL
+  DROP TABLE dbo.IntegrationTaskEndpointConfiguration; 
+  
+IF OBJECT_ID('dbo.IntegrationTaskEndpoint', 'U') IS NOT NULL
+  DROP TABLE dbo.IntegrationTaskEndpoint; 
+  
+IF OBJECT_ID('dbo.IntegrationTaskEndpointConfigurationType', 'U') IS NOT NULL
+  DROP TABLE dbo.IntegrationTaskEndpointConfigurationType; 
+
+IF OBJECT_ID('dbo.IntegrationTaskEndpointType', 'U') IS NOT NULL
+  DROP TABLE dbo.IntegrationTaskEndpointType; 
+  
+----------------------------------------------------------------
+  
+CREATE TABLE [dbo].[IntegrationTaskEndpointType](
+	[IntegrationTaskEndpointTypeId] [int] PRIMARY KEY IDENTITY (1,1),
+	[IntegrationTaskEndpointTypeName] [varchar](100) NULL
+)
+  
+CREATE TABLE [dbo].[IntegrationTaskEndpointConfigurationType](
+	[IntegrationTaskEndpointConfigurationTypeId] [int] PRIMARY KEY IDENTITY (1,1),
+	[IntegrationTaskEndpointTypeId] [int] FOREIGN KEY REFERENCES IntegrationTaskEndpointType(IntegrationTaskEndpointTypeId) NOT NULL,
+	[IntegrationTaskEndpointConfigurationType] [varchar](200) NULL
+)
+
+CREATE TABLE [dbo].[IntegrationTaskEndpoint](
+	[IntegrationTaskEndpointId] [int] PRIMARY KEY IDENTITY (1,1),
+	[IntegrationTaskEndpointTypeId] [int] FOREIGN KEY REFERENCES IntegrationTaskEndpointType(IntegrationTaskEndpointTypeId) NOT NULL
+)
+
+CREATE TABLE [dbo].[IntegrationTaskEndpointConfiguration](
+	[IntegrationTaskEndpointConfigurationId] [int] PRIMARY KEY IDENTITY (1,1),
+	[IntegrationTaskEndpointConfigurationTypeId] [int] FOREIGN KEY REFERENCES IntegrationTaskEndpointConfigurationType(IntegrationTaskEndpointConfigurationTypeId) NOT NULL,
+	[IntegrationTaskEndpointId] [int] FOREIGN KEY REFERENCES IntegrationTaskEndpoint(IntegrationTaskEndpointId) NOT NULL,
+	[ConfigurationValue] [varchar](max) NULL
+)
+
+CREATE TABLE [dbo].[IntegrationTask](
+	[IntegrationTaskId] [int] PRIMARY KEY IDENTITY (1,1),
+	[JobId] [int] FOREIGN KEY REFERENCES Job(JobId) NOT NULL,
+	[Sequence] [int] NOT NULL,
+	[SourceTypeId] [int] FOREIGN KEY REFERENCES IntegrationTaskEndpoint(IntegrationTaskEndpointId) NOT NULL,
+	[DestinationTypeId] [int] FOREIGN KEY REFERENCES IntegrationTaskEndpoint(IntegrationTaskEndpointId) NOT NULL,
+	[XsltTransformName] [nvarchar](50) NOT NULL
+)
+
+----------------------------------------------------------------
+
+SET IDENTITY_INSERT [IntegrationTaskEndpointType] ON
+
+INSERT INTO [dbo].[IntegrationTaskEndpointType] (IntegrationTaskEndPointTypeId, IntegrationTaskEndpointTypeName)
+VALUES (0, 'Database')
+
+INSERT INTO [dbo].[IntegrationTaskEndpointType] (IntegrationTaskEndPointTypeId, IntegrationTaskEndpointTypeName)
+VALUES (1, 'WebService')
+
+INSERT INTO [dbo].[IntegrationTaskEndpointType] (IntegrationTaskEndPointTypeId, IntegrationTaskEndpointTypeName)
+VALUES (2, 'File')
+
+INSERT INTO [dbo].[IntegrationTaskEndpointType] (IntegrationTaskEndPointTypeId, IntegrationTaskEndpointTypeName)
+VALUES (3, 'GreatPlains')
+
+SET IDENTITY_INSERT [IntegrationTaskEndpointType] OFF
+
+----------------------------------------------------------------
+
+SET IDENTITY_INSERT [IntegrationTaskEndpointConfigurationType] ON
+
+INSERT INTO [dbo].[IntegrationTaskEndpointConfigurationType] (IntegrationTaskEndpointConfigurationTypeId, IntegrationTaskEndpointTypeId, IntegrationTaskEndpointConfigurationType)
+VALUES (0, 0, 'CommandText')
+
+INSERT INTO [dbo].[IntegrationTaskEndpointConfigurationType] (IntegrationTaskEndpointConfigurationTypeId, IntegrationTaskEndpointTypeId, IntegrationTaskEndpointConfigurationType)
+VALUES (1, 0, 'Connection')
+
+INSERT INTO [dbo].[IntegrationTaskEndpointConfigurationType] (IntegrationTaskEndpointConfigurationTypeId, IntegrationTaskEndpointTypeId, IntegrationTaskEndpointConfigurationType)
+VALUES (2, 1, 'Connection')
+
+INSERT INTO [dbo].[IntegrationTaskEndpointConfigurationType] (IntegrationTaskEndpointConfigurationTypeId, IntegrationTaskEndpointTypeId, IntegrationTaskEndpointConfigurationType)
+VALUES (3, 2, 'Connection')
+
+INSERT INTO [dbo].[IntegrationTaskEndpointConfigurationType] (IntegrationTaskEndpointConfigurationTypeId, IntegrationTaskEndpointTypeId, IntegrationTaskEndpointConfigurationType)
+VALUES (4, 3, 'Connection')
+
+SET IDENTITY_INSERT [IntegrationTaskEndpointConfigurationType] OFF
+
+----------------------------------------------------------------
+
+SET IDENTITY_INSERT [IntegrationTaskEndpoint] ON
+
+INSERT INTO [dbo].[IntegrationTaskEndpoint] (IntegrationTaskEndpointId, IntegrationTaskEndpointTypeId)
+VALUES (0, 0)
+
+INSERT INTO [dbo].[IntegrationTaskEndpoint] (IntegrationTaskEndpointId, IntegrationTaskEndpointTypeId)
+VALUES (1, 3)
+
+SET IDENTITY_INSERT [IntegrationTaskEndpoint] OFF
+
+----------------------------------------------------------------
+
+SET IDENTITY_INSERT [IntegrationTaskEndpointConfiguration] ON
+
+INSERT INTO [dbo].[IntegrationTaskEndpointConfiguration] (IntegrationTaskEndpointConfigurationId, IntegrationTaskEndpointConfigurationTypeId, IntegrationTaskEndpointId, ConfigurationValue)
+VALUES (0, 0, 0, 'exec Integrations_GetPurchaseOrders')
+
+INSERT INTO [dbo].[IntegrationTaskEndpointConfiguration] (IntegrationTaskEndpointConfigurationId, IntegrationTaskEndpointConfigurationTypeId, IntegrationTaskEndpointId, ConfigurationValue)
+VALUES (1, 1, 0, 'GP')
+
+SET IDENTITY_INSERT [IntegrationTaskEndpointConfiguration] OFF
+
+----------------------------------------------------------------
+
+SET IDENTITY_INSERT [IntegrationTask] ON
+
+INSERT INTO [dbo].[IntegrationTask] (IntegrationTaskId, JobId, Sequence, SourceTypeId, DestinationTypeId, XsltTransformName)
+VALUES (0, 23, 0, 0, 1, 'PurchaseOrder.xslt')
+
+SET IDENTITY_INSERT [IntegrationTask] OFF

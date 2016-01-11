@@ -1,4 +1,8 @@
-﻿using System.Data.SqlClient;
+﻿using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.IO;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace Middleware.Integration.Repositories
@@ -16,13 +20,25 @@ namespace Middleware.Integration.Repositories
 
         public XDocument Read()
         {
-            using (var connection = new SqlConnection(_connection))
+            var connectionConfiguration = ConfigurationManager.ConnectionStrings[_connection];
+            var connectionString = connectionConfiguration == null ? _connection : connectionConfiguration.ConnectionString;
+            using (var connection = new SqlConnection(connectionString))
             {
-                var command = connection.CreateCommand();
-                command.CommandText = _commandText;
-                var xmlReader = command.ExecuteXmlReader();
-                return new XDocument(xmlReader);
+                connection.Open();
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = _commandText;
+                    using (var adapter = new SqlDataAdapter(command))
+                    {
+                        var writer = new StringWriter();
+                        var table = new DataTable("DataRoot");
+                        adapter.Fill(table);
+                        table.WriteXml(writer);
+                        return XDocument.Parse(writer.ToString());
+                    }
+                }
             }
         }
+
     }
 }

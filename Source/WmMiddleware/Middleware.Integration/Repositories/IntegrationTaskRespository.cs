@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Dapper;
 using Middleware.Integration.Models;
@@ -11,7 +12,6 @@ namespace Middleware.Integration.Repositories
     {
         public IntegrationTask GetTask(int jobId)
         {
-            IntegrationTask integrationTask = null;
             const string integrationTaskSql = @"SELECT it.* 
                                                 FROM Job j
                                                 INNER JOIN IntegrationTask it
@@ -25,62 +25,64 @@ namespace Middleware.Integration.Repositories
             {
                 connection.Open();
 
-                integrationTask = connection.Query<IntegrationTask>(integrationTaskSql, integration).FirstOrDefault();
+                var integrationTask = connection.Query<IntegrationTask>(integrationTaskSql, integration).FirstOrDefault();
 
                 if (integrationTask == null) return null;
 
-                integrationTask.Source = GetEndpoint(connection, integrationTask.IntegrationTaskId, integrationTask.SourceTypeId);
-                integrationTask.Destination = GetEndpoint(connection, integrationTask.IntegrationTaskId, integrationTask.DestinationTypeId);
+                integrationTask.Source = GetEndpoint(connection, integrationTask.SourceTypeId);
+                integrationTask.Destination = GetEndpoint(connection, integrationTask.DestinationTypeId);
+                return integrationTask;
             }
-
-            return integrationTask;
         }
 
-        private static IntegrationTaskEndpoint GetEndpoint(IDbConnection connection, int integrationTaskId, IntegrationTaskEndpointType endpointTypeId)
+        private static IntegrationTaskEndpoint GetEndpoint(IDbConnection connection, int endpointId)
         {
-            IntegrationTaskEndpoint integrationTaskEndpoint = null;
-            
-            const string integrationEndpointConfiguration = @"SELECT ep.IntegrationTaskEndpointId,
-	                                                                 ct.IntegrationTaskConfigurationTypeId,
-	                                                                 config.ConfigurationValue,
-                                                                     config.IntegrationTaskId
-                                                              FROM IntegrationTaskEndpointConfigurationType ct
-                                                              INNER JOIN IntegrationTaskEndpointConfiguration config
-	                                                              ON config.IntegrationTaskConfigurationTypeId = ct.IntegrationTaskConfigurationTypeId
-                                                              INNER JOIN IntegrationTaskEndpoint ep
-	                                                              ON ep.IntegrationTaskEndpointId = ct.IntegrationTaskEndpointId
-                                                              WHERE config.IntegrationTaskId = @IntegrationTaskId
-                                                              AND ep.IntegrationTaskEndpointId = @IntegrationTaskEndpointId";
+            const string integrationEndpointConfigurationSql = @"
+                SELECT 
+	                itec.ConfigurationValue,
+	                itet.IntegrationTaskEndpointTypeName,
+	                itect.IntegrationTaskEndpointConfigurationType
+                FROM IntegrationTaskEndpoint ite
+                JOIN IntegrationTaskEndpointType itet 
+                    ON ite.IntegrationTaskEndpointTypeId = itet.IntegrationTaskEndpointTypeId
+                JOIN IntegrationTaskEndpointConfigurationType itect 
+                    ON itect.IntegrationTaskEndpointTypeId = itet.IntegrationTaskEndpointTypeId
+                LEFT JOIN IntegrationTaskEndpointConfiguration itec 
+                    ON itec.IntegrationTaskEndpointId = ite.IntegrationTaskEndpointId 
+                    AND itec.IntegrationTaskEndpointConfigurationTypeId = itect.IntegrationTaskEndpointConfigurationTypeId
+                WHERE ite.IntegrationTaskEndpointId = @IntegrationTaskEndpointId";
 
 
             var integrationConfiguration = new DynamicParameters();
-            integrationConfiguration.Add("@IntegrationTaskId", integrationTaskId);
-            integrationConfiguration.Add("@IntegrationTaskEndpointId", endpointTypeId);
+            integrationConfiguration.Add("@IntegrationTaskEndpointId", endpointId);
 
-                using (var reader = connection.ExecuteReader(integrationEndpointConfiguration, integrationConfiguration))
-                {
-                    while (reader.Read())
-                    {
-                        if (integrationTaskEndpoint == null)
-                        {
-                            integrationTaskEndpoint = new IntegrationTaskEndpoint
-                            {
-                                EndpointType = (IntegrationTaskEndpointType)reader["IntegrationTaskEndpointId"],
-                                EndpointConfigurations = new List<IntegrationTaskEndpointConfiguration>()
-                            };
-                        }
-
-                        integrationTaskEndpoint.EndpointConfigurations.Add(new IntegrationTaskEndpointConfiguration
-                        {
-                            ConfigurationValue = reader["ConfigurationValue"] as string,
-                            IntegrationTaskEndpointConfigurationType =
-                                (IntegrationTaskEndpointConfigurationType) reader["IntegrationTaskConfigurationTypeId"],
-                            IntegrationTaskId = (int) reader["IntegrationTaskId"]
-                        });
-                    }
-            }
+            var rows = connection.Query<ConfigurationRow>(integrationEndpointConfigurationSql, new {IntegrationTaskEndpointId = endpointId}).ToList();
+            var integrationTaskEndpoint = new IntegrationTaskEndpoint
+            {
+                EndpointType = (IntegrationTaskEndpointType) Enum.Parse(typeof (IntegrationTaskEndpointType), rows.First().IntegrationTaskEndpointTypeName),
+                EndpointConfigurations = rows.Select(r => r.ToEndpointConfiguration()).ToList()
+            };
 
             return integrationTaskEndpoint;
+        }
+
+        [SuppressMessage("ReSharper", "ClassNeverInstantiated.Local")]
+        [SuppressMessage("ReSharper", "MemberCanBePrivate.Local")]
+        [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Local")]
+        private class ConfigurationRow
+        {
+            public string ConfigurationValue { get; set; }
+            public string IntegrationTaskEndpointTypeName { get; set; }
+            public string IntegrationTaskEndpointConfigurationType { get; set; }
+
+            public IntegrationTaskEndpointConfiguration ToEndpointConfiguration()
+            {
+                return new IntegrationTaskEndpointConfiguration
+                {
+                    ConfigurationValue = ConfigurationValue,
+                    ConfigurationType = (ConfigurationType) Enum.Parse(typeof(ConfigurationType), IntegrationTaskEndpointConfigurationType)
+                };
+            }
         }
     }
 }

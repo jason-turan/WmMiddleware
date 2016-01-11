@@ -41,7 +41,7 @@ namespace Middleware.Jobs
                 jobRepository.UpdateJob(job);
                 ((IUnitOfWork)kernel.Get(typeof(T))).RunUnitOfWork(jobKey);
                 job.LastRunStatus = JobRunStatus.Success;
-                logger.Info("Successful execution of " + kernel.Get(typeof (T)));
+                logger.Info("Successful execution of " + kernel.Get(typeof(T)));
 
             }
             catch (Exception exception)
@@ -53,17 +53,18 @@ namespace Middleware.Jobs
             {
                 stopWatch.Stop();
                 job.LastRunDateTime = DateTime.Now;
-                job.LastRunExecutionTime = stopWatch.ElapsedMilliseconds;  
-               
+                job.LastRunExecutionTime = stopWatch.ElapsedMilliseconds;
+
                 jobRepository.UpdateJob(job);
 
+                var windowsIdentity = WindowsIdentity.GetCurrent();
                 jobRepository.InsertJobHistory(new MiddlewareJobHistory
                 {
                     JobId = job.JobId,
                     RunStatus = job.LastRunStatus,
                     RunDate = job.LastRunDateTime.Value,
                     MachineName = Environment.MachineName,
-                    UserName = WindowsIdentity.GetCurrent() == null ? "Unknown" : WindowsIdentity.GetCurrent().Name
+                    UserName = windowsIdentity == null ? "Unknown" : windowsIdentity.Name
                 });
 
                 Environment.Exit(job.LastRunStatus == JobRunStatus.Failure ? 1 : 0);

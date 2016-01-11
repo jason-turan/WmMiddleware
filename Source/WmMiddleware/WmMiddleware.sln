@@ -5,6 +5,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DbScripts", "DbScripts", "{
 	ProjectSection(SolutionItems) = preProject
 		ConfigurationItem.sql.txt = ConfigurationItem.sql.txt
 		Enviornment.sql.txt = Enviornment.sql.txt
+		IntegrationTask.sql.txt = IntegrationTask.sql.txt
 		Job.Sql.txt = Job.Sql.txt
 		JobHistory.Sql.txt = JobHistory.Sql.txt
 		Log.sql.txt = Log.sql.txt
