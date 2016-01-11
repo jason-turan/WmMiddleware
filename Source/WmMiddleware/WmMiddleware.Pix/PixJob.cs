@@ -16,12 +16,12 @@ namespace WmMiddleware.Pix
     {
         private readonly IPerpetualInventoryTransferRepository _perpetualInventoryTransferRepository;
 
-        public PixJob(ILog log, 
-                      IConfigurationManager configurationManager,
-                      IJobRepository jobRepository, 
-                      ITransferControlRepository transferControlRepository,
-                      IPerpetualInventoryTransferRepository perpetualInventoryTransferRepository,
-                      IFileIo fileIo)
+        internal PixJob(ILog log, 
+                        IConfigurationManager configurationManager,
+                        IJobRepository jobRepository, 
+                        ITransferControlRepository transferControlRepository,
+                        IPerpetualInventoryTransferRepository perpetualInventoryTransferRepository,
+                        IFileIo fileIo)
             : base(log, configurationManager, fileIo, jobRepository, transferControlRepository)
         {
             _perpetualInventoryTransferRepository = perpetualInventoryTransferRepository;
@@ -29,7 +29,7 @@ namespace WmMiddleware.Pix
 
         protected override void ProcessFile(TransferControlFile file)
         {
-                var pixRepository = new DataFileRepository<PerpetualInventoryTransfer>();
+            var pixRepository = new DataFileRepository<ManhattanPerpetualInventoryTransfer>();
                 var pix = pixRepository.Get(file.FileLocation).ToList();
                 _perpetualInventoryTransferRepository.InsertPerpetualInventoryTransfer(pix);
                 LogInsert(pix, file);

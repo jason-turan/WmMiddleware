@@ -2,6 +2,8 @@
 using MiddleWare.Log;
 using Ninject.Modules;
 using WmMiddleware.Configuration;
+using WmMiddleware.Pix.Repository;
+using WmMiddleware.PixReturn.Repository;
 
 namespace WmMiddleware.PixReturn.DependencyInjection
 {
@@ -12,6 +14,9 @@ namespace WmMiddleware.PixReturn.DependencyInjection
             Bind<ILog>().To<Log4Net>();
             Bind<IPixReturnJob>().To<PixReturnJob>();
             Bind<IConfigurationManager>().To<MiddlewareConfigurationManager>();
+            Bind<IDatabaseRowReturnRepository>().To<DatabaseRowReturnRepository>();
+            Bind<IPerpetualInventoryTransferRepository>().To<PerpetualInventoryTransferRepository>();
+            Bind<IPixReturnRepository>().To<PixReturnRepository>();
             Bind<IJobRepository>().To<JobRepository>();
         }
     }

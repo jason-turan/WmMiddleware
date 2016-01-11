@@ -8,6 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DbScripts", "DbScripts", "{
 		Job.Sql.txt = Job.Sql.txt
 		JobHistory.Sql.txt = JobHistory.Sql.txt
 		Log.sql.txt = Log.sql.txt
+		ManhattanPerpetualInventoryTransferProcessing.sql.txt = ManhattanPerpetualInventoryTransferProcessing.sql.txt
 		TransferControl.Sql.txt = TransferControl.Sql.txt
 		TransferControlFileType.Sql.txt = TransferControlFileType.Sql.txt
 	EndProjectSection
@@ -66,6 +67,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.Outbound", "WmMiddleware.ManhattanOutboundData\WmMiddleware.Outbound.csproj", "{0C7E1466-F223-4D93-B53D-E896D0271F5D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.PixReturn", "WmMiddleware.PixReturn\WmMiddleware.PixReturn.csproj", "{BF945C8E-81B4-4ADF-8F33-E64FF48DD0B7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Generated", "Generated", "{3397B97D-15E7-4FE0-A9D4-F31719FAD773}"
+	ProjectSection(SolutionItems) = preProject
+		ManhattanPerpetualInventoryTransfer.sql.txt = ManhattanPerpetualInventoryTransfer.sql.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -361,5 +367,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{110F3F5C-83ED-4683-9C4E-97AEF4B5D522} = {A74B9459-51A0-4D56-8F5A-F17340F24F27}
+		{3397B97D-15E7-4FE0-A9D4-F31719FAD773} = {A74B9459-51A0-4D56-8F5A-F17340F24F27}
 	EndGlobalSection
 EndGlobal

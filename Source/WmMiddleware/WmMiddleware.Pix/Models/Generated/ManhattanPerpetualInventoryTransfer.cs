@@ -11,11 +11,11 @@ namespace WmMiddleware.Pix.Models.Generated
 {
     // Generated with FlatFileClassGenerator
     [FixedLengthFile]
-    [Table("PerpetualInventoryTransfer")]
-    public partial class PerpetualInventoryTransfer : IGeneratedFlatFile
+    [Table("ManhattanPerpetualInventoryTransfer")]
+    public partial class ManhattanPerpetualInventoryTransfer : IGeneratedFlatFile
     {
         [Key]
-        public int PerpetualInventoryTransferId { get; set; }
+        public int ManhattanPerpetualInventoryTransferId { get; set; }
 
         private string _processedFlag;
         [FixedLengthField(1, 1, PaddingChar = ' ', Padding = Padding.Right, NullValue = " ")]
