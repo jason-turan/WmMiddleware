@@ -90,14 +90,4 @@ BEGIN
 			'?')
 END
 
-IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Product Return Job')
-BEGIN
-	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
-	VALUES('Product Return Job', 
-		   '15M', 
-		   'WmMiddleware.ProductReturn.exe', 
-		    0,
-			'?')
-END
-
 select * from job

@@ -38,7 +38,7 @@ namespace WmMiddleware.ProductUpdating.Repositories
             var warehouseNumber = _configuration.GetKey<string>(ConfigurationKey.WarehouseNumber);
             var companyNumber = _configuration.GetKey<string>(ConfigurationKey.CompanyNumber);
 
-            var controlNumber = _configuration.GetBatchControlNumber(BatchControlNumberType.ProductUpdate);
+            var controlNumber = _configuration.GetBatchControlNumber();
             var batchControlNumber = warehouseNumber + controlNumber.ToString("D8");
 
             var productList = allProducts.Select(product => new ManhattanProduct(product, batchControlNumber, companyNumber, warehouseNumber)).ToList();

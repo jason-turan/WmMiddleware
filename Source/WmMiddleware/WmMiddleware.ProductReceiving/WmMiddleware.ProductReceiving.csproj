@@ -93,10 +93,13 @@
     <Compile Include="IProductReceivingJob.cs" />
     <Compile Include="Models\AutomatedShippingNotification.cs" />
     <Compile Include="Models\AutomatedShippingNotificationItem.cs" />
+    <Compile Include="Models\AutomatedShippingNotificationType.cs" />
     <Compile Include="Models\DatabaseAutomatedShippingNotification.cs" />
+    <Compile Include="Models\DatabasePurchaseReturn.cs" />
     <Compile Include="Models\DatabasePurchaseOrder.cs" />
     <Compile Include="Models\Generated\DatabaseAutomatedShippingNotification.cs" />
     <Compile Include="Models\Generated\DatabasePurchaseOrders.cs" />
+    <Compile Include="Models\Generated\DatabasePurchaseReturn.cs" />
     <Compile Include="Models\Generated\ManhattanSkuDetail.cs" />
     <Compile Include="Models\LineItem.cs" />
     <Compile Include="Models\Generated\ManhattanCaseDetail.cs" />
@@ -106,6 +109,7 @@
     <Compile Include="Models\ManhattanSkuDetail.cs" />
     <Compile Include="Models\PurchaseOrder.cs" />
     <Compile Include="Models\IReceivedProduct.cs" />
+    <Compile Include="Models\PurchaseReturn.cs" />
     <Compile Include="ProductReceivingJob.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

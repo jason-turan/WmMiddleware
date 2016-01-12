@@ -29,6 +29,13 @@ namespace WmMiddleware.ProductReceiving.Models
             ShipmentNumber = purchaseOrder.ExternalUid;
         }
 
+        public ManhattanReceivedProductHeader(PurchaseReturn purchaseOrder, string batchControlNumber, string warehouseNumber)
+            : this(batchControlNumber, warehouseNumber)
+        {
+            AsnType = "4";//1 for manual POs, 3 for inbound ASNs, 4 for returns
+            ShipmentNumber = purchaseOrder.ExternalUid;
+        }
+
         public ManhattanReceivedProductHeader(AutomatedShippingNotification shippingNotification, string batchControlNumber, string warehouseNumber)
             : this(batchControlNumber, warehouseNumber)
         {

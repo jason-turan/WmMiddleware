@@ -32,19 +32,26 @@ namespace WmMiddleware.ProductReceiving.Repositories
         {
             var receivedProductsCollection = receivedProducts.ToList();
             var purchaseOrderDetails = new List<ManhattanSkuDetail>();
+            var purchaseReturnDetails = new List<ManhattanSkuDetail>();
             var automatedShippingNotificationDetails = new List<ManhattanCaseDetail>();
             var headerList = new List<ManhattanReceivedProductHeader>();
 
             var warehouseNumber = _configuration.GetKey<string>(ConfigurationKey.WarehouseNumber);
             var companyNumber = _configuration.GetKey<string>(ConfigurationKey.CompanyNumber);
 
-            var controlNumber = _configuration.GetBatchControlNumber(BatchControlNumberType.ReceivedProduct);
+            var controlNumber = _configuration.GetBatchControlNumber();
             var batchControlNumber = warehouseNumber + controlNumber.ToString("D8");
 
             foreach (var purchaseOrder in receivedProductsCollection.OfType<PurchaseOrder>())
             {
                 headerList.Add(new ManhattanReceivedProductHeader(purchaseOrder, batchControlNumber, warehouseNumber));
                 purchaseOrderDetails.AddRange(purchaseOrder.Items.Select(item => new ManhattanSkuDetail(purchaseOrder, item, batchControlNumber, companyNumber, warehouseNumber)));
+            }
+
+            foreach (var purchaseReturn in receivedProductsCollection.OfType<PurchaseReturn>())
+            {
+                headerList.Add(new ManhattanReceivedProductHeader(purchaseReturn, batchControlNumber, warehouseNumber));
+                purchaseReturnDetails.AddRange(purchaseReturn.Items.Select(item => new ManhattanSkuDetail(purchaseReturn, item, batchControlNumber, companyNumber, warehouseNumber)));
             }
 
             foreach (var automatedShippingNotification in receivedProductsCollection.OfType<AutomatedShippingNotification>())
@@ -59,6 +66,7 @@ namespace WmMiddleware.ProductReceiving.Repositories
 
             _headerFileRepository.Save(headerList, headerPath);
             _skuDetailFileRepository.Save(purchaseOrderDetails, poDetailsPath);
+            _skuDetailFileRepository.Save(purchaseReturnDetails, poDetailsPath);
             _caseDetailFileRepository.Save(automatedShippingNotificationDetails, asnDetailsPath);
 
             _transferControlManager.SaveTransferControl(batchControlNumber, 

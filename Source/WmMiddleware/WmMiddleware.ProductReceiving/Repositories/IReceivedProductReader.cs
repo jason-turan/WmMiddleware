@@ -7,6 +7,7 @@ namespace WmMiddleware.ProductReceiving.Repositories
     {
         IEnumerable<IReceivedProduct> GetPurchaseOrders();
         IEnumerable<IReceivedProduct> GetAutomatedShippingNotifications();
+        IEnumerable<IReceivedProduct> GetPurchaseReturns();
 
         void SetAsProcessed(IEnumerable<IReceivedProduct> products);
     }

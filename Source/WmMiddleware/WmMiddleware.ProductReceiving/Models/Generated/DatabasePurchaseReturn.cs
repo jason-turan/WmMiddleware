@@ -1,8 +1,10 @@
 ﻿using System;
 
-namespace WmMiddleware.ProductReturn.Models
+// ReSharper disable once CheckNamespace
+namespace WmMiddleware.ProductReceiving.Models
 {
-    public class DatabaseProductReturn 
+    // ReSharper disable InconsistentNaming
+    public partial class DatabasePurchaseReturn
     {
         public string Company { get; set; }
         public string Order_Number { get; set; }
@@ -13,5 +15,9 @@ namespace WmMiddleware.ProductReturn.Models
         public string Reason { get; set; }
         public string Note { get; set; }
         public DateTime? Timestamp { get; set; }
+
+        public decimal QtyOrd { get; set; } //(decimal(19,0), null)
+
+        public string ExternalUid { get; set; } 
     }
 }

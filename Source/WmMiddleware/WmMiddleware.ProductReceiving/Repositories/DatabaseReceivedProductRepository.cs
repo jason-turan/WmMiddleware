@@ -27,6 +27,15 @@ namespace WmMiddleware.ProductReceiving.Repositories
             }
         }
 
+        public IEnumerable<IReceivedProduct> GetPurchaseReturns()
+        {
+            using (var connection = DatabaseConnectionFactory.GetNbxWebConnection())
+            {
+                connection.Open();
+                return GroupReturns(connection.Query<DatabasePurchaseReturn>("sp_GetNewReturns")).ToList();
+            }
+        }
+
         public void SetAsProcessed(IEnumerable<IReceivedProduct> products)
         {
             var productList = products.ToList();
@@ -75,6 +84,22 @@ namespace WmMiddleware.ProductReceiving.Repositories
 
                 connection.Open();
                 connection.Execute("sp_UpdatePurchaseOrderStatus", parameter, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        private static IEnumerable<PurchaseOrder> GroupReturns(IEnumerable<DatabasePurchaseReturn> purchaseReturns)
+        {
+            var groupedTickets = purchaseReturns.GroupBy(pr => pr.SKU);
+            foreach (var group in groupedTickets)
+            {
+                var purchaseOrder = group.First().ToPurchaseReturn();
+                foreach (var item in group.GroupBy(po => po.SKU))
+                {
+                    var lineItem = item.First().ToLineItem();
+                    lineItem.QuantityOrdered = item.Sum(i => i.QtyOrd);
+                    purchaseOrder.Items.Add(lineItem);
+                }
+                yield return purchaseOrder;
             }
         }
 

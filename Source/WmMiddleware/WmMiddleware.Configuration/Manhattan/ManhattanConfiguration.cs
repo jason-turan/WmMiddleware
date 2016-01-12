@@ -11,7 +11,7 @@ namespace WmMiddleware.Configuration.Manhattan
         {
         }
 
-        public long GetBatchControlNumber(BatchControlNumberType type)
+        public long GetBatchControlNumber()
         {
             using (var connection = DatabaseConnectionFactory.GetWarehouseManagementConnection())
             {

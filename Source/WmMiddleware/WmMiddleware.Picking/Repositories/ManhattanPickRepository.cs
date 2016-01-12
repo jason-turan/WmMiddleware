@@ -50,7 +50,7 @@ namespace WmMiddleware.Picking.Repositories
             var companyNumber = _configuration.GetKey<string>(ConfigurationKey.CompanyNumber);
             var warehouseAddress = _configuration.GetWarehouseAddress();
 
-            var controlNumber = _configuration.GetBatchControlNumber(BatchControlNumberType.Pick);
+            var controlNumber = _configuration.GetBatchControlNumber();
             var batchControlNumber = warehouseNumber + controlNumber.ToString("D8");
 
             foreach (var order in allOrders)

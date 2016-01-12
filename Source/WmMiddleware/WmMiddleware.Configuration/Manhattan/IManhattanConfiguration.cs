@@ -2,7 +2,7 @@
 {
     public interface IManhattanConfiguration : IConfigurationManager
     {
-        long GetBatchControlNumber(BatchControlNumberType type);
+        long GetBatchControlNumber();
         string GetPath(string filePrefix, long batchControlNumber);
     }
 }
