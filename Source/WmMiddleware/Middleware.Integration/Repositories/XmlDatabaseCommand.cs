@@ -31,7 +31,9 @@ namespace Middleware.Integration.Repositories
                     using (var adapter = new SqlDataAdapter(command))
                     {
                         var writer = new StringWriter();
-                        var table = new DataTable("DataRoot");
+                        var table = new DataTable("Table");
+                        var dataset = new DataSet("NewDataSet");
+                        dataset.Tables.Add(table);
                         adapter.Fill(table);
                         table.WriteXml(writer);
                         return XDocument.Parse(writer.ToString());
