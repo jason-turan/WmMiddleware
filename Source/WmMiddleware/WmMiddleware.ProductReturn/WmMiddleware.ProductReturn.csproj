@@ -37,6 +37,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Dependencies\Dapper\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\..\..\..\Development\MiddlewareIntegration\Dependencies\log4net\log4net.dll</HintPath>
     </Reference>
@@ -57,9 +61,15 @@
     </Compile>
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
     <Compile Include="IProductReturnJob.cs" />
+    <Compile Include="Models\DatabaseProductReturn.cs" />
+    <Compile Include="Models\PurchaseReturn.cs" />
     <Compile Include="ProductReturnJob.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\IReceivedPurchaseReturnWriter.cs" />
+    <Compile Include="Repository\IReceivedPurchaseReturnReader.cs" />
+    <Compile Include="Repository\ManhattanReturnedProductRepository.cs" />
+    <Compile Include="Repository\DatabaseReturnProductRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

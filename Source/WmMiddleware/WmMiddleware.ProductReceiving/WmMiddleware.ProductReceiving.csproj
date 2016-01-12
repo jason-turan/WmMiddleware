@@ -110,10 +110,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\DatabaseReceivedProductRepository.cs" />
-    <Compile Include="Repositories\DatabaseStoreRepository.cs" />
     <Compile Include="Repositories\IReceivedProductReader.cs" />
     <Compile Include="Repositories\IReceivedProductWriter.cs" />
-    <Compile Include="Repositories\IStoreReader.cs" />
     <Compile Include="Repositories\ManhattanReceivedProductRepository.cs" />
   </ItemGroup>
   <ItemGroup>
