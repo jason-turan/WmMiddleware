@@ -17,15 +17,27 @@ namespace Middleware.Integration.Factories
                     return new XmlDatabaseCommand(connectionString, commandText);
                 case IntegrationTaskEndpointType.File:
                 case IntegrationTaskEndpointType.WebService:
+                case IntegrationTaskEndpointType.GreatPlains:
                 default:
-                    break;
+                    throw new NotImplementedException();
             }
-            throw new NotImplementedException();
         }
 
         public IXmlWriteRepository CreateWriter(IntegrationTaskEndpoint destination)
         {
-            throw new NotImplementedException();
+            switch (destination.EndpointType)
+            {
+                case IntegrationTaskEndpointType.GreatPlains:
+                    return new GreatPlainsCommand();
+                case IntegrationTaskEndpointType.File:
+                    var directory = destination.EndpointConfigurations.Single(f => f.ConfigurationType == IntegrationTaskEndpointConfigurationType.Directory).ConfigurationValue;
+                    var filename = destination.EndpointConfigurations.Single(f => f.ConfigurationType == IntegrationTaskEndpointConfigurationType.Filename).ConfigurationValue;
+                    return new XmlFileCommand(directory, filename);
+                case IntegrationTaskEndpointType.Database:
+                case IntegrationTaskEndpointType.WebService:
+                default:
+                    throw new NotImplementedException();
+            }
         }
     }
 }

@@ -3,6 +3,8 @@
     public enum IntegrationTaskEndpointConfigurationType
     {
         CommandText,
-        Connection
+        Connection,
+        Directory,
+        Filename
     }
 }

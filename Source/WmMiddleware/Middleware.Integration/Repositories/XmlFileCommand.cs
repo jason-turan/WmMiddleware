@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace Middleware.Integration.Repositories
 {
-    public class XmlFileCommand : IXmlReadRepository
+    public class XmlFileCommand : IXmlReadRepository, IXmlWriteRepository
     {
         private readonly string _directory;
         private readonly string _filename;
@@ -39,9 +39,9 @@ namespace Middleware.Integration.Repositories
                             x => x.CreationTimeUtc).FirstOrDefault();
         }
 
-        //protected virtual string GetFileExtension()
-        //{
-            
-        //}
+        public void Save(XDocument document)
+        {
+            document.Save(Path.Combine(_directory, _filename));
+        }
     }
 }
