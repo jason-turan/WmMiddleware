@@ -5,6 +5,7 @@
         CommandText,
         Connection,
         Directory,
-        Filename
+        Filename,
+        Url
     }
 }

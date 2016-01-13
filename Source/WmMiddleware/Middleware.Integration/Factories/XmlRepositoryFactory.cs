@@ -15,8 +15,10 @@ namespace Middleware.Integration.Factories
                     var connectionString = source.EndpointConfigurations.Single(f => f.ConfigurationType == IntegrationTaskEndpointConfigurationType.Connection).ConfigurationValue;
                     var commandText = source.EndpointConfigurations.Single(f => f.ConfigurationType == IntegrationTaskEndpointConfigurationType.CommandText).ConfigurationValue;
                     return new XmlDatabaseCommand(connectionString, commandText);
-                case IntegrationTaskEndpointType.File:
                 case IntegrationTaskEndpointType.WebService:
+                    var url = source.EndpointConfigurations.Single(f => f.ConfigurationType == IntegrationTaskEndpointConfigurationType.Url).ConfigurationValue;
+                    return new XmlWebCommand(url);
+                case IntegrationTaskEndpointType.File:
                 case IntegrationTaskEndpointType.GreatPlains:
                 default:
                     throw new NotImplementedException();

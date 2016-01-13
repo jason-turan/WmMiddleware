@@ -80,7 +80,7 @@ INSERT INTO [dbo].[IntegrationTaskEndpointConfigurationType] (IntegrationTaskEnd
 VALUES (1, 0, 'Connection')
 
 INSERT INTO [dbo].[IntegrationTaskEndpointConfigurationType] (IntegrationTaskEndpointConfigurationTypeId, IntegrationTaskEndpointTypeId, IntegrationTaskEndpointConfigurationType)
-VALUES (2, 1, 'Connection')
+VALUES (2, 1, 'Url')
 
 INSERT INTO [dbo].[IntegrationTaskEndpointConfigurationType] (IntegrationTaskEndpointConfigurationTypeId, IntegrationTaskEndpointTypeId, IntegrationTaskEndpointConfigurationType)
 VALUES (3, 2, 'Directory')
@@ -109,6 +109,12 @@ VALUES (2, 0)
 INSERT INTO [dbo].[IntegrationTaskEndpoint] (IntegrationTaskEndpointId, IntegrationTaskEndpointTypeId)
 VALUES (3, 2)
 
+INSERT INTO [dbo].[IntegrationTaskEndpoint] (IntegrationTaskEndpointId, IntegrationTaskEndpointTypeId)
+VALUES (4, 1)
+
+INSERT INTO [dbo].[IntegrationTaskEndpoint] (IntegrationTaskEndpointId, IntegrationTaskEndpointTypeId)
+VALUES (5, 2)
+
 SET IDENTITY_INSERT [IntegrationTaskEndpoint] OFF
 
 ----------------------------------------------------------------
@@ -133,6 +139,15 @@ VALUES (4, 3, 3, 'C:\Middleware\Integration')
 INSERT INTO [dbo].[IntegrationTaskEndpointConfiguration] (IntegrationTaskEndpointConfigurationId, IntegrationTaskEndpointConfigurationTypeId, IntegrationTaskEndpointId, ConfigurationValue)
 VALUES (5, 4, 3, 'inventory_full_nb_us_staging.xml')
 
+INSERT INTO [dbo].[IntegrationTaskEndpointConfiguration] (IntegrationTaskEndpointConfigurationId, IntegrationTaskEndpointConfigurationTypeId, IntegrationTaskEndpointId, ConfigurationValue)
+VALUES (6, 2, 4, 'http://dwarefeeds.deckisadmin.com/Warrior/PriceBookFeed.svc/GetRetailPriceBook')
+
+INSERT INTO [dbo].[IntegrationTaskEndpointConfiguration] (IntegrationTaskEndpointConfigurationId, IntegrationTaskEndpointConfigurationTypeId, IntegrationTaskEndpointId, ConfigurationValue)
+VALUES (7, 3, 5, 'C:\Middleware\Integration')
+
+INSERT INTO [dbo].[IntegrationTaskEndpointConfiguration] (IntegrationTaskEndpointConfigurationId, IntegrationTaskEndpointConfigurationTypeId, IntegrationTaskEndpointId, ConfigurationValue)
+VALUES (8, 4, 5, 'pricebook_retail_warrior_us.xml')
+
 SET IDENTITY_INSERT [IntegrationTaskEndpointConfiguration] OFF
 
 ----------------------------------------------------------------
@@ -144,5 +159,8 @@ VALUES (0, 23, 0, 0, 1, 'PurchaseOrder.xslt')
 
 INSERT INTO [dbo].[IntegrationTask] (IntegrationTaskId, JobId, Sequence, SourceTypeId, DestinationTypeId, XsltTransformName)
 VALUES (1, 28, 0, 2, 3, 'nb_us_inventory_full.xsl')
+
+INSERT INTO [dbo].[IntegrationTask] (IntegrationTaskId, JobId, Sequence, SourceTypeId, DestinationTypeId, XsltTransformName)
+VALUES (2, 29, 0, 4, 5, 'warrior_retail_pricebook.xsl')
 
 SET IDENTITY_INSERT [IntegrationTask] OFF

@@ -20,7 +20,7 @@ namespace Middleware.Integration.Repositories
             var client = new WebClient();
             var rawBytes = client.DownloadData(_url);
             var data = Encoding.UTF8.GetString(rawBytes);
-            return new XDocument(new XmlTextReader(new StringReader(data)));
+            return XDocument.Load(new XmlTextReader(new StringReader(data)));
         }
     }
 }
