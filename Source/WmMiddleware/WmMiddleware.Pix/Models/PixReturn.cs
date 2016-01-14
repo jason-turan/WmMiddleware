@@ -34,7 +34,17 @@ namespace WmMiddleware.Pix.Models
 
         public string StockKeepingUnit
         {
-           get{  return _perpetualInventoryTransfer.SkuBatchnumber;}
+           get{  return _perpetualInventoryTransfer.PackageBarcode;}
+        }
+
+        public string Style
+        {
+            get { return _perpetualInventoryTransfer.SeasonYear + _perpetualInventoryTransfer.Style; }
+        }
+
+        public string User
+        {
+            get { return _perpetualInventoryTransfer.UserId; }
         }
 
         public string ConditionCode
@@ -45,6 +55,11 @@ namespace WmMiddleware.Pix.Models
         public string OrderNumber
         {
             get { return _perpetualInventoryTransfer.Shipmentnumber; }
+        }
+
+        public string Width
+        {
+            get { return _perpetualInventoryTransfer.Color; }
         }
 
         public string Size

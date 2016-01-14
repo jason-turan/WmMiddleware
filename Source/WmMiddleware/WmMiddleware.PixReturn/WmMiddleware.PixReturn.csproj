@@ -62,11 +62,14 @@
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
     <Compile Include="IPixReturnJob.cs" />
     <Compile Include="Models\DatabaseRowReturn.cs" />
+    <Compile Include="Models\ManhattanConditionCode.cs" />
     <Compile Include="Models\ReturnOnWeb.cs" />
     <Compile Include="PixReturnJob.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ManhattanConditionCodeRepository.cs" />
     <Compile Include="Repository\DatabaseRowReturnRepository.cs" />
+    <Compile Include="Repository\IManhattanConditionCodeRepository.cs" />
     <Compile Include="Repository\IDatabaseRowReturnRepository.cs" />
   </ItemGroup>
   <ItemGroup>

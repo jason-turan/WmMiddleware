@@ -74,6 +74,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Generated", "Generated", "{
 		ManhattanPerpetualInventoryTransfer.sql.txt = ManhattanPerpetualInventoryTransfer.sql.txt
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WmTransactions", "WmTransactions", "{A45F0745-0FA6-4A30-A824-B94D5348F596}"
+	ProjectSection(SolutionItems) = preProject
+		ManhattanConditionCode.sql.txt = ManhattanConditionCode.sql.txt
+		ManhattanPerpetualInventoryTransferProcessing.sql.txt = ManhattanPerpetualInventoryTransferProcessing.sql.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 22
@@ -369,5 +375,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{110F3F5C-83ED-4683-9C4E-97AEF4B5D522} = {A74B9459-51A0-4D56-8F5A-F17340F24F27}
 		{3397B97D-15E7-4FE0-A9D4-F31719FAD773} = {A74B9459-51A0-4D56-8F5A-F17340F24F27}
+		{A45F0745-0FA6-4A30-A824-B94D5348F596} = {A74B9459-51A0-4D56-8F5A-F17340F24F27}
 	EndGlobalSection
 EndGlobal

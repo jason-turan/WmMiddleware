@@ -30,9 +30,9 @@ namespace WmMiddleware.Pix
         protected override void ProcessFile(TransferControlFile file)
         {
             var pixRepository = new DataFileRepository<ManhattanPerpetualInventoryTransfer>();
-                var pix = pixRepository.Get(file.FileLocation).ToList();
-                _perpetualInventoryTransferRepository.InsertPerpetualInventoryTransfer(pix);
-                LogInsert(pix, file);
+            var pix = pixRepository.Get(file.FileLocation).ToList();
+            _perpetualInventoryTransferRepository.InsertPerpetualInventoryTransfer(pix);
+            LogInsert(pix, file);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
 using MiddleWare.Log;
@@ -15,16 +16,19 @@ namespace WmMiddleware.PixReturn
         private readonly IPixReturnRepository _pixReturnRepository;
         private readonly IPerpetualInventoryTransferRepository _perpetualInventoryTransferRepository;
         private readonly IDatabaseRowReturnRepository _databaseRowReturnRepository;
+        private readonly IManhattanConditionCodeRepository _manhattanConditionCodeRepository;
 
         public PixReturnJob(ILog log, 
                             IPixReturnRepository pixReturnRepository, 
                             IDatabaseRowReturnRepository databaseRowReturnRepository,
-                            IPerpetualInventoryTransferRepository perpetualInventoryTransferRepository)
+                            IPerpetualInventoryTransferRepository perpetualInventoryTransferRepository,
+                            IManhattanConditionCodeRepository manhattanConditionCodeRepository)
         {
             _log = log;
             _pixReturnRepository = pixReturnRepository;
             _databaseRowReturnRepository = databaseRowReturnRepository;
             _perpetualInventoryTransferRepository = perpetualInventoryTransferRepository;
+            _manhattanConditionCodeRepository = manhattanConditionCodeRepository;
         }
 
         public void RunUnitOfWork(string jobKey)
@@ -42,26 +46,32 @@ namespace WmMiddleware.PixReturn
                 return;
             }
 
+            var conditionCodes = _manhattanConditionCodeRepository.GetConditionCodes().ToList();
+
             foreach (var unprocessedReturn in unprocessedReturns)
             {
                 try
                 {
                     using (var transactionScope = new TransactionScope())
                     {
+                        var condition = unprocessedReturn.ReturnToStock() ? "INVENTORY" : "DEFECT";
+
+                        var reason = GetConditionCode(conditionCodes, unprocessedReturn);
+
                         // translate the manhattan file to a business object
                         var returnOnWeb = new ReturnOnWeb
                         {
                             Company = unprocessedReturn.Company,
-                            Condition = unprocessedReturn.ConditionCode,
+                            Condition = condition,
+                            Reason = reason,
+                            Style = unprocessedReturn.Style,
                             OrderNumber = unprocessedReturn.OrderNumber,
-                            Reason = unprocessedReturn.ReturnReason,
+                            Width = unprocessedReturn.Width,
                             Size = unprocessedReturn.Size,
                             Timestamp = DateTime.Now, 
                             StockKeepingUnit = unprocessedReturn.StockKeepingUnit,
-                            
-                            // Status = TODO
-                            // ReturnLocation = TODO
-                            // Exchange = TODO
+                            Status = "NEW",
+                            UserName = unprocessedReturn.User
                         };
 
                         // map business object to row return and write to NBXWEB
@@ -79,6 +89,18 @@ namespace WmMiddleware.PixReturn
                                    exception);
                 }
             }
+        }
+
+        private static string GetConditionCode(IEnumerable<ManhattanConditionCode> conditionCodes, Pix.Models.PixReturn unprocessedReturn)
+        {
+            var conditionCode = conditionCodes.SingleOrDefault(cc => cc.Code == unprocessedReturn.ConditionCode);
+            var reason = string.Empty;
+
+            if (conditionCode != null)
+            {
+                reason = conditionCode.Reason;
+            }
+            return reason;
         }
     }
 }

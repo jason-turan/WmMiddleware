@@ -22,8 +22,8 @@ namespace WmMiddleware.ProductReceiving
         {
             _logger.Debug("Getting products received");
             var productReceivedNotifications = _source.GetAutomatedShippingNotifications().Concat
-                                               (_source.GetPurchaseOrders()).ToList();
-                                           //    (_source.GetPurchaseReturns()).ToList();
+                                               (_source.GetPurchaseOrders()).Concat
+                                               (_source.GetPurchaseReturns()).ToList();
 
             if (productReceivedNotifications.Any())
             {

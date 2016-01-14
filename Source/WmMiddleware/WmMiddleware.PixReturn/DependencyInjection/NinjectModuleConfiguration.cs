@@ -16,6 +16,7 @@ namespace WmMiddleware.PixReturn.DependencyInjection
             Bind<IConfigurationManager>().To<MiddlewareConfigurationManager>();
             Bind<IDatabaseRowReturnRepository>().To<DatabaseRowReturnRepository>();
             Bind<IPerpetualInventoryTransferRepository>().To<PerpetualInventoryTransferRepository>();
+            Bind<IManhattanConditionCodeRepository>().To<ManhattanConditionCodeRepository>();
             Bind<IPixReturnRepository>().To<PixReturnRepository>();
             Bind<IJobRepository>().To<JobRepository>();
         }

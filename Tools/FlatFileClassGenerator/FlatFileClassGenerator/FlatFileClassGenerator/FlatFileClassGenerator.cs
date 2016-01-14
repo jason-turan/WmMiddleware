@@ -81,9 +81,6 @@ namespace FlatFileClassGenerator
                         case CodeGenerationType.Table:
                             ProcessPropertyForTableSql(outputWriter, propertyData);
                             break;
-                        case CodeGenerationType.Repository:
-                            ProcessPropertyForRepository(outputWriter, propertyData, false);
-                            break;
                     }
                 }
 
@@ -99,21 +96,6 @@ namespace FlatFileClassGenerator
                 if (excelSheet != null) { Marshal.ReleaseComObject(excelSheet); }
                 if (excelBook != null) { Marshal.ReleaseComObject(excelBook); }
                 if (excelApplication != null) { Marshal.ReleaseComObject(excelApplication); }
-            }
-        }
-
-        private static void ProcessPropertyForRepository(TextWriter outTextWriter, IList<string> propertyData, bool isValues)
-        {
-            if (CheckIntype(propertyData)) return;
-            var name = GetName(propertyData[2], propertyData[6]);
-            var propertyName = SanitizeName(name);
-            if (isValues)
-            {
-                outTextWriter.WriteLine(",@" + propertyName);    
-            }
-            else
-            {
-                outTextWriter.WriteLine(",[" + propertyName + "]");    
             }
         }
 
