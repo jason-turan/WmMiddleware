@@ -64,10 +64,7 @@ namespace WmMiddleware.Pix.Models
 
         public string Size
         {
-            get
-            {
-                return string.Format(Convert.ToInt32(_perpetualInventoryTransfer.SecDimension).ToString("N1"));
-            }
+            get { return _perpetualInventoryTransfer.SecDimension; }
         }
 
         public string Company

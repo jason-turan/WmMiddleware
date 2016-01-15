@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 
 namespace WmMiddleware.Common.Extensions
 {
@@ -35,6 +36,12 @@ namespace WmMiddleware.Common.Extensions
             }
 
             return style.Substring(2);
+        }
+
+        public static string FromManhattanShoeSize(this string size)
+        {
+            String padded = size.PadRight(3, '0');
+            return padded.Insert(padded.Length - 1, ".").TrimStart('0');
         }
 
         public static string ToManhattanSize(this string size)

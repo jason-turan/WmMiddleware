@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
 using MiddleWare.Log;
-
+using WmMiddleware.Common.Extensions;
 using WmMiddleware.Pix.Repository;
 using WmMiddleware.PixReturn.Models;
 using WmMiddleware.PixReturn.Repository;
@@ -61,13 +61,13 @@ namespace WmMiddleware.PixReturn
                         // translate the manhattan file to a business object
                         var returnOnWeb = new ReturnOnWeb
                         {
-                            Company = unprocessedReturn.Company,
+                            Company = _databaseRowReturnRepository.GetCompanyFromOrderNumber(unprocessedReturn.OrderNumber),
                             Condition = condition,
                             Reason = reason,
                             Style = unprocessedReturn.Style,
                             OrderNumber = unprocessedReturn.OrderNumber,
                             Width = unprocessedReturn.Width,
-                            Size = unprocessedReturn.Size,
+                            Size = unprocessedReturn.Size.FromManhattanShoeSize(),
                             Timestamp = DateTime.Now, 
                             StockKeepingUnit = unprocessedReturn.StockKeepingUnit,
                             Status = "NEW",

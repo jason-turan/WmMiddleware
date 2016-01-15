@@ -17,7 +17,9 @@ namespace WmMiddleware.Pix.Repository
         {
             var returnCriteria = new PerpetualInventoryTransactionCriteria
             {
-                TransactionCode = TransactionCode.Return, TransactionType = TransactionType.Return, Processed = false
+                TransactionCode = TransactionCode.Return, 
+                TransactionType = TransactionType.Return, 
+                Processed = false
             };
 
             var pixReturns = _perpetualInventoryTransferRepository.FindPerpetualInventoryTransfers(returnCriteria);
