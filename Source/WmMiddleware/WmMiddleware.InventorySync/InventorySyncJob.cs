@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using WmMiddleware.Common.DataFiles;
 using WmMiddleware.Configuration;
+using WmMiddleware.InventorySync.Models;
 using WmMiddleware.InventorySync.Repository;
 using WmMiddleware.ManhattanOutboundData;
 using WmMiddleware.TransferControl.Control;
@@ -28,10 +30,20 @@ namespace WmMiddleware.InventorySync
 
         protected override void ProcessFile(TransferControlFile transferControlFile)
         {
+
             var pixRepository = new DataFileRepository<Models.Generated.InventorySync>();
             var inventorySync = pixRepository.Get(transferControlFile.FileLocation).ToList();
             _inventorySyncRepository.InsertInventorySync(inventorySync);
+
+            if (inventorySync.Count > 0)
+                _inventorySyncRepository.SetAsReceived(new InventorySyncProcessing
+                {
+                    TransactionNumber = inventorySync.First().TransactionNumber, 
+                    ReceivedDate = DateTime.Now
+                } );
+
             LogInsert(inventorySync, transferControlFile);
+
         }
     }
 }
