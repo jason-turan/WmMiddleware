@@ -20,33 +20,22 @@ namespace WmMiddleware.ProductUpdating.Models
             Style = product.Style.Truncate(8);
             Color = product.Attribute;
             SecDimension = product.Size.ToManhattanSize().Truncate(3);
-            //PickDeterminationType = ??
             ProductSubgroup = product.BrandCode;
             ProductType = SeasonYear;
-            //ProductLine = product.??
             StyleDescription = product.Description;
             PackageBarcode = product.Sku;
             Price = product.StandardCost;
             BoxQuantity = 1;
-            //StandardCaseQuantity = ??
-            //StandardCaseLength = ??
-            //StandardCaseWidth = ??
-            //StandardCaseHeight = ??
             LenWidthSensitive = "N";
             UnitWeight = product.IsFootwear ? 0 : .01m;
             UnitVolume = product.IsFootwear ? 0 : .000001m;
             StandardCaseWeight = product.IsFootwear ? 0 : .01m;
             StandardCaseVolume = product.IsFootwear ? 0 : .01m;
-            //UnitPutawayType = ??
             ForeignTradeZone = "N";
-            //HarmonizedTariffSchedule = ??
-            //DefaultCountryofOrigin = ??
             MultipleCountryofOrigin = "N";
             CriticalDimension1 = product.IsFootwear ? 0 : .01m;
             CriticalDimension2 = product.IsFootwear ? 0 : .01m;
             CriticalDimension3 = product.IsFootwear ? 0 : .01m;
-            //SpecialInstructionCode1 = ??;
-            //CustomRecordExpansionField = ??
             TrackBatchNumber = "Y";
             TrackCountryofOrigin = "N";
             Function = "2";
@@ -58,6 +47,7 @@ namespace WmMiddleware.ProductUpdating.Models
             VendorTaggedEpc = "0";
             ProductType = "F";
             PickDeterminationType = "POP";
+            SkuProfileId = product.Category.ToUpperInvariant();
         }
 
         public DateTime CreateDate
