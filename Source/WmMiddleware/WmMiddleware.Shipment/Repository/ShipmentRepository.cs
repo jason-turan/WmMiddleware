@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Dapper;
 using Dapper.Contrib.Extensions;
 using WmMiddleware.Configuration.Database;
 using WmMiddleware.Shipment.Models.Generated;
@@ -36,6 +37,20 @@ namespace WmMiddleware.Shipment.Repository
             using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
             {
                 connection.Insert(shipmentCartonDetails);
+            }
+        }
+
+        public IEnumerable<ManhattanShipmentLineItem> GetCancellations()
+        {
+            const string sqlUnprocessedShipmentCancellations = @"SELECT msli.* 
+                                                                 FROM ManhattanShipmentLineItem msli
+                                                                 LEFT JOIN [ManhattanShipmentLineItemCancellationProcessing] mslicp
+                                                                 ON msli.ManhattanShipmentLineItemId = mslicp.ManhattanShipmentLineItemId
+                                                                 WHERE shippedquantity = 0";
+
+            using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
+            {
+                return connection.Query<ManhattanShipmentLineItem>(sqlUnprocessedShipmentCancellations);
             }
         }
     }

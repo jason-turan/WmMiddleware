@@ -37,6 +37,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Dependencies\Dapper\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
@@ -51,8 +55,11 @@
   <ItemGroup>
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
     <Compile Include="IShipmentCancellationEmailJob.cs" />
+    <Compile Include="Models\ShipmentCancellationEmailDistribution.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\CancellationEmailDistributionRepository.cs" />
+    <Compile Include="Repository\ICancellationEmailDistributionRepository.cs" />
     <Compile Include="ShipmentCancellationEmailJob.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,9 +74,17 @@
       <Project>{AEEDD741-C346-45BA-A867-3F54B66477A4}</Project>
       <Name>Middleware.Log</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WmMiddleware.Common\WmMiddleware.Common.csproj">
+      <Project>{f1691638-045d-49d1-8921-7d7049ebd666}</Project>
+      <Name>WmMiddleware.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WmMiddleware.Configuration\WmMiddleware.Configuration.csproj">
       <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>
       <Name>WmMiddleware.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WmMiddleware.Shipment\WmMiddleware.Shipment.csproj">
+      <Project>{B4C7E72D-CDB6-4FEA-ABDF-3564A588A762}</Project>
+      <Name>WmMiddleware.Shipment</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

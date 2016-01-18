@@ -21,12 +21,12 @@ namespace WmMiddleware.Pix.Repository
 
         public IEnumerable<ManhattanPerpetualInventoryTransfer> FindPerpetualInventoryTransfers(PerpetualInventoryTransactionCriteria criteria)
         {
-            var selectTransferControlFileSql = @"SELECT mpit.* 
-                                                 FROM ManhattanPerpetualInventoryTransfer mpit
-                                                 LEFT JOIN ManhattanPerpetualInventoryTransferProcessing mpitp
-                                                    ON mpit.ManhattanPerpetualInventoryTransferId = mpitp.ManhattanPerpetualInventoryTransferId
-                                                 WHERE TransactionType = @TransactionType
-                                                 AND TransactionCode = @TransactionCode";
+            var unprocessedPixReturns = @"SELECT mpit.* 
+                                        FROM ManhattanPerpetualInventoryTransfer mpit
+                                        LEFT JOIN ManhattanPerpetualInventoryTransferProcessing mpitp
+                                        ON mpit.ManhattanPerpetualInventoryTransferId = mpitp.ManhattanPerpetualInventoryTransferId
+                                        WHERE TransactionType = @TransactionType
+                                        AND TransactionCode = @TransactionCode";
 
             var searchArguments = new DynamicParameters();
             
@@ -34,11 +34,11 @@ namespace WmMiddleware.Pix.Repository
             {
                 if (criteria.Processed.Value)
                 {
-                    selectTransferControlFileSql = selectTransferControlFileSql + " AND mpitp.ProcessingId IS NOT NULL";
+                    unprocessedPixReturns = unprocessedPixReturns + " AND mpitp.ProcessingId IS NOT NULL";
                 }
                 else
                 {
-                    selectTransferControlFileSql = selectTransferControlFileSql + " AND mpitp.ProcessingId IS NULL";
+                    unprocessedPixReturns = unprocessedPixReturns + " AND mpitp.ProcessingId IS NULL";
                 }
             }
 
@@ -47,7 +47,7 @@ namespace WmMiddleware.Pix.Repository
 
             using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
             {
-                return connection.Query<ManhattanPerpetualInventoryTransfer>(selectTransferControlFileSql, searchArguments);
+                return connection.Query<ManhattanPerpetualInventoryTransfer>(unprocessedPixReturns, searchArguments);
             }
         }
 

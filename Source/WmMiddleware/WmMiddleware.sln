@@ -10,6 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DbScripts", "DbScripts", "{
 		JobHistory.Sql.txt = JobHistory.Sql.txt
 		Log.sql.txt = Log.sql.txt
 		ManhattanPerpetualInventoryTransferProcessing.sql.txt = ManhattanPerpetualInventoryTransferProcessing.sql.txt
+		ShipmentCancellationEmailDistribution.sql.txt = ShipmentCancellationEmailDistribution.sql.txt
 		TransferControl.Sql.txt = TransferControl.Sql.txt
 		TransferControlFileType.Sql.txt = TransferControlFileType.Sql.txt
 	EndProjectSection
