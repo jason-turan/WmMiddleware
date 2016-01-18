@@ -5,7 +5,7 @@ namespace WmMiddleware.InventorySync.Repository
 {
     public interface IInventorySyncRepository
     {
-        void InsertInventorySync(IList<Models.Generated.InventorySync> inventorySync);
+        void InsertInventorySync(IList<Models.Generated.ManhattanInventorySync> inventorySync);
 
         void SetAsReceived(InventorySyncProcessing inventorySyncProcessing);
 

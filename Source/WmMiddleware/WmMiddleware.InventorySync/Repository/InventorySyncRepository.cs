@@ -10,7 +10,7 @@ namespace WmMiddleware.InventorySync.Repository
 {
     public class InventorySyncRepository : IInventorySyncRepository
     {
-        public void InsertInventorySync(IList<Models.Generated.InventorySync> inventorySync)
+        public void InsertInventorySync(IList<Models.Generated.ManhattanInventorySync> inventorySync)
         {
             using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
             {

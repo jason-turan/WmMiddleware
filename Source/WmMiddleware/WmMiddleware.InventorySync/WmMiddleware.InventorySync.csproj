@@ -74,7 +74,7 @@
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
     <Compile Include="IInventorySyncJob.cs" />
     <Compile Include="InventorySyncJob.cs" />
-    <Compile Include="Models\Generated\InventorySync.cs" />
+    <Compile Include="Models\Generated\ManhattanInventorySync.cs" />
     <Compile Include="Models\InventorySyncProcessing.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

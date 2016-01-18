@@ -11,11 +11,11 @@ namespace WmMiddleware.InventorySync.Models.Generated
 {
     // Generated with FlatFileClassGenerator
     [FixedLengthFile]
-    [Table("InventorySync")]
-    public partial class InventorySync : IGeneratedFlatFile
+    [Table("ManhattanInventorySync")]
+    public partial class ManhattanInventorySync : IGeneratedFlatFile
     {
         [Key]
-        public int InventorySyncId { get; set; }
+        public int ManhattanInventorySyncId { get; set; }
 
         private int _processedDate;
         [FixedLengthField(1, 9, PaddingChar = '0', Padding = Padding.Left, NullValue = "000000000")]

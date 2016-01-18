@@ -31,7 +31,7 @@ namespace WmMiddleware.InventorySync
         protected override void ProcessFile(TransferControlFile transferControlFile)
         {
 
-            var pixRepository = new DataFileRepository<Models.Generated.InventorySync>();
+            var pixRepository = new DataFileRepository<Models.Generated.ManhattanInventorySync>();
             var inventorySync = pixRepository.Get(transferControlFile.FileLocation).ToList();
             _inventorySyncRepository.InsertInventorySync(inventorySync);
 

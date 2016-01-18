@@ -82,8 +82,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WmTransactions", "WmTransactions", "{A45F0745-0FA6-4A30-A824-B94D5348F596}"
 	ProjectSection(SolutionItems) = preProject
 		ManhattanConditionCode.sql.txt = ManhattanConditionCode.sql.txt
+		ManhattanInventorySync.sql.txt = ManhattanInventorySync.sql.txt
 		ManhattanPerpetualInventoryTransferProcessing.sql.txt = ManhattanPerpetualInventoryTransferProcessing.sql.txt
 		ManhattanShipmentCancellationEmailProcessing.sql.txt = ManhattanShipmentCancellationEmailProcessing.sql.txt
+		ManhattanShipmentCartonDetail.sql.txt = ManhattanShipmentCartonDetail.sql.txt
+		ManhattanShipmentCartonHeader.sql.txt = ManhattanShipmentCartonHeader.sql.txt
+		ManhattanShipmentHeader.sql.txt = ManhattanShipmentHeader.sql.txt
+		ManhattanShipmentLineItem.sql.txt = ManhattanShipmentLineItem.sql.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.ShipmentCancellationEmail", "WmMiddleware.ShipmentCancellationEmail\WmMiddleware.ShipmentCancellationEmail.csproj", "{FED3ABD9-CB01-426A-B4DE-F9A59B296841}"
