@@ -22,7 +22,6 @@ namespace WmMiddleware.ProductReceiving.DependencyInjection
             Bind<ITransferControlRepository>().To<TransferControlRepository>();
             Bind<ITransferControlManager>().To<TransferControlManager>();
             Bind<IConfigurationManager>().To<MiddlewareConfigurationManager>();
-            log4net.Config.XmlConfigurator.Configure();
         }
     }
 }

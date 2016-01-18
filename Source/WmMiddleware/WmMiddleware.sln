@@ -72,17 +72,24 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Generated", "Generated", "{3397B97D-15E7-4FE0-A9D4-F31719FAD773}"
 	ProjectSection(SolutionItems) = preProject
 		ManhattanPerpetualInventoryTransfer.sql.txt = ManhattanPerpetualInventoryTransfer.sql.txt
+		ManhattanShipmentCartonDetail.sql.txt = ManhattanShipmentCartonDetail.sql.txt
+		ManhattanShipmentCartonHeader.sql.txt = ManhattanShipmentCartonHeader.sql.txt
+		ManhattanShipmentHeader.sql.txt = ManhattanShipmentHeader.sql.txt
+		ManhattanShipmentLineItem.sql.txt = ManhattanShipmentLineItem.sql.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WmTransactions", "WmTransactions", "{A45F0745-0FA6-4A30-A824-B94D5348F596}"
 	ProjectSection(SolutionItems) = preProject
 		ManhattanConditionCode.sql.txt = ManhattanConditionCode.sql.txt
 		ManhattanPerpetualInventoryTransferProcessing.sql.txt = ManhattanPerpetualInventoryTransferProcessing.sql.txt
+		ManhattanShipmentCancellationEmailProcessing.sql.txt = ManhattanShipmentCancellationEmailProcessing.sql.txt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.ShipmentCancellationEmail", "WmMiddleware.ShipmentCancellationEmail\WmMiddleware.ShipmentCancellationEmail.csproj", "{FED3ABD9-CB01-426A-B4DE-F9A59B296841}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 22
+		SccNumberOfProjects = 23
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://10.1.0.80:8080/tfs/business%20applications
 		SccLocalPath0 = .
@@ -149,6 +156,9 @@ Global
 		SccProjectUniqueName21 = WmMiddleware.PixReturn\\WmMiddleware.PixReturn.csproj
 		SccProjectName21 = WmMiddleware.PixReturn
 		SccLocalPath21 = WmMiddleware.PixReturn
+		SccProjectUniqueName22 = WmMiddleware.ShipmentCancellationEmail\\WmMiddleware.ShipmentCancellationEmail.csproj
+		SccProjectName22 = WmMiddleware.ShipmentCancellationEmail
+		SccLocalPath22 = WmMiddleware.ShipmentCancellationEmail
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -368,6 +378,16 @@ Global
 		{BF945C8E-81B4-4ADF-8F33-E64FF48DD0B7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BF945C8E-81B4-4ADF-8F33-E64FF48DD0B7}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{BF945C8E-81B4-4ADF-8F33-E64FF48DD0B7}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{FED3ABD9-CB01-426A-B4DE-F9A59B296841}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{FED3ABD9-CB01-426A-B4DE-F9A59B296841}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{FED3ABD9-CB01-426A-B4DE-F9A59B296841}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FED3ABD9-CB01-426A-B4DE-F9A59B296841}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FED3ABD9-CB01-426A-B4DE-F9A59B296841}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{FED3ABD9-CB01-426A-B4DE-F9A59B296841}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{FED3ABD9-CB01-426A-B4DE-F9A59B296841}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FED3ABD9-CB01-426A-B4DE-F9A59B296841}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FED3ABD9-CB01-426A-B4DE-F9A59B296841}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{FED3ABD9-CB01-426A-B4DE-F9A59B296841}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

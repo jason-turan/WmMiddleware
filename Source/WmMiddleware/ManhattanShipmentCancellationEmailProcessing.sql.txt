@@ -1,0 +1,6 @@
+CREATE TABLE ManhattanShipmentCancellationEmailProcessing
+(
+	 ProcessingId INT PRIMARY KEY IDENTITY(1,1),
+	 ManhattanShipmentId INT FOREIGN KEY  REFERENCES ManhattanPerpetualInventoryTransfer(ManhattanPerpetualInventoryTransferId),
+	 ProcessedDate DATETIME NOT NULL
+)

@@ -312,14 +312,7 @@ namespace FlatFileClassGenerator
 
         private static string GetNullValueString(int fixedFieldLength, string type)
         {
-            if (type == "string")
-            {
-                return new String(' ', fixedFieldLength);
-            }
-            else
-            {
-                return new string('0', fixedFieldLength);
-            }
+            return type == "string" ? new String(' ', fixedFieldLength) : new string('0', fixedFieldLength);
         }
     }
 }

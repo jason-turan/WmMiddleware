@@ -15,5 +15,7 @@
         public const string InventorySync = "Inventory Sync";
 
         public const string Pix = "Pix";
+
+        public const string ShipmentCancellationEmailJob = "Shipment Cancellation Email Job";
     }
 }

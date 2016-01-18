@@ -34,10 +34,10 @@ namespace WmMiddleware.Shipment
 
         protected override void ProcessFile(TransferControlFile file)
         {
-            var shipmentHeaderRespository = new DataFileRepository<ShipmentHeader>();
-            var shipmentDetailRespository = new DataFileRepository<ShipmentLineItem>();
-            var cartonHeaderRespository = new DataFileRepository<ShipmentCartonHeader>();
-            var cartonDetailRespository = new DataFileRepository<ShipmentCartonDetail>();
+            var shipmentHeaderRespository = new DataFileRepository<ManhattanShipmentHeader>();
+            var shipmentDetailRespository = new DataFileRepository<ManhattanShipmentLineItem>();
+            var cartonHeaderRespository = new DataFileRepository<ManhattanShipmentCartonHeader>();
+            var cartonDetailRespository = new DataFileRepository<ManhattanShipmentCartonDetail>();
 
             var fileInfo = new FileInfo(file.FileLocation);
             var fileType = fileInfo.Name.Substring(0, 2);

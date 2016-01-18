@@ -7,7 +7,7 @@ namespace WmMiddleware.Shipment.Repository
 {
     public class ShipmentRepository : IShipmentRepository
     {
-        public void InsertShipmentHeaders(IList<ShipmentHeader> shipmentHeaders)
+        public void InsertShipmentHeaders(IList<ManhattanShipmentHeader> shipmentHeaders)
         {
             using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
             {
@@ -15,7 +15,7 @@ namespace WmMiddleware.Shipment.Repository
             }
         }
 
-        public void InsertShipmentLineItems(IList<ShipmentLineItem> shipmentLineItems)
+        public void InsertShipmentLineItems(IList<ManhattanShipmentLineItem> shipmentLineItems)
         {
             using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
             {
@@ -23,7 +23,7 @@ namespace WmMiddleware.Shipment.Repository
             }
         }
 
-        public void InsertShipmentCartonHeaders(IList<ShipmentCartonHeader> shipmentCartonHeaders)
+        public void InsertShipmentCartonHeaders(IList<ManhattanShipmentCartonHeader> shipmentCartonHeaders)
         {
             using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
             {
@@ -31,7 +31,7 @@ namespace WmMiddleware.Shipment.Repository
             }
         }
 
-        public void InsertShipmentCartonDetails(IList<ShipmentCartonDetail> shipmentCartonDetails)
+        public void InsertShipmentCartonDetails(IList<ManhattanShipmentCartonDetail> shipmentCartonDetails)
         {
             using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
             {

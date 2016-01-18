@@ -90,4 +90,14 @@ BEGIN
 			'?')
 END
 
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Shipment Cancellation Email Job')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('Shipment Cancellation Email Job', 
+		   '15M', 
+		   'WmMiddleware.ShipmentCancellationEmail.exe', 
+		    0,
+			'?')
+END
+
 select * from job
