@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
+    <Compile Include="Models\ShipmentCancellationEmail.cs" />
     <Compile Include="Models\ShipmentCancellationEmailDistribution.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -80,10 +81,6 @@
     <ProjectReference Include="..\WmMiddleware.Configuration\WmMiddleware.Configuration.csproj">
       <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>
       <Name>WmMiddleware.Configuration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WmMiddleware.Shipment\WmMiddleware.Shipment.csproj">
-      <Project>{B4C7E72D-CDB6-4FEA-ABDF-3564A588A762}</Project>
-      <Name>WmMiddleware.Shipment</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

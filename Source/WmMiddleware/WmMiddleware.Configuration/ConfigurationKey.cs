@@ -6,7 +6,7 @@
         public const string WarehouseNumber = "WarehouseNumber";
 
         public const string AlertDistributionList = "Alert_DistributionList";
-        public const string AlertSmptServer = "Alert_SMPTServer";
+        public const string SmptServer = "SMPTServer";
 
         public const string PickInboundFileDirectory = "TransferControl_PickFileDirectory";
 

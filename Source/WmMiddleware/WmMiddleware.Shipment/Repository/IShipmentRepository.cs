@@ -9,6 +9,5 @@ namespace WmMiddleware.Shipment.Repository
         void InsertShipmentLineItems(IList<ManhattanShipmentLineItem> shipmentLineItems);
         void InsertShipmentCartonHeaders(IList<ManhattanShipmentCartonHeader> shipmentCartonHeaders);
         void InsertShipmentCartonDetails(IList<ManhattanShipmentCartonDetail> shipmentCartonDetails);
-        IEnumerable<ManhattanShipmentLineItem> GetCancellations();
     }
 }

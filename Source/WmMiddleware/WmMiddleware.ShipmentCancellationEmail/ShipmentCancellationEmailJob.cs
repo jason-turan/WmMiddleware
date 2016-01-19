@@ -3,7 +3,7 @@ using System.Net.Mail;
 using Middleware.Jobs;
 using MiddleWare.Log;
 using WmMiddleware.Configuration;
-using WmMiddleware.Shipment.Repository;
+using WmMiddleware.ShipmentCancellationEmail.Models;
 using WmMiddleware.ShipmentCancellationEmail.Repository;
 
 namespace WmMiddleware.ShipmentCancellationEmail
@@ -11,24 +11,21 @@ namespace WmMiddleware.ShipmentCancellationEmail
     public class ShipmentCancellationEmailJob : IUnitOfWork
     {
         private readonly ILog _log;
-        private readonly IShipmentRepository _shipmentRepository;
         private readonly IConfigurationManager _configurationManager;
         private readonly ICancellationEmailDistributionRepository _cancellationEmailDistributionRepository;
 
         public ShipmentCancellationEmailJob(ILog log, 
-                                            IShipmentRepository shipmentRepository, 
                                             IConfigurationManager configurationManager,
                                             ICancellationEmailDistributionRepository cancellationEmailDistributionRepository)
         {
             _log = log;
-            _shipmentRepository = shipmentRepository;
             _configurationManager = configurationManager;
             _cancellationEmailDistributionRepository = cancellationEmailDistributionRepository;
         }
 
         public void RunUnitOfWork(string jobKey)
         {
-            var cancellations = _shipmentRepository.GetCancellations().ToList();
+            var cancellations = _cancellationEmailDistributionRepository.GetCancellations().ToList();
 
             if (!cancellations.Any())
             {
@@ -39,33 +36,47 @@ namespace WmMiddleware.ShipmentCancellationEmail
              _log.Info("Now processing " + cancellations.Count() + " line item shipment cancellations");   
             }
 
-            foreach (var manhattanShipmentLineItem in cancellations)
+            foreach (var cancellation in cancellations)
             {
-                var distribution = _cancellationEmailDistributionRepository.GetShipmentCancellationEmailDistribution(manhattanShipmentLineItem.OrderedCompany);
-                SendEmail(distribution.DistributionList);
+                cancellation.Company = _cancellationEmailDistributionRepository.GetCompanyFromOrderNumber(cancellation.OrderNumber + "-" + cancellation.LineNumber);
+                var distribution = _cancellationEmailDistributionRepository.GetShipmentCancellationEmailDistribution(cancellation.Company);
+                SendEmail(cancellation, distribution);
             }
         }
 
-        private void SendEmail(string distributionList)
+        private void SendEmail(Models.ShipmentCancellationEmail cancellation, ShipmentCancellationEmailDistribution distribution)
         {            
             var smptServer =
-                _configurationManager.GetKey<string>(ConfigurationKey.AlertSmptServer);
+                _configurationManager.GetKey<string>(ConfigurationKey.SmptServer);
+           
+            var orderNumber = string.Concat(cancellation.OrderNumber, 
+                                            "-", 
+                                            cancellation.LineNumber);
+
+            var message = new MailMessage
+            {
+                From = new MailAddress("noreply@newbalance.com"), 
+                IsBodyHtml = true, 
+                Subject = string.Concat("Cancelled - ", orderNumber)
+            };
+
+            message.To.Add(new MailAddress(distribution.DistributionList));
             
-            var message =
-                new MailMessage("noreply@newbalance.com",
-                                distributionList,
-                                "WmMiddleware Failure",
-                                "You are notified")
-                {
-                    Priority = MailPriority.High,
-                    IsBodyHtml = true
-                };
+            if (distribution.AdministrationSiteLink == string.Empty)    
+            {
+                message.Body = "<p>Order Number " + orderNumber + " was cancelled.</p>Order Number: " + orderNumber + "<br />";    
+            }
+            else
+            {
+                message.Body = "<p>Order Number <a href=\"" + distribution.AdministrationSiteLink + cancellation.OrderNumber + "\">" + orderNumber + "</a> was cancelled.</p>";
+            }
+
+            message.Body += "</table>";
 
             using (var client = new SmtpClient(smptServer))
             {
                 client.Send(message);
             }
         }
-
     }
 }

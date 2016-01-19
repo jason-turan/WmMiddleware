@@ -39,19 +39,5 @@ namespace WmMiddleware.Shipment.Repository
                 connection.Insert(shipmentCartonDetails);
             }
         }
-
-        public IEnumerable<ManhattanShipmentLineItem> GetCancellations()
-        {
-            const string sqlUnprocessedShipmentCancellations = @"SELECT msli.* 
-                                                                 FROM ManhattanShipmentLineItem msli
-                                                                 LEFT JOIN [ManhattanShipmentLineItemCancellationProcessing] mslicp
-                                                                 ON msli.ManhattanShipmentLineItemId = mslicp.ManhattanShipmentLineItemId
-                                                                 WHERE shippedquantity = 0";
-
-            using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
-            {
-                return connection.Query<ManhattanShipmentLineItem>(sqlUnprocessedShipmentCancellations);
-            }
-        }
     }
 }

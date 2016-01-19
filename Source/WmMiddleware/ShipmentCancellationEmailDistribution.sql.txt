@@ -1,5 +1,6 @@
 CREATE TABLE ShipmentCancellationEmailDistribution
 (
 	 Company nvarchar(20),
-	 DistributionList nvarchar(250)
+	 DistributionList nvarchar(250),
+	 AdministrationSiteLink nvarchar(250)
 )

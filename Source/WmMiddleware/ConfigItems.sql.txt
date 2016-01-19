@@ -59,12 +59,10 @@ INSERT INTO ConfigurationItem([Key], Value, EnvironmentId)
 VALUES ('WarehouseAddress_Country', 'US', 1);
 
 INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
-VALUES ('Alert_SMPTServer', 'relay.newbalance.com', 1);
+VALUES ('SMPTServer', 'relay.newbalance.com', 1);
 
 INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
 VALUES ('Alert_DistributionList', 'brad.schoen@newbalance.com, brad.schoen@daugherty.com', 1);
-
-
 
 -- QA
 INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
@@ -125,8 +123,7 @@ INSERT INTO ConfigurationItem([Key], Value, EnvironmentId)
 VALUES ('WarehouseAddress_Country', 'US', 2);
 
 INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
-VALUES ('Alert_SMPTServer', 'relay.newbalance.com', 2);
-
+VALUES ('SMPTServer', 'relay.newbalance.com', 2);
 
 INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
 VALUES ('Alert_DistributionList', 'brad.schoen@newbalance.com, brad.schoen@daugherty.com', 2);

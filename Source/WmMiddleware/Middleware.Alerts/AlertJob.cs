@@ -127,7 +127,7 @@ namespace Middleware.Alerts
             var distributionList = 
                 _configurationManager.GetKey<string>(ConfigurationKey.AlertDistributionList);
             var smptServer = 
-                _configurationManager.GetKey<string>(ConfigurationKey.AlertSmptServer);
+                _configurationManager.GetKey<string>(ConfigurationKey.SmptServer);
             var message = 
                 new MailMessage("noreply@newbalance.com", 
                                 distributionList, 

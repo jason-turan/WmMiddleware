@@ -3,6 +3,7 @@ using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using Ninject.Modules;
 using WmMiddleware.Configuration;
+using WmMiddleware.ShipmentCancellationEmail.Repository;
 
 namespace WmMiddleware.ShipmentCancellationEmail.DependencyInjection
 {
@@ -14,6 +15,7 @@ namespace WmMiddleware.ShipmentCancellationEmail.DependencyInjection
             Bind<ILog>().To<Log4Net>();
             Bind<IConfigurationManager>().To<MiddlewareConfigurationManager>();
             Bind<IUnitOfWork>().To<ShipmentCancellationEmailJob>();
+            Bind<ICancellationEmailDistributionRepository>().To<CancellationEmailDistributionRepository>();
         }
     }
 }
