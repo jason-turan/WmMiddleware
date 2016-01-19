@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
+using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using WmMiddleware.Common.DataFiles;
@@ -13,7 +14,7 @@ using WmMiddleware.TransferControl.Repositories;
 
 namespace WmMiddleware.Shipment
 {
-    public class ShipmentJob : OutboundProcessor, IShipmentJob
+    public class ShipmentJob : OutboundProcessor, IUnitOfWork
     {
         private readonly IShipmentRepository _shipmentRepository;
 

@@ -1,4 +1,5 @@
-﻿using Ninject.Modules;
+﻿using Middleware.Jobs;
+using Ninject.Modules;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using WmMiddleware.Configuration;
@@ -13,7 +14,7 @@ namespace WmMiddleware.Pix.DependencyInjection
         public override void Load()
         {
             Bind<ILog>().To<Log4Net>();
-            Bind<IPixJob>().To<PixJob>();
+            Bind<IUnitOfWork>().To<PixJob>();
             Bind<IJobRepository>().To<JobRepository>();
             Bind<ITransferControlRepository>().To<TransferControlRepository>();
             Bind<IPerpetualInventoryTransferRepository>().To<PerpetualInventoryTransferRepository>();

@@ -7,7 +7,7 @@ namespace WmMiddleware.Picking
     {
         static void Main(string[] args)
         {
-            UnitOfWorkExecutionProxy<IPickJob>.ExecuteUnitOfWork(new NinjectModuleConfiguration(), args);
+            UnitOfWorkExecutionProxy<IUnitOfWork>.ExecuteUnitOfWork(new NinjectModuleConfiguration(), args);
         }
     }
 }

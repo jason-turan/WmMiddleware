@@ -87,7 +87,7 @@ BEGIN
 		   '15M', 
 		   'WmMiddleware.PixReturn.exe', 
 		    0,
-			'?')
+			'Processing')
 END
 
 IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Shipment Cancellation Email Job')
@@ -97,7 +97,7 @@ BEGIN
 		   '15M', 
 		   'WmMiddleware.ShipmentCancellationEmail.exe', 
 		    0,
-			'?')
+			'Processing')
 END
 
 select * from job

@@ -7,7 +7,7 @@ namespace WmMiddleware.Shipment
     {
         static void Main(string[] args)
         {
-            UnitOfWorkExecutionProxy<IShipmentJob>.ExecuteUnitOfWork(new NinjectModuleConfiguration(), args);
+            UnitOfWorkExecutionProxy<IUnitOfWork>.ExecuteUnitOfWork(new NinjectModuleConfiguration(), args);
         }
     }
 }

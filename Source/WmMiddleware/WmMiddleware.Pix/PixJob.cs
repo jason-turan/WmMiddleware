@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using WmMiddleware.Common.DataFiles;
@@ -12,7 +13,7 @@ using WmMiddleware.TransferControl.Repositories;
 
 namespace WmMiddleware.Pix
 {
-    public class PixJob : OutboundProcessor, IPixJob
+    public class PixJob : OutboundProcessor, IUnitOfWork
     {
         private readonly IPerpetualInventoryTransferRepository _perpetualInventoryTransferRepository;
 

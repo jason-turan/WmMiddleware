@@ -1,4 +1,5 @@
-﻿using Ninject.Modules;
+﻿using Middleware.Jobs;
+using Ninject.Modules;
 using WmMiddleware.Configuration;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
@@ -12,7 +13,7 @@ namespace WmMiddleware.Shipment.DependencyInjection
     {
         public override void Load()
         {
-            Bind<IShipmentJob>().To<ShipmentJob>();
+            Bind<IUnitOfWork>().To<ShipmentJob>();
             Bind<IJobRepository>().To<JobRepository>();
             Bind<ILog>().To<Log4Net>();
             Bind<ITransferControlRepository>().To<TransferControlRepository>();

@@ -60,7 +60,6 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
-    <Compile Include="IPixReturnJob.cs" />
     <Compile Include="Models\DatabaseRowReturn.cs" />
     <Compile Include="Models\ManhattanConditionCode.cs" />
     <Compile Include="Models\ReturnOnWeb.cs" />

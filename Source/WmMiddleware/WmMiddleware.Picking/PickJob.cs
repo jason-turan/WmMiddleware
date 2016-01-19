@@ -1,11 +1,12 @@
 ﻿using System.Linq;
 using System.Text;
+using Middleware.Jobs;
 using MiddleWare.Log;
 using WmMiddleware.Picking.Repositories;
 
 namespace WmMiddleware.Picking
 {
-    public class PickJob : IPickJob
+    public class PickJob : IUnitOfWork
     {
         private readonly ILog _logger;
 

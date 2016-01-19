@@ -7,7 +7,7 @@ namespace WmMiddleware.ProductReceiving
     {
         static void Main(string[] args)
         {
-            UnitOfWorkExecutionProxy<IProductReceivingJob>.ExecuteUnitOfWork(new NinjectModuleConfiguration(), args);
+            UnitOfWorkExecutionProxy<IUnitOfWork>.ExecuteUnitOfWork(new NinjectModuleConfiguration(), args);
         }
     }
 }

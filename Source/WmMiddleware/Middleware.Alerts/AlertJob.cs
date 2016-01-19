@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
+using Middleware.Jobs;
 using Middleware.Jobs.Models;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
@@ -10,7 +11,7 @@ using WmMiddleware.Configuration;
 
 namespace Middleware.Alerts
 {
-    public class AlertJob : IAlertJob
+    public class AlertJob : IUnitOfWork
     {
         private readonly ILog _log;
 

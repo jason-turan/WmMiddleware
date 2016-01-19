@@ -59,7 +59,6 @@
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
     <Compile Include="Factories\IXmlRepositoryFactory.cs" />
     <Compile Include="Factories\XmlRepositoryFactory.cs" />
-    <Compile Include="IIntegrationJob.cs" />
     <Compile Include="IntegrationJob.cs" />
     <Compile Include="Models\IntegrationTask.cs" />
     <Compile Include="Models\IntegrationTaskEndpoint.cs" />

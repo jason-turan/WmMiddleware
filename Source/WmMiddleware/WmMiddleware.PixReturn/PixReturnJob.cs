@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
+using Middleware.Jobs;
 using MiddleWare.Log;
 using WmMiddleware.Common.Extensions;
 using WmMiddleware.Pix.Repository;
@@ -10,7 +11,7 @@ using WmMiddleware.PixReturn.Repository;
 
 namespace WmMiddleware.PixReturn
 {
-    public class PixReturnJob : IPixReturnJob
+    public class PixReturnJob : IUnitOfWork
     {
         private readonly ILog _log;
         private readonly IPixReturnRepository _pixReturnRepository;

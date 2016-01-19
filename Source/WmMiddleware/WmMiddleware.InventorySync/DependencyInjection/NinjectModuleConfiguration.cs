@@ -1,4 +1,5 @@
-﻿using Ninject.Modules;
+﻿using Middleware.Jobs;
+using Ninject.Modules;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using WmMiddleware.Configuration;
@@ -13,7 +14,7 @@ namespace WmMiddleware.InventorySync.DependencyInjection
         public override void Load()
         {
             Bind<ILog>().To<Log4Net>();
-            Bind<IInventorySyncJob>().To<InventorySyncJob>();
+            Bind<IUnitOfWork>().To<InventorySyncJob>();
             Bind<IJobRepository>().To<JobRepository>();
             Bind<ITransferControlRepository>().To<TransferControlRepository>();
             Bind<IConfigurationManager>().To<MiddlewareConfigurationManager>();

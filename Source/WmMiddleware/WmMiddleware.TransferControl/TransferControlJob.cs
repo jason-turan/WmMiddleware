@@ -1,11 +1,12 @@
 ﻿using System;
 using System.IO;
+using Middleware.Jobs;
 using WmMiddleware.Configuration;
 using WmMiddleware.TransferControl.Control;
 
 namespace WmMiddleware.TransferControl
 {
-    public class TransferControlJob : ITransferControlJob
+    public class TransferControlJob : IUnitOfWork
     {
         private readonly ITransferControlOutbound _transferTransferControlOutbound;
         private readonly ITransferControlInbound _transferTransferControlInbound;

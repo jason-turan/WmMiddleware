@@ -1,4 +1,5 @@
-﻿using Ninject.Modules;
+﻿using Middleware.Jobs;
+using Ninject.Modules;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using WmMiddleware.Common.Locations;
@@ -15,7 +16,7 @@ namespace WmMiddleware.Picking.DependencyInjection
         public override void Load()
         {
             Bind<ILog>().To<Log4Net>();
-            Bind<IPickJob>().To<PickJob>();
+            Bind<IUnitOfWork>().To<PickJob>();
             Bind<IPickReader>().To<DatabasePickRepository>();
             Bind<IPickWriter>().To<ManhattanPickRepository>();
             Bind<ICountryReader>().To<DatabaseCountryRepository>();

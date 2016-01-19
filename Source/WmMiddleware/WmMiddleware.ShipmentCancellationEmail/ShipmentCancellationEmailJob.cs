@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Net.Mail;
+using Middleware.Jobs;
 using MiddleWare.Log;
 using WmMiddleware.Configuration;
 using WmMiddleware.Shipment.Repository;
@@ -7,7 +8,7 @@ using WmMiddleware.ShipmentCancellationEmail.Repository;
 
 namespace WmMiddleware.ShipmentCancellationEmail
 {
-    public class ShipmentCancellationEmailJob : IShipmentCancellationEmailJob
+    public class ShipmentCancellationEmailJob : IUnitOfWork
     {
         private readonly ILog _log;
         private readonly IShipmentRepository _shipmentRepository;

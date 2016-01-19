@@ -7,7 +7,7 @@ namespace WmMiddleware.Pix
     {
         static void Main(string[] args)
         {
-            UnitOfWorkExecutionProxy<IPixJob>.ExecuteUnitOfWork(new NinjectModuleConfiguration(), args);
+            UnitOfWorkExecutionProxy<IUnitOfWork>.ExecuteUnitOfWork(new NinjectModuleConfiguration(), args);
         }
     }
 }

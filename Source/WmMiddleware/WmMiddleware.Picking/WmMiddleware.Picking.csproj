@@ -86,7 +86,6 @@
     <Compile Include="Models\Generated\ManhattanPickTicketHeader.cs" />
     <Compile Include="Models\Generated\ManhattanPickTicketInstruction.cs" />
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
-    <Compile Include="IPickJob.cs" />
     <Compile Include="Models\LineItem.cs" />
     <Compile Include="Models\ManhattanPickTicketDetail.cs" />
     <Compile Include="Models\ManhattanPickTicketHeader.cs" />

@@ -74,7 +74,6 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
-    <Compile Include="IPixJob.cs" />
     <Compile Include="Models\Generated\ManhattanPerpetualInventoryTransfer.cs" />
     <Compile Include="Models\PerpetualInventoryTransactionCriteria.cs" />
     <Compile Include="Models\PixReturn.cs" />

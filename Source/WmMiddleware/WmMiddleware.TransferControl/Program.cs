@@ -7,7 +7,7 @@ namespace WmMiddleware.TransferControl
     {
         static void Main(string[] args)
         {
-            UnitOfWorkExecutionProxy<ITransferControlJob>.ExecuteUnitOfWork(new NinjectModuleConfiguration(), args);
+            UnitOfWorkExecutionProxy<IUnitOfWork>.ExecuteUnitOfWork(new NinjectModuleConfiguration(), args);
         }
     }
 }

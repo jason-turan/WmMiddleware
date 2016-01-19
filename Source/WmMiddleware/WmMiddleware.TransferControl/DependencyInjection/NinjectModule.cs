@@ -1,4 +1,5 @@
-﻿using Ninject.Modules;
+﻿using Middleware.Jobs;
+using Ninject.Modules;
 using WmMiddleware.Configuration;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
@@ -14,7 +15,7 @@ namespace WmMiddleware.TransferControl.DependencyInjection
         {
             Bind<ILog>().To<Log4Net>();
             Bind<IFileIo>().To<FileIo>();
-            Bind<ITransferControlJob>().To<TransferControlJob>();
+            Bind<IUnitOfWork>().To<TransferControlJob>();
             Bind<IJobRepository>().To<JobRepository>();
             Bind<IManhattanFtp>().To<ManhattanFtp>();
             Bind<IFtpClient>().To<FtpClient>();

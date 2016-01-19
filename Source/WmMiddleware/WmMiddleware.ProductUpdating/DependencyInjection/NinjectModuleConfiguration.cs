@@ -1,4 +1,5 @@
-﻿using Ninject.Modules;
+﻿using Middleware.Jobs;
+using Ninject.Modules;
 using WmMiddleware.Configuration;
 using WmMiddleware.Configuration.Manhattan;
 using Middleware.Jobs.Repositories;
@@ -15,7 +16,7 @@ namespace WmMiddleware.ProductUpdating.DependencyInjection
     {
         public override void Load()
         {
-            Bind<IProductUpdatingJob>().To<ProductUpdatingJob>();
+            Bind<IUnitOfWork>().To<ProductUpdatingJob>();
             Bind<IJobRepository>().To<JobRepository>();
             Bind<ILog>().To<Log4Net>();
             Bind<IProductReader>().To<DatabaseProductRepository>();

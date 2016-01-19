@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Middleware.Jobs;
+﻿using Middleware.Jobs;
 using WmMiddleware.StlInventorySync.DependencyInjection;
 
 namespace WmMiddleware.StlInventorySync
@@ -12,7 +7,7 @@ namespace WmMiddleware.StlInventorySync
     {
         static void Main(string[] args)
         {
-            UnitOfWorkExecutionProxy<IStlInventorySyncJob>.ExecuteUnitOfWork(new NinjectModuleConfiguration(), args);
+            UnitOfWorkExecutionProxy<IUnitOfWork>.ExecuteUnitOfWork(new NinjectModuleConfiguration(), args);
         }
     }
 }

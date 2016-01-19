@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using WmMiddleware.Common.DataFiles;
@@ -13,7 +14,7 @@ using WmMiddleware.TransferControl.Repositories;
 
 namespace WmMiddleware.InventorySync
 {
-    public class InventorySyncJob : OutboundProcessor, IInventorySyncJob
+    public class InventorySyncJob : OutboundProcessor, IUnitOfWork
     {
         private readonly IInventorySyncRepository _inventorySyncRepository;
 

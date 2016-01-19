@@ -1,4 +1,5 @@
-﻿using Ninject.Modules;
+﻿using Middleware.Jobs;
+using Ninject.Modules;
 using WmMiddleware.Configuration;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
@@ -10,7 +11,7 @@ namespace Middleware.Alerts.DependencyInjection
         public override void Load()
         {
             Bind<ILog>().To<Log4Net>();
-            Bind<IAlertJob>().To<AlertJob>();
+            Bind<IUnitOfWork>().To<AlertJob>();
             Bind<IJobRepository>().To<JobRepository>();
             Bind<IConfigurationManager>().To<MiddlewareConfigurationManager>();
         }

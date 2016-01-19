@@ -73,7 +73,6 @@
     <Compile Include="Configuration\IProductUpdatingConfiguration.cs" />
     <Compile Include="Configuration\ProductUpdatingConfiguration.cs" />
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
-    <Compile Include="IProductUpdatingJob.cs" />
     <Compile Include="Models\DatabaseProduct.cs" />
     <Compile Include="Models\Generated\DatabaseProduct.cs" />
     <Compile Include="Models\Generated\ManhattanProduct.cs" />

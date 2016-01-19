@@ -80,7 +80,6 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
-    <Compile Include="IShipmentJob.cs" />
     <Compile Include="Models\Generated\ManhattanShipmentCartonDetail.cs" />
     <Compile Include="Models\Generated\ManhattanShipmentCartonHeader.cs" />
     <Compile Include="Models\Generated\ManhattanShipmentHeader.cs" />

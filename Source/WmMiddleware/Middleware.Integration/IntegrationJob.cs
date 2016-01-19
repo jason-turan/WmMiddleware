@@ -4,12 +4,13 @@ using System.Xml.Linq;
 using System.Xml.Xsl;
 using Middleware.Integration.Factories;
 using Middleware.Integration.Repositories;
+using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 
 namespace Middleware.Integration
 {
-    public class IntegrationJob : IIntegrationJob
+    public class IntegrationJob : IUnitOfWork
     {
         private readonly ILog _log;
         private readonly IIntegrationTaskRespository _integrationTaskRespository;

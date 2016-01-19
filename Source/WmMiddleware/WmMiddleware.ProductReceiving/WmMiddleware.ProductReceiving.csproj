@@ -90,7 +90,6 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
-    <Compile Include="IProductReceivingJob.cs" />
     <Compile Include="Models\AutomatedShippingNotification.cs" />
     <Compile Include="Models\AutomatedShippingNotificationItem.cs" />
     <Compile Include="Models\AutomatedShippingNotificationType.cs" />

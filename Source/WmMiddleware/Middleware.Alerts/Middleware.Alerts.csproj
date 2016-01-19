@@ -54,7 +54,6 @@
     </Compile>
     <Compile Include="AlertJob.cs" />
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
-    <Compile Include="IAlertJob.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

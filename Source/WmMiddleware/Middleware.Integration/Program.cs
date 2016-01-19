@@ -7,7 +7,7 @@ namespace Middleware.Integration
     {
         static void Main(string[] args)
         {
-            UnitOfWorkExecutionProxy<IntegrationJob>.ExecuteUnitOfWork(new NinjectModuleConfiguration(), args);
+            UnitOfWorkExecutionProxy<IUnitOfWork>.ExecuteUnitOfWork(new NinjectModuleConfiguration(), args);
         }
     }
 }

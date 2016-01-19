@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+using Middleware.Jobs;
 using MiddleWare.Log;
 using WmMiddleware.ProductUpdating.Configuration;
 using WmMiddleware.ProductUpdating.Repositories;
 
 namespace WmMiddleware.ProductUpdating
 {
-    public class ProductUpdatingJob : IProductUpdatingJob
+    public class ProductUpdatingJob : IUnitOfWork
     {
         private readonly ILog  _logger;
         private readonly IProductReader _source;

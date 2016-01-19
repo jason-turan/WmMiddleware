@@ -1,11 +1,12 @@
 ﻿using System.Linq;
 using System.Text;
+using Middleware.Jobs;
 using MiddleWare.Log;
 using WmMiddleware.ProductReceiving.Repositories;
 
 namespace WmMiddleware.ProductReceiving
 {
-    public class ProductReceivingJob : IProductReceivingJob
+    public class ProductReceivingJob : IUnitOfWork
     {
         private readonly ILog  _logger;
         private readonly IReceivedProductReader _source;

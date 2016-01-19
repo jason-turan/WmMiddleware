@@ -7,7 +7,7 @@ namespace WmMiddleware.ShipmentCancellationEmail
     {
         static void Main(string[] args)
         {
-            UnitOfWorkExecutionProxy<IShipmentCancellationEmailJob>.ExecuteUnitOfWork(new NinjectModuleConfiguration(), args);
+            UnitOfWorkExecutionProxy<IUnitOfWork>.ExecuteUnitOfWork(new NinjectModuleConfiguration(), args);
         }
     }
 }

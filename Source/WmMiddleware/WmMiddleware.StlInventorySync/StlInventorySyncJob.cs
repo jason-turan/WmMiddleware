@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Middleware.Jobs.Repositories;
+﻿using System.Linq;
+using Middleware.Jobs;
 using MiddleWare.Log;
-using WmMiddleware.Configuration;
 using WmMiddleware.InventorySync.Models;
 using WmMiddleware.InventorySync.Repository;
 using WmMiddleware.StlInventorySync.Repository;
 
 namespace WmMiddleware.StlInventorySync
 {
-    public class StlInventorySyncJob : IStlInventorySyncJob
+    public class StlInventorySyncJob : IUnitOfWork
     {
         private readonly ILog _log;
         private readonly IStlInventoryRepository _stlInventoryRepository;
