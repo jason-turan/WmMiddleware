@@ -25,6 +25,7 @@ namespace WmMiddleware.Picking.Models
             Warehouse = warehouseNumber;
             PickticketNumber = order.ControlNumber;
             OrderNumber = new string(order.OrderNumber.TakeWhile(c => c != '-').ToArray());
+            MiscellaneousIns20Byte11 = order.OrderNumber; // Save order number in misc field to retrieve from ship files
             OrderType = order.OrderPriority;
             ShipTo = "CDS";
             ShipToName = order.ShippingAddress.Name;
