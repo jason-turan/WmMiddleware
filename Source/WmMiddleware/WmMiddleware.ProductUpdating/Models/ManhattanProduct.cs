@@ -48,6 +48,7 @@ namespace WmMiddleware.ProductUpdating.Models
             ProductType = "F";
             PickDeterminationType = "POP";
             SkuProfileId = product.Category.ToUpperInvariant();
+            SlotMisc1 = SkuProfileId;
         }
 
         public DateTime CreateDate
