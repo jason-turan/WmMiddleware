@@ -100,4 +100,14 @@ BEGIN
 			'Processing')
 END
 
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Stl Inventory Update')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('Stl Inventory Update', 
+		   '1H', 
+		   'WmMiddleware.StlInventoryUpdate.exe', 
+		    0,
+			'?')
+END
+
 select * from job
