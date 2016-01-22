@@ -90,7 +90,7 @@ namespace WmMiddleware.ManhattanOutboundData
                 JobType = JobType.Outbound
             }).ToList();
 
-            _log.Info("Found " + toProcess.Count() + " outbound batches to process for " + jobKey);
+            _log.Info("Found " + toProcess.Count + " outbound batches to process for " + jobKey);
 
             return toProcess;
         }

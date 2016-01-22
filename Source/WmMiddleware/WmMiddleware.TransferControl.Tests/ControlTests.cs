@@ -4,7 +4,7 @@ using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MiddleWare.Log;
 using Rhino.Mocks;
-using WmMiddleware.Configuration;
+using WmMiddleware.TransferControl.Configuration;
 using WmMiddleware.TransferControl.Control;
 using WmMiddleware.TransferControl.Ftp;
 using WmMiddleware.TransferControl.Models;
@@ -16,13 +16,13 @@ namespace WmMiddleware.TransferControl.Tests
     public class ControlTests
     {
         // Methods
-        private static ITransferControlRepository CreateMocks(out IManhattanFtp mockFtp, out IConfigurationManager mockConfiguration, out ILog mockLog, out IFileIo mockFileIo)
+        private static ITransferControlRepository CreateMocks(out IManhattanFtp mockFtp, out ITransferControlConfigurationManager mockConfiguration, out ILog mockLog, out IFileIo mockFileIo)
         {
-            var repository = MockRepository.GenerateMock<ITransferControlRepository>(new object[0]);
-            mockFtp = MockRepository.GenerateMock<IManhattanFtp>(new object[0]);
-            mockConfiguration = MockRepository.GenerateMock<IConfigurationManager>(new object[0]);
-            mockLog = MockRepository.GenerateMock<ILog>(new object[0]);
-            mockFileIo = MockRepository.GenerateMock<IFileIo>(new object[0]);
+            var repository = MockRepository.GenerateMock<ITransferControlRepository>();
+            mockFtp = MockRepository.GenerateMock<IManhattanFtp>();
+            mockConfiguration = MockRepository.GenerateMock<ITransferControlConfigurationManager>();
+            mockLog = MockRepository.GenerateMock<ILog>();
+            mockFileIo = MockRepository.GenerateMock<IFileIo>();
             return repository;
         }
 
@@ -30,7 +30,7 @@ namespace WmMiddleware.TransferControl.Tests
         public void ExceptionShouldLogAndReturnFailure()
         {
             IManhattanFtp ftp;
-            IConfigurationManager manager;
+            ITransferControlConfigurationManager manager;
             ILog log;
             IFileIo io;
             ITransferControlRepository mock = CreateMocks(out ftp, out manager, out log, out io);
@@ -52,7 +52,7 @@ namespace WmMiddleware.TransferControl.Tests
         public void InboundProcessingCallsFtp()
         {
             IManhattanFtp ftp;
-            IConfigurationManager manager;
+            ITransferControlConfigurationManager manager;
             ILog log;
             IFileIo io;
             ITransferControlRepository mockRepository = CreateMocks(out ftp, out manager, out log, out io);
@@ -68,7 +68,7 @@ namespace WmMiddleware.TransferControl.Tests
         public void InboundProcessingDoesNotCallFtp()
         {
             IManhattanFtp ftp;
-            IConfigurationManager manager;
+            ITransferControlConfigurationManager manager;
             ILog log;
             IFileIo io;
             ITransferControlRepository mockRepository = CreateMocks(out ftp, out manager, out log, out io);
@@ -80,12 +80,12 @@ namespace WmMiddleware.TransferControl.Tests
             ftp.VerifyAllExpectations();
         }
 
-        private static void MockConfiguration(IConfigurationManager mockConfiguration, bool enableFtp)
+        private static void MockConfiguration(ITransferControlConfigurationManager mockConfiguration, bool enableFtp)
         {
-            mockConfiguration.Expect(c => c.GetKey<bool>("TransferControl_Ftp_Enable")).Return(enableFtp);
-            mockConfiguration.Expect(c => c.GetKey<string>("TransferControl_InboundFileProcessedDirectory")).Return("mock");
-            mockConfiguration.Expect(c => c.GetKey<string>("TransferControl_InboundMasterControlFileName")).Return("mock");
-            mockConfiguration.Expect(c => c.GetKey<string>("TransferControl_InboundFileDirectory")).Return("mock");
+            mockConfiguration.Expect(c => c.IsFtpEnabled()).Return(enableFtp);
+            mockConfiguration.Expect(c => c.GetInboundFileProcessedDirectory()).Return("mock");
+            mockConfiguration.Expect(c => c.GetInboundMasterControlFilename()).Return("mock");
+            mockConfiguration.Expect(c => c.GetInboundFileDirectory()).Return("mock");
         }
 
         private static void MockUnprocessedTransferControl(ITransferControlRepository mockRepository)
@@ -108,7 +108,7 @@ namespace WmMiddleware.TransferControl.Tests
         public void NoRecordsShouldReturnSuccessAndLog()
         {
             IManhattanFtp ftp;
-            IConfigurationManager manager;
+            ITransferControlConfigurationManager manager;
             ILog log;
             IFileIo io;
             ITransferControlRepository mock = CreateMocks(out ftp, out manager, out log, out io);

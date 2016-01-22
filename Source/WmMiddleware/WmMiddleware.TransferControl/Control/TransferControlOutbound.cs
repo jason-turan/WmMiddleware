@@ -6,7 +6,7 @@ using System.Transactions;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using WmMiddleware.Common.DataFiles;
-using WmMiddleware.Configuration;
+using WmMiddleware.TransferControl.Configuration;
 using WmMiddleware.TransferControl.Models;
 using WmMiddleware.TransferControl.Models.Generated;
 using WmMiddleware.TransferControl.Repositories;
@@ -16,14 +16,14 @@ namespace WmMiddleware.TransferControl.Control
     public class TransferControlOutbound : ITransferControlOutbound
     {
         private readonly ITransferControlRepository _transferControlRepository;
-        private readonly IConfigurationManager _configuration;
+        private readonly ITransferControlConfigurationManager _configuration;
         private readonly ILog _log;
         private readonly IJobRepository _jobRepository;
         private readonly IFileIo _fileIo;
 
         public TransferControlOutbound(ITransferControlRepository transferControlRepository,
                                        IJobRepository jobRepository,
-                                       IConfigurationManager configuration,
+                                       ITransferControlConfigurationManager configuration,
                                        ILog log,
                                        IFileIo fileIo)
         {
@@ -88,16 +88,16 @@ namespace WmMiddleware.TransferControl.Control
 
         private string GetControlFilePath()
         {
-            var outboundFileDirectory = _configuration.GetKey<string>(ConfigurationKey.TransferControlOutboundFileDirectory);
-            var masterControlFileName = _configuration.GetKey<string>(ConfigurationKey.TransferControlOutboundMasterControlFileName);
+            var outboundFileDirectory = _configuration.GetOutboundFileDirectory();
+            var masterControlFileName = _configuration.GetOutboundMasterControlFilename();
             var controlFile = Path.Combine(outboundFileDirectory, masterControlFileName);
             return controlFile;
         }
 
         private void MoveToProcessedFolder(string controlFile)
         {
-            var masterControlFileName = _configuration.GetKey<string>(ConfigurationKey.TransferControlOutboundMasterControlFileName);
-            var outboundProcessedFileDirectory = _configuration.GetKey<string>(ConfigurationKey.TransferControlOutboundFileProcessedDirectory);
+            var masterControlFileName = _configuration.GetOutboundMasterControlFilename();
+            var outboundProcessedFileDirectory = _configuration.GetOutboundFileProcessedDirectory();
 
             string destFileName = outboundProcessedFileDirectory +
                                   masterControlFileName +
@@ -109,7 +109,7 @@ namespace WmMiddleware.TransferControl.Control
 
         private Models.TransferControl CreateTransferControl(string batch, List<TransferControlMaster> masterControlMapping)
         {
-            var outboundFileDirectory = _configuration.GetKey<string>(ConfigurationKey.TransferControlOutboundFileDirectory);
+            var outboundFileDirectory = _configuration.GetOutboundFileDirectory();
             
             var transferControl = new Models.TransferControl
             {

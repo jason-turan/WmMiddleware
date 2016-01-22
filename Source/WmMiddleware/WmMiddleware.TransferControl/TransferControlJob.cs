@@ -2,6 +2,7 @@
 using System.IO;
 using Middleware.Jobs;
 using WmMiddleware.Configuration;
+using WmMiddleware.TransferControl.Configuration;
 using WmMiddleware.TransferControl.Control;
 
 namespace WmMiddleware.TransferControl
@@ -10,9 +11,9 @@ namespace WmMiddleware.TransferControl
     {
         private readonly ITransferControlOutbound _transferTransferControlOutbound;
         private readonly ITransferControlInbound _transferTransferControlInbound;
-        private readonly IConfigurationManager _configurationManager;
+        private readonly ITransferControlConfigurationManager _configurationManager;
 
-        public TransferControlJob(IConfigurationManager configurationManager,
+        public TransferControlJob(ITransferControlConfigurationManager configurationManager,
                                   ITransferControlInbound transferControlInbound,
                                   ITransferControlOutbound transferControlOutbound)
         {
@@ -43,11 +44,11 @@ namespace WmMiddleware.TransferControl
 
         public void SetDirectories()
         {
-            Directory.CreateDirectory(_configurationManager.GetKey<string>(ConfigurationKey.TransferControlOutboundFileDirectory));
-            Directory.CreateDirectory(_configurationManager.GetKey<string>(ConfigurationKey.TransferControlOutboundFileProcessedDirectory));
-            Directory.CreateDirectory(_configurationManager.GetKey<string>(ConfigurationKey.TransferControlInboundFileProcessedDirectory));
-            Directory.CreateDirectory(_configurationManager.GetKey<string>(ConfigurationKey.TransferControlInboundFileDirectory));
-            Directory.CreateDirectory(_configurationManager.GetKey<string>(ConfigurationKey.TransferControlInboundMasterControlFilename));
+            Directory.CreateDirectory(_configurationManager.GetOutboundFileDirectory());
+            Directory.CreateDirectory(_configurationManager.GetOutboundFileProcessedDirectory());
+            Directory.CreateDirectory(_configurationManager.GetInboundFileProcessedDirectory());
+            Directory.CreateDirectory(_configurationManager.GetInboundFileDirectory());
+            Directory.CreateDirectory(_configurationManager.GetInboundMasterControlFilename());
         }
     }
 }

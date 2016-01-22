@@ -13,7 +13,7 @@ using WmMiddleware.TransferControl.Repositories;
 
 namespace WmMiddleware.Pix
 {
-    public class PixJob : OutboundProcessor, IUnitOfWork
+    public class PixJob : OutboundProcessor
     {
         private readonly IPerpetualInventoryTransferRepository _perpetualInventoryTransferRepository;
 

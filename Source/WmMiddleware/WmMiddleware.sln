@@ -97,9 +97,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.StlInventorySy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.StlInventoryUpdate", "WmMiddleware.StlInventoryUpdate\WmMiddleware.StlInventoryUpdate.csproj", "{0FAC9C07-F2EB-4118-BED1-D2C7E786BE20}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Aurora.PickTickets", "Middleware.WarehouseManagement.Aurora.PickTickets\Middleware.Wm.Aurora.PickTickets.csproj", "{0F65C07A-002D-46FB-8F0A-C9738B25D054}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Aurora.TransferControl", "Middleware.WM.Aurora.TransferControl\Middleware.Wm.Aurora.TransferControl.csproj", "{FA926702-2FC7-4C85-8ECD-91F2424F0037}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 25
+		SccNumberOfProjects = 27
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://10.1.0.80:8080/tfs/business%20applications
 		SccLocalPath0 = .
@@ -175,6 +179,12 @@ Global
 		SccProjectUniqueName24 = WmMiddleware.StlInventoryUpdate\\WmMiddleware.StlInventoryUpdate.csproj
 		SccProjectName24 = WmMiddleware.StlInventoryUpdate
 		SccLocalPath24 = WmMiddleware.StlInventoryUpdate
+		SccProjectUniqueName26 = Middleware.WM.Aurora.TransferControl\\Middleware.WM.Aurora.TransferControl.csproj
+		SccProjectName26 = Middleware.WM.Aurora.TransferControl
+		SccLocalPath26 = Middleware.WM.Aurora.TransferControl
+		SccProjectUniqueName25 = Middleware.WarehouseManagement.Aurora.PickTickets\\Middleware.Wm.Aurora.PickTickets.csproj
+		SccProjectName25 = Middleware.WarehouseManagement.Aurora.PickTickets
+		SccLocalPath25 = Middleware.WarehouseManagement.Aurora.PickTickets
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -424,6 +434,26 @@ Global
 		{0FAC9C07-F2EB-4118-BED1-D2C7E786BE20}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0FAC9C07-F2EB-4118-BED1-D2C7E786BE20}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{0FAC9C07-F2EB-4118-BED1-D2C7E786BE20}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{FA926702-2FC7-4C85-8ECD-91F2424F0037}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{FA926702-2FC7-4C85-8ECD-91F2424F0037}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{FA926702-2FC7-4C85-8ECD-91F2424F0037}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA926702-2FC7-4C85-8ECD-91F2424F0037}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA926702-2FC7-4C85-8ECD-91F2424F0037}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA926702-2FC7-4C85-8ECD-91F2424F0037}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{FA926702-2FC7-4C85-8ECD-91F2424F0037}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA926702-2FC7-4C85-8ECD-91F2424F0037}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA926702-2FC7-4C85-8ECD-91F2424F0037}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{FA926702-2FC7-4C85-8ECD-91F2424F0037}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

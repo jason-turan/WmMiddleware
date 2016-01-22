@@ -1,14 +1,16 @@
 ﻿using Middleware.Jobs;
+using Middleware.Jobs.Repositories;
+using Middleware.WM.Aurora.TransferControl.Configuration;
+using MiddleWare.Log;
 using Ninject.Modules;
 using WmMiddleware.Configuration;
-using Middleware.Jobs.Repositories;
-using MiddleWare.Log;
+using WmMiddleware.TransferControl;
 using WmMiddleware.TransferControl.Configuration;
 using WmMiddleware.TransferControl.Control;
 using WmMiddleware.TransferControl.Ftp;
 using WmMiddleware.TransferControl.Repositories;
 
-namespace WmMiddleware.TransferControl.DependencyInjection
+namespace Middleware.WM.Aurora.TransferControl.DependencyInjection
 {
     public class NinjectModuleConfiguration : NinjectModule
     {
@@ -25,7 +27,7 @@ namespace WmMiddleware.TransferControl.DependencyInjection
             Bind<ITransferControlInbound>().To<TransferControlInbound>();
             Bind<ITransferControlRepository>().To<TransferControlRepository>();
             Bind<IConfigurationManager>().To<MiddlewareConfigurationManager>();
-            Bind<ITransferControlConfigurationManager>().To<TransferControlConfigurationManager>();
+            Bind<ITransferControlConfigurationManager>().To<AuroraTransferControlConfigurationManager>();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using Dapper.Contrib.Extensions;
 using FlatFile.FixedLength;
 using FlatFile.FixedLength.Attributes;
 using WmMiddleware.Common.DataFiles;
@@ -10,10 +11,12 @@ namespace WmMiddleware.TransferControl.Models.Generated
 {
     // Generated with FlatFileClassGenerator
     [FixedLengthFile]
-    internal partial class TransferControlMaster : IGeneratedFlatFile
+    [Table("TransferControlMaster")]
+    public partial class TransferControlMaster : IGeneratedFlatFile
     {
-        // Used by New Balance
-        // Server ID, Always "I00" for NB Host transactions
+        [Key]
+        public int TransferControlMasterId { get; set; }
+
         private string _transferType;
         [FixedLengthField(1, 3, PaddingChar = ' ', Padding = Padding.Right, NullValue = "   ")]
         public string TransferType
@@ -27,7 +30,8 @@ namespace WmMiddleware.TransferControl.Models.Generated
         }
 
         private int _priority;
-        [FixedLengthField(2, 5, PaddingChar = '0', Padding = Padding.Left)]
+        [Write(false)] // dapper attribute specifying not to write this property to the database
+        [FixedLengthField(2, 5, PaddingChar = '0', Padding = Padding.Left, NullValue = "00000")]
         public int Priority_Backing
         {
             get { return _priority; }
@@ -43,8 +47,6 @@ namespace WmMiddleware.TransferControl.Models.Generated
             set { Priority_Backing = (int)(value * 100.0m); }
         }
 
-        // Used by New Balance
-        // Destination library name on the WM system
         private string _library;
         [FixedLengthField(3, 10, PaddingChar = ' ', Padding = Padding.Right, NullValue = "          ")]
         public string Library
@@ -57,8 +59,6 @@ namespace WmMiddleware.TransferControl.Models.Generated
             }
         }
 
-        // Used by New Balance
-        // Name of the flat file transmitted to WM - Prefix is the 2 position interface file ID (ex. I1 = Pick Header, I2 = Pick Details, I3 = Pick Instructions, I5 = Style Master)
         private string _filename;
         [FixedLengthField(4, 10, PaddingChar = ' ', Padding = Padding.Right, NullValue = "          ")]
         public string Filename
@@ -71,8 +71,6 @@ namespace WmMiddleware.TransferControl.Models.Generated
             }
         }
 
-        // Used by New Balance
-        // Same as XBDBNM above
         private string _member;
         [FixedLengthField(5, 10, PaddingChar = ' ', Padding = Padding.Right, NullValue = "          ")]
         public string Member
@@ -97,8 +95,6 @@ namespace WmMiddleware.TransferControl.Models.Generated
             }
         }
 
-        // Used by New Balance
-        // Unique transaction batch control number (prefix is the warehouse number)
         private string _batchControlNumber;
         [FixedLengthField(7, 10, PaddingChar = ' ', Padding = Padding.Right, NullValue = "          ")]
         public string BatchControlNumber
@@ -171,8 +167,6 @@ namespace WmMiddleware.TransferControl.Models.Generated
             }
         }
 
-        // Used by New Balance
-        // Always "10", which is 'open' to WM
         private string _statusFlag;
         [FixedLengthField(13, 2, PaddingChar = ' ', Padding = Padding.Right, NullValue = "  ")]
         public string StatusFlag
@@ -257,8 +251,6 @@ namespace WmMiddleware.TransferControl.Models.Generated
             }
         }
 
-        // Used by New Balance
-        // Date created
         private int _dateCreated;
         [FixedLengthField(20, 9, PaddingChar = '0', Padding = Padding.Left, NullValue = "000000000")]
         public int DateCreated
@@ -271,8 +263,6 @@ namespace WmMiddleware.TransferControl.Models.Generated
             }
         }
 
-        // Used by New Balance
-        // time created
         private int _timeCreated;
         [FixedLengthField(21, 7, PaddingChar = '0', Padding = Padding.Left, NullValue = "0000000")]
         public int TimeCreated
@@ -309,8 +299,6 @@ namespace WmMiddleware.TransferControl.Models.Generated
             }
         }
 
-        // Used by New Balance
-        // Program ID
         private string _userId;
         [FixedLengthField(24, 10, PaddingChar = ' ', Padding = Padding.Right, NullValue = "          ")]
         public string UserId
@@ -323,6 +311,7 @@ namespace WmMiddleware.TransferControl.Models.Generated
             }
         }
 
+        [Write(false)] // dapper attribute specifying not to write this property to the database
         public int TotalFileLength { get { return 484; } }
     }
 }
