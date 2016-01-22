@@ -10,21 +10,19 @@ namespace WmMiddleware.ProductReceiving.Models
             
         }
 
-        public ManhattanSkuDetail(PurchaseReturn purchaseReturn, LineItem item, string batchControlNumber, string companyNumber, string warehouseNumber)
+        public ManhattanSkuDetail(PurchaseReturn purchaseReturn, PurchaseReturnLineItem item, string batchControlNumber, string companyNumber, string warehouseNumber)
         {
             BatchControlNumber = batchControlNumber;
             CreateDate = DateTime.Now;
             AsnType = AutomatedShippingNotificationType.PurchaseReturn;
-            ShipmentNumber = purchaseReturn.ExternalUid;
+            ShipmentNumber = purchaseReturn.OrderNumber;
             Company = companyNumber;
             Division = warehouseNumber;
-            SeasonYear = item.SeasonYear;
-            Style = item.Style;
-            Color = item.Color;
-            SecDimension = item.Size.ToManhattanSize().Truncate(3);
+            Style = item.StyleNumber;
+            Color = item.ProductAttribute;
+            SecDimension = item.ProductSize.ToManhattanSize().Truncate(3);
             InventoryType = "F";
-            UnitsShipped = item.QuantityOrdered;
-            Function = "2";
+            UnitsShipped = item.TotalQuantity;
         }
 
         public ManhattanSkuDetail(PurchaseOrder purchaseOrder, LineItem item, string batchControlNumber, string companyNumber, string warehouseNumber)

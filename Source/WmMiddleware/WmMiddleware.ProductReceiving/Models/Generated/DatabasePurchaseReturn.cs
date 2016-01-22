@@ -1,23 +1,21 @@
 ﻿using System;
-
 // ReSharper disable once CheckNamespace
 namespace WmMiddleware.ProductReceiving.Models
 {
     // ReSharper disable InconsistentNaming
     public partial class DatabasePurchaseReturn
     {
-        public string Company { get; set; }
-        public string Order_Number { get; set; }
-        public string SKU { get; set; }
-        public string Style { get; set; }
-        public string Size { get; set; }
-        public string Width { get; set; }
-        public string Reason { get; set; }
-        public string Note { get; set; }
-        public DateTime? Timestamp { get; set; }
-
-        public decimal QtyOrd { get; set; } //(decimal(19,0), null)
-
-        public string ExternalUid { get; set; } 
+        public int rowId { get; set; }
+        public string order_number { get; set; }
+        public string style_number { get; set; }
+        public string prod_size { get; set; }
+        public string attribute { get; set; }
+        public string UPC { get; set; }
+        public string return_reason { get; set; }
+        public string additional_return_reason { get; set; }
+        public string to_be_exchange { get; set; }
+        public DateTime row_submit_date { get; set; }
+        public string tracking { get; set; }
+        public string row_item_status { get; set; }
     }
 }

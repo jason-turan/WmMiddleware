@@ -1,49 +1,28 @@
-﻿using System;
-
-namespace WmMiddleware.ProductReceiving.Models
+﻿namespace WmMiddleware.ProductReceiving.Models
 {
-    public partial class DatabasePurchaseReturn : IReceivedProduct
+    public partial class DatabasePurchaseReturn 
     {
-        public PurchaseOrder ToPurchaseReturn()
+        public PurchaseReturn ToPurchaseReturn()
         {
-            return new PurchaseOrder
+            return new PurchaseReturn
             {
-                //ActionCode = ActionCode,
-                //AmountCost = AmtCost,
-                //AmountFreight = AmtFreight,
-                //BuyerReferenceNumber = BuyerRefNbr,
-                //CreateReceiver = CreateReceiver,
-                //DateDue = DateDue,
-                //DiscAvailability = DiscAvail,
-                //ExternalUid = ExternalUID,
-                //FacilityNumber = FacilityNbr,
-                //InterfaceDate = InterfaceDate,
-                //InterfaceStatus = InterfaceStatus,
-                //PurchaseOrderDate = PODate,
-                //VendorAccount = VendorAcct,
-
+                OrderNumber = order_number,
+                ReturnReason = return_reason,
+                ReturnReasonAdditionalInformation = additional_return_reason,
+                ToBeExchange = to_be_exchange,
+                CustomerReturnDate = row_submit_date,
+                TrackingNumber = tracking
             };
         }
 
-        public LineItem ToLineItem()
+        public PurchaseReturnLineItem ToLineItem()
         {
-            return new LineItem
+            return new PurchaseReturnLineItem
             {
-                //BuyerReference = BuyerRef,
-                //Class = Class,
-                //Extension = Extension,
-                //IdPurchaseOrderHeaderInterface = IDPOHeaderInterface,
-                //Price = Price,
-                //PurchaseOrderLineNumber = POLineNbr,
-                //QuantityOrdered = QtyOrd,
-                Sku = SKU,
-                //Uom = UOM,
-                //Upc = UPC,
-                //VendorPartNumber = VendorPartNbr,
-                Style = Style,
-                //Color = Color,
-                //SeasonYear = SeasonYear,
-                Size = Size
+                StyleNumber = style_number,
+                ProductSize = prod_size,
+                ProductAttribute = attribute,
+                UnversalProductCode = UPC,
             };
         }
     }

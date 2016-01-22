@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Middleware.Jobs;
+using Middleware.Jobs.Repositories;
 using WmMiddleware.Common.DataFiles;
 using WmMiddleware.Configuration;
 using WmMiddleware.Configuration.Manhattan;
-using Middleware.Jobs;
-using Middleware.Jobs.Repositories;
 using WmMiddleware.ProductReceiving.Models;
 using WmMiddleware.TransferControl.Control;
 
@@ -65,10 +65,23 @@ namespace WmMiddleware.ProductReceiving.Repositories
             var asnDetailsPath = _configuration.GetPath(ManhattanDataFileType.ProductReceivingAsnDetail, controlNumber);
 
             _headerFileRepository.Save(headerList, headerPath);
-            _skuDetailFileRepository.Save(purchaseOrderDetails, poDetailsPath);
-            _skuDetailFileRepository.Save(purchaseReturnDetails, poDetailsPath);
-            _caseDetailFileRepository.Save(automatedShippingNotificationDetails, asnDetailsPath);
 
+            // I9 = purchase orders + purchase returns 
+            var skuDetails = new List<ManhattanSkuDetail>();
+            skuDetails.AddRange(purchaseOrderDetails);
+            skuDetails.AddRange(purchaseReturnDetails);
+
+            if (skuDetails.Count > 0)
+            {
+                _skuDetailFileRepository.Save(skuDetails, poDetailsPath);
+            }
+
+            // IB = shipping notification
+            if (automatedShippingNotificationDetails.Count > 0)
+            {
+                _caseDetailFileRepository.Save(automatedShippingNotificationDetails, asnDetailsPath);
+            }
+       
             _transferControlManager.SaveTransferControl(batchControlNumber, 
                                                         new List<string> { headerPath, poDetailsPath, asnDetailsPath },
                                                         _jobRepository.GetJob(JobKey.ProductReceiving).JobId);

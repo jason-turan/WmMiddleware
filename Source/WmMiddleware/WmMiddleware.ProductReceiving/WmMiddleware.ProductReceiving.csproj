@@ -109,6 +109,7 @@
     <Compile Include="Models\PurchaseOrder.cs" />
     <Compile Include="Models\IReceivedProduct.cs" />
     <Compile Include="Models\PurchaseReturn.cs" />
+    <Compile Include="Models\PurchaseReturnLineItem.cs" />
     <Compile Include="ProductReceivingJob.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

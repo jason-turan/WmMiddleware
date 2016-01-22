@@ -29,10 +29,25 @@ namespace WmMiddleware.ProductReceiving.Repositories
 
         public IEnumerable<IReceivedProduct> GetPurchaseReturns()
         {
+            const string unreturned = @"SELECT [rowID]
+                                              ,[order_number]
+                                              ,[style_number]
+                                              ,[prod_size]
+                                              ,[attribute]
+                                              ,[UPC]
+                                              ,[return_reason]
+                                              ,[additional_return_reason]
+                                              ,[to_be_exchange]
+                                              ,[row_submit_date]
+                                              ,[tracking]
+                                              ,[current_item_status] 
+                                        FROM [v_ReturnReasonsfromROW]
+                                        WHERE current_item_status = 'shipped'";
+
             using (var connection = DatabaseConnectionFactory.GetNbxWebConnection())
             {
                 connection.Open();
-                return GroupReturns(connection.Query<DatabasePurchaseReturn>("sp_GetNewReturns")).ToList();
+                return GroupReturns(connection.Query<DatabasePurchaseReturn>(unreturned)).ToList();
             }
         }
 
@@ -43,7 +58,7 @@ namespace WmMiddleware.ProductReceiving.Repositories
             SetAsProcessed(productList.OfType<PurchaseOrder>());
         }
 
-        private void SetAsProcessed(IEnumerable<AutomatedShippingNotification> products)
+        private static void SetAsProcessed(IEnumerable<AutomatedShippingNotification> products)
         {
             using (var connection = DatabaseConnectionFactory.GetNbxWebConnection())
             {
@@ -65,7 +80,7 @@ namespace WmMiddleware.ProductReceiving.Repositories
             }
         }
 
-        private void SetAsProcessed(IEnumerable<PurchaseOrder> products)
+        private static void SetAsProcessed(IEnumerable<PurchaseOrder> products)
         {
             using (var connection = DatabaseConnectionFactory.GetNbxWebConnection())
             {
@@ -87,19 +102,20 @@ namespace WmMiddleware.ProductReceiving.Repositories
             }
         }
 
-        private static IEnumerable<PurchaseOrder> GroupReturns(IEnumerable<DatabasePurchaseReturn> purchaseReturns)
+        private static IEnumerable<PurchaseReturn> GroupReturns(IEnumerable<DatabasePurchaseReturn> purchaseReturns)
         {
-            var groupedTickets = purchaseReturns.GroupBy(pr => pr.SKU);
+            var groupedTickets = purchaseReturns.GroupBy(pr => pr.order_number);
             foreach (var group in groupedTickets)
             {
-                var purchaseOrder = group.First().ToPurchaseReturn();
-                foreach (var item in group.GroupBy(po => po.SKU))
+                var purchaseReturn = group.First().ToPurchaseReturn();
+        
+                foreach (var item in group.GroupBy(po => po.UPC))
                 {
                     var lineItem = item.First().ToLineItem();
-                    lineItem.QuantityOrdered = item.Sum(i => i.QtyOrd);
-                    purchaseOrder.Items.Add(lineItem);
+                    purchaseReturn.QuantityOrdered = item.Count();
+                    purchaseReturn.Items.Add(lineItem);
                 }
-                yield return purchaseOrder;
+                yield return purchaseReturn;
             }
         }
 
