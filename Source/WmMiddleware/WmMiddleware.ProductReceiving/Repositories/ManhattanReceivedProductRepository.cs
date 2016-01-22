@@ -66,21 +66,13 @@ namespace WmMiddleware.ProductReceiving.Repositories
 
             _headerFileRepository.Save(headerList, headerPath);
 
-            // I9 = purchase orders + purchase returns 
+            
             var skuDetails = new List<ManhattanSkuDetail>();
-            skuDetails.AddRange(purchaseOrderDetails);
+            skuDetails.AddRange(purchaseOrderDetails);  
             skuDetails.AddRange(purchaseReturnDetails);
 
-            if (skuDetails.Count > 0)
-            {
-                _skuDetailFileRepository.Save(skuDetails, poDetailsPath);
-            }
-
-            // IB = shipping notification
-            if (automatedShippingNotificationDetails.Count > 0)
-            {
-                _caseDetailFileRepository.Save(automatedShippingNotificationDetails, asnDetailsPath);
-            }
+            _skuDetailFileRepository.Save(skuDetails, poDetailsPath);  // I9 : PO and returns
+            _caseDetailFileRepository.Save(automatedShippingNotificationDetails, asnDetailsPath); // IB : shipment notification
        
             _transferControlManager.SaveTransferControl(batchControlNumber, 
                                                         new List<string> { headerPath, poDetailsPath, asnDetailsPath },
