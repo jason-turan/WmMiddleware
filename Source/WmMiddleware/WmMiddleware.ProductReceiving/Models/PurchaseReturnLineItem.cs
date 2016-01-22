@@ -2,7 +2,9 @@
 {
     public class PurchaseReturnLineItem
     {
-        public string StyleNumber { get; set; }
+        public string StyleYear { get; set; }
+
+        public string Style { get; set; }
 
         public string ProductSize { get; set; }
         

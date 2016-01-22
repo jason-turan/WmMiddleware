@@ -112,9 +112,10 @@ namespace WmMiddleware.ProductReceiving.Repositories
                 foreach (var item in group.GroupBy(po => po.UPC))
                 {
                     var lineItem = item.First().ToLineItem();
-                    purchaseReturn.QuantityOrdered = item.Count();
                     purchaseReturn.Items.Add(lineItem);
+                    lineItem.TotalQuantity++;
                 }
+
                 yield return purchaseReturn;
             }
         }

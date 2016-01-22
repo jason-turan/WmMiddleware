@@ -19,7 +19,8 @@
         {
             return new PurchaseReturnLineItem
             {
-                StyleNumber = style_number,
+                Style = style_number.Substring(2,style_number.Length -2),
+                StyleYear = style_number.Substring(0,2),
                 ProductSize = prod_size,
                 ProductAttribute = attribute,
                 UnversalProductCode = UPC,

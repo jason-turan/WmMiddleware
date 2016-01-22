@@ -18,7 +18,8 @@ namespace WmMiddleware.ProductReceiving.Models
             ShipmentNumber = purchaseReturn.OrderNumber;
             Company = companyNumber;
             Division = warehouseNumber;
-            Style = item.StyleNumber;
+            SeasonYear = item.StyleYear;
+            Style = item.Style; 
             Color = item.ProductAttribute;
             SecDimension = item.ProductSize.ToManhattanSize().Truncate(3);
             InventoryType = "F";
