@@ -22,11 +22,9 @@ namespace WmMiddleware.ProductReceiving
         public void RunUnitOfWork(string jobKey)
         {
             _logger.Debug("Getting products received");
-            //var productReceivedNotifications = _source.GetAutomatedShippingNotifications().Concat
-            //                                   (_source.GetPurchaseOrders()).Concat
-            //                                   (_source.GetPurchaseReturns()).ToList();
-
-            var productReceivedNotifications = _source.GetPurchaseReturns().ToList();
+            var productReceivedNotifications = _source.GetAutomatedShippingNotifications().Concat
+                                               (_source.GetPurchaseOrders()).Concat
+                                               (_source.GetPurchaseReturns()).ToList();
 
             if (productReceivedNotifications.Any())
             {

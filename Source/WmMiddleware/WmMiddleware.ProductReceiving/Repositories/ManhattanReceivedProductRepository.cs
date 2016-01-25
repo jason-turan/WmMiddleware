@@ -65,7 +65,6 @@ namespace WmMiddleware.ProductReceiving.Repositories
             var asnDetailsPath = _configuration.GetPath(ManhattanDataFileType.ProductReceivingAsnDetail, controlNumber);
 
             _headerFileRepository.Save(headerList, headerPath);
-
             
             var skuDetails = new List<ManhattanSkuDetail>();
             skuDetails.AddRange(purchaseOrderDetails);  
