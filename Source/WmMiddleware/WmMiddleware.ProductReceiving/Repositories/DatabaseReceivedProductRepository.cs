@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using Dapper;
@@ -29,7 +30,7 @@ namespace WmMiddleware.ProductReceiving.Repositories
 
         public IEnumerable<IReceivedProduct> GetPurchaseReturns()
         {
-            const string unreturned = @"SELECT [rowID]
+            const string unreturned = @"SELECT r.[rowID]
                                               ,[order_number]
                                               ,[style_number]
                                               ,[prod_size]
@@ -41,8 +42,11 @@ namespace WmMiddleware.ProductReceiving.Repositories
                                               ,[row_submit_date]
                                               ,[tracking]
                                               ,[current_item_status] 
-                                        FROM [v_ReturnReasonsfromROW]
-                                        WHERE current_item_status = 'shipped'";
+                                        FROM [v_ReturnReasonsfromROW] r
+                                        LEFT JOIN ReturnReasonFromROWProcessing rp 
+                                            ON r.rowId = rp.rowId
+                                        WHERE current_item_status = 'shipped'
+                                        AND rp.rowId IS NULL --unprocessed only";
 
             using (var connection = DatabaseConnectionFactory.GetNbxWebConnection())
             {
@@ -56,6 +60,28 @@ namespace WmMiddleware.ProductReceiving.Repositories
             var productList = products.ToList();
             SetAsProcessed(productList.OfType<AutomatedShippingNotification>());
             SetAsProcessed(productList.OfType<PurchaseOrder>());
+            SetAsProcessed(productList.OfType<PurchaseReturn>());
+        }
+
+        private static void SetAsProcessed(IEnumerable<PurchaseReturn> purchaseReturns)
+        {
+            const string insertSql = @"INSERT INTO ReturnReasonFromROWProcessing(rowId, ProcessedDate)
+                                       VALUES(@rowId, @ProcessedDate)";
+
+            foreach (var purchaseReturn in purchaseReturns)
+            {
+                foreach (var lineItem in purchaseReturn.Items)
+                {
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@rowId", lineItem.ExternalId, DbType.Int32);
+                    parameters.Add("@ProcessedDate", DateTime.Now, DbType.DateTime);
+
+                    using (var connection = DatabaseConnectionFactory.GetNbxWebConnection())
+                    {
+                        connection.Execute(insertSql, parameters);
+                    }   
+                }
+            }
         }
 
         private static void SetAsProcessed(IEnumerable<AutomatedShippingNotification> products)

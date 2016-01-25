@@ -13,5 +13,7 @@
         public string UnversalProductCode { get; set; }
         
         public int TotalQuantity { get; set; }
+
+        public int ExternalId { get; set; }
     }
 }

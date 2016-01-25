@@ -1,0 +1,6 @@
+CREATE TABLE ReturnReasonFromROWProcessing
+(
+	ProcessingId INT PRIMARY KEY IDENTITY(1,1),
+	rowId INT,
+	ProcessedDate DATETIME NOT NULL
+)

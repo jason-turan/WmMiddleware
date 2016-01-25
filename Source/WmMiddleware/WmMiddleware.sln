@@ -89,6 +89,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WmTransactions", "WmTransac
 		ManhattanShipmentCartonHeader.sql.txt = ManhattanShipmentCartonHeader.sql.txt
 		ManhattanShipmentHeader.sql.txt = ManhattanShipmentHeader.sql.txt
 		ManhattanShipmentLineItem.sql.txt = ManhattanShipmentLineItem.sql.txt
+		ReturnReasonFromROWProcessing.sql.txt = ReturnReasonFromROWProcessing.sql.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.ShipmentCancellationEmail", "WmMiddleware.ShipmentCancellationEmail\WmMiddleware.ShipmentCancellationEmail.csproj", "{FED3ABD9-CB01-426A-B4DE-F9A59B296841}"
@@ -179,12 +180,12 @@ Global
 		SccProjectUniqueName24 = WmMiddleware.StlInventoryUpdate\\WmMiddleware.StlInventoryUpdate.csproj
 		SccProjectName24 = WmMiddleware.StlInventoryUpdate
 		SccLocalPath24 = WmMiddleware.StlInventoryUpdate
-		SccProjectUniqueName26 = Middleware.WM.Aurora.TransferControl\\Middleware.WM.Aurora.TransferControl.csproj
-		SccProjectName26 = Middleware.WM.Aurora.TransferControl
-		SccLocalPath26 = Middleware.WM.Aurora.TransferControl
 		SccProjectUniqueName25 = Middleware.WarehouseManagement.Aurora.PickTickets\\Middleware.Wm.Aurora.PickTickets.csproj
 		SccProjectName25 = Middleware.WarehouseManagement.Aurora.PickTickets
 		SccLocalPath25 = Middleware.WarehouseManagement.Aurora.PickTickets
+		SccProjectUniqueName26 = Middleware.WM.Aurora.TransferControl\\Middleware.Wm.Aurora.TransferControl.csproj
+		SccProjectName26 = Middleware.WM.Aurora.TransferControl
+		SccLocalPath26 = Middleware.WM.Aurora.TransferControl
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU

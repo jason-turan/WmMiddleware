@@ -24,6 +24,7 @@
                 ProductSize = prod_size,
                 ProductAttribute = attribute,
                 UnversalProductCode = UPC,
+                ExternalId = rowId
             };
         }
     }
