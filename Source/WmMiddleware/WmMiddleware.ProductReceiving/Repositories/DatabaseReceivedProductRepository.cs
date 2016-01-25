@@ -113,7 +113,7 @@ namespace WmMiddleware.ProductReceiving.Repositories
                 {
                     var lineItem = item.First().ToLineItem();
                     purchaseReturn.Items.Add(lineItem);
-                    lineItem.TotalQuantity = 1;
+                    lineItem.TotalQuantity = item.Count();
                     purchaseReturn.QuantityOrdered = purchaseReturn.QuantityOrdered + lineItem.TotalQuantity;
                 }
 

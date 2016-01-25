@@ -23,12 +23,12 @@ namespace WmMiddleware.TransferControl.Configuration
 
         public string GetInboundFileDirectory()
         {
-            return _configurationManager.GetKey<string>(ConfigurationKey.TransferControlInboundFileProcessedDirectory);
+            return _configurationManager.GetKey<string>(ConfigurationKey.TransferControlInboundFileDirectory);
         }
 
         public string GetInboundFileProcessedDirectory()
         {
-            return _configurationManager.GetKey<string>(ConfigurationKey.TransferControlInboundFileDirectory);
+            return _configurationManager.GetKey<string>(ConfigurationKey.TransferControlInboundFileProcessedDirectory);
         }
 
         public string GetInboundMasterControlFilename()
