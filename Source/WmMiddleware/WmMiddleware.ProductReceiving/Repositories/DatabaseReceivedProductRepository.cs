@@ -104,7 +104,7 @@ namespace WmMiddleware.ProductReceiving.Repositories
 
         private static IEnumerable<PurchaseReturn> GroupReturns(IEnumerable<DatabasePurchaseReturn> purchaseReturns)
         {
-            var groupedTickets = purchaseReturns.GroupBy(pr => pr.order_number);
+            var groupedTickets = purchaseReturns.GroupBy(pr => pr.order_number).ToList();
             foreach (var group in groupedTickets)
             {
                 var purchaseReturn = group.First().ToPurchaseReturn();
@@ -113,7 +113,8 @@ namespace WmMiddleware.ProductReceiving.Repositories
                 {
                     var lineItem = item.First().ToLineItem();
                     purchaseReturn.Items.Add(lineItem);
-                    lineItem.TotalQuantity++;
+                    lineItem.TotalQuantity = 1;
+                    purchaseReturn.QuantityOrdered = purchaseReturn.QuantityOrdered + lineItem.TotalQuantity;
                 }
 
                 yield return purchaseReturn;
