@@ -7,7 +7,7 @@ namespace WmMiddleware.ShipmentCancellationEmail.Repository
     {
         ShipmentCancellationEmailDistribution GetShipmentCancellationEmailDistribution(string company);
 
-        IEnumerable<Models.ShipmentCancellationEmail> GetCancellations();
+        IEnumerable<Models.ShipmentCancellationEmail> GetShipmentEmailCancellations();
 
         string GetCompanyFromOrderNumber(string orderNumber);
     }

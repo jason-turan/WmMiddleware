@@ -1,0 +1,7 @@
+CREATE PROCEDURE sp_GetShipmentCancellationEmailDistribution
+ @Company as nvarchar(20)
+AS
+
+SELECT Company, DistributionList, AdministrationSiteLink 
+FROM ShipmentCancellationEmailDistribution
+WHERE Company = @Company

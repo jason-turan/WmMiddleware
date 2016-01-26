@@ -25,7 +25,7 @@ namespace WmMiddleware.ShipmentCancellationEmail
 
         public void RunUnitOfWork(string jobKey)
         {
-            var cancellations = _cancellationEmailDistributionRepository.GetCancellations().ToList();
+            var cancellations = _cancellationEmailDistributionRepository.GetShipmentEmailCancellations().ToList();
 
             if (!cancellations.Any())
             {

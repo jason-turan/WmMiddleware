@@ -102,6 +102,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Aurora.PickTi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Aurora.TransferControl", "Middleware.WM.Aurora.TransferControl\Middleware.Wm.Aurora.TransferControl.csproj", "{FA926702-2FC7-4C85-8ECD-91F2424F0037}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StoredProcedures", "StoredProcedures", "{C940A561-5E39-404F-BCF7-F051BCA0B1A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NBXWeb", "NBXWeb", "{1160473C-5A7C-435F-802E-532E5DC20007}"
+	ProjectSection(SolutionItems) = preProject
+		sp_GetReturnReasonsFromROW.sql.txt = sp_GetReturnReasonsFromROW.sql.txt
+		sp_InsertReturnReasonFromROWProcessing.sql.txt = sp_InsertReturnReasonFromROWProcessing.sql.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WarehouseManagement", "WarehouseManagement", "{B934365D-F67A-484D-846A-F0D1DD023BB4}"
+	ProjectSection(SolutionItems) = preProject
+		sp_GetShipmentCancellationEmailDistribution.sql.txt = sp_GetShipmentCancellationEmailDistribution.sql.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 27
@@ -463,5 +476,8 @@ Global
 		{110F3F5C-83ED-4683-9C4E-97AEF4B5D522} = {A74B9459-51A0-4D56-8F5A-F17340F24F27}
 		{3397B97D-15E7-4FE0-A9D4-F31719FAD773} = {A74B9459-51A0-4D56-8F5A-F17340F24F27}
 		{A45F0745-0FA6-4A30-A824-B94D5348F596} = {A74B9459-51A0-4D56-8F5A-F17340F24F27}
+		{C940A561-5E39-404F-BCF7-F051BCA0B1A5} = {A74B9459-51A0-4D56-8F5A-F17340F24F27}
+		{1160473C-5A7C-435F-802E-532E5DC20007} = {C940A561-5E39-404F-BCF7-F051BCA0B1A5}
+		{B934365D-F67A-484D-846A-F0D1DD023BB4} = {C940A561-5E39-404F-BCF7-F051BCA0B1A5}
 	EndGlobalSection
 EndGlobal

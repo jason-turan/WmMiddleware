@@ -11,9 +11,6 @@ namespace WmMiddleware.ShipmentCancellationEmail.Repository
     {
         public ShipmentCancellationEmailDistribution GetShipmentCancellationEmailDistribution(string company)
         {
-            const string sqlShipmentCancellationEmailDistribution = @"SELECT * 
-                                                                      FROM ShipmentCancellationEmailDistribution
-                                                                      WHERE Company = @Company";
 
             var parameters = new DynamicParameters();
 
@@ -21,35 +18,26 @@ namespace WmMiddleware.ShipmentCancellationEmail.Repository
 
             using (var connection = DatabaseConnectionFactory.GetWarehouseManagementConnection())
             {
-                return connection.Query<ShipmentCancellationEmailDistribution>(sqlShipmentCancellationEmailDistribution, parameters).SingleOrDefault();
+                return connection.Query<ShipmentCancellationEmailDistribution>("sp_GetShipmentCancellationEmailDistribution", parameters, commandType: CommandType.StoredProcedure).SingleOrDefault();
             }
         }
 
-        public IEnumerable<Models.ShipmentCancellationEmail> GetCancellations()
+        public IEnumerable<Models.ShipmentCancellationEmail> GetShipmentEmailCancellations()
         {
-            const string sqlUnprocessedShipmentCancellations = @"SELECT msh.OrderNumber, msli.PickticketLineNumber as LineNumber, msli.PackageBarcode as StockKeepingUnit
-                                                                 FROM ManhattanShipmentHeader msh
-	                                                                INNER JOIN ManhattanShipmentLineItem msli
-                                                                 ON msh.PickticketControlNumber = msli.PickticketControlNumber
-	                                                                LEFT JOIN [ManhattanShipmentLineItemCancellationProcessing] mslicp
-                                                                 ON msli.ManhattanShipmentLineItemId = mslicp.ManhattanShipmentLineItemId
-                                                                 WHERE shippedquantity = 0";
-
             using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
             {
-                return connection.Query<Models.ShipmentCancellationEmail>(sqlUnprocessedShipmentCancellations);
+                return connection.Query<Models.ShipmentCancellationEmail>("sp_GetCancellationsForEmailNotification", commandType: CommandType.StoredProcedure);
             }
         }
 
         public string GetCompanyFromOrderNumber(string orderNumber)
         {
-            string sql = @"SELECT company 
-                           FROM nbxweb.dbo.gp_header (nolock) 
-                           WHERE order_number = '" + orderNumber + "'";
+            var parameters = new DynamicParameters();
+            parameters.Add("@OrderNumber", orderNumber);
 
             using (var connection = DatabaseConnectionFactory.GetNbxWebConnection())
             {
-                return connection.ExecuteScalar<string>(sql);
+                return connection.ExecuteScalar<string>("sp_GetCancellationsForEmailNotification", parameters, commandType: CommandType.StoredProcedure);
             }
         }
     }

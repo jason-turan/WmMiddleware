@@ -1,0 +1,8 @@
+CREATE PROCEDURE sp_InsertReturnReasonFromROWProcessing
+(
+	@rowId int,
+	@ProcessedDate datetime
+)
+AS
+INSERT INTO ReturnReasonFromROWProcessing(rowId, ProcessedDate)
+                                       VALUES(@rowId, @ProcessedDate)
