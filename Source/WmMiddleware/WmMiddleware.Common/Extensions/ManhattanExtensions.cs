@@ -5,9 +5,9 @@ namespace WmMiddleware.Common.Extensions
 {
     public static class ManhattanExtensions
     {
-        public static DateTime ParseDateTime(int date, int time)
+        public static DateTime ParseDateTime(int date, int time, DateTimeStyles dateTimeStyles = DateTimeStyles.None)
         {
-            return DateTime.ParseExact(date.ToString("D8") + time.ToString("D8"), "yyyyMMddhhmmss", CultureInfo.InvariantCulture);
+            return DateTime.ParseExact(date.ToString("D8") + time.ToString("D6"), "yyyyMMddhhmmss", CultureInfo.InvariantCulture, dateTimeStyles);
         }
 
         public static int ToManhattanDate(this DateTime dateTime)

@@ -28,12 +28,9 @@ namespace WmMiddleware.Picking.Models
         public string EmailAddress { get; set; } 
         public string TransactionType { get; set; }
         public string ShippingMethod { get; set; } 
-        public double Subtotal { get; set; } 
         public double Discount { get; set; } 
         public double Freight { get; set; } 
         public double MiscHandling { get; set; } 
-        public double TaxAmount { get; set; } 
-        public double Total { get; set; } 
         public int? OriginalOrderId { get; set; } 
         public bool PaymentOnly { get; set; } 
         public string ShippingNote { get; set; } 

@@ -24,10 +24,10 @@ namespace WmMiddleware.ManhattanOutboundData
         private readonly ITransferControlRepository _transferControlRepository;
 
         protected OutboundProcessor(ILog log, 
-                                    IConfigurationManager configurationManager, 
-                                    IFileIo fileIo, 
-                                    IJobRepository jobRepository,
-                                    ITransferControlRepository transferControlRepository)
+                                 IConfigurationManager configurationManager, 
+                                 IFileIo fileIo, 
+                                 IJobRepository jobRepository,
+                                 ITransferControlRepository transferControlRepository)
         {
             _log = log;
             _configurationManager = configurationManager;
@@ -36,7 +36,7 @@ namespace WmMiddleware.ManhattanOutboundData
             _transferControlRepository = transferControlRepository;
         }
 
-        protected abstract void ProcessFile(TransferControlFile transferControlFile); 
+        protected abstract void ProcessFiles(ICollection<TransferControlFile> transferControlFiles);
 
         public void RunUnitOfWork(string jobKey)
         {
@@ -48,13 +48,8 @@ namespace WmMiddleware.ManhattanOutboundData
                 {
                     using (var transactionScope = new TransactionScope())
                     {
-                        foreach (var transferControlFile in transferControl.Files)
-                        {
-                            ProcessFile(transferControlFile);
-                        }
-                
+                        ProcessFiles(transferControl.Files);
                         UpdateTransferControl(transferControl);
-
                         transactionScope.Complete();
                     }
 

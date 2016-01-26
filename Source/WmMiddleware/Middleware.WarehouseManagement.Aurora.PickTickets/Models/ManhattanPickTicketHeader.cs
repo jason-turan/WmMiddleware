@@ -1,4 +1,7 @@
-﻿namespace Middleware.WarehouseManagement.Aurora.PickTickets.Models
+﻿using System.Globalization;
+using WmMiddleware.Common.Extensions;
+
+namespace Middleware.WarehouseManagement.Aurora.PickTickets.Models
 {
     internal partial class ManhattanPickTicketHeader
     {
@@ -6,7 +9,6 @@
         {
             return new Order
             {
-                Company = Company,
                 BillingAddress = new Address
                 {
                     City = SoldToCity,
@@ -30,8 +32,11 @@
                     Zip = ShipToZip
                 },
                 OrderNumber = OrderNumber, //MiscellaneousIns20Byte11, ?
-                OrderPriority = OrderType
-
+                OrderDate = (OrderDate != 0 ? ManhattanExtensions.ParseDateTime(OrderDate, 0, DateTimeStyles.AssumeUniversal) : ManhattanExtensions.ParseDateTime(DateCreated, 0, DateTimeStyles.AssumeUniversal)).ToUniversalTime(),
+                BillingPhone = TelephoneNumber,
+                ShippingPhone = TelephoneNumber,
+                EmailAddress = "bncorder@newbalance.com",
+                ShippingMethod = "Ground"
             };
         }
     }

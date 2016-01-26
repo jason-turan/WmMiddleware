@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using WmMiddleware.Common.DataFiles;
@@ -27,8 +29,14 @@ namespace WmMiddleware.Pix
             _perpetualInventoryTransferRepository = perpetualInventoryTransferRepository;
         }
 
-        protected override void ProcessFile(TransferControlFile file)
+        protected override void ProcessFiles(ICollection<TransferControlFile> transferControlFiles)
         {
+            if (transferControlFiles.Count != 1)
+            {
+                throw new ArgumentOutOfRangeException("transferControlFiles", "Expected one file, found " + transferControlFiles.Count);
+            }
+
+            var file = transferControlFiles.First();
             var pixRepository = new DataFileRepository<ManhattanPerpetualInventoryTransfer>();
             var pix = pixRepository.Get(file.FileLocation).ToList();
             _perpetualInventoryTransferRepository.InsertPerpetualInventoryTransfer(pix);

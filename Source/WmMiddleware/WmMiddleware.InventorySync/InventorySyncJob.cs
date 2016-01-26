@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using WmMiddleware.Common.DataFiles;
@@ -14,7 +14,7 @@ using WmMiddleware.TransferControl.Repositories;
 
 namespace WmMiddleware.InventorySync
 {
-    public class InventorySyncJob : OutboundProcessor, IUnitOfWork
+    public class InventorySyncJob : OutboundProcessor
     {
         private readonly IInventorySyncRepository _inventorySyncRepository;
 
@@ -29,8 +29,14 @@ namespace WmMiddleware.InventorySync
             _inventorySyncRepository = inventorySyncRepository;
         }
 
-        protected override void ProcessFile(TransferControlFile transferControlFile)
+        protected override void ProcessFiles(ICollection<TransferControlFile> transferControlFiles)
         {
+            if (transferControlFiles.Count != 1)
+            {
+                throw new ArgumentOutOfRangeException("transferControlFiles", "Expected one file, found " + transferControlFiles.Count);
+            }
+
+            var transferControlFile = transferControlFiles.First();
 
             var pixRepository = new DataFileRepository<Models.Generated.ManhattanInventorySync>();
             var inventorySync = pixRepository.Get(transferControlFile.FileLocation).ToList();

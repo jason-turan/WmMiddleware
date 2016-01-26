@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Middleware.Jobs;
+using Middleware.Jobs.Repositories;
 using WmMiddleware.Common.DataFiles;
 using WmMiddleware.Common.Locations;
 using WmMiddleware.Configuration;
-using WmMiddleware.Configuration.Manhattan;
-using Middleware.Jobs;
-using Middleware.Jobs.Repositories;
 using WmMiddleware.Picking.Configuration;
 using WmMiddleware.Picking.Models;
 using WmMiddleware.TransferControl.Control;

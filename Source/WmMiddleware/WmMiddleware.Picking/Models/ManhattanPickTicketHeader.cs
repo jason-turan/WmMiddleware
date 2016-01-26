@@ -59,6 +59,7 @@ namespace WmMiddleware.Picking.Models
             Function = "1";
             CartonNumberType = "2";
             VasType = "Y";
+            ShipVia = order.ShippingMethod;
         }
 
         public DateTime CreateDate

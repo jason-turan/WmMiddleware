@@ -1,6 +1,6 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using WmMiddleware.Common.DataFiles;
@@ -14,7 +14,7 @@ using WmMiddleware.TransferControl.Repositories;
 
 namespace WmMiddleware.Shipment
 {
-    public class ShipmentJob : OutboundProcessor, IUnitOfWork
+    public class ShipmentJob : OutboundProcessor
     {
         private readonly IShipmentRepository _shipmentRepository;
 
@@ -33,7 +33,15 @@ namespace WmMiddleware.Shipment
             _shipmentRepository = shipmentRepository;
         }
 
-        protected override void ProcessFile(TransferControlFile file)
+        protected override void ProcessFiles(ICollection<TransferControlFile> transferControlFiles)
+        {
+            foreach (var file in transferControlFiles)
+            {
+                ProcessFile(file);
+            }
+        }
+
+        private void ProcessFile(TransferControlFile file)
         {
             var shipmentHeaderRespository = new DataFileRepository<ManhattanShipmentHeader>();
             var shipmentDetailRespository = new DataFileRepository<ManhattanShipmentLineItem>();
