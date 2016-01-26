@@ -19,8 +19,6 @@ namespace FlatFileClassGenerator.Writers
             _writer.WriteLine("using WmMiddleware.Common.DataFiles;");
 
             _writer.WriteLine();
-            _writer.WriteLine("// ReSharper disable InconsistentNaming");
-            _writer.WriteLine("// ReSharper disable CheckNamespace");
             _writer.WriteLine("namespace " + @namespace);
             _writer.WriteLine("{");
             _writer.WriteLine("    // Generated with FlatFileClassGenerator");
@@ -37,8 +35,6 @@ namespace FlatFileClassGenerator.Writers
         {
             _writer.WriteLine("    }");
             _writer.WriteLine("}");
-            _writer.WriteLine("// ReSharper restore InconsistentNaming");
-            _writer.WriteLine("// ReSharper restore CheckNamespace"); 
         }
     }
 }

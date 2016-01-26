@@ -57,7 +57,7 @@ namespace FlatFileClassGenerator
             }
 
             generator.GenerateGeneratedModel(chosenFilenameTextBox.Text, 
-                                              Path.Combine(OutputDirectory, classNameTextBox.Text + ".cs"), 
+                                              Path.Combine(OutputDirectory, classNameTextBox.Text + ".g.cs"), 
                                               namespaceTextBox.Text, 
                                               classNameTextBox.Text);
 
