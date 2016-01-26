@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using WmMiddleware.Common.DataFiles;
@@ -18,11 +17,11 @@ namespace WmMiddleware.Pix
         private readonly IPerpetualInventoryTransferRepository _perpetualInventoryTransferRepository;
 
         public PixJob(ILog log, 
-                        IConfigurationManager configurationManager,
-                        IJobRepository jobRepository, 
-                        ITransferControlRepository transferControlRepository,
-                        IPerpetualInventoryTransferRepository perpetualInventoryTransferRepository,
-                        IFileIo fileIo)
+                      IConfigurationManager configurationManager,
+                      IJobRepository jobRepository, 
+                      ITransferControlRepository transferControlRepository,
+                      IPerpetualInventoryTransferRepository perpetualInventoryTransferRepository,
+                      IFileIo fileIo)
             : base(log, configurationManager, fileIo, jobRepository, transferControlRepository)
         {
             _perpetualInventoryTransferRepository = perpetualInventoryTransferRepository;

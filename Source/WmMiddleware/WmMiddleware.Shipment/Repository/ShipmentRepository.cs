@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Dapper;
 using Dapper.Contrib.Extensions;
 using WmMiddleware.Configuration.Database;
 using WmMiddleware.Shipment.Models.Generated;

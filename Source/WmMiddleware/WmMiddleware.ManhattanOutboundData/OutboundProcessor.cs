@@ -24,10 +24,10 @@ namespace WmMiddleware.ManhattanOutboundData
         private readonly ITransferControlRepository _transferControlRepository;
 
         protected OutboundProcessor(ILog log, 
-                                 IConfigurationManager configurationManager, 
-                                 IFileIo fileIo, 
-                                 IJobRepository jobRepository,
-                                 ITransferControlRepository transferControlRepository)
+                                    IConfigurationManager configurationManager, 
+                                    IFileIo fileIo, 
+                                    IJobRepository jobRepository,
+                                    ITransferControlRepository transferControlRepository)
         {
             _log = log;
             _configurationManager = configurationManager;

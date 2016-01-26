@@ -34,7 +34,10 @@ namespace WmMiddleware.Picking.Models
             ShipToCity = order.ShippingAddress.City;
             ShipToState = order.ShippingAddress.State;
             ShipToZip = order.ShippingAddress.Zip;
+            // PackingSlipType =
+            ShipVia = 
             ShipToCountry = countryReader.GetCountryCode(order.ShippingAddress.Country).ToString(CultureInfo.InvariantCulture);
+            ArAccountNumber = "NBUS"; // Requested by Manhattan team on 1/25 to be same as PHSOTO/Soldto
             SoldTo = "NBUS";
             SoldToName = order.BillingAddress.Name;
             SoldToAddr1 = order.BillingAddress.Line1;

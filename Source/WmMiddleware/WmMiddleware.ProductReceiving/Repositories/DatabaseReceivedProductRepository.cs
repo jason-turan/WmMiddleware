@@ -30,28 +30,10 @@ namespace WmMiddleware.ProductReceiving.Repositories
 
         public IEnumerable<IReceivedProduct> GetPurchaseReturns()
         {
-            const string unreturned = @"SELECT r.[rowID]
-                                              ,[order_number]
-                                              ,[style_number]
-                                              ,[prod_size]
-                                              ,[attribute]
-                                              ,[UPC]
-                                              ,[return_reason]
-                                              ,[additional_return_reason]
-                                              ,[to_be_exchange]
-                                              ,[row_submit_date]
-                                              ,[tracking]
-                                              ,[current_item_status] 
-                                        FROM [v_ReturnReasonsfromROW] r
-                                        LEFT JOIN ReturnReasonFromROWProcessing rp 
-                                            ON r.rowId = rp.rowId
-                                        WHERE current_item_status = 'shipped'
-                                        AND rp.rowId IS NULL --unprocessed only";
-
             using (var connection = DatabaseConnectionFactory.GetNbxWebConnection())
             {
                 connection.Open();
-                return GroupReturns(connection.Query<DatabasePurchaseReturn>(unreturned)).ToList();
+                return GroupReturns(connection.Query<DatabasePurchaseReturn>("sp_GetReturnReasonsFromROW")).ToList();
             }
         }
 
@@ -65,20 +47,19 @@ namespace WmMiddleware.ProductReceiving.Repositories
 
         private static void SetAsProcessed(IEnumerable<PurchaseReturn> purchaseReturns)
         {
-            const string insertSql = @"INSERT INTO ReturnReasonFromROWProcessing(rowId, ProcessedDate)
-                                       VALUES(@rowId, @ProcessedDate)";
-
             foreach (var purchaseReturn in purchaseReturns)
             {
                 foreach (var lineItem in purchaseReturn.Items)
                 {
                     var parameters = new DynamicParameters();
-                    parameters.Add("@rowId", lineItem.ExternalId, DbType.Int32);
-                    parameters.Add("@ProcessedDate", DateTime.Now, DbType.DateTime);
+                    parameters.Add("@rowId", lineItem.ExternalId);
+                    parameters.Add("@ProcessedDate", DateTime.Now);
 
                     using (var connection = DatabaseConnectionFactory.GetNbxWebConnection())
                     {
-                        connection.Execute(insertSql, parameters);
+                        connection.Execute("sp_InsertReturnReasonFromROWProcessing", 
+                                            parameters, 
+                                            commandType: CommandType.StoredProcedure);
                     }   
                 }
             }
