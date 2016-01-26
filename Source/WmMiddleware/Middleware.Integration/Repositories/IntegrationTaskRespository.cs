@@ -12,11 +12,6 @@ namespace Middleware.Integration.Repositories
     {
         public IntegrationTask GetTask(int jobId)
         {
-            const string integrationTaskSql = @"SELECT it.* 
-                                                FROM Job j
-                                                INNER JOIN IntegrationTask it
-	                                                ON j.JobId = it.JobId 
-                                                WHERE j.JobId = @JobId";
             
             var integration = new DynamicParameters();
             integration.Add("@JobId", jobId, DbType.Int32);
@@ -25,7 +20,9 @@ namespace Middleware.Integration.Repositories
             {
                 connection.Open();
 
-                var integrationTask = connection.Query<IntegrationTask>(integrationTaskSql, integration).FirstOrDefault();
+                var integrationTask = connection.Query<IntegrationTask>("sp_GetIntegrationTask", 
+                                                                        integration, 
+                                                                        commandType: CommandType.StoredProcedure).FirstOrDefault();
 
                 if (integrationTask == null) return null;
 
@@ -37,26 +34,14 @@ namespace Middleware.Integration.Repositories
 
         private static IntegrationTaskEndpoint GetEndpoint(IDbConnection connection, int endpointId)
         {
-            const string integrationEndpointConfigurationSql = @"
-                SELECT 
-	                itec.ConfigurationValue,
-	                itet.IntegrationTaskEndpointTypeName,
-	                itect.IntegrationTaskEndpointConfigurationType
-                FROM IntegrationTaskEndpoint ite
-                JOIN IntegrationTaskEndpointType itet 
-                    ON ite.IntegrationTaskEndpointTypeId = itet.IntegrationTaskEndpointTypeId
-                JOIN IntegrationTaskEndpointConfigurationType itect 
-                    ON itect.IntegrationTaskEndpointTypeId = itet.IntegrationTaskEndpointTypeId
-                LEFT JOIN IntegrationTaskEndpointConfiguration itec 
-                    ON itec.IntegrationTaskEndpointId = ite.IntegrationTaskEndpointId 
-                    AND itec.IntegrationTaskEndpointConfigurationTypeId = itect.IntegrationTaskEndpointConfigurationTypeId
-                WHERE ite.IntegrationTaskEndpointId = @IntegrationTaskEndpointId";
-
 
             var integrationConfiguration = new DynamicParameters();
             integrationConfiguration.Add("@IntegrationTaskEndpointId", endpointId);
 
-            var rows = connection.Query<ConfigurationRow>(integrationEndpointConfigurationSql, new {IntegrationTaskEndpointId = endpointId}).ToList();
+            var rows = connection.Query<ConfigurationRow>("sp_GetIntegrationTaskEndpoint", 
+                                                          integrationConfiguration, 
+                                                          commandType: CommandType.StoredProcedure).ToList();
+
             var integrationTaskEndpoint = new IntegrationTaskEndpoint
             {
                 EndpointType = (IntegrationTaskEndpointType) Enum.Parse(typeof (IntegrationTaskEndpointType), rows.First().IntegrationTaskEndpointTypeName),

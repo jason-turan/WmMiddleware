@@ -36,7 +36,7 @@ namespace Middleware.Integration
             var reader = _xmlRepositoryFactory.CreateReader(integrationTask.Source);
             var xml = reader.Read();
 
-            XslCompiledTransform transform = new XslCompiledTransform();
+            var transform = new XslCompiledTransform();
             transform.Load(XmlReader.Create(File.OpenRead(Path.Combine("./Resources/Xslt", integrationTask.XsltTransformName))));
             var newXml = new XDocument();
             using (XmlWriter xmlWriter = newXml.CreateWriter())

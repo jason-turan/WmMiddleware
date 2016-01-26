@@ -112,6 +112,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NBXWeb", "NBXWeb", "{116047
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WarehouseManagement", "WarehouseManagement", "{B934365D-F67A-484D-846A-F0D1DD023BB4}"
 	ProjectSection(SolutionItems) = preProject
+		sp_GetIntegrationTask.sql.txt = sp_GetIntegrationTask.sql.txt
+		sp_GetIntegrationTaskEndpoint.sql.txt = sp_GetIntegrationTaskEndpoint.sql.txt
 		sp_GetShipmentCancellationEmailDistribution.sql.txt = sp_GetShipmentCancellationEmailDistribution.sql.txt
 	EndProjectSection
 EndProject

@@ -1,5 +1,6 @@
 ﻿using Middleware.Integration.Factories;
 using Middleware.Integration.Repositories;
+using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using Ninject.Modules;
@@ -16,6 +17,7 @@ namespace Middleware.Integration.DependencyInjection
             Bind<IJobRepository>().To<JobRepository>();
             Bind<IIntegrationTaskRespository>().To<IntegrationTaskRespository>();
             Bind<IXmlRepositoryFactory>().To<XmlRepositoryFactory>();
+            Bind<IUnitOfWork>().To<IntegrationJob>();
         }
     }
 }
