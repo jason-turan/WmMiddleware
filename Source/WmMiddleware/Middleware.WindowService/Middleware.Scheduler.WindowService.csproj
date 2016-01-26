@@ -176,6 +176,10 @@
       <Project>{299a19f1-8ddc-4532-9dd9-fff0ffcfeded}</Project>
       <Name>WmMiddleware.Picking</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WmMiddleware.PixReturn\WmMiddleware.PixReturn.csproj">
+      <Project>{bf945c8e-81b4-4adf-8f33-e64ff48dd0b7}</Project>
+      <Name>WmMiddleware.PixReturn</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WmMiddleware.Pix\WmMiddleware.Pix.csproj">
       <Project>{21adff87-bb23-46ba-ae47-07b8eda135bf}</Project>
       <Name>WmMiddleware.Pix</Name>
@@ -188,9 +192,21 @@
       <Project>{29b19f64-6443-4a62-a3d1-aec8c8514824}</Project>
       <Name>WmMiddleware.ProductUpdating</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WmMiddleware.ShipmentCancellationEmail\WmMiddleware.ShipmentCancellationEmail.csproj">
+      <Project>{fed3abd9-cb01-426a-b4de-f9a59b296841}</Project>
+      <Name>WmMiddleware.ShipmentCancellationEmail</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WmMiddleware.Shipment\WmMiddleware.Shipment.csproj">
       <Project>{b4c7e72d-cdb6-4fea-abdf-3564a588a762}</Project>
       <Name>WmMiddleware.Shipment</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WmMiddleware.StlInventorySync\WmMiddleware.StlInventorySync.csproj">
+      <Project>{5dc50c59-aa52-4abe-8ddb-9993d4833f2f}</Project>
+      <Name>WmMiddleware.StlInventorySync</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WmMiddleware.StlInventoryUpdate\WmMiddleware.StlInventoryUpdate.csproj">
+      <Project>{0fac9c07-f2eb-4118-bed1-d2c7e786be20}</Project>
+      <Name>WmMiddleware.StlInventoryUpdate</Name>
     </ProjectReference>
     <ProjectReference Include="..\WmMiddleware.TransferControl\WmMiddleware.TransferControl.csproj">
       <Project>{f788dd6f-2df7-45ba-950a-ec5cbc5731d8}</Project>
@@ -234,5 +250,6 @@
     <Copy SourceFiles="..\WmMiddleware.Pix\bin\$(Configuration)\WmMiddleware.Pix.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\Middleware.Alerts\bin\$(Configuration)\Middleware.Alerts.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\Middleware.Integration\bin\$(Configuration)\Middleware.Integration.exe.config" DestinationFolder="$(TargetDir)" />
+    <Copy SourceFiles="..\WmMiddleware.PixReturn\bin\$(Configuration)\WmMiddleware.PixReturn.exe.config" DestinationFolder="$(TargetDir)" />
   </Target>
 </Project>
