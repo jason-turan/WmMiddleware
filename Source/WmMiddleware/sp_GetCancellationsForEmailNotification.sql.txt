@@ -1,0 +1,6 @@
+CREATE PROCEDURE sp_GetCancellationsForEmailNotification
+@OrderNumber VARCHAR(15)
+AS
+SELECT company 
+FROM nbxweb.dbo.gp_header (nolock) 
+WHERE order_number = @OrderNumber

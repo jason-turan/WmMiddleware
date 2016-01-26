@@ -115,6 +115,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WarehouseManagement", "Ware
 		sp_GetShipmentCancellationEmailDistribution.sql.txt = sp_GetShipmentCancellationEmailDistribution.sql.txt
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WmTransactions", "WmTransactions", "{573405B0-EA3B-4C82-9126-63897A60E03F}"
+	ProjectSection(SolutionItems) = preProject
+		sp_FindManhattanPerpetualInventoryTransfers.sql.txt = sp_FindManhattanPerpetualInventoryTransfers.sql.txt
+		sp_GetCancellationsForEmailNotification.sql.txt = sp_GetCancellationsForEmailNotification.sql.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 27
@@ -479,5 +485,6 @@ Global
 		{C940A561-5E39-404F-BCF7-F051BCA0B1A5} = {A74B9459-51A0-4D56-8F5A-F17340F24F27}
 		{1160473C-5A7C-435F-802E-532E5DC20007} = {C940A561-5E39-404F-BCF7-F051BCA0B1A5}
 		{B934365D-F67A-484D-846A-F0D1DD023BB4} = {C940A561-5E39-404F-BCF7-F051BCA0B1A5}
+		{573405B0-EA3B-4C82-9126-63897A60E03F} = {C940A561-5E39-404F-BCF7-F051BCA0B1A5}
 	EndGlobalSection
 EndGlobal

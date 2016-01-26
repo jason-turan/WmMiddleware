@@ -6,6 +6,6 @@
 
         public string TransactionType { get; set; }
 
-        public bool? Processed { get; set; }
+        public bool? UnprocessedOnly { get; set; }
     }
 }

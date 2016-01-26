@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Collections.Generic;
 using Dapper;
 using Dapper.Contrib.Extensions;
 using WmMiddleware.Configuration.Database;

@@ -37,7 +37,7 @@ namespace WmMiddleware.ShipmentCancellationEmail.Repository
 
             using (var connection = DatabaseConnectionFactory.GetNbxWebConnection())
             {
-                return connection.ExecuteScalar<string>("sp_GetCancellationsForEmailNotification", parameters, commandType: CommandType.StoredProcedure);
+                return connection.ExecuteScalar<string>("sp_GetCompanyFromOrderNumber", parameters, commandType: CommandType.StoredProcedure);
             }
         }
     }

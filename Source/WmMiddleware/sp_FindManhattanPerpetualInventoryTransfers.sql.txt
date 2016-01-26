@@ -1,0 +1,13 @@
+CREATE PROCEDURE sp_FindManhattanPerpetualInventoryTransfers
+@TransactionCode NVARCHAR(3),
+@TransactionType NVARCHAR(3),
+@UnprocessedOnly bit = 0
+AS
+
+SELECT mpit.* 
+FROM ManhattanPerpetualInventoryTransfer mpit
+LEFT JOIN ManhattanPerpetualInventoryTransferProcessing mpitp
+ON mpit.ManhattanPerpetualInventoryTransferId = mpitp.ManhattanPerpetualInventoryTransferId
+WHERE TransactionType = @TransactionType
+AND TransactionCode = @TransactionCode
+AND (mpitp.ProcessingId IS NULL AND @UnprocessedOnly = 1) OR @UnprocessedOnly = 0

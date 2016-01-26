@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using System.Data;
+using Dapper;
 using Dapper.Contrib.Extensions;
 using WmMiddleware.Configuration.Database;
 using WmMiddleware.PixReturn.Models;
@@ -17,13 +18,12 @@ namespace WmMiddleware.PixReturn.Repository
 
         public string GetCompanyFromOrderNumber(string orderNumber)
         {
-            string sql = @"SELECT company 
-                           FROM nbxweb.dbo.gp_header (nolock) 
-                           WHERE order_number = '" + orderNumber + "'";
+            var parameters = new DynamicParameters();
+            parameters.Add("@OrderNumber", orderNumber);
 
             using (var connection = DatabaseConnectionFactory.GetNbxWebConnection())
             {
-                return connection.ExecuteScalar<string>(sql);
+                return connection.ExecuteScalar<string>("sp_GetCompanyFromOrderNumber", parameters, commandType: CommandType.StoredProcedure);
             }
         }
     }

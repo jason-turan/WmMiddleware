@@ -21,33 +21,19 @@ namespace WmMiddleware.Pix.Repository
 
         public IEnumerable<ManhattanPerpetualInventoryTransfer> FindPerpetualInventoryTransfers(PerpetualInventoryTransactionCriteria criteria)
         {
-            var unprocessedPixReturns = @"SELECT mpit.* 
-                                        FROM ManhattanPerpetualInventoryTransfer mpit
-                                        LEFT JOIN ManhattanPerpetualInventoryTransferProcessing mpitp
-                                        ON mpit.ManhattanPerpetualInventoryTransferId = mpitp.ManhattanPerpetualInventoryTransferId
-                                        WHERE TransactionType = @TransactionType
-                                        AND TransactionCode = @TransactionCode";
-
             var searchArguments = new DynamicParameters();
             
-            if (criteria.Processed.HasValue)
-            {
-                if (criteria.Processed.Value)
-                {
-                    unprocessedPixReturns = unprocessedPixReturns + " AND mpitp.ProcessingId IS NOT NULL";
-                }
-                else
-                {
-                    unprocessedPixReturns = unprocessedPixReturns + " AND mpitp.ProcessingId IS NULL";
-                }
-            }
-
             searchArguments.Add("@TransactionType", criteria.TransactionType, DbType.String);
             searchArguments.Add("@TransactionCode", criteria.TransactionCode, DbType.String);
 
+            if (criteria.UnprocessedOnly.HasValue && criteria.UnprocessedOnly.Value == true)
+            {
+                searchArguments.Add("@UnprocessedOnly", 1, DbType.Boolean);    
+            }
+            
             using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
             {
-                return connection.Query<ManhattanPerpetualInventoryTransfer>(unprocessedPixReturns, searchArguments);
+                return connection.Query<ManhattanPerpetualInventoryTransfer>("sp_FindManhattanPerpetualInventoryTransfers", searchArguments, commandType: CommandType.StoredProcedure);
             }
         }
 
