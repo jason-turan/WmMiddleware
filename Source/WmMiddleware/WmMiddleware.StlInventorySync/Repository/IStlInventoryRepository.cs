@@ -5,7 +5,7 @@ namespace WmMiddleware.StlInventorySync.Repository
 {
     public interface IStlInventoryRepository
     {
-        IEnumerable<StlInventory> GetStlInventorySync();
+        IEnumerable<StlInventory> GetLatestManhattanInventorySync();
         void InsertStlInventory(IList<StlInventory> stlInventory);
     }
 }

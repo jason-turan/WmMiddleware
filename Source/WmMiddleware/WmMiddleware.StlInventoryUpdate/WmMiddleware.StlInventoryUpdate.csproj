@@ -47,6 +47,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,7 +57,7 @@
   <ItemGroup>
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
     <Compile Include="IStlInventoryUpdateJob.cs" />
-    <Compile Include="Models\StlInventoryUpdate.cs" />
+    <Compile Include="Models\StlInventoryItem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IStlInventoryUpdateRepository.cs" />
@@ -79,6 +80,14 @@
     <ProjectReference Include="..\WmMiddleware.Configuration\WmMiddleware.Configuration.csproj">
       <Project>{150356a5-306b-4da5-8d0c-504da59f0e02}</Project>
       <Name>WmMiddleware.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WmMiddleware.Pix\WmMiddleware.Pix.csproj">
+      <Project>{21adff87-bb23-46ba-ae47-07b8eda135bf}</Project>
+      <Name>WmMiddleware.Pix</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WmMiddleware.Shipment\WmMiddleware.Shipment.csproj">
+      <Project>{b4c7e72d-cdb6-4fea-abdf-3564a588a762}</Project>
+      <Name>WmMiddleware.Shipment</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

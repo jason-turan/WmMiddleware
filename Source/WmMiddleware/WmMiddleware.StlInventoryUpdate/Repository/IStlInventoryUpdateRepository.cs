@@ -9,14 +9,7 @@ namespace WmMiddleware.StlInventoryUpdate.Repository
     public interface IStlInventoryUpdateRepository
     {
 
-        IEnumerable<Models.StlInventoryUpdate> GetStlInventoryPix();
+        void UpdateStlInventory(IList<Models.StlInventoryItem> stlInventoryList);
 
-        IEnumerable<Models.StlInventoryUpdate> GetStlInventoryShipments();
-
-        void UpdateStlInventory(IList<Models.StlInventoryUpdate> stlInventoryList);
-
-        void SetPixAsProcessed(IList<Models.StlInventoryUpdate> stlInvenotryList);
-
-        void SetShipmentsAsProcessed(IList<Models.StlInventoryUpdate> stlInvenotryList);
     }
 }

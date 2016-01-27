@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using WmMiddleware.Shipment.Models;
 using WmMiddleware.Shipment.Models.Generated;
 
 namespace WmMiddleware.Shipment.Repository
@@ -9,5 +10,7 @@ namespace WmMiddleware.Shipment.Repository
         void InsertShipmentLineItems(IList<ManhattanShipmentLineItem> shipmentLineItems);
         void InsertShipmentCartonHeaders(IList<ManhattanShipmentCartonHeader> shipmentCartonHeaders);
         void InsertShipmentCartonDetails(IList<ManhattanShipmentCartonDetail> shipmentCartonDetails);
+        IEnumerable<ManhattanShipmentLineItem> FindShipmentLineItems();
+        void InsertShipmentInventoryAdjustmentProcessing(IList<ShipmentInventoryAdjustment> shipmentInventoryAdjustments);
     }
 }

@@ -22,15 +22,24 @@ namespace WmMiddleware.Pix.Repository
         public IEnumerable<ManhattanPerpetualInventoryTransfer> FindPerpetualInventoryTransfers(PerpetualInventoryTransactionCriteria criteria)
         {
             var searchArguments = new DynamicParameters();
-            
-            searchArguments.Add("@TransactionType", criteria.TransactionType, DbType.String);
-            searchArguments.Add("@TransactionCode", criteria.TransactionCode, DbType.String);
+
+            searchArguments.Add("@TransactionType", criteria.TransactionType, DbType.String);  
+
+            if (!string.IsNullOrEmpty(criteria.TransactionType))
+            {
+                searchArguments.Add("@TransactionCode", criteria.TransactionCode, DbType.String);
+            }
 
             if (criteria.UnprocessedOnly.HasValue && criteria.UnprocessedOnly.Value == true)
             {
                 searchArguments.Add("@UnprocessedOnly", 1, DbType.Boolean);    
             }
-            
+
+            if (!string.IsNullOrEmpty(criteria.ProcessType))
+            {
+                searchArguments.Add("@ProcessType", criteria.ProcessType, DbType.String);
+            }
+
             using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
             {
                 return connection.Query<ManhattanPerpetualInventoryTransfer>("sp_FindManhattanPerpetualInventoryTransfers", searchArguments, commandType: CommandType.StoredProcedure);
@@ -49,6 +58,28 @@ namespace WmMiddleware.Pix.Repository
             using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
             {
                 connection.Execute(insertSql, parameters);
+            }
+        }
+
+        public void InsertPixInventoryAdjustmentProcessing(IList<PixInventoryAdjustment> pixInventoryAdjustments)
+        {
+            using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
+            {
+                var inventoryPixProcessingTable = new DataTable();
+
+                inventoryPixProcessingTable.Columns.Add("ManhattanPerpetualInventoryTransferId");
+                foreach (var adj in pixInventoryAdjustments)
+                {
+                    inventoryPixProcessingTable.Rows.Add(adj.ManhattanPerpetualInventoryTransferId);
+                }
+
+                var parameter = new
+                {
+                    InventoryPixProcessingTable = inventoryPixProcessingTable.AsTableValuedParameter("[dbo].[InventoryPixProcessingTable]")
+                };
+
+                connection.Open();
+                connection.Execute("sp_InsertInventoryPixProcessing", parameter, commandType: CommandType.StoredProcedure);
             }
         }
     }

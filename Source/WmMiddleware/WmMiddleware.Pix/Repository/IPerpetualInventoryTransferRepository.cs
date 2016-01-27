@@ -11,5 +11,7 @@ namespace WmMiddleware.Pix.Repository
         IEnumerable<ManhattanPerpetualInventoryTransfer> FindPerpetualInventoryTransfers(PerpetualInventoryTransactionCriteria criteria);
 
         void InsertManhattanPerpetualInventoryTransferProcessing(int manhattanPerpetualInventoryProcessingId);
+
+        void InsertPixInventoryAdjustmentProcessing(IList<PixInventoryAdjustment> pixInventoryAdjustments);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Transactions;
 using Middleware.Jobs;
 using MiddleWare.Log;
 using WmMiddleware.InventorySync.Models;
@@ -22,19 +23,29 @@ namespace WmMiddleware.StlInventorySync
 
         public void RunUnitOfWork(string jobKey)
         {
-            var stlInvetorySyncLatest = _stlInventoryRepository.GetStlInventorySync().ToList();
+            //TODO: Need to complete the following. 
+            //step 1) - Ensure StlInventoryUpdate job is not running.
+            //step 2) - Execute StlInventoryUpdate job to ensure all PIX/Shipments are accounted for before Inventory Sync. 
 
-            if (stlInvetorySyncLatest.Count > 0)
+            var latestInventorySync = _stlInventoryRepository.GetLatestManhattanInventorySync().ToList();
+
+            if (latestInventorySync.Count > 0)
             {
-                _stlInventoryRepository.InsertStlInventory(stlInvetorySyncLatest);
-
-                _log.Debug("Inserted " + stlInvetorySyncLatest.Count() + " records from latest InventorySync data");
-
-                _inventorySyncRepository.SetAsProcessed(new InventorySyncProcessing
+                using (var transactionScope = new TransactionScope())
                 {
-                    InventorySyncProcessingId = stlInvetorySyncLatest.First().InventorySyncProcessingId,
-                    ProcessedDate = stlInvetorySyncLatest.First().InvDate
-                });           
+                     _stlInventoryRepository.InsertStlInventory(latestInventorySync);
+
+                    _log.Debug("Inserted " + latestInventorySync.Count() + " records from latest InventorySync data");
+
+                    _inventorySyncRepository.SetAsProcessed(new InventorySyncProcessing
+                    {
+                        TransactionNumber = latestInventorySync.First().ManhattanInventorySyncTransactionNumber,
+                        ProcessedDate = latestInventorySync.First().InventoryDate
+                    });          
+                
+                    transactionScope.Complete();
+                }
+
             }
             else
             {
