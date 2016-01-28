@@ -16,14 +16,16 @@ namespace Middleware.WarehouseManagement.Aurora.PickTickets
 {
     public class PickTicketJob : OutboundProcessor
     {
+        private readonly ICarrierReadRepository _carrierReadRepository;
         private IPickWriter DestinationRepository { get; set; }
 
         private readonly DataFileRepository<ManhattanPickTicketHeader> _headerRepository = new DataFileRepository<ManhattanPickTicketHeader>();
         private readonly DataFileRepository<ManhattanPickTicketDetail> _detailRepository = new DataFileRepository<ManhattanPickTicketDetail>();
 
-        public PickTicketJob(ILog logger, IPickWriter destinationRepository, IConfigurationManager configurationManager, IFileIo fileIo, IJobRepository jobRepository, ITransferControlRepository transferControlRepository)
+        public PickTicketJob(ILog logger, IPickWriter destinationRepository, IConfigurationManager configurationManager, IFileIo fileIo, IJobRepository jobRepository, ITransferControlRepository transferControlRepository, ICarrierReadRepository carrierReadRepository)
             : base(logger, configurationManager, fileIo, jobRepository, transferControlRepository)
         {
+            _carrierReadRepository = carrierReadRepository;
             DestinationRepository = destinationRepository;
         }
 
@@ -63,7 +65,7 @@ namespace Middleware.WarehouseManagement.Aurora.PickTickets
             var headers = _headerRepository.Get(headerFile.FileLocation);
             var details = _detailRepository.Get(detailFile.FileLocation);
 
-            var orders = headers.ToDictionary(h => h.PickticketControlNumber, h => h.ToOrder());
+            var orders = headers.ToDictionary(h => h.PickticketControlNumber, h => h.ToOrder(_carrierReadRepository));
 
             foreach (var detail in details)
             {

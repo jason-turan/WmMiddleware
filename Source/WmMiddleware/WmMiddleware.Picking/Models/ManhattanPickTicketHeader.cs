@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Linq;
 using WmMiddleware.Common.Extensions;
 using WmMiddleware.Common.Locations;
+using WmMiddleware.Picking.Repositories;
 
 namespace WmMiddleware.Picking.Models
 {
@@ -13,18 +14,18 @@ namespace WmMiddleware.Picking.Models
 
         }
 
-        public ManhattanPickTicketHeader(Order order, string batchControlNumber, string companyNumber, string warehouseNumber, ICountryReader countryReader)
+        public ManhattanPickTicketHeader(Order order, string batchControlNumber, string companyNumber, string warehouseNumber, ICountryReader countryReader, ICarrierReadRepository carrierRepository)
         {
             BatchControlNumber = batchControlNumber;
             CreateDate = DateTime.Now;
-            UserId = order.OrderSource;
-            ProgramId = order.OrderSource;
+            UserId = order.OrderSource == null ? null : order.OrderSource.Truncate(10);
+            ProgramId = UserId;
             Company = companyNumber;
             Division = warehouseNumber;
             PickticketControlNumber = order.ControlNumber;
             Warehouse = warehouseNumber;
             PickticketNumber = order.ControlNumber;
-            OrderNumber = new string(order.OrderNumber.TakeWhile(c => c != '-').ToArray());
+            OrderNumber = order.ControlNumber;
             MiscellaneousIns20Byte11 = order.OrderNumber; // Save order number in misc field to retrieve from ship files
             OrderType = order.OrderPriority;
             ShipTo = "CDS";
@@ -35,9 +36,10 @@ namespace WmMiddleware.Picking.Models
             ShipToState = order.ShippingAddress.State;
             ShipToZip = order.ShippingAddress.Zip;
             // PackingSlipType =
-            ShipVia = 
+            ShipVia = carrierRepository.GetCode(order.ShippingMethod);
             ShipToCountry = countryReader.GetCountryCode(order.ShippingAddress.Country).ToString(CultureInfo.InvariantCulture);
             ArAccountNumber = "NBUS"; // Requested by Manhattan team on 1/25 to be same as PHSOTO/Soldto
+            PackingSlipType = "P5";
             SoldTo = "NBUS";
             SoldToName = order.BillingAddress.Name;
             SoldToAddr1 = order.BillingAddress.Line1;
@@ -59,7 +61,6 @@ namespace WmMiddleware.Picking.Models
             Function = "1";
             CartonNumberType = "2";
             VasType = "Y";
-            ShipVia = order.ShippingMethod;
         }
 
         public DateTime CreateDate

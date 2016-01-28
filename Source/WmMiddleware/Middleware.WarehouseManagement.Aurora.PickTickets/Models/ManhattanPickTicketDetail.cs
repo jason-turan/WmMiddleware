@@ -6,7 +6,7 @@
         {
             return new LineItem
             {
-                ItemSku = "Test",//PackageBarcode,
+                ItemSku = PackageBarcode,
                 Quantity = (int)OriginalPickticketQuantity
             };
         }

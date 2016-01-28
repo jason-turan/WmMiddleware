@@ -37,7 +37,10 @@
                 GiftMessage1 = GiftMessage1,
                 GiftMessage2 = GiftMessage2,
                 OrderNumber = OrderNumber,
-                OrderDate = OrderDate
+                OrderDate = OrderDate,
+                ShippingMethod = ShippingMethod,
+                OrderSource = OrderSource,
+                OrderPriority = OrderPriority
             };
         }
 

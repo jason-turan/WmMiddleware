@@ -1,11 +1,12 @@
 ﻿using System.Globalization;
+using Middleware.WarehouseManagement.Aurora.PickTickets.Repositories;
 using WmMiddleware.Common.Extensions;
 
 namespace Middleware.WarehouseManagement.Aurora.PickTickets.Models
 {
     internal partial class ManhattanPickTicketHeader
     {
-        public Order ToOrder()
+        public Order ToOrder(ICarrierReadRepository carrierReadRepository)
         {
             return new Order
             {
@@ -36,7 +37,7 @@ namespace Middleware.WarehouseManagement.Aurora.PickTickets.Models
                 BillingPhone = TelephoneNumber,
                 ShippingPhone = TelephoneNumber,
                 EmailAddress = "bncorder@newbalance.com",
-                ShippingMethod = "Ground"
+                ShippingMethod = carrierReadRepository.GetOmsShipMethod(ShipVia)
             };
         }
     }

@@ -20,6 +20,7 @@ namespace Middleware.WarehouseManagement.Aurora.PickTickets.DependencyInjection
             Bind<IPickWriter>().To<XmlPickWriter>();
             Bind<IFileIo>().To<FileIo>();
             Bind<ITransferControlRepository>().To<TransferControlRepository>();
+            Bind<ICarrierReadRepository>().To<DatabaseCarrierRespository>();
         }
     }
 }

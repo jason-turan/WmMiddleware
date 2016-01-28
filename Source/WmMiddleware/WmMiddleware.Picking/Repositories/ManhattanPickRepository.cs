@@ -21,14 +21,18 @@ namespace WmMiddleware.Picking.Repositories
         private readonly ITransferControlManager _transferControlManager;
         private readonly IJobRepository _jobRepository;
         private readonly ICountryReader _countryReader;
+        private readonly ICarrierReadRepository _carrierRepository;
 
         public ManhattanPickRepository(IPickConfiguration configuration, 
                                        ITransferControlManager transferControlManager,
-                                       IJobRepository jobRepository, ICountryReader countryReader)
+                                       IJobRepository jobRepository,
+                                       ICountryReader countryReader,
+                                       ICarrierReadRepository carrierRepository)
         {
             _configuration = configuration;
             _jobRepository = jobRepository;
             _countryReader = countryReader;
+            _carrierRepository = carrierRepository;
             _transferControlManager = transferControlManager;
         }
 
@@ -55,7 +59,7 @@ namespace WmMiddleware.Picking.Repositories
             {
                 order.BillingAddress = warehouseAddress;
 
-                headerList.Add(new ManhattanPickTicketHeader(order, batchControlNumber, companyNumber, warehouseNumber, _countryReader));
+                headerList.Add(new ManhattanPickTicketHeader(order, batchControlNumber, companyNumber, warehouseNumber, _countryReader, _carrierRepository));
                 detailList.AddRange(GroupItems(order, batchControlNumber, companyNumber, warehouseNumber));
                 var instructionControlNumber = 1;
                 foreach (var instruction in order.SpecialInstructions)
