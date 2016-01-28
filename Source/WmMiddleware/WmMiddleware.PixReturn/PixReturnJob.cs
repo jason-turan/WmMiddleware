@@ -62,7 +62,7 @@ namespace WmMiddleware.PixReturn
                         // translate the manhattan file to a business object
                         var returnOnWeb = new ReturnOnWeb
                         {
-                            Company = _databaseRowReturnRepository.GetCompanyFromOrderNumber(unprocessedReturn.OrderNumber),
+                            Company = "NBUS",
                             Condition = condition,
                             Reason = reason,
                             Style = unprocessedReturn.Style,

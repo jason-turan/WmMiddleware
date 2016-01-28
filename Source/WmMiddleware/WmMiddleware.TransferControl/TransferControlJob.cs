@@ -42,6 +42,34 @@ namespace WmMiddleware.TransferControl
             }
         }
 
+        private short _value;
+
+        public object Value
+        {
+            get
+            {
+                return _value;
+            }
+            set
+            {
+                if (!(value is short))
+                {
+                    if ((int)value == 0)
+                    {
+                        _value = 0;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Value must be of type short");
+                    }
+                }
+                else
+                {
+                    _value = (short)value;
+                }
+            }
+        }
+
         public void SetDirectories()
         {
             Directory.CreateDirectory(_configurationManager.GetOutboundFileDirectory());
