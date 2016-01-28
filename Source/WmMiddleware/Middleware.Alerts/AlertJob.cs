@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
+using System.Threading;
 using Middleware.Jobs;
 using Middleware.Jobs.Models;
 using Middleware.Jobs.Repositories;
@@ -50,6 +51,15 @@ namespace Middleware.Alerts
 
         public void RunUnitOfWork(string jobKey)
         {
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+
+            while (stopWatch.Elapsed.Minutes < 5)
+            {
+                _log.Info("Just running...");
+                Thread.Sleep(1000);
+            }
+
             ResolveRecoveries();
 
             var failureList = _jobRepository.GetJobs()

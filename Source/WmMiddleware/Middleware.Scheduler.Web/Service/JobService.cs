@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using Quartz;
 using Middleware.Jobs.Models;
 using Middleware.Jobs.Repositories;
@@ -51,18 +53,44 @@ namespace Middleware.Scheduler.Web.Service
             try
             {
                 if (QuartzRemoteScheduler.Instance == null || !QuartzRemoteScheduler.Instance.IsStarted) return false;
+                var timeOut = new Stopwatch();
+                timeOut.Start();
 
                 var job = _jobRepository.GetJob(jobKey);
-                
+
                 if (!job.IsActive)
-                {
+                {                    
                     _log.Info("Activiated " + jobKey);
                     SaveMiddlewareJobActiveStatus(jobKey, true);
                 }
-
+                
                 QuartzRemoteScheduler.Instance.TriggerJob(new JobKey(jobKey));
                
-                _log.Info("Successfully manually launched " + jobKey + " invoked by " + userName);
+                bool jobLaunched = false;
+
+                while (!jobLaunched)
+                {
+                     Thread.Sleep(1000);
+
+                    if (timeOut.ElapsedMilliseconds > 60000)
+                    {
+                        _log.Warning("Could not launch job because timeout expired");
+                        return false;
+                    }
+
+                    jobLaunched = JobLaunched(job);
+
+                    if (jobLaunched)
+                    {
+                        _log.Info("Successfully manually launched " + jobKey + " invoked by " + userName);
+                    }
+                }
+
+                if (job.IsActive) return true;
+
+                job.IsActive = false;
+                _jobRepository.UpdateJob(job);
+                _log.Info("Deactivated " + jobKey);
 
                 return true;
             }
@@ -71,6 +99,36 @@ namespace Middleware.Scheduler.Web.Service
                 _log.Exception("Failed to launch " + jobKey, exception);
                 return false;
             }
+        }
+
+        private bool JobLaunched(MiddlewareJob job)
+        {
+            bool jobLaunched = false;
+
+            var update = _jobRepository.GetJob(job.JobKey);
+
+            if (!job.LastRunDateTime.HasValue &&
+                update.LastRunDateTime.HasValue)
+            {
+                _log.Debug("Job will be marked as launched because job was launched for first time");
+                jobLaunched = true;
+            }
+
+            if (job.LastRunDateTime.HasValue &&
+                update.LastRunDateTime.HasValue &&
+                job.LastRunDateTime.Value != update.LastRunDateTime.Value)
+            {
+                _log.Debug("Job will be marked as launched because last run date has been updated");
+                jobLaunched = true;
+            }
+
+            if (Process.GetProcesses().Any(p => p.ProcessName.Contains(job.JobExecutable.Replace(".exe",string.Empty))))
+            {
+                _log.Debug("Job is running and will be marked as launched");
+                jobLaunched = true;
+            }
+
+            return jobLaunched;
         }
 
         private bool RescheduleJob(MiddlewareJob job)
