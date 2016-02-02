@@ -184,6 +184,10 @@
       <Project>{21adff87-bb23-46ba-ae47-07b8eda135bf}</Project>
       <Name>WmMiddleware.Pix</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WmMiddleware.ProductReceiving.LedgerReconcilliation\WmMiddleware.GeneralLedgerReconcilliation.csproj">
+      <Project>{c7d1abe8-8bf0-498d-942e-0c3d33b067f4}</Project>
+      <Name>WmMiddleware.GeneralLedgerReconcilliation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WmMiddleware.ProductReceiving\WmMiddleware.ProductReceiving.csproj">
       <Project>{81105c89-fd8e-44fc-84c1-b52fffae3508}</Project>
       <Name>WmMiddleware.ProductReceiving</Name>
@@ -251,5 +255,6 @@
     <Copy SourceFiles="..\Middleware.Alerts\bin\$(Configuration)\Middleware.Alerts.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\Middleware.Integration\bin\$(Configuration)\Middleware.Integration.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\WmMiddleware.PixReturn\bin\$(Configuration)\WmMiddleware.PixReturn.exe.config" DestinationFolder="$(TargetDir)" />
+    <Copy SourceFiles="..\WmMiddleware.GeneralLedgerReconcilliation\bin\$(Configuration)\WmMiddleware.GeneralLedgerReconcilliation.exe.config" DestinationFolder="$(TargetDir)" />
   </Target>
 </Project>
