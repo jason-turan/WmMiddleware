@@ -123,9 +123,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WmTransactions", "WmTransac
 		sp_GetCancellationsForEmailNotification.sql.txt = sp_GetCancellationsForEmailNotification.sql.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.GeneralLedgerReconcilliation", "WmMiddleware.ProductReceiving.LedgerReconcilliation\WmMiddleware.GeneralLedgerReconcilliation.csproj", "{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 27
+		SccNumberOfProjects = 28
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://10.1.0.80:8080/tfs/business%20applications
 		SccLocalPath0 = .
@@ -207,6 +209,9 @@ Global
 		SccProjectUniqueName26 = Middleware.WM.Aurora.TransferControl\\Middleware.Wm.Aurora.TransferControl.csproj
 		SccProjectName26 = Middleware.WM.Aurora.TransferControl
 		SccLocalPath26 = Middleware.WM.Aurora.TransferControl
+		SccProjectUniqueName27 = WmMiddleware.ProductReceiving.LedgerReconcilliation\\WmMiddleware.GeneralLedgerReconcilliation.csproj
+		SccProjectName27 = WmMiddleware.ProductReceiving.LedgerReconcilliation
+		SccLocalPath27 = WmMiddleware.ProductReceiving.LedgerReconcilliation
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -476,6 +481,16 @@ Global
 		{FA926702-2FC7-4C85-8ECD-91F2424F0037}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FA926702-2FC7-4C85-8ECD-91F2424F0037}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{FA926702-2FC7-4C85-8ECD-91F2424F0037}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

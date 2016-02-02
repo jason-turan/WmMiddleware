@@ -16,7 +16,7 @@ namespace MiddleWare.Log
           
             XmlConfigurator.Configure();
             AlterLogPathToRootPath();
-            _logger = log4net.LogManager.GetLogger(AppDomain.CurrentDomain.FriendlyName);
+            _logger = LogManager.GetLogger(AppDomain.CurrentDomain.FriendlyName);
         }
 
         public void Debug(string message)
@@ -47,7 +47,7 @@ namespace MiddleWare.Log
         /// <summary>
         /// Change log path to path root of executing codebase (if installed on D drive, log to D drive)
         /// </summary>
-        private void AlterLogPathToRootPath()
+        private static void AlterLogPathToRootPath()
         {
             var pathRoot = Path.GetPathRoot(Assembly.GetExecutingAssembly().CodeBase.Replace("file:///", string.Empty)); 
 

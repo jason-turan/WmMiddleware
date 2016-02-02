@@ -107,7 +107,17 @@ BEGIN
 		   '1H', 
 		   'WmMiddleware.StlInventoryUpdate.exe', 
 		    0,
-			'?')
+			'Processing')
+END
+
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'General Ledger Reconcilliation')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('General Ledger Reconcilliation', 
+		   '15M', 
+		   'WmMiddleware.GeneralLedgerReconcilliation.exe', 
+		    0,
+			'Processing')
 END
 
 select * from job

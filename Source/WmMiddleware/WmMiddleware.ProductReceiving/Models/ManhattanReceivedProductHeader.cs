@@ -34,6 +34,8 @@ namespace WmMiddleware.ProductReceiving.Models
         {
             AsnType = "4";//1 for manual POs, 3 for inbound ASNs, 4 for returns
             ShipmentNumber = purchaseOrder.OrderNumber;
+            MiscellaneousAlphaField3 = "NBUS";
+            MiscellaneousAlphaField4 = "CDS";
         }
 
         public ManhattanReceivedProductHeader(AutomatedShippingNotification shippingNotification, string batchControlNumber, string warehouseNumber)
