@@ -40,6 +40,7 @@ namespace Middleware.Jobs
                 jobRepository.UpdateJob(job);
                 ((IUnitOfWork)kernel.Get(typeof(T))).RunUnitOfWork(jobKey);
                 job.LastRunStatus = JobRunStatus.Success;
+                jobRepository.UpdateJob(job);
                 logger.Info("Successful execution of " + kernel.Get(typeof(T)));
             }
             catch (Exception exception)
