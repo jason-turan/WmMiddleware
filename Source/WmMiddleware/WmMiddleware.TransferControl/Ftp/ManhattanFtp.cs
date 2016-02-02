@@ -1,8 +1,7 @@
 ﻿using System.IO;
 using System.Text;
-using WmMiddleware.Configuration;
 using MiddleWare.Log;
-using WmMiddleware.TransferControl.Models;
+using WmMiddleware.Configuration;
 
 namespace WmMiddleware.TransferControl.Ftp
 {
@@ -13,13 +12,13 @@ namespace WmMiddleware.TransferControl.Ftp
         private readonly Encoding _encoding;
         private readonly ILog _log;
 
-        public ManhattanFtp(IConfigurationManager configuration, ILog log, IFtpClient ftpClient) 
+        public ManhattanFtp(IConfigurationManager configuration, ILog log, IFtpClientFactory ftpClientFactory) 
         {
             _configuration = configuration;
 
             _log = log;
 
-            _ftpClient = ftpClient;
+            _ftpClient = ftpClientFactory.CreateFtpClient();
 
             _encoding = Encoding.GetEncoding("IBM037");
         }
@@ -28,7 +27,7 @@ namespace WmMiddleware.TransferControl.Ftp
         {
             EncodeFile(masterControlFile);
 
-            _ftpClient.Append(masterControlFile, GetMasterControlFtpPath(), GetFtpOptions());
+            _ftpClient.Append(masterControlFile, GetMasterControlFtpPath());
             _log.Info("Successfully appended to master control file.");
         }
         
@@ -38,7 +37,7 @@ namespace WmMiddleware.TransferControl.Ftp
             
             EncodeFile(fileInfo);
 
-            _ftpClient.Upload(fileInfo, destinationFtpPath + "/" + fileInfo.Name, GetFtpOptions());
+            _ftpClient.Upload(fileInfo, destinationFtpPath + "/" + fileInfo.Name);
 
             _log.Info("Successfully uploaded " + fileInfo.FullName + " to " + destinationFtpPath);
         }
@@ -56,17 +55,6 @@ namespace WmMiddleware.TransferControl.Ftp
             string text = File.ReadAllText(masterControlFile.FullName, _encoding);
 
             File.WriteAllText(masterControlFile.FullName, text, _encoding);
-        }
-
-        private FtpOptions GetFtpOptions()
-        {
-            return new FtpOptions
-            {
-                Host = _configuration.GetKey<string>(ConfigurationKey.TransferControlFtpManhattanServer),
-                UserId = _configuration.GetKey<string>(ConfigurationKey.TransferControlFtpUserName),
-                Password = _configuration.GetKey<string>(ConfigurationKey.TransferControlFtpPassword),
-                UseBinary = false
-            };
         }
     }
 }

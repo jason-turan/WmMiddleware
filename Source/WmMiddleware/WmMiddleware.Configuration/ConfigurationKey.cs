@@ -33,5 +33,11 @@
 
         public const string PhoneNumber = "PhoneNumber";
         public const string UpsAccountNumber = "UpsAccountNumber";
+
+        public const string OmsAuroraLocalDirectory = "OmsAurora_LocalDirectory";
+        public const string OmsAuroraSftpUsername = "OmsAurora_Sftp_Username";
+        public const string OmsAuroraSftpPassword = "OmsAurora_Sftp_Password";
+        public const string OmsAuroraSftpDirectory = "OmsAurora_Sftp_Directory";
+        public const string OmsAuroraSftpHost = "OmsAurora_Sftp_Host";
     }
 }

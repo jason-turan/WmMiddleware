@@ -8,21 +8,23 @@ namespace WmMiddleware.TransferControl.Ftp
 {
     public class FtpClient : IFtpClient
     {
-        private const string RemotePath = "/";
+        private const string PathCharacter = "/";
+        private readonly FtpOptions _ftpOptions;
         private readonly ILog _log;
 
-        public FtpClient(ILog log)
+        public FtpClient(FtpOptions options, ILog log)
         {
+            _ftpOptions = options;
             _log = log;
         }
 
-        public bool Upload(FileInfo localFile, string remoteFileName, FtpOptions ftpOptions)
+        public bool Upload(FileInfo localFile, string remoteFileName)
         {
             if (!localFile.Exists)
                 throw new Exception(string.Format("The local file does not exist, the file path:{0}", localFile.FullName));
 
-            string url = ftpOptions.Host.TrimEnd('/') + RemotePath + remoteFileName;
-            FtpWebRequest request = CreateRequest(url, WebRequestMethods.Ftp.UploadFile, ftpOptions);
+            string url = _ftpOptions.Host.TrimEnd('/') + PathCharacter + remoteFileName;
+            FtpWebRequest request = CreateRequest(url, WebRequestMethods.Ftp.UploadFile, _ftpOptions);
 
             using (Stream rs = request.GetRequestStream())
             using (FileStream fs = localFile.OpenRead())
@@ -37,18 +39,18 @@ namespace WmMiddleware.TransferControl.Ftp
                     count = fs.Read(buffer, 0, buffer.Length);
                     // bufferCount++;
                 }
-                fs.Close();
             }
+
             return true;
         }
 
-        public bool Download(string serverName, string localName, FtpOptions ftpOptions)
+        public bool Download(string serverName, string localName)
         {
             using (var fs = new FileStream(localName, FileMode.OpenOrCreate)) //Create or open a local file
             {
                 //To establish the connection
-                string url = ftpOptions.Host.TrimEnd('/') + RemotePath + serverName;
-                FtpWebRequest request = CreateRequest(url, WebRequestMethods.Ftp.DownloadFile, ftpOptions);
+                string url = _ftpOptions.Host.TrimEnd('/') + PathCharacter + serverName;
+                FtpWebRequest request = CreateRequest(url, WebRequestMethods.Ftp.DownloadFile, _ftpOptions);
                 request.ContentOffset = fs.Length;
                 using (var response = (FtpWebResponse) request.GetResponse())
                 {
@@ -71,14 +73,14 @@ namespace WmMiddleware.TransferControl.Ftp
             return true;
         }
 
-        public void Append(FileInfo localFile, string remoteFileName, FtpOptions ftpOptions)
+        public void Append(FileInfo localFile, string remoteFileName)
         {
             if (!localFile.Exists)
                 throw new Exception(string.Format("The local file does not exist, the file path:{0}", localFile.FullName));
             
             using (var fileStream = new FileStream(localFile.FullName, FileMode.Open))
             {
-                Append(fileStream, remoteFileName, ftpOptions);
+                Append(fileStream, remoteFileName, _ftpOptions);
             }
         }
 
@@ -89,7 +91,7 @@ namespace WmMiddleware.TransferControl.Ftp
                 throw new Exception("Stream does not exist or cannot be read");
             }
 
-            string url = ftpOptions.Host.TrimEnd('/') + RemotePath + remoteFileName;
+            string url = ftpOptions.Host.TrimEnd('/') + PathCharacter + remoteFileName;
 
             FtpWebRequest request = CreateRequest(url, WebRequestMethods.Ftp.AppendFile, ftpOptions);
 

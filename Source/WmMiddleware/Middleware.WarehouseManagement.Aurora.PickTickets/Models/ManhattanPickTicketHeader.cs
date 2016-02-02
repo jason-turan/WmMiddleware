@@ -1,19 +1,24 @@
 ﻿using System.Globalization;
 using Middleware.WarehouseManagement.Aurora.PickTickets.Repositories;
 using WmMiddleware.Common.Extensions;
+using WmMiddleware.Common.Locations;
 
 namespace Middleware.WarehouseManagement.Aurora.PickTickets.Models
 {
     internal partial class ManhattanPickTicketHeader
     {
-        public Order ToOrder(ICarrierReadRepository carrierReadRepository)
+        public Order ToOrder(ICarrierReadRepository carrierReadRepository, ICountryReader countryReader)
         {
+            int soldToCountry, shipToCountry;
+            int.TryParse(SoldToCountry, out soldToCountry);
+            int.TryParse(ShipToCountry, out shipToCountry);
+
             return new Order
             {
                 BillingAddress = new Address
                 {
                     City = SoldToCity,
-                    Country = SoldToCountry,
+                    Country = countryReader.GetCountryAbbreviation(soldToCountry),
                     Line1 = SoldToAddr1,
                     Line2 = SoldToAddr2,
                     Line3 = SoldToAddr3,
@@ -24,7 +29,7 @@ namespace Middleware.WarehouseManagement.Aurora.PickTickets.Models
                 ShippingAddress = new Address
                 {
                     City = ShipToCity,
-                    Country = ShipToCountry,
+                    Country = countryReader.GetCountryAbbreviation(shipToCountry),
                     Line1 = ShipToAddr1,
                     Line2 = ShipToAddr2,
                     Line3 = ShipToAddr3,

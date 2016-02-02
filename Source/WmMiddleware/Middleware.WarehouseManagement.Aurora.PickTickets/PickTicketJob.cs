@@ -6,6 +6,7 @@ using Middleware.WarehouseManagement.Aurora.PickTickets.Models;
 using Middleware.WarehouseManagement.Aurora.PickTickets.Repositories;
 using MiddleWare.Log;
 using WmMiddleware.Common.DataFiles;
+using WmMiddleware.Common.Locations;
 using WmMiddleware.Configuration;
 using WmMiddleware.ManhattanOutboundData;
 using WmMiddleware.TransferControl.Control;
@@ -17,15 +18,17 @@ namespace Middleware.WarehouseManagement.Aurora.PickTickets
     public class PickTicketJob : OutboundProcessor
     {
         private readonly ICarrierReadRepository _carrierReadRepository;
+        private readonly ICountryReader _countryReader;
         private IPickWriter DestinationRepository { get; set; }
 
         private readonly DataFileRepository<ManhattanPickTicketHeader> _headerRepository = new DataFileRepository<ManhattanPickTicketHeader>();
         private readonly DataFileRepository<ManhattanPickTicketDetail> _detailRepository = new DataFileRepository<ManhattanPickTicketDetail>();
 
-        public PickTicketJob(ILog logger, IPickWriter destinationRepository, IConfigurationManager configurationManager, IFileIo fileIo, IJobRepository jobRepository, ITransferControlRepository transferControlRepository, ICarrierReadRepository carrierReadRepository)
+        public PickTicketJob(ILog logger, IPickWriter destinationRepository, IConfigurationManager configurationManager, IFileIo fileIo, IJobRepository jobRepository, ITransferControlRepository transferControlRepository, ICarrierReadRepository carrierReadRepository, ICountryReader countryReader)
             : base(logger, configurationManager, fileIo, jobRepository, transferControlRepository)
         {
             _carrierReadRepository = carrierReadRepository;
+            _countryReader = countryReader;
             DestinationRepository = destinationRepository;
         }
 
@@ -65,7 +68,7 @@ namespace Middleware.WarehouseManagement.Aurora.PickTickets
             var headers = _headerRepository.Get(headerFile.FileLocation);
             var details = _detailRepository.Get(detailFile.FileLocation);
 
-            var orders = headers.ToDictionary(h => h.PickticketControlNumber, h => h.ToOrder(_carrierReadRepository));
+            var orders = headers.ToDictionary(h => h.PickticketControlNumber, h => h.ToOrder(_carrierReadRepository, _countryReader));
 
             foreach (var detail in details)
             {

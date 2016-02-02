@@ -62,6 +62,9 @@
     <Reference Include="Ninject">
       <HintPath>..\..\..\Dependencies\Ninject\Ninject.dll</HintPath>
     </Reference>
+    <Reference Include="Renci.SshNet">
+      <HintPath>..\..\..\Dependencies\Renci.SSH\Renci.SshNet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Transactions" />
@@ -83,11 +86,17 @@
     <Compile Include="Control\TransferControlManager.cs" />
     <Compile Include="DependencyInjection\NinjectModule.cs" />
     <Compile Include="Ftp\FtpClient.cs" />
+    <Compile Include="Ftp\FtpClientFactory.cs" />
     <Compile Include="Ftp\IFtpClient.cs" />
+    <Compile Include="Ftp\IFtpClientConfiguration.cs" />
+    <Compile Include="Ftp\IFtpClientFactory.cs" />
     <Compile Include="Ftp\IManhattanFtp.cs" />
     <Compile Include="Ftp\ManhattanFtp.cs" />
     <Compile Include="Control\ITransferControlInbound.cs" />
     <Compile Include="Control\ITransferControlOutbound.cs" />
+    <Compile Include="Ftp\ManhattanFtpConfiguration.cs" />
+    <Compile Include="Ftp\SftpClient.cs" />
+    <Compile Include="Ftp\SftpClientFactory.cs" />
     <Compile Include="Models\FtpOptions.cs" />
     <Compile Include="Models\Generated\TransferControlMaster.cs" />
     <Compile Include="Models\TransferControl.cs" />

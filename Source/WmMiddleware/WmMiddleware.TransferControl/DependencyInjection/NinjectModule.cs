@@ -19,13 +19,14 @@ namespace WmMiddleware.TransferControl.DependencyInjection
             Bind<IUnitOfWork>().To<TransferControlJob>();
             Bind<IJobRepository>().To<JobRepository>();
             Bind<IManhattanFtp>().To<ManhattanFtp>();
-            Bind<IFtpClient>().To<FtpClient>();
             Bind<ITransferControlOutbound>().To<TransferControlOutbound>();
             Bind<ITransferControlManager>().To<TransferControlManager>();
             Bind<ITransferControlInbound>().To<TransferControlInbound>();
             Bind<ITransferControlRepository>().To<TransferControlRepository>();
             Bind<IConfigurationManager>().To<MiddlewareConfigurationManager>();
             Bind<ITransferControlConfigurationManager>().To<TransferControlConfigurationManager>();
+            Bind<IFtpClientFactory>().To<FtpClientFactory>();
+            Bind<IFtpClientConfiguration>().To<ManhattanFtpConfiguration>();
         }
     }
 }

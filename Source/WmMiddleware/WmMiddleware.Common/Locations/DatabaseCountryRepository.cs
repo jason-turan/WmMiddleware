@@ -14,13 +14,29 @@ namespace WmMiddleware.Common.Locations
 
         public int GetCountryCode(string countryAbbreviation)
         {
-            var countryCode = GetCountryCodesInternal().FirstOrDefault(cc => cc.Abbreviation.Equals(countryAbbreviation, StringComparison.InvariantCultureIgnoreCase));
-            if (countryCode == null)
+            var country = GetCountryCodesInternal().FirstOrDefault(cc => cc.Abbreviation.Equals(countryAbbreviation, StringComparison.InvariantCultureIgnoreCase));
+            if (country == null)
             {
                 throw new ArgumentOutOfRangeException("countryAbbreviation", string.Format("No country found with abbreviation '{0}'", countryAbbreviation));
             }
 
-            return countryCode.Code;
+            return country.Code;
+        }
+
+        public string GetCountryAbbreviation(int countryCode)
+        {
+            if (countryCode == 0)
+            {
+                return null;
+            }
+
+            var country = GetCountryCodesInternal().FirstOrDefault(cc => cc.Code == countryCode);
+            if (country == null)
+            {
+                throw new ArgumentOutOfRangeException("countryCode", string.Format("No country found with code '{0}'", countryCode));
+            }
+
+            return country.Abbreviation;
         }
 
         private IEnumerable<CountryCode> GetCountryCodesInternal()

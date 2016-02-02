@@ -59,6 +59,9 @@
     <Reference Include="Ninject">
       <HintPath>..\..\..\Dependencies\Ninject\Ninject.dll</HintPath>
     </Reference>
+    <Reference Include="Renci.SshNet">
+      <HintPath>..\..\..\Dependencies\Renci.SSH\Renci.SshNet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Caching" />
@@ -70,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
+    <Compile Include="Ftp\AuroraFtpClientConfiguration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Generated\ManhattanPickTicketDetail.g.cs" />
     <Compile Include="Models\Generated\ManhattanPickTicketHeader.g.cs" />
@@ -116,6 +120,7 @@
       <Name>WmMiddleware.TransferControl</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
