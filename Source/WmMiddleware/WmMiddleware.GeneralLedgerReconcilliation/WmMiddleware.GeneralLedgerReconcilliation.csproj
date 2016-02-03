@@ -62,6 +62,8 @@
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
     <Compile Include="GeneralLedgerReconcilliationJob.cs" />
     <Compile Include="Models\DatabaseIntegrationsInventoryAdjustment.cs" />
+    <Compile Include="Models\DatabasePurchaseOrderDetailInterface.cs" />
+    <Compile Include="Models\DatabasePurchaseOrderHeaderInterface.cs" />
     <Compile Include="Models\InventoryAdjustment.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

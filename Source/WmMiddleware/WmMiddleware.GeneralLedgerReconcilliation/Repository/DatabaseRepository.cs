@@ -13,5 +13,21 @@ namespace WmMiddleware.GeneralLedgerReconcilliation.Repository
                 connection.Insert(databaseIntegrationsInventoryAdjustment);
             }
         }
+
+        public void InsertPurchaseOrderHeaderInterface(DatabasePurchaseOrderHeaderInterface databaseIntegrationsInventoryAdjustment)
+        {
+            using (var connection = DatabaseConnectionFactory.GetNbxWebConnection())
+            {
+                connection.Insert(databaseIntegrationsInventoryAdjustment);
+            }
+        }
+
+        public void InsertPurchaseOrderDetailInterface(DatabasePurchaseOrderDetailInterface databaseIntegrationsInventoryAdjustment)
+        {
+            using (var connection = DatabaseConnectionFactory.GetNbxWebConnection())
+            {
+                connection.Insert(databaseIntegrationsInventoryAdjustment);
+            }
+        }
     }
 }
