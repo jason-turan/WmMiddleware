@@ -1,5 +1,9 @@
-﻿using Middleware.Jobs;
+﻿using System.Linq;
+using Middleware.Jobs;
 using MiddleWare.Log;
+using Ninject.Syntax;
+using WmMiddleware.Pix.Models;
+using WmMiddleware.Pix.Repository;
 
 namespace WmMiddleware.GeneralLedgerReconcilliation
 {
@@ -7,14 +11,48 @@ namespace WmMiddleware.GeneralLedgerReconcilliation
     {
         private readonly ILog _log;
 
-        public GeneralLedgerReconcilliationJob(ILog log)
+        private readonly IPerpetualInventoryTransferRepository _perpetualInventoryTransferRepository;
+
+        public GeneralLedgerReconcilliationJob(ILog log, IPerpetualInventoryTransferRepository perpetualInventoryTransferRepository)
         {
             _log = log;
+            _perpetualInventoryTransferRepository = perpetualInventoryTransferRepository;
         }
 
         public void RunUnitOfWork(string jobKey)
         {
-            _log.Info("Initial Setup : I work");
+            var unprocessed = 
+                _perpetualInventoryTransferRepository.FindPerpetualInventoryTransfers(new PerpetualInventoryTransactionCriteria
+                                                                                      {
+                                                                                         ProcessType = ProcessType.GeneralLedger
+                                                                                      }).ToList();
+
+            _log.Info(string.Format("Processing {0} records", unprocessed.Count()));
+
+            _log.Info("Processing " + unprocessed.Count() + " records");
+
+            foreach (var manhattanPerpetualInventoryTransfer in unprocessed.Where(u => u.InventoryAdjustmentQuantity != 0))
+            {
+                if (manhattanPerpetualInventoryTransfer.TransactionType == TransactionType.InventoryAdjustment)
+                {
+                    var adjustment = new PixInventoryAdjustment(manhattanPerpetualInventoryTransfer);
+
+                    if (adjustment.Quantity > 0)
+                    {
+                        // create PO
+                    }
+                    else
+                    {
+                        // write Integrations_Inventory_Adjustment
+                    }
+                }
+
+                if (manhattanPerpetualInventoryTransfer.TransactionType == TransactionType.Return)
+                {
+                    var returnTransaction = new PixReturn(manhattanPerpetualInventoryTransfer);
+                    
+                }
+            }
         }
     }
 }

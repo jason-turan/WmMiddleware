@@ -9,12 +9,13 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WmMiddleware.GeneralLedgerReconcilliation</RootNamespace>
     <AssemblyName>WmMiddleware.GeneralLedgerReconcilliation</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,6 +37,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Development\MiddlewareIntegration\Dependencies\Dapper\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper.Contrib">
+      <HintPath>..\..\..\..\Development\MiddlewareIntegration\Dependencies\Dapper\Dapper.Contrib.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
@@ -53,8 +61,14 @@
     </Compile>
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
     <Compile Include="GeneralLedgerReconcilliationJob.cs" />
+    <Compile Include="Models\DatabaseIntegrationsInventoryAdjustment.cs" />
+    <Compile Include="Models\InventoryAdjustment.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\DatabaseRepository.cs" />
+    <Compile Include="Repository\GeneralLedgerReconcilliationRepository.cs" />
+    <Compile Include="Repository\IDatabaseRepository.cs" />
+    <Compile Include="Repository\IGeneralLedgerReconcilliationRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -68,14 +82,20 @@
       <Project>{AEEDD741-C346-45BA-A867-3F54B66477A4}</Project>
       <Name>Middleware.Log</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WmMiddleware.Common\WmMiddleware.Common.csproj">
+      <Project>{F1691638-045D-49D1-8921-7D7049EBD666}</Project>
+      <Name>WmMiddleware.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WmMiddleware.Configuration\WmMiddleware.Configuration.csproj">
       <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>
       <Name>WmMiddleware.Configuration</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WmMiddleware.Pix\WmMiddleware.Pix.csproj">
+      <Project>{21ADFF87-BB23-46BA-AE47-07B8EDA135BF}</Project>
+      <Name>WmMiddleware.Pix</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repository\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

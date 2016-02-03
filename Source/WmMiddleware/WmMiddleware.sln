@@ -83,6 +83,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WmTransactions", "WmTransac
 	ProjectSection(SolutionItems) = preProject
 		ManhattanConditionCode.sql.txt = ManhattanConditionCode.sql.txt
 		ManhattanInventorySync.sql.txt = ManhattanInventorySync.sql.txt
+		ManhattanPerpetualInventoryTransferGeneralLedgerProcessing.sql.txt = ManhattanPerpetualInventoryTransferGeneralLedgerProcessing.sql.txt
 		ManhattanPerpetualInventoryTransferProcessing.sql.txt = ManhattanPerpetualInventoryTransferProcessing.sql.txt
 		ManhattanShipmentCancellationEmailProcessing.sql.txt = ManhattanShipmentCancellationEmailProcessing.sql.txt
 		ManhattanShipmentCartonDetail.sql.txt = ManhattanShipmentCartonDetail.sql.txt

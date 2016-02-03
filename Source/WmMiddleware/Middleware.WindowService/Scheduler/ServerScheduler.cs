@@ -36,12 +36,12 @@ namespace Middleware.Scheduler.WindowService.Scheduler
             var jobDetail = JobBuilder.
                 Create(typeof(ConsoleJob)).
                 WithIdentity(jobKey).
-                WithDescription("Scheduled " + job.JobKey + " to run on cron schedule " + job.Schedule).
+                WithDescription("Scheduled " + job.JobKey + " to run on schedule " + job.Schedule).
                 StoreDurably(). // specifies job should stick around even if not scheduled (allows reschedule)
                 Build();
 
             scheduler.ScheduleJob(jobDetail, trigger);
-            _logger.Info("Scheduled " + job.JobKey + " to run on cron schedule " + job.Schedule);
+            _logger.Info("Scheduled " + job.JobKey + " to run on schedule " + job.Schedule);
         }
 
         private ITrigger CreateTrigger(MiddlewareJob job)

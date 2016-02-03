@@ -18,8 +18,7 @@ namespace WmMiddleware.Pix.Repository
             var inventoryAdjustmentCriteria = new PerpetualInventoryTransactionCriteria
             {
                 ProcessType = ProcessType.InventoryAdjustment,
-                TransactionType = TransactionType.InventoryAdjustment,
-                UnprocessedOnly = true
+                TransactionType = TransactionType.InventoryAdjustment
             };
 
             var pixInventoryAdjustements = _perpetualInventoryTransferRepository.FindPerpetualInventoryTransfers(inventoryAdjustmentCriteria);

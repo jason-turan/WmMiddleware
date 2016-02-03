@@ -23,16 +23,14 @@ namespace WmMiddleware.Pix.Repository
         {
             var searchArguments = new DynamicParameters();
 
-            searchArguments.Add("@TransactionType", criteria.TransactionType, DbType.String);  
+            if (!string.IsNullOrEmpty(criteria.TransactionType))
+            {
+                searchArguments.Add("@TransactionType", criteria.TransactionType, DbType.String);
+            }
 
             if (!string.IsNullOrEmpty(criteria.TransactionType))
             {
                 searchArguments.Add("@TransactionCode", criteria.TransactionCode, DbType.String);
-            }
-
-            if (criteria.UnprocessedOnly.HasValue && criteria.UnprocessedOnly.Value == true)
-            {
-                searchArguments.Add("@UnprocessedOnly", 1, DbType.Boolean);    
             }
 
             if (!string.IsNullOrEmpty(criteria.ProcessType))

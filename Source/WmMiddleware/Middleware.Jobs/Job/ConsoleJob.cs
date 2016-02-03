@@ -60,8 +60,6 @@ namespace Middleware.Jobs.Job
                                                     " returned with exit code " +
                                                     process.ExitCode);
                 }
-
-                job.LastRunStatus = JobRunStatus.Success;
             }
             catch (Exception exception)
             {
