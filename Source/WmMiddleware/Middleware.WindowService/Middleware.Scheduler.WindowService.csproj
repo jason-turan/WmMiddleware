@@ -256,5 +256,7 @@
     <Copy SourceFiles="..\Middleware.Integration\bin\$(Configuration)\Middleware.Integration.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\WmMiddleware.PixReturn\bin\$(Configuration)\WmMiddleware.PixReturn.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\WmMiddleware.GeneralLedgerReconcilliation\bin\$(Configuration)\WmMiddleware.GeneralLedgerReconcilliation.exe.config" DestinationFolder="$(TargetDir)" />
+    <Copy SourceFiles="..\Middleware.Wm.Aurora.PickTicketConfirmation\bin\$(Configuration)\Middleware.Wm.Aurora.PickTicketConfirmation.exe.config" DestinationFolder="$(TargetDir)" />
+    <Copy SourceFiles="..\Middleware.Wm.Aurora.TransferControl\bin\$(Configuration)\Middleware.Wm.Aurora.TransferControl.exe.config" DestinationFolder="$(TargetDir)" />
   </Target>
 </Project>

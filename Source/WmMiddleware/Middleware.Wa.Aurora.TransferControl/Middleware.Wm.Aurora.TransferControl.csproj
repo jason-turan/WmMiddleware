@@ -7,8 +7,8 @@
     <ProjectGuid>{FA926702-2FC7-4C85-8ECD-91F2424F0037}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Middleware.WM.Aurora.TransferControl</RootNamespace>
-    <AssemblyName>Middleware.WM.Aurora.TransferControl</AssemblyName>
+    <RootNamespace>Middleware.Wm.Aurora.TransferControl</RootNamespace>
+    <AssemblyName>Middleware.Wm.Aurora.TransferControl</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
