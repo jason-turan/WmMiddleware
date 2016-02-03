@@ -125,9 +125,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WmTransactions", "WmTransac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.GeneralLedgerReconcilliation", "WmMiddleware.ProductReceiving.LedgerReconcilliation\WmMiddleware.GeneralLedgerReconcilliation.csproj", "{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Aurora.PickTicketConfirmation", "Middleware.Wm.Aurora.PickTicketConfirmation\Middleware.Wm.Aurora.PickTicketConfirmation.csproj", "{9E1FF0A9-40C7-4699-937F-03FA634AE48E}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 28
+		SccNumberOfProjects = 29
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://10.1.0.80:8080/tfs/business%20applications
 		SccLocalPath0 = .
@@ -212,6 +214,9 @@ Global
 		SccProjectUniqueName27 = WmMiddleware.ProductReceiving.LedgerReconcilliation\\WmMiddleware.GeneralLedgerReconcilliation.csproj
 		SccProjectName27 = WmMiddleware.ProductReceiving.LedgerReconcilliation
 		SccLocalPath27 = WmMiddleware.ProductReceiving.LedgerReconcilliation
+		SccProjectUniqueName28 = Middleware.Wm.Aurora.PickTicketConfirmation\\Middleware.Wm.Aurora.PickTicketConfirmation.csproj
+		SccProjectName28 = Middleware.Wm.Aurora.PickTicketConfirmation
+		SccLocalPath28 = Middleware.Wm.Aurora.PickTicketConfirmation
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -491,6 +496,16 @@ Global
 		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{9E1FF0A9-40C7-4699-937F-03FA634AE48E}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{9E1FF0A9-40C7-4699-937F-03FA634AE48E}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{9E1FF0A9-40C7-4699-937F-03FA634AE48E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E1FF0A9-40C7-4699-937F-03FA634AE48E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E1FF0A9-40C7-4699-937F-03FA634AE48E}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E1FF0A9-40C7-4699-937F-03FA634AE48E}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{9E1FF0A9-40C7-4699-937F-03FA634AE48E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E1FF0A9-40C7-4699-937F-03FA634AE48E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E1FF0A9-40C7-4699-937F-03FA634AE48E}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{9E1FF0A9-40C7-4699-937F-03FA634AE48E}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
