@@ -6,8 +6,8 @@ using System.Threading;
 using Quartz;
 using Middleware.Jobs.Models;
 using Middleware.Jobs.Repositories;
-using MiddleWare.Log;
 using Middleware.Scheduler.WindowService.Quartz;
+using MiddleWare.Log;
 using Middleware.Scheduler.WindowService.Scheduler;
 
 namespace Middleware.Scheduler.Web.Service

@@ -62,8 +62,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Log", "MiddleWar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Scheduler.Web", "Middleware.Scheduler.Web\Middleware.Scheduler.Web.csproj", "{0AA8B946-9276-4C6D-8E0C-F3D90B79E555}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Scheduler.WindowService", "Middleware.WindowService\Middleware.Scheduler.WindowService.csproj", "{BCB72A58-8273-4F9C-82B6-B522EBDE613C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Integration", "Middleware.Integration\Middleware.Integration.csproj", "{BD53A64C-B782-4BD3-A771-4D2938DBEBFC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.Outbound", "WmMiddleware.ManhattanOutboundData\WmMiddleware.Outbound.csproj", "{0C7E1466-F223-4D93-B53D-E896D0271F5D}"
@@ -99,8 +97,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.StlInventorySy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.StlInventoryUpdate", "WmMiddleware.StlInventoryUpdate\WmMiddleware.StlInventoryUpdate.csproj", "{0FAC9C07-F2EB-4118-BED1-D2C7E786BE20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Aurora.PickTickets", "Middleware.WarehouseManagement.Aurora.PickTickets\Middleware.Wm.Aurora.PickTickets.csproj", "{0F65C07A-002D-46FB-8F0A-C9738B25D054}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Aurora.TransferControl", "Middleware.WM.Aurora.TransferControl\Middleware.Wm.Aurora.TransferControl.csproj", "{FA926702-2FC7-4C85-8ECD-91F2424F0037}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StoredProcedures", "StoredProcedures", "{C940A561-5E39-404F-BCF7-F051BCA0B1A5}"
@@ -127,6 +123,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.GeneralLedgerReconcilliation", "WmMiddleware.ProductReceiving.LedgerReconcilliation\WmMiddleware.GeneralLedgerReconcilliation.csproj", "{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Aurora.PickTicketConfirmation", "Middleware.Wm.Aurora.PickTicketConfirmation\Middleware.Wm.Aurora.PickTicketConfirmation.csproj", "{9E1FF0A9-40C7-4699-937F-03FA634AE48E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Aurora.PickTickets", "Middleware.Wm.Aurora.PickTickets\Middleware.Wm.Aurora.PickTickets.csproj", "{0F65C07A-002D-46FB-8F0A-C9738B25D054}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Scheduler.WindowService", "Middleware.WindowService\Middleware.Scheduler.WindowService.csproj", "{BCB72A58-8273-4F9C-82B6-B522EBDE613C}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -176,48 +176,48 @@ Global
 		SccProjectUniqueName14 = Middleware.Scheduler.Web\\Middleware.Scheduler.Web.csproj
 		SccProjectName14 = Middleware.Scheduler.Web
 		SccLocalPath14 = Middleware.Scheduler.Web
-		SccProjectUniqueName15 = Middleware.WindowService\\Middleware.Scheduler.WindowService.csproj
-		SccProjectName15 = Middleware.WindowService
-		SccLocalPath15 = Middleware.WindowService
-		SccProjectUniqueName16 = Middleware.Integration\\Middleware.Integration.csproj
-		SccProjectName16 = Middleware.Integration
-		SccLocalPath16 = Middleware.Integration
-		SccProjectUniqueName17 = WmMiddleware.ManhattanOutboundData\\WmMiddleware.Outbound.csproj
-		SccProjectName17 = WmMiddleware.ManhattanOutboundData
-		SccLocalPath17 = WmMiddleware.ManhattanOutboundData
-		SccProjectUniqueName18 = WmMiddleware.InventorySync\\WmMiddleware.InventorySync.csproj
-		SccProjectName18 = WmMiddleware.InventorySync
-		SccLocalPath18 = WmMiddleware.InventorySync
-		SccProjectUniqueName19 = WmMiddleware.Pix\\WmMiddleware.Pix.csproj
-		SccProjectName19 = WmMiddleware.Pix
-		SccLocalPath19 = WmMiddleware.Pix
-		SccProjectUniqueName20 = WmMiddleware.Shipment\\WmMiddleware.Shipment.csproj
-		SccProjectName20 = WmMiddleware.Shipment
-		SccLocalPath20 = WmMiddleware.Shipment
-		SccProjectUniqueName21 = WmMiddleware.PixReturn\\WmMiddleware.PixReturn.csproj
-		SccProjectName21 = WmMiddleware.PixReturn
-		SccLocalPath21 = WmMiddleware.PixReturn
-		SccProjectUniqueName22 = WmMiddleware.ShipmentCancellationEmail\\WmMiddleware.ShipmentCancellationEmail.csproj
-		SccProjectName22 = WmMiddleware.ShipmentCancellationEmail
-		SccLocalPath22 = WmMiddleware.ShipmentCancellationEmail
-		SccProjectUniqueName23 = WmMiddleware.StlInventorySync\\WmMiddleware.StlInventorySync.csproj
-		SccProjectName23 = WmMiddleware.StlInventorySync
-		SccLocalPath23 = WmMiddleware.StlInventorySync
-		SccProjectUniqueName24 = WmMiddleware.StlInventoryUpdate\\WmMiddleware.StlInventoryUpdate.csproj
-		SccProjectName24 = WmMiddleware.StlInventoryUpdate
-		SccLocalPath24 = WmMiddleware.StlInventoryUpdate
-		SccProjectUniqueName25 = Middleware.WarehouseManagement.Aurora.PickTickets\\Middleware.Wm.Aurora.PickTickets.csproj
-		SccProjectName25 = Middleware.WarehouseManagement.Aurora.PickTickets
-		SccLocalPath25 = Middleware.WarehouseManagement.Aurora.PickTickets
-		SccProjectUniqueName26 = Middleware.WM.Aurora.TransferControl\\Middleware.Wm.Aurora.TransferControl.csproj
-		SccProjectName26 = Middleware.WM.Aurora.TransferControl
-		SccLocalPath26 = Middleware.WM.Aurora.TransferControl
-		SccProjectUniqueName27 = WmMiddleware.ProductReceiving.LedgerReconcilliation\\WmMiddleware.GeneralLedgerReconcilliation.csproj
-		SccProjectName27 = WmMiddleware.ProductReceiving.LedgerReconcilliation
-		SccLocalPath27 = WmMiddleware.ProductReceiving.LedgerReconcilliation
-		SccProjectUniqueName28 = Middleware.Wm.Aurora.PickTicketConfirmation\\Middleware.Wm.Aurora.PickTicketConfirmation.csproj
-		SccProjectName28 = Middleware.Wm.Aurora.PickTicketConfirmation
-		SccLocalPath28 = Middleware.Wm.Aurora.PickTicketConfirmation
+		SccProjectUniqueName15 = Middleware.Integration\\Middleware.Integration.csproj
+		SccProjectName15 = Middleware.Integration
+		SccLocalPath15 = Middleware.Integration
+		SccProjectUniqueName16 = WmMiddleware.ManhattanOutboundData\\WmMiddleware.Outbound.csproj
+		SccProjectName16 = WmMiddleware.ManhattanOutboundData
+		SccLocalPath16 = WmMiddleware.ManhattanOutboundData
+		SccProjectUniqueName17 = WmMiddleware.InventorySync\\WmMiddleware.InventorySync.csproj
+		SccProjectName17 = WmMiddleware.InventorySync
+		SccLocalPath17 = WmMiddleware.InventorySync
+		SccProjectUniqueName18 = WmMiddleware.Pix\\WmMiddleware.Pix.csproj
+		SccProjectName18 = WmMiddleware.Pix
+		SccLocalPath18 = WmMiddleware.Pix
+		SccProjectUniqueName19 = WmMiddleware.Shipment\\WmMiddleware.Shipment.csproj
+		SccProjectName19 = WmMiddleware.Shipment
+		SccLocalPath19 = WmMiddleware.Shipment
+		SccProjectUniqueName20 = WmMiddleware.PixReturn\\WmMiddleware.PixReturn.csproj
+		SccProjectName20 = WmMiddleware.PixReturn
+		SccLocalPath20 = WmMiddleware.PixReturn
+		SccProjectUniqueName21 = WmMiddleware.ShipmentCancellationEmail\\WmMiddleware.ShipmentCancellationEmail.csproj
+		SccProjectName21 = WmMiddleware.ShipmentCancellationEmail
+		SccLocalPath21 = WmMiddleware.ShipmentCancellationEmail
+		SccProjectUniqueName22 = WmMiddleware.StlInventorySync\\WmMiddleware.StlInventorySync.csproj
+		SccProjectName22 = WmMiddleware.StlInventorySync
+		SccLocalPath22 = WmMiddleware.StlInventorySync
+		SccProjectUniqueName23 = WmMiddleware.StlInventoryUpdate\\WmMiddleware.StlInventoryUpdate.csproj
+		SccProjectName23 = WmMiddleware.StlInventoryUpdate
+		SccLocalPath23 = WmMiddleware.StlInventoryUpdate
+		SccProjectUniqueName24 = Middleware.WM.Aurora.TransferControl\\Middleware.Wm.Aurora.TransferControl.csproj
+		SccProjectName24 = Middleware.WM.Aurora.TransferControl
+		SccLocalPath24 = Middleware.WM.Aurora.TransferControl
+		SccProjectUniqueName25 = WmMiddleware.ProductReceiving.LedgerReconcilliation\\WmMiddleware.GeneralLedgerReconcilliation.csproj
+		SccProjectName25 = WmMiddleware.ProductReceiving.LedgerReconcilliation
+		SccLocalPath25 = WmMiddleware.ProductReceiving.LedgerReconcilliation
+		SccProjectUniqueName26 = Middleware.Wm.Aurora.PickTicketConfirmation\\Middleware.Wm.Aurora.PickTicketConfirmation.csproj
+		SccProjectName26 = Middleware.Wm.Aurora.PickTicketConfirmation
+		SccLocalPath26 = Middleware.Wm.Aurora.PickTicketConfirmation
+		SccProjectUniqueName27 = Middleware.Wm.Aurora.PickTickets\\Middleware.Wm.Aurora.PickTickets.csproj
+		SccProjectName27 = Middleware.Wm.Aurora.PickTickets
+		SccLocalPath27 = Middleware.Wm.Aurora.PickTickets
+		SccProjectUniqueName28 = Middleware.WindowService\\Middleware.Scheduler.WindowService.csproj
+		SccProjectName28 = Middleware.WindowService
+		SccLocalPath28 = Middleware.WindowService
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -397,16 +397,6 @@ Global
 		{0AA8B946-9276-4C6D-8E0C-F3D90B79E555}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0AA8B946-9276-4C6D-8E0C-F3D90B79E555}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{0AA8B946-9276-4C6D-8E0C-F3D90B79E555}.SingleImage|Any CPU.Build.0 = Release|Any CPU
-		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
-		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
-		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
-		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
-		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
-		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 		{BD53A64C-B782-4BD3-A771-4D2938DBEBFC}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
 		{BD53A64C-B782-4BD3-A771-4D2938DBEBFC}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
 		{BD53A64C-B782-4BD3-A771-4D2938DBEBFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -467,16 +457,6 @@ Global
 		{0FAC9C07-F2EB-4118-BED1-D2C7E786BE20}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0FAC9C07-F2EB-4118-BED1-D2C7E786BE20}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{0FAC9C07-F2EB-4118-BED1-D2C7E786BE20}.SingleImage|Any CPU.Build.0 = Release|Any CPU
-		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
-		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
-		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
-		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
-		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
-		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 		{FA926702-2FC7-4C85-8ECD-91F2424F0037}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
 		{FA926702-2FC7-4C85-8ECD-91F2424F0037}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
 		{FA926702-2FC7-4C85-8ECD-91F2424F0037}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -507,6 +487,26 @@ Global
 		{9E1FF0A9-40C7-4699-937F-03FA634AE48E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9E1FF0A9-40C7-4699-937F-03FA634AE48E}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{9E1FF0A9-40C7-4699-937F-03FA634AE48E}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{0F65C07A-002D-46FB-8F0A-C9738B25D054}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
