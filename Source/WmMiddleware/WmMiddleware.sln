@@ -120,13 +120,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WmTransactions", "WmTransac
 		sp_GetCancellationsForEmailNotification.sql.txt = sp_GetCancellationsForEmailNotification.sql.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.GeneralLedgerReconcilliation", "WmMiddleware.ProductReceiving.LedgerReconcilliation\WmMiddleware.GeneralLedgerReconcilliation.csproj", "{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Aurora.PickTicketConfirmation", "Middleware.Wm.Aurora.PickTicketConfirmation\Middleware.Wm.Aurora.PickTicketConfirmation.csproj", "{9E1FF0A9-40C7-4699-937F-03FA634AE48E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Aurora.PickTickets", "Middleware.Wm.Aurora.PickTickets\Middleware.Wm.Aurora.PickTickets.csproj", "{0F65C07A-002D-46FB-8F0A-C9738B25D054}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Scheduler.WindowService", "Middleware.WindowService\Middleware.Scheduler.WindowService.csproj", "{BCB72A58-8273-4F9C-82B6-B522EBDE613C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.GeneralLedgerReconcilliation", "WmMiddleware.GeneralLedgerReconcilliation\WmMiddleware.GeneralLedgerReconcilliation.csproj", "{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -206,18 +206,18 @@ Global
 		SccProjectUniqueName24 = Middleware.WM.Aurora.TransferControl\\Middleware.Wm.Aurora.TransferControl.csproj
 		SccProjectName24 = Middleware.WM.Aurora.TransferControl
 		SccLocalPath24 = Middleware.WM.Aurora.TransferControl
-		SccProjectUniqueName25 = WmMiddleware.ProductReceiving.LedgerReconcilliation\\WmMiddleware.GeneralLedgerReconcilliation.csproj
-		SccProjectName25 = WmMiddleware.ProductReceiving.LedgerReconcilliation
-		SccLocalPath25 = WmMiddleware.ProductReceiving.LedgerReconcilliation
-		SccProjectUniqueName26 = Middleware.Wm.Aurora.PickTicketConfirmation\\Middleware.Wm.Aurora.PickTicketConfirmation.csproj
-		SccProjectName26 = Middleware.Wm.Aurora.PickTicketConfirmation
-		SccLocalPath26 = Middleware.Wm.Aurora.PickTicketConfirmation
-		SccProjectUniqueName27 = Middleware.Wm.Aurora.PickTickets\\Middleware.Wm.Aurora.PickTickets.csproj
-		SccProjectName27 = Middleware.Wm.Aurora.PickTickets
-		SccLocalPath27 = Middleware.Wm.Aurora.PickTickets
-		SccProjectUniqueName28 = Middleware.WindowService\\Middleware.Scheduler.WindowService.csproj
-		SccProjectName28 = Middleware.WindowService
-		SccLocalPath28 = Middleware.WindowService
+		SccProjectUniqueName25 = Middleware.Wm.Aurora.PickTicketConfirmation\\Middleware.Wm.Aurora.PickTicketConfirmation.csproj
+		SccProjectName25 = Middleware.Wm.Aurora.PickTicketConfirmation
+		SccLocalPath25 = Middleware.Wm.Aurora.PickTicketConfirmation
+		SccProjectUniqueName26 = Middleware.Wm.Aurora.PickTickets\\Middleware.Wm.Aurora.PickTickets.csproj
+		SccProjectName26 = Middleware.Wm.Aurora.PickTickets
+		SccLocalPath26 = Middleware.Wm.Aurora.PickTickets
+		SccProjectUniqueName27 = Middleware.WindowService\\Middleware.Scheduler.WindowService.csproj
+		SccProjectName27 = Middleware.WindowService
+		SccLocalPath27 = Middleware.WindowService
+		SccProjectUniqueName28 = WmMiddleware.GeneralLedgerReconcilliation\\WmMiddleware.GeneralLedgerReconcilliation.csproj
+		SccProjectName28 = WmMiddleware.GeneralLedgerReconcilliation
+		SccLocalPath28 = WmMiddleware.GeneralLedgerReconcilliation
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -467,16 +467,6 @@ Global
 		{FA926702-2FC7-4C85-8ECD-91F2424F0037}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FA926702-2FC7-4C85-8ECD-91F2424F0037}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{FA926702-2FC7-4C85-8ECD-91F2424F0037}.SingleImage|Any CPU.Build.0 = Release|Any CPU
-		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
-		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
-		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
-		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
-		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 		{9E1FF0A9-40C7-4699-937F-03FA634AE48E}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
 		{9E1FF0A9-40C7-4699-937F-03FA634AE48E}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
 		{9E1FF0A9-40C7-4699-937F-03FA634AE48E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -507,6 +497,16 @@ Global
 		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
