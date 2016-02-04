@@ -60,7 +60,7 @@ namespace Middleware.Scheduler.Web.Service
 
                 if (!job.IsActive)
                 {                    
-                    _log.Info("Activiated " + jobKey);
+                    _log.Info("Activated " + jobKey);
                     SaveMiddlewareJobActiveStatus(jobKey, true);
                 }
                 

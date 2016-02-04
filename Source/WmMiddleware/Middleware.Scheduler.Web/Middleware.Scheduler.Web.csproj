@@ -275,10 +275,6 @@
       <Project>{AEEDD741-C346-45BA-A867-3F54B66477A4}</Project>
       <Name>Middleware.Log</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Middleware.Scheduler.WindowService\Middleware.Scheduler.WindowService.csproj">
-      <Project>{BCB72A58-8273-4F9C-82B6-B522EBDE613C}</Project>
-      <Name>Middleware.Scheduler.WindowService</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

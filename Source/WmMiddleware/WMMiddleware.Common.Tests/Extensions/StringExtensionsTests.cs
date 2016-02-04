@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WmMiddleware.Common.Extensions;
+using Middleware.Wm.Extensions;
 
 namespace WMMiddleware.Common.Tests.Extensions
 {

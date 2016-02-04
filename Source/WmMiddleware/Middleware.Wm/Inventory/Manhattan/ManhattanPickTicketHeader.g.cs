@@ -2,13 +2,12 @@ using System;
 using System.Globalization;
 using FlatFile.FixedLength;
 using FlatFile.FixedLength.Attributes;
-using WmMiddleware.Common.DataFiles;
 
-namespace Middleware.WarehouseManagement.Aurora.PickTickets.Models
+namespace Middleware.Wm.Inventory.Manhattan
 {
     // Generated with FlatFileClassGenerator
     [FixedLengthFile]
-    internal partial class ManhattanPickTicketHeader : IGeneratedFlatFile
+    public partial class ManhattanPickTicketHeader
     {
         private int _errorSequence;
         [FixedLengthField(1, 9, PaddingChar = '0', Padding = Padding.Left, NullValue="000000000")]
@@ -4015,6 +4014,6 @@ namespace Middleware.WarehouseManagement.Aurora.PickTickets.Models
             set { MiscellaneousNum10_Backing = (int)(value * 100000.0m); }
         }
 
-        public int TotalFileLength { get { return 2991; } }
+public int TotalFileLength { get { return 2991; } }
     }
 }

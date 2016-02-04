@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using Middleware.Jobs;
 using MiddleWare.Log;
-using Ninject.Syntax;
 using WmMiddleware.Pix.Models;
 using WmMiddleware.Pix.Repository;
 

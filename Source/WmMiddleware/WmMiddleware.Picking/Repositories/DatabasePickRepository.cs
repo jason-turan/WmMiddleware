@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Dapper;
+using Middleware.Wm.Inventory;
 using WmMiddleware.Configuration.Database;
 using WmMiddleware.Picking.Models;
 

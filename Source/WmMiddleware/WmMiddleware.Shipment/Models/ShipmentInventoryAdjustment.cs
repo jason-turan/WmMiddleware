@@ -1,5 +1,4 @@
-﻿using System;
-using WmMiddleware.Common.Extensions;
+﻿using Middleware.Wm.Extensions;
 using WmMiddleware.Shipment.Models.Generated;
 
 namespace WmMiddleware.Shipment.Models

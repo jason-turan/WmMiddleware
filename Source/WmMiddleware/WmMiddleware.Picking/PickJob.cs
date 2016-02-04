@@ -37,7 +37,6 @@ namespace WmMiddleware.Picking
                 _logger.Debug(logBuilder.ToString());
 
                 DestinationRepository.SaveOrders(orders);
-
                 SourceRepository.SetAsProcessed(orders);
             }
             else

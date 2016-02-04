@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Middleware.Jobs.Repositories;
+using Middleware.Wm.DataFiles;
 using MiddleWare.Log;
-using WmMiddleware.Common.DataFiles;
 using WmMiddleware.Configuration;
 using WmMiddleware.ManhattanOutboundData;
 using WmMiddleware.Pix.Models.Generated;

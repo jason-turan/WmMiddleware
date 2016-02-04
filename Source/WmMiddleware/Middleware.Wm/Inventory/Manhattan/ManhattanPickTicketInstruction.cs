@@ -1,9 +1,9 @@
 ﻿using System;
-using WmMiddleware.Common.Extensions;
+using Middleware.Wm.Extensions;
 
-namespace WmMiddleware.Picking.Models
+namespace Middleware.Wm.Inventory.Manhattan
 {
-    internal partial class ManhattanPickTicketInstruction
+    public partial class ManhattanPickTicketInstruction
     {
         public ManhattanPickTicketInstruction()
         {
@@ -29,6 +29,11 @@ namespace WmMiddleware.Picking.Models
                 DateCreated = value.ToManhattanDate();
                 TimeCreated = value.ToManhattanTime();
             }
+        }
+
+        public override string ToString()
+        {
+            return SpecialInstructionDescription;
         }
     }
 }

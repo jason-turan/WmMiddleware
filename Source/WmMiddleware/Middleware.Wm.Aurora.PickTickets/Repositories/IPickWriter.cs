@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Middleware.WarehouseManagement.Aurora.PickTickets.Models;
+using Middleware.Wm.Inventory;
 
 namespace Middleware.WarehouseManagement.Aurora.PickTickets.Repositories
 {

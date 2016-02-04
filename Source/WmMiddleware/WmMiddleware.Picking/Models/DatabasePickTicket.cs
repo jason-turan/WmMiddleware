@@ -1,4 +1,6 @@
-﻿namespace WmMiddleware.Picking.Models
+﻿using Middleware.Wm.Inventory;
+
+namespace WmMiddleware.Picking.Models
 {
     public partial class DatabasePickTicket
     {

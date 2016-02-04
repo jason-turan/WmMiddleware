@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WmMiddleware.Picking.Models
+namespace Middleware.Wm.Inventory
 {
     public class LineItem
     {

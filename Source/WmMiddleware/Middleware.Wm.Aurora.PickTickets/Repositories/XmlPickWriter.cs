@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
-using Middleware.WarehouseManagement.Aurora.PickTickets.Models;
+using Middleware.Wm.Inventory;
 using WmMiddleware.Configuration;
 using WmMiddleware.TransferControl.Ftp;
 

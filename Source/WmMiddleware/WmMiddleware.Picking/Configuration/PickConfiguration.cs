@@ -1,7 +1,7 @@
-﻿using WmMiddleware.Configuration;
+﻿using Middleware.Wm.Inventory;
+using WmMiddleware.Configuration;
 using WmMiddleware.Configuration.Manhattan;
 using MiddleWare.Log;
-using WmMiddleware.Picking.Models;
 
 namespace WmMiddleware.Picking.Configuration
 {

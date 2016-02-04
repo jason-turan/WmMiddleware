@@ -2,7 +2,7 @@
 using System.Linq;
 using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
-using WmMiddleware.Common.DataFiles;
+using Middleware.Wm.DataFiles;
 using WmMiddleware.Configuration;
 using WmMiddleware.Configuration.Manhattan;
 using WmMiddleware.ProductReceiving.Models;

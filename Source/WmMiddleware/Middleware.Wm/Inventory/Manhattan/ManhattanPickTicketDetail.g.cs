@@ -2,13 +2,12 @@ using System;
 using System.Globalization;
 using FlatFile.FixedLength;
 using FlatFile.FixedLength.Attributes;
-using WmMiddleware.Common.DataFiles;
 
-namespace Middleware.WarehouseManagement.Aurora.PickTickets.Models
+namespace Middleware.Wm.Inventory.Manhattan
 {
     // Generated with FlatFileClassGenerator
     [FixedLengthFile]
-    internal partial class ManhattanPickTicketDetail : IGeneratedFlatFile
+    public partial class ManhattanPickTicketDetail
     {
         private int _errorSequence;
         [FixedLengthField(1, 9, PaddingChar = '0', Padding = Padding.Left, NullValue="000000000")]
@@ -2360,6 +2359,8 @@ namespace Middleware.WarehouseManagement.Aurora.PickTickets.Models
             }
         }
 
-        public int TotalFileLength { get { return 1551; } }
+public int TotalFileLength { get { return 1551; } }
     }
 }
+// ReSharper restore InconsistentNaming
+// ReSharper restore CheckNamespace

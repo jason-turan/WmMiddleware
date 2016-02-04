@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using WmMiddleware.Picking.Models;
+using Middleware.Wm.Inventory;
 
 namespace WmMiddleware.Picking.Repositories
 {

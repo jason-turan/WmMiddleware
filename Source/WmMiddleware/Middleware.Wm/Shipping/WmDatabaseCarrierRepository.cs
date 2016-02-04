@@ -6,11 +6,11 @@ using System.Runtime.Caching;
 using Dapper;
 using WmMiddleware.Configuration.Database;
 
-namespace WmMiddleware.Picking.Repositories
+namespace Middleware.Wm.Shipping
 {
-    public class DatabaseCarrierRespository : ICarrierReadRepository
+    public class WmDatabaseCarrierRepository : ICarrierReadRepository
     {
-        private readonly MemoryCache _cache = new MemoryCache("WmMiddleware.Picking.Repositories.DatabaseCarrierRespository");
+        private readonly MemoryCache _cache = new MemoryCache("Middleware.Wm.Shipping.DatabaseCarrierRespository");
 
         public string GetOmsShipMethod(string code)
         {
@@ -35,7 +35,7 @@ namespace WmMiddleware.Picking.Repositories
             return serviceCodes;
         }
 
-        private IEnumerable<ServiceCode> GetServiceCodes()
+        private static IEnumerable<ServiceCode> GetServiceCodes()
         {
             using (var connection = DatabaseConnectionFactory.GetWarehouseManagementConnection())
             {

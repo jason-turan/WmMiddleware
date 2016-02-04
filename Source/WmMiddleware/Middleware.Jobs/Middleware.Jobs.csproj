@@ -77,10 +77,6 @@
     <Compile Include="Repositories\JobRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WmMiddleware.Common\WmMiddleware.Common.csproj">
-      <Project>{F1691638-045D-49D1-8921-7D7049EBD666}</Project>
-      <Name>WmMiddleware.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WmMiddleware.Configuration\WmMiddleware.Configuration.csproj">
       <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>
       <Name>WmMiddleware.Configuration</Name>

@@ -2,9 +2,10 @@
 using Middleware.Jobs.Repositories;
 using Middleware.WarehouseManagement.Aurora.PickTickets.Ftp;
 using Middleware.WarehouseManagement.Aurora.PickTickets.Repositories;
+using Middleware.Wm.Locations;
+using Middleware.Wm.Shipping;
 using MiddleWare.Log;
 using Ninject.Modules;
-using WmMiddleware.Common.Locations;
 using WmMiddleware.Configuration;
 using WmMiddleware.TransferControl.Control;
 using WmMiddleware.TransferControl.Ftp;
@@ -23,7 +24,7 @@ namespace Middleware.WarehouseManagement.Aurora.PickTickets.DependencyInjection
             Bind<IPickWriter>().To<XmlPickWriter>();
             Bind<IFileIo>().To<FileIo>();
             Bind<ITransferControlRepository>().To<TransferControlRepository>();
-            Bind<ICarrierReadRepository>().To<DatabaseCarrierRespository>();
+            Bind<ICarrierReadRepository>().To<WmDatabaseCarrierRepository>();
             Bind<IFtpClientFactory>().To<SftpClientFactory>();
             Bind<IFtpClientConfiguration>().To<AuroraFtpClientConfiguration>();
             Bind<ICountryReader>().To<DatabaseCountryRepository>();

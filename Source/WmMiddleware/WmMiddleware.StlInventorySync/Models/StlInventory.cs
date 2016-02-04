@@ -1,6 +1,6 @@
 ﻿using System;
 using Dapper.Contrib.Extensions;
-using WmMiddleware.Common.Extensions;
+using Middleware.Wm.Extensions;
 using WmMiddleware.InventorySync.Models.Generated;
 
 namespace WmMiddleware.StlInventorySync.Models

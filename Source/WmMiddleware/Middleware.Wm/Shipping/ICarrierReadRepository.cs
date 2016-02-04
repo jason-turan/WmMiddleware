@@ -1,4 +1,4 @@
-﻿namespace WmMiddleware.Picking.Repositories
+﻿namespace Middleware.Wm.Shipping
 {
     public interface ICarrierReadRepository
     {

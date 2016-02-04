@@ -60,9 +60,9 @@
       <Project>{AEEDD741-C346-45BA-A867-3F54B66477A4}</Project>
       <Name>Middleware.Log</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WmMiddleware.Common\WmMiddleware.Common.csproj">
-      <Project>{F1691638-045D-49D1-8921-7D7049EBD666}</Project>
-      <Name>WmMiddleware.Common</Name>
+    <ProjectReference Include="..\Middleware.Wm\Middleware.Wm.csproj">
+      <Project>{763AB0EE-41AE-45DA-8C2C-43547E64C5FC}</Project>
+      <Name>Middleware.Wm</Name>
     </ProjectReference>
     <ProjectReference Include="..\WmMiddleware.Configuration\WmMiddleware.Configuration.csproj">
       <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>

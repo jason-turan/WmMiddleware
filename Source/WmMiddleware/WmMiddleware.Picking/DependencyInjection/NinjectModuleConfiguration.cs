@@ -1,8 +1,9 @@
 ﻿using Middleware.Jobs;
 using Ninject.Modules;
 using Middleware.Jobs.Repositories;
+using Middleware.Wm.Locations;
+using Middleware.Wm.Shipping;
 using MiddleWare.Log;
-using WmMiddleware.Common.Locations;
 using WmMiddleware.Configuration;
 using WmMiddleware.Picking.Configuration;
 using WmMiddleware.Picking.Repositories;
@@ -25,7 +26,7 @@ namespace WmMiddleware.Picking.DependencyInjection
             Bind<ITransferControlRepository>().To<TransferControlRepository>();
             Bind<ITransferControlManager>().To<TransferControlManager>();
             Bind<IConfigurationManager>().To<MiddlewareConfigurationManager>();
-            Bind<ICarrierReadRepository>().To<DatabaseCarrierRespository>();
+            Bind<ICarrierReadRepository>().To<WmDatabaseCarrierRepository>();
         }
     }
 }

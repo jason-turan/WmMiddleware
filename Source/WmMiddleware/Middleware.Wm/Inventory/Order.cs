@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using WmMiddleware.Common.Extensions;
+using Middleware.Wm.Extensions;
 
-namespace WmMiddleware.Picking.Models
+namespace Middleware.Wm.Inventory
 {
     public class Order
     {

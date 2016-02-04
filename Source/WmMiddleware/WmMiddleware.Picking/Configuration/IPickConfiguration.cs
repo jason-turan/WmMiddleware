@@ -1,5 +1,5 @@
-﻿using WmMiddleware.Configuration.Manhattan;
-using WmMiddleware.Picking.Models;
+﻿using Middleware.Wm.Inventory;
+using WmMiddleware.Configuration.Manhattan;
 
 namespace WmMiddleware.Picking.Configuration
 {

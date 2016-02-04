@@ -1,9 +1,9 @@
 ﻿using System;
-using WmMiddleware.Common.Extensions;
+using Middleware.Wm.Extensions;
 
-namespace WmMiddleware.Picking.Models
+namespace Middleware.Wm.Inventory.Manhattan
 {
-    internal partial class ManhattanPickTicketDetail
+    public partial class ManhattanPickTicketDetail
     {
         public ManhattanPickTicketDetail()
         {
@@ -45,6 +45,15 @@ namespace WmMiddleware.Picking.Models
                 DateCreated = value.ToManhattanDate();
                 TimeCreated = value.ToManhattanTime();
             }
+        }
+
+        public LineItem ToLineItem()
+        {
+            return new LineItem
+            {
+                ItemSku = PackageBarcode,
+                Quantity = (int)OriginalPickticketQuantity
+            };
         }
     }
 }

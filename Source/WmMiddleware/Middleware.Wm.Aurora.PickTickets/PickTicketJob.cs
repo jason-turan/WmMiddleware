@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Middleware.Jobs.Repositories;
-using Middleware.WarehouseManagement.Aurora.PickTickets.Models;
 using Middleware.WarehouseManagement.Aurora.PickTickets.Repositories;
+using Middleware.Wm.DataFiles;
+using Middleware.Wm.Inventory.Manhattan;
+using Middleware.Wm.Locations;
 using MiddleWare.Log;
-using WmMiddleware.Common.DataFiles;
-using WmMiddleware.Common.Locations;
 using WmMiddleware.Configuration;
 using WmMiddleware.ManhattanOutboundData;
 using WmMiddleware.TransferControl.Control;
@@ -17,18 +16,13 @@ namespace Middleware.WarehouseManagement.Aurora.PickTickets
 {
     public class PickTicketJob : OutboundProcessor
     {
-        private readonly ICarrierReadRepository _carrierReadRepository;
-        private readonly ICountryReader _countryReader;
+        private readonly IManhattanOrderRepository _manhattanOrderRepository;
         private IPickWriter DestinationRepository { get; set; }
 
-        private readonly DataFileRepository<ManhattanPickTicketHeader> _headerRepository = new DataFileRepository<ManhattanPickTicketHeader>();
-        private readonly DataFileRepository<ManhattanPickTicketDetail> _detailRepository = new DataFileRepository<ManhattanPickTicketDetail>();
-
-        public PickTicketJob(ILog logger, IPickWriter destinationRepository, IConfigurationManager configurationManager, IFileIo fileIo, IJobRepository jobRepository, ITransferControlRepository transferControlRepository, ICarrierReadRepository carrierReadRepository, ICountryReader countryReader)
+        public PickTicketJob(ILog logger, IPickWriter destinationRepository, IConfigurationManager configurationManager, IFileIo fileIo, IJobRepository jobRepository, ITransferControlRepository transferControlRepository, IManhattanOrderRepository manhattanOrderRepository)
             : base(logger, configurationManager, fileIo, jobRepository, transferControlRepository)
         {
-            _carrierReadRepository = carrierReadRepository;
-            _countryReader = countryReader;
+            _manhattanOrderRepository = manhattanOrderRepository;
             DestinationRepository = destinationRepository;
         }
 
@@ -65,18 +59,9 @@ namespace Middleware.WarehouseManagement.Aurora.PickTickets
                 throw new InvalidDataException("File list does not contain a header, detail, and instruction file.");
             }
 
-            var headers = _headerRepository.Get(headerFile.FileLocation);
-            var details = _detailRepository.Get(detailFile.FileLocation);
+            var orders = _manhattanOrderRepository.GetOrders(headerFile.FileLocation, detailFile.FileLocation, null);
 
-            var orders = headers.ToDictionary(h => h.PickticketControlNumber, h => h.ToOrder(_carrierReadRepository, _countryReader));
-
-            foreach (var detail in details)
-            {
-                var lineItem = detail.ToLineItem();
-                orders[detail.PickticketControlNumber].Items.Add(lineItem);
-            }
-
-            DestinationRepository.SaveOrders(orders.Values);
+            DestinationRepository.SaveOrders(orders);
         }
     }
 }

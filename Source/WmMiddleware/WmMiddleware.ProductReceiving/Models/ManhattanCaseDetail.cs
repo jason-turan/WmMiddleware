@@ -1,5 +1,5 @@
 ﻿using System;
-using WmMiddleware.Common.Extensions;
+using Middleware.Wm.Extensions;
 
 namespace WmMiddleware.ProductReceiving.Models
 {

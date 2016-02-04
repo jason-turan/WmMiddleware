@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Middleware.Jobs;
+using Middleware.Wm.Aurora.PickTicketConfirmation.DependencyInjection;
 
 namespace Middleware.Wm.Aurora.PickTicketConfirmation
 {
@@ -10,6 +7,7 @@ namespace Middleware.Wm.Aurora.PickTicketConfirmation
     {
         static void Main(string[] args)
         {
+            UnitOfWorkExecutionProxy<IUnitOfWork>.ExecuteUnitOfWork(new NinjectModuleConfiguration(), args);
         }
     }
 }

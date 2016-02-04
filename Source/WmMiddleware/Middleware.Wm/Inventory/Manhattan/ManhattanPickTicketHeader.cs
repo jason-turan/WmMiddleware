@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
-using WmMiddleware.Common.Extensions;
-using WmMiddleware.Common.Locations;
-using WmMiddleware.Picking.Repositories;
+using Middleware.Wm.Extensions;
+using Middleware.Wm.Locations;
+using Middleware.Wm.Shipping;
 
-namespace WmMiddleware.Picking.Models
+namespace Middleware.Wm.Inventory.Manhattan
 {
-    internal partial class ManhattanPickTicketHeader
+    public partial class ManhattanPickTicketHeader
     {
         public ManhattanPickTicketHeader()
         {
@@ -77,6 +77,45 @@ namespace WmMiddleware.Picking.Models
                 CancelDate = (value + TimeSpan.FromDays(10)).ToManhattanDate();
                 StopShipDate = CancelDate;
             }
+        }
+
+        public Order ToOrder(ICarrierReadRepository carrierReadRepository, ICountryReader countryReader)
+        {
+            int soldToCountry, shipToCountry;
+            int.TryParse(SoldToCountry, out soldToCountry);
+            int.TryParse(ShipToCountry, out shipToCountry);
+
+            return new Order
+            {
+                BillingAddress = new Address
+                {
+                    City = SoldToCity,
+                    Country = countryReader.GetCountryAbbreviation(soldToCountry),
+                    Line1 = SoldToAddr1,
+                    Line2 = SoldToAddr2,
+                    Line3 = SoldToAddr3,
+                    Name = SoldToName,
+                    State = SoldToState,
+                    Zip = SoldToZip
+                },
+                ShippingAddress = new Address
+                {
+                    City = ShipToCity,
+                    Country = countryReader.GetCountryAbbreviation(shipToCountry),
+                    Line1 = ShipToAddr1,
+                    Line2 = ShipToAddr2,
+                    Line3 = ShipToAddr3,
+                    Name = ShipToName,
+                    State = ShipToState,
+                    Zip = ShipToZip
+                },
+                OrderNumber = OrderNumber, //MiscellaneousIns20Byte11, ?
+                OrderDate = (OrderDate != 0 ? ManhattanExtensions.ParseDateTime(OrderDate, 0, DateTimeStyles.AssumeUniversal) : ManhattanExtensions.ParseDateTime(DateCreated, 0, DateTimeStyles.AssumeUniversal)).ToUniversalTime(),
+                BillingPhone = TelephoneNumber,
+                ShippingPhone = TelephoneNumber,
+                EmailAddress = "bncorder@newbalance.com",
+                ShippingMethod = carrierReadRepository.GetOmsShipMethod(ShipVia)
+            };
         }
     }
 }
