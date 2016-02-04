@@ -128,9 +128,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.GeneralLedgerR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Scheduler.WindowService", "Middleware.Scheduler.WindowService\Middleware.Scheduler.WindowService.csproj", "{BCB72A58-8273-4F9C-82B6-B522EBDE613C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Aurora.Shipment", "Middleware.Wm.Aurora.Shipment\Middleware.Wm.Aurora.Shipment.csproj", "{33A5DEAD-B502-40AA-B804-CFAD7495B039}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 29
+		SccNumberOfProjects = 30
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://10.1.0.80:8080/tfs/business%20applications
 		SccLocalPath0 = .
@@ -218,6 +220,9 @@ Global
 		SccProjectUniqueName28 = Middleware.Scheduler.WindowService\\Middleware.Scheduler.WindowService.csproj
 		SccProjectName28 = Middleware.Scheduler.WindowService
 		SccLocalPath28 = Middleware.Scheduler.WindowService
+		SccProjectUniqueName29 = Middleware.Wm.Aurora.Shipment\\Middleware.Wm.Aurora.Shipment.csproj
+		SccProjectName29 = Middleware.Wm.Aurora.Shipment
+		SccLocalPath29 = Middleware.Wm.Aurora.Shipment
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -507,6 +512,16 @@ Global
 		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{33A5DEAD-B502-40AA-B804-CFAD7495B039}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{33A5DEAD-B502-40AA-B804-CFAD7495B039}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{33A5DEAD-B502-40AA-B804-CFAD7495B039}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33A5DEAD-B502-40AA-B804-CFAD7495B039}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33A5DEAD-B502-40AA-B804-CFAD7495B039}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{33A5DEAD-B502-40AA-B804-CFAD7495B039}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{33A5DEAD-B502-40AA-B804-CFAD7495B039}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33A5DEAD-B502-40AA-B804-CFAD7495B039}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33A5DEAD-B502-40AA-B804-CFAD7495B039}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{33A5DEAD-B502-40AA-B804-CFAD7495B039}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -120,4 +120,14 @@ BEGIN
 			'Processing')
 END
 
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Aurora Shipment Job')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('Aurora Shipment Job', 
+		   '15M', 
+		   'Middleware.Wm.Aurora.Shipment.exe', 
+		    0,
+			'Inbound')
+END
+
 select * from job
