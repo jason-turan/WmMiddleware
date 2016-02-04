@@ -152,6 +152,26 @@
       <Project>{bd53a64c-b782-4bd3-a771-4d2938dbebfc}</Project>
       <Name>Middleware.Integration</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Middleware.Wm.Aurora.PickTicketConfirmation\Middleware.Wm.Aurora.PickTicketConfirmation.csproj">
+      <Project>{9e1ff0a9-40c7-4699-937f-03fa634ae48e}</Project>
+      <Name>Middleware.Wm.Aurora.PickTicketConfirmation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Middleware.Wm.Aurora.PickTickets\Middleware.Wm.Aurora.PickTickets.csproj">
+      <Project>{0f65c07a-002d-46fb-8f0a-c9738b25d054}</Project>
+      <Name>Middleware.Wm.Aurora.PickTickets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Middleware.Wm.Aurora.Shipment\Middleware.Wm.Aurora.Shipment.csproj">
+      <Project>{33a5dead-b502-40aa-b804-cfad7495b039}</Project>
+      <Name>Middleware.Wm.Aurora.Shipment</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Middleware.WM.Aurora.TransferControl\Middleware.Wm.Aurora.TransferControl.csproj">
+      <Project>{fa926702-2fc7-4c85-8ecd-91f2424f0037}</Project>
+      <Name>Middleware.Wm.Aurora.TransferControl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Middleware.Wm.LoggingAndFileMaintenance\Middleware.Wm.LoggingAndFileMaintenance.csproj">
+      <Project>{24615298-1937-4540-b572-3fee0d65a820}</Project>
+      <Name>Middleware.Wm.LoggingAndFileMaintenance</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WmMiddleware.Configuration\WmMiddleware.Configuration.csproj">
       <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>
       <Name>WmMiddleware.Configuration</Name>
@@ -250,5 +270,7 @@
     <Copy SourceFiles="..\WmMiddleware.GeneralLedgerReconcilliation\bin\$(Configuration)\WmMiddleware.GeneralLedgerReconcilliation.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\Middleware.Wm.Aurora.PickTicketConfirmation\bin\$(Configuration)\Middleware.Wm.Aurora.PickTicketConfirmation.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\Middleware.Wm.Aurora.TransferControl\bin\$(Configuration)\Middleware.Wm.Aurora.TransferControl.exe.config" DestinationFolder="$(TargetDir)" />
+    <Copy SourceFiles="..\Middleware.Wm.Aurora.Shipment\bin\$(Configuration)\Middleware.Wm.Aurora.Shipment.exe.config" DestinationFolder="$(TargetDir)" />
+    <Copy SourceFiles="..\Middleware.Wm.LoggingAndFileMaintenance\bin\$(Configuration)\Middleware.Wm.LoggingAndFileMaintenance.exe.config" DestinationFolder="$(TargetDir)" />
   </Target>
 </Project>
