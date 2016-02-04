@@ -130,4 +130,14 @@ BEGIN
 			'Inbound')
 END
 
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Log and File Maintenance Job')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('Log and File Maintenance Job', 
+		   '15M', 
+		   'Middleware.Wm.LoggingAndFileMaintenance.exe', 
+		    0,
+			'Maintenance')
+END
+
 select * from job

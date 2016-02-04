@@ -132,9 +132,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm", "Middleware
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Scheduler.WindowService", "Middleware.Scheduler.WindowService\Middleware.Scheduler.WindowService.csproj", "{BCB72A58-8273-4F9C-82B6-B522EBDE613C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.LoggingAndFileMaintenance", "Middleware.Wm.LoggingAndFileMaintenance\Middleware.Wm.LoggingAndFileMaintenance.csproj", "{24615298-1937-4540-B572-3FEE0D65A820}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 31
+		SccNumberOfProjects = 32
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://10.1.0.80:8080/tfs/business%20applications
 		SccLocalPath0 = .
@@ -228,6 +230,9 @@ Global
 		SccProjectUniqueName30 = Middleware.Scheduler.WindowService\\Middleware.Scheduler.WindowService.csproj
 		SccProjectName30 = Middleware.Scheduler.WindowService
 		SccLocalPath30 = Middleware.Scheduler.WindowService
+		SccProjectUniqueName31 = Middleware.Wm.LoggingAndFileMaintenance\\Middleware.Wm.LoggingAndFileMaintenance.csproj
+		SccProjectName31 = Middleware.Wm.LoggingAndFileMaintenance
+		SccLocalPath31 = Middleware.Wm.LoggingAndFileMaintenance
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -537,6 +542,16 @@ Global
 		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{24615298-1937-4540-B572-3FEE0D65A820}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{24615298-1937-4540-B572-3FEE0D65A820}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{24615298-1937-4540-B572-3FEE0D65A820}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24615298-1937-4540-B572-3FEE0D65A820}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24615298-1937-4540-B572-3FEE0D65A820}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{24615298-1937-4540-B572-3FEE0D65A820}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{24615298-1937-4540-B572-3FEE0D65A820}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24615298-1937-4540-B572-3FEE0D65A820}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24615298-1937-4540-B572-3FEE0D65A820}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{24615298-1937-4540-B572-3FEE0D65A820}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

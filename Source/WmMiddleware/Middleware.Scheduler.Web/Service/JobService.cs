@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
+using Middleware.Scheduler.WindowService.Quartz;
+using Middleware.Scheduler.WindowService.Scheduler;
 using Quartz;
 using Middleware.Jobs.Models;
 using Middleware.Jobs.Repositories;
-using Middleware.Scheduler.WindowService.Quartz;
-using Middleware.Scheduler.WindowService.Scheduler;
 using MiddleWare.Log;
 
 namespace Middleware.Scheduler.Web.Service
