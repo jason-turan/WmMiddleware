@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using MiddleWare.Log;
 using WmMiddleware.Pix.Repository;
 using WmMiddleware.Shipment.Repository;
@@ -52,8 +53,28 @@ namespace WmMiddleware.StlInventoryUpdate
                 //--apply the adjustments to our inventory
                 _stlInventoryUpdateRepository.UpdateStlInventory(stlInventoryItems);
 
-                _log.Debug(string.Format("Consumed {0} PIX Entries and {1} Shipment Line Items into StlInventory!",
+                var logBuilder = new StringBuilder();
+                logBuilder.AppendLine(string.Format("StlInventoryUpdate Processed: {0} PIX Entries and {1} Shipment Line Items",
                     pixInventoryAdjustments.ToList().Count, shipmentInventoryAdjustments.ToList().Count));
+
+                //--log specific entries (SKU += Adjustment Quantity)
+                if (pixInventoryAdjustments.Any())
+                {
+                    logBuilder.AppendLine("--Adjustments from PIX--");
+                    foreach (var pix in pixInventoryAdjustments)
+                    {
+                        logBuilder.AppendLine(string.Format("{0} += {1}", pix.Upc, pix.Quantity));
+                    }
+                }
+                if (shipmentInventoryAdjustments.Any())
+                {
+                    logBuilder.AppendLine("--Adjustments from Shipments--");
+                    foreach (var shipment in shipmentInventoryAdjustments)
+                    {
+                        logBuilder.AppendLine(string.Format("{0} += {1}", shipment.Upc, shipment.Quantity));
+                    }
+                }
+                _log.Debug(logBuilder.ToString());
 
                 //--flag the raw manhattan data as processed. 
                 _perpetualInventoryTransferRepository.InsertPixInventoryAdjustmentProcessing(pixInventoryAdjustments);

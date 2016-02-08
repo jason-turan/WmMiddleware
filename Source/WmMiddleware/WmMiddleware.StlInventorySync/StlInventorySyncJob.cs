@@ -4,7 +4,11 @@ using Middleware.Jobs;
 using MiddleWare.Log;
 using WmMiddleware.InventorySync.Models;
 using WmMiddleware.InventorySync.Repository;
+using WmMiddleware.Pix.Repository;
 using WmMiddleware.StlInventorySync.Repository;
+using WmMiddleware.StlInventoryUpdate;
+using WmMiddleware.StlInventoryUpdate.Repository;
+using WmMiddleware.Shipment.Repository;
 
 namespace WmMiddleware.StlInventorySync
 {
@@ -13,20 +17,36 @@ namespace WmMiddleware.StlInventorySync
         private readonly ILog _log;
         private readonly IStlInventoryRepository _stlInventoryRepository;
         private readonly IInventorySyncRepository _inventorySyncRepository;
+        private readonly IStlInventoryUpdateRepository _stlInventoryUpdateRepository;
+        private readonly IShipmentInventoryAdjustmentRepository _shipmentInventoryAdjustmentRepository;
+        private readonly IShipmentRepository _shipmentRepository;
+        private readonly IPixInventoryAdjustmentRepository _pixInventoryAdjustmentRepository;
+        private readonly IPerpetualInventoryTransferRepository _perpetualInventoryTransferRepository;
 
-        public StlInventorySyncJob(ILog log, IStlInventoryRepository stlInventory, IInventorySyncRepository inventorySyncRepository)
+        public StlInventorySyncJob(ILog log, IStlInventoryRepository stlInventory, IInventorySyncRepository inventorySyncRepository,
+            IStlInventoryUpdateRepository stlInventoryUpdateRepository, IShipmentRepository shipmentRepository, IShipmentInventoryAdjustmentRepository shipmentInventoryAdjustmentRepository,
+            IPerpetualInventoryTransferRepository perpetualInventoryTransferRepository, IPixInventoryAdjustmentRepository pixInventoryAdjustmentRepository)
         {
             _log = log;
             _stlInventoryRepository = stlInventory;
             _inventorySyncRepository = inventorySyncRepository;
+
+            _stlInventoryUpdateRepository = stlInventoryUpdateRepository;
+            _shipmentRepository = shipmentRepository;
+            _shipmentInventoryAdjustmentRepository = shipmentInventoryAdjustmentRepository;
+            _perpetualInventoryTransferRepository = perpetualInventoryTransferRepository;
+            _pixInventoryAdjustmentRepository = pixInventoryAdjustmentRepository;
         }
 
         public void RunUnitOfWork(string jobKey)
         {
-            //TODO: Need to complete the following. 
-            //step 1) - Ensure StlInventoryUpdate job is not running.
-            //step 2) - Execute StlInventoryUpdate job to ensure all PIX/Shipments are accounted for before Inventory Sync. 
-
+            //initialize update job to ensure outstanding PIX/Shipments are consumed before the sync
+            var stlInventoryUpdateJob = new StlInventoryUpdateJob(_log, _stlInventoryUpdateRepository, _shipmentRepository, _shipmentInventoryAdjustmentRepository,
+                _perpetualInventoryTransferRepository, _pixInventoryAdjustmentRepository);
+            
+            //execute StlInventoryUpdate job. 
+            stlInventoryUpdateJob.RunUnitOfWork("Stl Inventory Update");
+            
             var latestInventorySync = _stlInventoryRepository.GetLatestManhattanInventorySync().ToList();
 
             if (latestInventorySync.Count > 0)

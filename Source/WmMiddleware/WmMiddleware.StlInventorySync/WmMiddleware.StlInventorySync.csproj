@@ -88,6 +88,18 @@
       <Project>{5afd35b7-fb46-4008-8b46-ad127762d358}</Project>
       <Name>WmMiddleware.InventorySync</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WmMiddleware.Pix\WmMiddleware.Pix.csproj">
+      <Project>{21adff87-bb23-46ba-ae47-07b8eda135bf}</Project>
+      <Name>WmMiddleware.Pix</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WmMiddleware.Shipment\WmMiddleware.Shipment.csproj">
+      <Project>{b4c7e72d-cdb6-4fea-abdf-3564a588a762}</Project>
+      <Name>WmMiddleware.Shipment</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WmMiddleware.StlInventoryUpdate\WmMiddleware.StlInventoryUpdate.csproj">
+      <Project>{0fac9c07-f2eb-4118-bed1-d2c7e786be20}</Project>
+      <Name>WmMiddleware.StlInventoryUpdate</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WmMiddleware.TransferControl\WmMiddleware.TransferControl.csproj">
       <Project>{f788dd6f-2df7-45ba-950a-ec5cbc5731d8}</Project>
       <Name>WmMiddleware.TransferControl</Name>
