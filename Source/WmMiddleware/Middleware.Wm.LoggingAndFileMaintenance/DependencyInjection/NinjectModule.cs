@@ -1,6 +1,8 @@
 ﻿using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
+using MiddleWare.Log.Repository;
+using Middleware.Wm.LoggingAndFileMaintenance.Repository;
 using Ninject.Modules;
 
 namespace Middleware.Wm.LoggingAndFileMaintenance.DependencyInjection
@@ -11,7 +13,9 @@ namespace Middleware.Wm.LoggingAndFileMaintenance.DependencyInjection
         {
             Bind<ILog>().To<Log4Net>();
             Bind<IUnitOfWork>().To<LogAndFileMaintenanceJob>();
+            Bind<ILoggingAndFileMaintenanceRepository>().To<LoggingAndFileMaintenanceRepository>();
             Bind<IJobRepository>().To<JobRepository>();
+            Bind<ILogRepository>().To<LogRepository>();
         }
     }
 }

@@ -1,0 +1,5 @@
+﻿insert into LoggingAndFileMaintenance(RollingFileDirectories,
+	RollingFileZipOlderThanDays, 
+	DatabaseLogTrimOlderThanDays, 
+	JobHistoryTrimOlderThanDays)
+values ('C:\wmmiddleware\Logs,D:\wmmiddleware\Logs', 1, 7, 3, 3);

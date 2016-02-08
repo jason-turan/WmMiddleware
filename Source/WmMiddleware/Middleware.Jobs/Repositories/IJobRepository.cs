@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Middleware.Jobs.Models;
 
 namespace Middleware.Jobs.Repositories
@@ -13,5 +14,6 @@ namespace Middleware.Jobs.Repositories
         void InsertJob(MiddlewareJob job);
         void InsertJobHistory(MiddlewareJobHistory jobHistory);
         int? GetJobIdByFilePrefix(string filePrefix);
+        int DeleteJobHistoryByDate(DateTime deleteOlderThanDate);
     }
 }

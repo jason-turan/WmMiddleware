@@ -189,5 +189,17 @@ namespace Middleware.Jobs.Repositories
                 return connection.ExecuteScalar<int?>(getJobIdByFilePrefix, jobArguments);
             }
         }
+
+        public int DeleteJobHistoryByDate(DateTime deleteOlderThanDate)
+        {
+            using (var connection = DatabaseConnectionFactory.GetWarehouseManagementConnection())
+            {
+                connection.Open();
+
+                return connection.Execute("DELETE FROM JobHistory WHERE RunDate < '" + 
+                                          deleteOlderThanDate.Date + 
+                                          "'");
+            }
+        }
     }
 }

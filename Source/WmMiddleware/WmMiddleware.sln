@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DbScripts", "DbScripts", "{
 		Job.Sql.txt = Job.Sql.txt
 		JobHistory.Sql.txt = JobHistory.Sql.txt
 		Log.sql.txt = Log.sql.txt
+		LoggingAndFileMaintenance.sql.txt = LoggingAndFileMaintenance.sql.txt
 		ManhattanPerpetualInventoryTransferProcessing.sql.txt = ManhattanPerpetualInventoryTransferProcessing.sql.txt
 		ShipmentCancellationEmailDistribution.sql.txt = ShipmentCancellationEmailDistribution.sql.txt
 		TransferControl.Sql.txt = TransferControl.Sql.txt
@@ -30,6 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{110F3F5C-8
 		AddJobs.sql.txt = AddJobs.sql.txt
 		ConfigItems.sql.txt = ConfigItems.sql.txt
 		EnvironmentData.sql.txt = EnvironmentData.sql.txt
+		LoggingAndFileMaintenanceData.sql.txt = LoggingAndFileMaintenanceData.sql.txt
 		TransferControlFileTypeData.Sql.txt = TransferControlFileTypeData.Sql.txt
 	EndProjectSection
 EndProject

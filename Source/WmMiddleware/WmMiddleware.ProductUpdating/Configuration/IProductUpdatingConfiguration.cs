@@ -5,7 +5,7 @@ namespace WmMiddleware.ProductUpdating.Configuration
 {
     public interface IProductUpdatingConfiguration : IManhattanConfiguration
     {
-        DateTime GetLastSuccessfulRun();
+        DateTime? GetLastSuccessfulRun();
         void SetLastSuccessfulRun(DateTime timeRun);
     }
 }

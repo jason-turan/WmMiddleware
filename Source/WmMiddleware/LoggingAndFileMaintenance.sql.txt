@@ -1,0 +1,7 @@
+﻿create table LoggingAndFileMaintenance
+(
+	RollingFileDirectories nvarchar(max),
+	RollingFileZipOlderThanDays int,
+	DatabaseLogTrimOlderThanDays int,
+	JobHistoryTrimOlderThanDays int
+)

@@ -36,11 +36,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Dependencies\Dapper\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\..\..\Dependencies\Ninject\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,8 +56,11 @@
   <ItemGroup>
     <Compile Include="DependencyInjection\NinjectModule.cs" />
     <Compile Include="LogAndFileMaintenanceJob.cs" />
+    <Compile Include="Models\LoggingAndFileMaintenance.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ILoggingAndFileMaintenanceRepository.cs" />
+    <Compile Include="Repository\LoggingAndFileMaintenanceRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -65,7 +74,12 @@
       <Project>{AEEDD741-C346-45BA-A867-3F54B66477A4}</Project>
       <Name>Middleware.Log</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WmMiddleware.Configuration\WmMiddleware.Configuration.csproj">
+      <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>
+      <Name>WmMiddleware.Configuration</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

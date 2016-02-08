@@ -6,6 +6,6 @@ namespace WmMiddleware.ProductUpdating.Repositories
 {
     public interface IProductReader
     {
-        IEnumerable<Product> GetProducts(DateTime startDateTime);
+        IEnumerable<Product> GetProducts(DateTime? startDateTime);
     }
 }

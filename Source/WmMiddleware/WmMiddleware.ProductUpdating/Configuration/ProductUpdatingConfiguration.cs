@@ -9,21 +9,25 @@ namespace WmMiddleware.ProductUpdating.Configuration
     public class ProductUpdatingConfiguration : ManhattanConfiguration, IProductUpdatingConfiguration
     {
         private readonly ILog _log;
-        private const string ConfigFileName = "ProductUpdatingValues.config";
+        private static readonly string ConfigFileName = AppDomain.CurrentDomain.BaseDirectory + "ProductUpdatingValues.config";
 
         public ProductUpdatingConfiguration(ILog log) : base(log)
         {
             _log = log;
         }
 
-        public DateTime GetLastSuccessfulRun()
+        public DateTime? GetLastSuccessfulRun()
         {
-            var result = new DateTime();
+            DateTime? result = null;
             try
             {
                 if (File.Exists(ConfigFileName))
                 {
-                    DateTime.TryParse(File.ReadAllText(ConfigFileName), out result);
+                    _log.Debug("Found configuration file " + ConfigFileName);
+                    
+                    DateTime parseResult;
+                    DateTime.TryParse(File.ReadAllText(ConfigFileName), out parseResult);
+                    result = parseResult;
                 }
             }
             catch (Exception ex)
@@ -38,6 +42,7 @@ namespace WmMiddleware.ProductUpdating.Configuration
         {
             try
             {
+                _log.Debug("Setting last successful run by writing " + timeRun + " to configuration file: " + ConfigFileName);
                 File.WriteAllText(ConfigFileName, timeRun.ToString(CultureInfo.InvariantCulture));
             }
             catch (Exception ex)
