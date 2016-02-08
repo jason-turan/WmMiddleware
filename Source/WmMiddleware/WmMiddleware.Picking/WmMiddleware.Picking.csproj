@@ -84,10 +84,8 @@
     <Compile Include="Models\Generated\DatabasePickTicket.cs" />
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Repositories\IPickReader.cs" />
     <Compile Include="PickJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\IPickWriter.cs" />
     <Compile Include="Repositories\ManhattanPickRepository.cs" />
     <Compile Include="Repositories\DatabasePickRepository.cs" />
   </ItemGroup>
@@ -99,6 +97,10 @@
     <ProjectReference Include="..\MiddleWare.Log\Middleware.Log.csproj">
       <Project>{AEEDD741-C346-45BA-A867-3F54B66477A4}</Project>
       <Name>Middleware.Log</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Middleware.Wm.Manhattan\Middleware.Wm.Manhattan.csproj">
+      <Project>{87AE9E18-B3DC-4605-BE2A-FA7B6C50DAD6}</Project>
+      <Name>Middleware.Wm.Manhattan</Name>
     </ProjectReference>
     <ProjectReference Include="..\Middleware.Wm\Middleware.Wm.csproj">
       <Project>{763AB0EE-41AE-45DA-8C2C-43547E64C5FC}</Project>

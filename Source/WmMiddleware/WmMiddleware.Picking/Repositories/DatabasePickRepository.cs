@@ -9,7 +9,7 @@ using WmMiddleware.Picking.Models;
 
 namespace WmMiddleware.Picking.Repositories
 {
-    public class DatabasePickRepository : IPickReader
+    public class DatabasePickRepository : IOrderReader
     {
         public IEnumerable<Order> GetOrders()
         {

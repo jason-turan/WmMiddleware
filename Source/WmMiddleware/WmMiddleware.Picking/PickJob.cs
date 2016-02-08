@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Text;
 using Middleware.Jobs;
+using Middleware.Wm.Inventory;
 using MiddleWare.Log;
-using WmMiddleware.Picking.Repositories;
 
 namespace WmMiddleware.Picking
 {
@@ -10,10 +10,10 @@ namespace WmMiddleware.Picking
     {
         private readonly ILog _logger;
 
-        private IPickReader SourceRepository { get; set; }
-        private IPickWriter DestinationRepository { get; set; }
+        private IOrderReader SourceRepository { get; set; }
+        private IOrderWriter DestinationRepository { get; set; }
 
-        public PickJob(ILog logger, IPickReader sourceRepository, IPickWriter destinationRepository)
+        public PickJob(ILog logger, IOrderReader sourceRepository, IOrderWriter destinationRepository)
         {
             _logger = logger;
             DestinationRepository = destinationRepository;

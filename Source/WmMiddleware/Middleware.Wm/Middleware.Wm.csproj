@@ -65,15 +65,9 @@
     <Compile Include="Extensions\ManhattanExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Inventory\Address.cs" />
+    <Compile Include="Inventory\IOrderReader.cs" />
+    <Compile Include="Inventory\IOrderWriter.cs" />
     <Compile Include="Inventory\LineItem.cs" />
-    <Compile Include="Inventory\Manhattan\IManhattanOrderRepository.cs" />
-    <Compile Include="Inventory\Manhattan\ManhattanOrderRepository.cs" />
-    <Compile Include="Inventory\Manhattan\ManhattanPickTicketDetail.cs" />
-    <Compile Include="Inventory\Manhattan\ManhattanPickTicketDetail.g.cs" />
-    <Compile Include="Inventory\Manhattan\ManhattanPickTicketHeader.cs" />
-    <Compile Include="Inventory\Manhattan\ManhattanPickTicketHeader.g.cs" />
-    <Compile Include="Inventory\Manhattan\ManhattanPickTicketInstruction.cs" />
-    <Compile Include="Inventory\Manhattan\ManhattanPickTicketInstruction.g.cs" />
     <Compile Include="Inventory\Order.cs" />
     <Compile Include="Locations\DatabaseCountryRepository.cs" />
     <Compile Include="Locations\ICountryReader.cs" />

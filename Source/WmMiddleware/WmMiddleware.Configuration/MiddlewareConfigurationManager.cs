@@ -12,7 +12,7 @@ namespace WmMiddleware.Configuration
 {
     public class MiddlewareConfigurationManager : IConfigurationManager
     {
-        readonly MemoryCache _cache = new MemoryCache("WmMiddleware.Common.Configuration.DatabaseConfigurationManager");
+        readonly MemoryCache _cache = new MemoryCache("WmMiddleware.Configuration.DatabaseConfigurationManager");
 
         private readonly ILog _log;
 

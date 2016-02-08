@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Text;
 using Middleware.Jobs;
-using Middleware.Wm.Aurora.PickTicketConfirmation.Repositories;
+using Middleware.Wm.Inventory;
 using MiddleWare.Log;
 
 namespace Middleware.Wm.Aurora.PickTicketConfirmation
@@ -10,10 +10,10 @@ namespace Middleware.Wm.Aurora.PickTicketConfirmation
     {
         private readonly ILog _logger;
 
-        private IPickReader SourceRepository { get; set; }
-        private IPickWriter DestinationRepository { get; set; }
+        private IOrderReader SourceRepository { get; set; }
+        private IOrderWriter DestinationRepository { get; set; }
 
-        public PickTicketConfirmationJob(ILog logger, IPickReader sourceRepository, IPickWriter destinationRepository)
+        public PickTicketConfirmationJob(ILog logger, IOrderReader sourceRepository, IOrderWriter destinationRepository)
         {
             _logger = logger;
             SourceRepository = sourceRepository;

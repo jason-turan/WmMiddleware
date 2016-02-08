@@ -2,10 +2,11 @@
 using System.Globalization;
 using System.Linq;
 using Middleware.Wm.Extensions;
+using Middleware.Wm.Inventory;
 using Middleware.Wm.Locations;
 using Middleware.Wm.Shipping;
 
-namespace Middleware.Wm.Inventory.Manhattan
+namespace Middleware.Wm.Manhattan.Inventory
 {
     public partial class ManhattanPickTicketHeader
     {

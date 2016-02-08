@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using Middleware.Wm.Inventory;
 
-namespace WmMiddleware.Picking.Repositories
+namespace Middleware.Wm.Inventory
 {
-    public interface IPickReader
+    public interface IOrderReader
     {
         IEnumerable<Order> GetOrders();
         void SetAsProcessed(IEnumerable<Order> orders);

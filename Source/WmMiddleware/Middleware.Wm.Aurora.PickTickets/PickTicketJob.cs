@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using Middleware.Jobs.Repositories;
-using Middleware.WarehouseManagement.Aurora.PickTickets.Repositories;
 using Middleware.Wm.DataFiles;
-using Middleware.Wm.Inventory.Manhattan;
-using Middleware.Wm.Locations;
+using Middleware.Wm.Inventory;
+using Middleware.Wm.Manhattan.Inventory;
 using MiddleWare.Log;
 using WmMiddleware.Configuration;
 using WmMiddleware.ManhattanOutboundData;
@@ -16,14 +15,14 @@ namespace Middleware.WarehouseManagement.Aurora.PickTickets
 {
     public class PickTicketJob : OutboundProcessor
     {
+        private readonly IOrderWriter _destinationRepository;
         private readonly IManhattanOrderRepository _manhattanOrderRepository;
-        private IPickWriter DestinationRepository { get; set; }
 
-        public PickTicketJob(ILog logger, IPickWriter destinationRepository, IConfigurationManager configurationManager, IFileIo fileIo, IJobRepository jobRepository, ITransferControlRepository transferControlRepository, IManhattanOrderRepository manhattanOrderRepository)
+        public PickTicketJob(ILog logger, IOrderWriter destinationRepository, IConfigurationManager configurationManager, IFileIo fileIo, IJobRepository jobRepository, ITransferControlRepository transferControlRepository, IManhattanOrderRepository manhattanOrderRepository)
             : base(logger, configurationManager, fileIo, jobRepository, transferControlRepository)
         {
+            _destinationRepository = destinationRepository;
             _manhattanOrderRepository = manhattanOrderRepository;
-            DestinationRepository = destinationRepository;
         }
 
         protected override void ProcessFiles(ICollection<TransferControlFile> transferControlFiles)
@@ -61,7 +60,7 @@ namespace Middleware.WarehouseManagement.Aurora.PickTickets
 
             var orders = _manhattanOrderRepository.GetOrders(headerFile.FileLocation, detailFile.FileLocation, null);
 
-            DestinationRepository.SaveOrders(orders);
+            _destinationRepository.SaveOrders(orders);
         }
     }
 }

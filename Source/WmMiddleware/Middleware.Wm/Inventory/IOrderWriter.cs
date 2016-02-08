@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using Middleware.Wm.Inventory;
 
-namespace WmMiddleware.Picking.Repositories
+namespace Middleware.Wm.Inventory
 {
-    public interface IPickWriter
+    public interface IOrderWriter
     {
         void SaveOrders(IEnumerable<Order> orders);
     }

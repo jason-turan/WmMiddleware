@@ -10,7 +10,7 @@ namespace Middleware.Wm.Locations
 {
     public class DatabaseCountryRepository : ICountryReader
     {
-        readonly MemoryCache _cache = new MemoryCache("WmMiddleware.Common.Locations.DatabaseCountryRepository");
+        readonly MemoryCache _cache = new MemoryCache("WmMiddleware.Wm.Locations.DatabaseCountryRepository");
 
         public int GetCountryCode(string countryAbbreviation)
         {

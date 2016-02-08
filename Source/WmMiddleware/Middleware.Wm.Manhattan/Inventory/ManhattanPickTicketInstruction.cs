@@ -1,7 +1,7 @@
 ﻿using System;
 using Middleware.Wm.Extensions;
 
-namespace Middleware.Wm.Inventory.Manhattan
+namespace Middleware.Wm.Manhattan.Inventory
 {
     public partial class ManhattanPickTicketInstruction
     {

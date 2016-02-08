@@ -2,6 +2,7 @@
 using Middleware.Jobs.Repositories;
 using Middleware.WarehouseManagement.Aurora.PickTickets.Ftp;
 using Middleware.WarehouseManagement.Aurora.PickTickets.Repositories;
+using Middleware.Wm.Inventory;
 using Middleware.Wm.Locations;
 using Middleware.Wm.Shipping;
 using MiddleWare.Log;
@@ -21,7 +22,7 @@ namespace Middleware.WarehouseManagement.Aurora.PickTickets.DependencyInjection
             Bind<IJobRepository>().To<JobRepository>();
             Bind<IConfigurationManager>().To<MiddlewareConfigurationManager>();
             Bind<IUnitOfWork>().To<PickTicketJob>();
-            Bind<IPickWriter>().To<XmlPickWriter>();
+            Bind<IOrderWriter>().To<XmlOrderWriter>();
             Bind<IFileIo>().To<FileIo>();
             Bind<ITransferControlRepository>().To<TransferControlRepository>();
             Bind<ICarrierReadRepository>().To<WmDatabaseCarrierRepository>();

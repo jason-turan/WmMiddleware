@@ -3,7 +3,7 @@ using System.Globalization;
 using FlatFile.FixedLength;
 using FlatFile.FixedLength.Attributes;
 
-namespace Middleware.Wm.Inventory.Manhattan
+namespace Middleware.Wm.Manhattan.Inventory
 {
     // Generated with FlatFileClassGenerator
     [FixedLengthFile]

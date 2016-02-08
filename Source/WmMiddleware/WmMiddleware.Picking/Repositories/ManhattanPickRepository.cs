@@ -5,8 +5,8 @@ using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
 using Middleware.Wm.DataFiles;
 using Middleware.Wm.Inventory;
-using Middleware.Wm.Inventory.Manhattan;
 using Middleware.Wm.Locations;
+using Middleware.Wm.Manhattan.Inventory;
 using Middleware.Wm.Shipping;
 using WmMiddleware.Configuration;
 using WmMiddleware.Picking.Configuration;
@@ -14,7 +14,7 @@ using WmMiddleware.TransferControl.Control;
 
 namespace WmMiddleware.Picking.Repositories
 {
-    public class ManhattanPickRepository : IPickWriter
+    public class ManhattanPickRepository : IOrderWriter
     {
         private readonly IPickConfiguration _configuration;
         private readonly DataFileRepository<ManhattanPickTicketDetail> _detailFileRepository = new DataFileRepository<ManhattanPickTicketDetail>();
@@ -62,7 +62,7 @@ namespace WmMiddleware.Picking.Repositories
                 order.BillingAddress = warehouseAddress;
 
                 headerList.Add(new ManhattanPickTicketHeader(order, batchControlNumber, companyNumber, warehouseNumber, _countryReader, _carrierRepository));
-                detailList.AddRange(GroupItems(order, batchControlNumber, companyNumber, warehouseNumber));
+                detailList.AddRange(CombineItems(order, batchControlNumber, companyNumber, warehouseNumber));
                 var instructionControlNumber = 1;
                 foreach (var instruction in order.SpecialInstructions)
                 {
@@ -85,7 +85,7 @@ namespace WmMiddleware.Picking.Repositories
                                                         _jobRepository.GetJob(JobKey.PickJob).JobId);
         }
 
-        private static IEnumerable<ManhattanPickTicketDetail> GroupItems(Order order, string batchControlNumber, string companyNumber, string warehouseNumber)
+        private static IEnumerable<ManhattanPickTicketDetail> CombineItems(Order order, string batchControlNumber, string companyNumber, string warehouseNumber)
         {
             var itemGroups = order.Items.GroupBy(i => i.ItemSku);
             foreach (var itemGroup in itemGroups)

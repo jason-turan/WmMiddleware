@@ -1,6 +1,7 @@
 ﻿using Middleware.Jobs;
 using Ninject.Modules;
 using Middleware.Jobs.Repositories;
+using Middleware.Wm.Inventory;
 using Middleware.Wm.Locations;
 using Middleware.Wm.Shipping;
 using MiddleWare.Log;
@@ -18,8 +19,8 @@ namespace WmMiddleware.Picking.DependencyInjection
         {
             Bind<ILog>().To<Log4Net>();
             Bind<IUnitOfWork>().To<PickJob>();
-            Bind<IPickReader>().To<DatabasePickRepository>();
-            Bind<IPickWriter>().To<ManhattanPickRepository>();
+            Bind<IOrderReader>().To<DatabasePickRepository>();
+            Bind<IOrderWriter>().To<ManhattanPickRepository>();
             Bind<ICountryReader>().To<DatabaseCountryRepository>();
             Bind<IJobRepository>().To<JobRepository>();
             Bind<IPickConfiguration>().To<PickConfiguration>();

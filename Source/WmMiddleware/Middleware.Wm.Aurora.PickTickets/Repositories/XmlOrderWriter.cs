@@ -9,13 +9,13 @@ using WmMiddleware.TransferControl.Ftp;
 
 namespace Middleware.WarehouseManagement.Aurora.PickTickets.Repositories
 {
-    public class XmlPickWriter : IPickWriter
+    public class XmlOrderWriter : IOrderWriter
     {
         private readonly IConfigurationManager _configurationManager;
         private readonly IFtpClient _ftpClient;
         private readonly XmlSerializer _serializer = new XmlSerializer(typeof(List<Order>), new XmlRootAttribute("Orders"));
 
-        public XmlPickWriter(IConfigurationManager configurationManager, IFtpClientFactory ftpClientfactory)
+        public XmlOrderWriter(IConfigurationManager configurationManager, IFtpClientFactory ftpClientfactory)
         {
             _configurationManager = configurationManager;
             _ftpClient = ftpClientfactory.CreateFtpClient();

@@ -130,9 +130,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.LoggingAndFil
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Scheduler.WindowService", "Middleware.Scheduler.WindowService\Middleware.Scheduler.WindowService.csproj", "{BCB72A58-8273-4F9C-82B6-B522EBDE613C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Manhattan", "Middleware.Wm.Manhattan\Middleware.Wm.Manhattan.csproj", "{87AE9E18-B3DC-4605-BE2A-FA7B6C50DAD6}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 30
+		SccNumberOfProjects = 31
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://10.1.0.80:8080/tfs/business%20applications
 		SccLocalPath0 = .
@@ -223,6 +225,9 @@ Global
 		SccProjectUniqueName29 = Middleware.Scheduler.WindowService\\Middleware.Scheduler.WindowService.csproj
 		SccProjectName29 = Middleware.Scheduler.WindowService
 		SccLocalPath29 = Middleware.Scheduler.WindowService
+		SccProjectUniqueName30 = Middleware.Wm.Manhattan\\Middleware.Wm.Manhattan.csproj
+		SccProjectName30 = Middleware.Wm.Manhattan
+		SccLocalPath30 = Middleware.Wm.Manhattan
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -517,6 +522,16 @@ Global
 		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{BCB72A58-8273-4F9C-82B6-B522EBDE613C}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{87AE9E18-B3DC-4605-BE2A-FA7B6C50DAD6}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{87AE9E18-B3DC-4605-BE2A-FA7B6C50DAD6}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{87AE9E18-B3DC-4605-BE2A-FA7B6C50DAD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87AE9E18-B3DC-4605-BE2A-FA7B6C50DAD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87AE9E18-B3DC-4605-BE2A-FA7B6C50DAD6}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{87AE9E18-B3DC-4605-BE2A-FA7B6C50DAD6}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{87AE9E18-B3DC-4605-BE2A-FA7B6C50DAD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87AE9E18-B3DC-4605-BE2A-FA7B6C50DAD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87AE9E18-B3DC-4605-BE2A-FA7B6C50DAD6}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{87AE9E18-B3DC-4605-BE2A-FA7B6C50DAD6}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
