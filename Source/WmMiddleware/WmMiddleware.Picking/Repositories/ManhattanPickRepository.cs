@@ -108,6 +108,9 @@ namespace WmMiddleware.Picking.Repositories
             var dropshipLine = string.Format("{0,-21}{1,-29}DROPSHIP", "NBWEBEXPRESS", "ZZZZ");
 
             yield return new ManhattanPickTicketInstruction("VA", "OR", "NBUS", batchControlNumber, order.ControlNumber, instructionControlNumber++);
+            yield return new ManhattanPickTicketInstruction("VA", "OR", "UPS ACCOUNT#" + upsAccountNumber, batchControlNumber, order.ControlNumber, instructionControlNumber++);
+            yield return new ManhattanPickTicketInstruction("VA", "OR", "APPLY CARTON STICKER AND INSERT", batchControlNumber, order.ControlNumber, instructionControlNumber++);
+            yield return new ManhattanPickTicketInstruction("VA", "OR", "RETURN CARD", batchControlNumber, order.ControlNumber, instructionControlNumber++);
             yield return new ManhattanPickTicketInstruction("VA", "OR", "PS01" + phoneNumber, batchControlNumber, order.ControlNumber, instructionControlNumber++);
             yield return new ManhattanPickTicketInstruction("VA", "OR", "PS02" + (isFromNewBalance ? "newbalance.com" : string.Empty), batchControlNumber, order.ControlNumber, instructionControlNumber++);
             yield return new ManhattanPickTicketInstruction("VA", "OR", "PS03" + order.OrderNumber, batchControlNumber, order.ControlNumber, instructionControlNumber++);
@@ -116,9 +119,6 @@ namespace WmMiddleware.Picking.Repositories
             yield return new ManhattanPickTicketInstruction("VA", "OR", "PS06" /* + ?? */, batchControlNumber, order.ControlNumber, instructionControlNumber++);
             yield return new ManhattanPickTicketInstruction("VA", "OR", "PS07" /* + ?? */, batchControlNumber, order.ControlNumber, instructionControlNumber++);
             yield return new ManhattanPickTicketInstruction("VA", "OR", "PS08" /* + ?? */, batchControlNumber, order.ControlNumber, instructionControlNumber++);
-            yield return new ManhattanPickTicketInstruction("VA", "OR", "UPS ACCOUNT#" + upsAccountNumber, batchControlNumber, order.ControlNumber, instructionControlNumber++);
-            yield return new ManhattanPickTicketInstruction("VA", "OR", "APPLY CARTON STICKER AND INSERT", batchControlNumber, order.ControlNumber, instructionControlNumber++);
-            yield return new ManhattanPickTicketInstruction("VA", "OR", "RETURN CARD", batchControlNumber, order.ControlNumber, instructionControlNumber++);
             yield return new ManhattanPickTicketInstruction("TP", "TP", warehouseAddress1, batchControlNumber, order.ControlNumber, instructionControlNumber++);
             yield return new ManhattanPickTicketInstruction("TP", "TP", string.Empty, batchControlNumber, order.ControlNumber, instructionControlNumber++);
             yield return new ManhattanPickTicketInstruction("TP", "TP", warehouseAddress3, batchControlNumber, order.ControlNumber, instructionControlNumber++);

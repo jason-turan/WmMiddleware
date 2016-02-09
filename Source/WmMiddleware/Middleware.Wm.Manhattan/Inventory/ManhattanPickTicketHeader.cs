@@ -39,9 +39,9 @@ namespace Middleware.Wm.Manhattan.Inventory
             // PackingSlipType =
             ShipVia = carrierRepository.GetCode(order.ShippingMethod);
             ShipToCountry = countryReader.GetCountryCode(order.ShippingAddress.Country).ToString(CultureInfo.InvariantCulture);
-            ArAccountNumber = "NBUS"; // Requested by Manhattan team on 1/25 to be same as PHSOTO/Soldto
             PackingSlipType = "P5";
-            SoldTo = "NBUS";
+            SoldTo = string.Equals("NBWE", order.Company, StringComparison.InvariantCultureIgnoreCase) ? "NBUS" : order.Company;
+            ArAccountNumber = SoldTo; // Requested by Manhattan team on 1/25 to be same as PHSOTO/Soldto
             SoldToName = order.BillingAddress.Name;
             SoldToAddr1 = order.BillingAddress.Line1;
             SoldToAddr2 = order.BillingAddress.Line2;
