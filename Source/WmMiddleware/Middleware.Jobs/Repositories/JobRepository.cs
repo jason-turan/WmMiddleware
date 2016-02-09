@@ -146,6 +146,23 @@ namespace Middleware.Jobs.Repositories
             }
         }
 
+        public void UpdateJobActiveInactive(int jobId, bool isActive)
+        {
+            const string update = @"UPDATE [Job]
+                                    SET   IsActive = @IsActive
+                                    WHERE JobId = @JobId";
+
+            using (var connection = DatabaseConnectionFactory.GetWarehouseManagementConnection())
+            {
+                connection.Open();
+                var dynamicParmaters = new DynamicParameters();
+                dynamicParmaters.Add("@JobId", jobId);
+                dynamicParmaters.Add("@IsActive", isActive);
+
+                connection.Execute(update, dynamicParmaters);
+            }
+        }
+
         public void UpdateJob(MiddlewareJob job)
         {
             const string updateMiddlewareJob = @"UPDATE [Job]

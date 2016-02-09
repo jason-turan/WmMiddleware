@@ -43,9 +43,7 @@ namespace Middleware.Scheduler.Web.Service
 
         public void SaveMiddlewareJobActiveStatus(string jobKey, bool isActive)
         {
-            var job = _jobRepository.GetJob(jobKey);
-            job.IsActive = isActive;
-            _jobRepository.UpdateJob(job);
+            _jobRepository.UpdateJobActiveInactive(_jobRepository.GetJob(jobKey).JobId, isActive);
         }
 
         public bool LaunchJob(string jobKey, string userName)
@@ -88,8 +86,7 @@ namespace Middleware.Scheduler.Web.Service
 
                 if (job.IsActive) return true;
 
-                job.IsActive = false;
-                _jobRepository.UpdateJob(job);
+                SaveMiddlewareJobActiveStatus(job.JobKey, false);
                 _log.Info("Deactivated " + jobKey);
 
                 return true;

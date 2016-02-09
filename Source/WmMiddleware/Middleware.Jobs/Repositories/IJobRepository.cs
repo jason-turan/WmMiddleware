@@ -11,6 +11,7 @@ namespace Middleware.Jobs.Repositories
         MiddlewareJob GetLastSuccessfulJobExecution(string jobKey);
         IEnumerable<MiddlewareJob> GetJobs();
         void UpdateJob(MiddlewareJob job);
+        void UpdateJobActiveInactive(int jobId, bool isActive);
         void InsertJob(MiddlewareJob job);
         void InsertJobHistory(MiddlewareJobHistory jobHistory);
         int? GetJobIdByFilePrefix(string filePrefix);
