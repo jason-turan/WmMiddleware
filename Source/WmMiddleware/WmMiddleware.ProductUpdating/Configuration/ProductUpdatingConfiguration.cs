@@ -43,7 +43,7 @@ namespace WmMiddleware.ProductUpdating.Configuration
             try
             {
                 _log.Debug("Setting last successful run by writing " + timeRun + " to configuration file: " + ConfigFileName);
-                File.WriteAllText(ConfigFileName, timeRun.ToString(CultureInfo.InvariantCulture));
+                File.WriteAllText(ConfigFileName, timeRun.ToUniversalTime().ToString(CultureInfo.InvariantCulture));
             }
             catch (Exception ex)
             {
