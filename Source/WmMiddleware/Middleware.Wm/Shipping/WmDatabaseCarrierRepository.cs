@@ -12,15 +12,15 @@ namespace Middleware.Wm.Shipping
     {
         private readonly MemoryCache _cache = new MemoryCache("Middleware.Wm.Shipping.DatabaseCarrierRespository");
 
-        public string GetOmsShipMethod(string code)
+        public string GetOmsShipMethod(string code, bool useThirdPartyBilling)
         {
-            var serviceCode = GetCachedServiceCodes().FirstOrDefault(sc => sc.Code.Equals(code, StringComparison.InvariantCultureIgnoreCase));
+            var serviceCode = GetCachedServiceCodes().FirstOrDefault(sc => sc.IsThirdPartyBilling == useThirdPartyBilling && sc.Code.Equals(code, StringComparison.InvariantCultureIgnoreCase));
             return serviceCode == null ? null : serviceCode.OmsShipMethod;
         }
 
-        public string GetCode(string omsShipMethod)
+        public string GetCode(string omsShipMethod, bool useThirdPartyBilling)
         {
-            var serviceCode = GetCachedServiceCodes().OrderBy(sc => sc.Code).FirstOrDefault(sc => string.Equals(sc.OmsShipMethod, omsShipMethod, StringComparison.InvariantCultureIgnoreCase));
+            var serviceCode = GetCachedServiceCodes().OrderBy(sc => sc.Code).FirstOrDefault(sc => sc.IsThirdPartyBilling == useThirdPartyBilling && string.Equals(sc.OmsShipMethod, omsShipMethod, StringComparison.InvariantCultureIgnoreCase));
             return serviceCode == null ? null : serviceCode.Code;
         }
 
@@ -52,6 +52,7 @@ namespace Middleware.Wm.Shipping
             public string Code { get; set; }
             public string Description { get; set; }
             public string OmsShipMethod { get; set; }
+            public bool IsThirdPartyBilling { get; set; }
         }
     }
 }
