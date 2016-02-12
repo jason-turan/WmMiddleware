@@ -26,6 +26,11 @@ namespace WmMiddleware.Configuration.Database
             return GetConnection("NbXWebConnection");
         }
 
+        public static IDbConnection GetGpConnection()
+        {
+            return GetConnection("GpConnection");
+        }
+
         private static IDbConnection GetConnection(string connectionName)
         {
             var connectionString = ConfigurationManager.ConnectionStrings[connectionName];

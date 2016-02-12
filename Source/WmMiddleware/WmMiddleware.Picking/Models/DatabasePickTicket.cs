@@ -61,7 +61,7 @@ namespace WmMiddleware.Picking.Models
                 Quantity = Quantity,
                 ReturnTo = ReturnTo,
                 ShipDate = ShipDate,
-                UnitsOfMeasure = UnitsOfMeasure,
+                UnitOfMeasure = UnitsOfMeasure,
                 Color = Color,
                 SeasonYear = SeasonYear,
                 Style = Style,

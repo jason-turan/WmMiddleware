@@ -8,7 +8,7 @@ namespace Middleware.Wm.Inventory
         public string ItemSku { get; set; }
         public string ItemDescription { get; set; }
         public int Quantity { get; set; }
-        public string UnitsOfMeasure { get; set; }
+        public string UnitOfMeasure { get; set; }
         public double EachPrice { get; set; }
         public double ItemDiscount { get; set; }
         public double ExtendedPrice { get; set; }

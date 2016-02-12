@@ -1,103 +1,81 @@
-﻿//using System;
+﻿using System;
+using Middleware.Wm.Inventory;
 
-//namespace Middleware.Wm.PickTicketConfirmation.Models
-//{
-//    public class OmsOrderResult
-//    {
-//        public int auto_id { get; set; } //(int, not null)
-//        public string company { get; set; } //(varchar(10), not null)
-//        public string nb_design_id { get; set; } //(varchar(50), not null)
-//        public string order_number { get; set; } //(varchar(15), not null)
-//        public DateTime order_date { get; set; } //(datetime, not null)
-//        public DateTime date_downloaded { get; set; } //(datetime, not null)
-//        public string customer_number { get; set; } //(varchar(10), not null)
-//        public string order_priority { get; set; } //(varchar(4), not null)
-//        public string bill_name { get; set; } //(varchar(64), not null)
-//        public string bill_address { get; set; } //(varchar(60), not null)
-//        public string bill_address2 { get; set; } //(varchar(60), not null)
-//        public string bill_address3 { get; set; } //(varchar(60), not null)
-//        public string bill_city { get; set; } //(varchar(35), not null)
-//        public string bill_state { get; set; } //(varchar(29), not null)
-//        public string bill_zip { get; set; } //(varchar(10), not null)
-//        public string bill_country { get; set; } //(varchar(60), not null)
-//        public string bill_phone { get; set; } //(varchar(14), not null)
-//        public string ship_name { get; set; } //(varchar(64), not null)
-//        public string ship_address { get; set; } //(varchar(60), not null)
-//        public string ship_address2 { get; set; } //(varchar(60), not null)
-//        public string ship_address3 { get; set; } //(varchar(60), not null)
-//        public string ship_city { get; set; } //(varchar(35), not null)
-//        public string ship_state { get; set; } //(varchar(29), not null)
-//        public string ship_zip { get; set; } //(varchar(10), not null)
-//        public string ship_country { get; set; } //(varchar(60), not null)
-//        public string ship_phone { get; set; } //(varchar(14), not null)
-//        public string email_address { get; set; } //(varchar(60), not null)
-//        public string trans_type { get; set; } //(varchar(6), not null)
-//        public string shipping_method { get; set; } //(varchar(20), not null)
-//        public double sub_total { get; set; } //(float, not null)
-//        public double discount { get; set; } //(float, not null)
-//        public double freight { get; set; } //(float, not null)
-//        public double misc_handling { get; set; } //(float, not null)
-//        public double tax_amount { get; set; } //(float, not null)
-//        public double total { get; set; } //(float, not null)
-//        public int original_order { get; set; } //(int, not null)
-//        public string payment_only { get; set; } //(varchar(3), not null)
-//        public string Ledger_status { get; set; } //(varchar(10), not null)
-//        public string shipping_note { get; set; } //(varchar(90), null)
-//        public string gift_message_1 { get; set; } //(varchar(100), null)
-//        public string gift_message_2 { get; set; } //(varchar(100), null)
-//        public string order_source { get; set; } //(varchar(50), null)
-//        public string payment_applied { get; set; } //(varchar(50), not null)
-//        public string discount_category { get; set; } //(varchar(20), null)
-//        public string discount_id { get; set; } //(varchar(20), null)
-//        public DateTime DIS_when_downloaded { get; set; } //(datetime, not null)
-//        public bool DIS_readyfor_download { get; set; } //(bit, not null)
-//        public int DIS_row_downloaded { get; set; } //(int, not null)
-//        public string WarehouseStatus { get; set; } //(varchar(5), not null)
-//        public int auto_id { get; set; } //(int, not null)
-//        public string company { get; set; } //(varchar(10), not null)
-//        public string nb_design_id { get; set; } //(varchar(50), not null)
-//        public string order_number { get; set; } //(varchar(15), not null)
-//        public double item_number { get; set; } //(float, not null)
-//        public string item_sku { get; set; } //(varchar(30), not null)
-//        public string item_descrip { get; set; } //(varchar(100), not null)
-//        public int qty { get; set; } //(int, not null)
-//        public string unit_of_measure { get; set; } //(varchar(8), not null)
-//        public double each_price { get; set; } //(float, not null)
-//        public double item_discount { get; set; } //(float, not null)
-//        public double ext_price { get; set; } //(float, not null)
-//        public string item_comments { get; set; } //(varchar(500), not null)
-//        public string inventory_type { get; set; } //(varchar(10), not null)
-//        public string return_to { get; set; } //(varchar(20), not null)
-//        public DateTime ship_date { get; set; } //(datetime, not null)
-//        public string Ledger_status { get; set; } //(varchar(10), not null)
-//        public string discount_category { get; set; } //(varchar(20), null)
-//        public string discount_id { get; set; } //(varchar(20), null)
-//        public int DIS_row_downloaded { get; set; } //(int, not null)
-//        public DateTime DIS_when_downloaded { get; set; } //(datetime, not null)
-//        public bool DIS_readyfor_download { get; set; } //(bit, not null)
-//        public string WarehouseStatus { get; set; } //(varchar(5), not null)
-//        public string CZ01 { get; set; } //(nvarchar(50), null)
-//        public string CZ02 { get; set; } //(nvarchar(50), null)
-//        public string CZ03 { get; set; } //(nvarchar(50), null)
-//        public string CZ04 { get; set; } //(nvarchar(50), null)
-//        public string CZ05 { get; set; } //(nvarchar(50), null)
-//        public string CZ06 { get; set; } //(nvarchar(50), null)
-//        public string CZ07 { get; set; } //(nvarchar(50), null)
-//        public string CZ08 { get; set; } //(nvarchar(50), null)
-//        public string CZ09 { get; set; } //(nvarchar(50), null)
-//        public string CZ10 { get; set; } //(nvarchar(50), null)
-//        public string CZ11 { get; set; } //(nvarchar(50), null)
-//        public string CZ12 { get; set; } //(nvarchar(50), null)
-//        public string CZ13 { get; set; } //(nvarchar(50), null)
-//        public string CZ14 { get; set; } //(nvarchar(50), null)
-//        public string CZ15 { get; set; } //(nvarchar(50), null)
-//        public string CZ16 { get; set; } //(nvarchar(50), null)
-//        public string CZ17 { get; set; } //(nvarchar(50), null)
-//        public string CZ18 { get; set; } //(nvarchar(50), null)
-//        public string CZ19 { get; set; } //(nvarchar(50), null)
-//        public string CZ20 { get; set; } //(nvarchar(50), null)
-//        public string CZ21 { get; set; } //(nvarchar(50), null)
-//        public string CZ22 { get; set; } //(nvarchar(50), null)
-//        public string CZU1 { get; set; } //(nvarchar(50), null)
-//    }
-//}
+namespace Middleware.Wm.PickTicketConfirmation.Models
+{
+    public partial class OmsOrderResult
+    {
+        public Order ToOrder()
+        {
+            return new Order
+            {
+                BillingAddress = new Address
+                {
+                    City = bill_city,
+                    Country = bill_country,
+                    Line1 = bill_address,
+                    Line2 = bill_address2,
+                    Line3 = bill_address3,
+                    Name = bill_name,
+                    State = bill_state,
+                    Zip = bill_zip
+                },
+                ShippingAddress = new Address
+                {
+                    City = ship_city,
+                    Country = ship_country,
+                    Line1 = ship_address,
+                    Line2 = ship_address2,
+                    Line3 = ship_address3,
+                    Name = ship_name,
+                    State = ship_state,
+                    Zip = ship_zip
+                },
+                BillingPhone = bill_phone,
+                Company = company,
+                CustomerNumber = customer_number,
+                Discount = discount,
+                EmailAddress = email_address,
+                Freight = freight,
+                GiftMessage1 = gift_message_1,
+                GiftMessage2 = gift_message_2,
+                MiscHandling = misc_handling,
+                OrderDate = order_date,
+                OrderNumber = order_number,
+                OrderPriority = order_priority,
+                OrderSource = order_source,
+                OriginalOrderId = original_order,
+                PaymentApplied = string.Equals(payment_applied, "yes", StringComparison.InvariantCultureIgnoreCase),
+                PaymentOnly = string.Equals(payment_only, "yes", StringComparison.InvariantCultureIgnoreCase),
+                ShippingMethod = shipping_method,
+                ShippingNote = shipping_note,
+                ShippingPhone = ship_phone,
+                TransactionType = trans_type
+            };
+        }
+
+        public LineItem ToLineItem()
+        {
+            return new LineItem
+            {
+                Color = Color,
+                DetailCadreStatus = null,
+                EachPrice = each_price,
+                ExtendedPrice = ext_price,
+                InventoryType = inventory_type,
+                ItemComments = item_comments,
+                ItemDescription = Description,
+                ItemDiscount = item_discount,
+                ItemNumber = item_number,
+                ItemSku = item_sku,
+                Quantity = qty,
+                ReturnTo = return_to,
+                SeasonYear = SeasonYear,
+                ShipDate = ship_date,
+                Size = Size,
+                Style = Style,
+                UnitOfMeasure = unit_of_measure,
+            };
+        }
+    }
+}

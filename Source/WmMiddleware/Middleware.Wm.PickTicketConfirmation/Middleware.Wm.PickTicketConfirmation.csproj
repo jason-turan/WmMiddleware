@@ -59,16 +59,17 @@
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
     <Compile Include="Models\DatabasePickTicket.cs" />
     <Compile Include="Models\DatabasePickTicket.g.cs" />
+    <Compile Include="Models\OmsOrderResult.cs" />
     <Compile Include="PickTicketConfirmationJob.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ManhattanOrderConfiguration.cs" />
     <Compile Include="Repositories\ManhattanOrderWriter.cs" />
     <Compile Include="Repositories\OmsOrderReader.cs" />
-    <Compile Include="Models\OmsOrderResult.cs" />
+    <Compile Include="Models\OmsOrderResult.g.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Middleware.Jobs\Middleware.Jobs.csproj">
@@ -90,6 +91,14 @@
     <ProjectReference Include="..\WmMiddleware.Configuration\WmMiddleware.Configuration.csproj">
       <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>
       <Name>WmMiddleware.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WmMiddleware.Picking\WmMiddleware.Picking.csproj">
+      <Project>{299A19F1-8DDC-4532-9DD9-FFF0FFCFEDED}</Project>
+      <Name>WmMiddleware.Picking</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WmMiddleware.TransferControl\WmMiddleware.TransferControl.csproj">
+      <Project>{F788DD6F-2DF7-45BA-950A-EC5CBC5731D8}</Project>
+      <Name>WmMiddleware.TransferControl</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

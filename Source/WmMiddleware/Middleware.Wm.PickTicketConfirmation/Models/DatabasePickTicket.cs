@@ -61,7 +61,7 @@ namespace Middleware.Wm.PickTicketConfirmation.Models
                 Quantity = Quantity,
                 ReturnTo = ReturnTo,
                 ShipDate = ShipDate,
-                UnitsOfMeasure = UnitsOfMeasure,
+                UnitOfMeasure = UnitsOfMeasure,
                 Color = Color,
                 SeasonYear = SeasonYear,
                 Style = Style,
