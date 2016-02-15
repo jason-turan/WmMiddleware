@@ -152,10 +152,6 @@
       <Project>{bd53a64c-b782-4bd3-a771-4d2938dbebfc}</Project>
       <Name>Middleware.Integration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Middleware.Wm.Aurora.PickTicketConfirmation\Middleware.Wm.Aurora.PickTicketConfirmation.csproj">
-      <Project>{9e1ff0a9-40c7-4699-937f-03fa634ae48e}</Project>
-      <Name>Middleware.Wm.Aurora.PickTicketConfirmation</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Middleware.Wm.Aurora.PickTickets\Middleware.Wm.Aurora.PickTickets.csproj">
       <Project>{0f65c07a-002d-46fb-8f0a-c9738b25d054}</Project>
       <Name>Middleware.Wm.Aurora.PickTickets</Name>
@@ -171,6 +167,10 @@
     <ProjectReference Include="..\Middleware.Wm.LoggingAndFileMaintenance\Middleware.Wm.LoggingAndFileMaintenance.csproj">
       <Project>{24615298-1937-4540-b572-3fee0d65a820}</Project>
       <Name>Middleware.Wm.LoggingAndFileMaintenance</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Middleware.Wm.PickTicketConfirmation\Middleware.Wm.PickTicketConfirmation.csproj">
+      <Project>{5d10ec8b-e052-4a16-8924-214719a5c6e6}</Project>
+      <Name>Middleware.Wm.PickTicketConfirmation</Name>
     </ProjectReference>
     <ProjectReference Include="..\WmMiddleware.Configuration\WmMiddleware.Configuration.csproj">
       <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>
@@ -268,7 +268,7 @@
     <Copy SourceFiles="..\Middleware.Integration\bin\$(Configuration)\Middleware.Integration.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\WmMiddleware.PixReturn\bin\$(Configuration)\WmMiddleware.PixReturn.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\WmMiddleware.GeneralLedgerReconcilliation\bin\$(Configuration)\WmMiddleware.GeneralLedgerReconcilliation.exe.config" DestinationFolder="$(TargetDir)" />
-    <Copy SourceFiles="..\Middleware.Wm.Aurora.PickTicketConfirmation\bin\$(Configuration)\Middleware.Wm.Aurora.PickTicketConfirmation.exe.config" DestinationFolder="$(TargetDir)" />
+    <Copy SourceFiles="..\Middleware.Wm.PickTicketConfirmation\bin\$(Configuration)\Middleware.Wm.PickTicketConfirmation.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\Middleware.Wm.Aurora.TransferControl\bin\$(Configuration)\Middleware.Wm.Aurora.TransferControl.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\Middleware.Wm.Aurora.Shipment\bin\$(Configuration)\Middleware.Wm.Aurora.Shipment.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\Middleware.Wm.LoggingAndFileMaintenance\bin\$(Configuration)\Middleware.Wm.LoggingAndFileMaintenance.exe.config" DestinationFolder="$(TargetDir)" />

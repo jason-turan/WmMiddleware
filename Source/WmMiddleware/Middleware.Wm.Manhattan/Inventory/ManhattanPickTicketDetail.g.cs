@@ -2,12 +2,13 @@ using System;
 using System.Globalization;
 using FlatFile.FixedLength;
 using FlatFile.FixedLength.Attributes;
+using Middleware.Wm.DataFiles;
 
 namespace Middleware.Wm.Manhattan.Inventory
 {
     // Generated with FlatFileClassGenerator
     [FixedLengthFile]
-    public partial class ManhattanPickTicketDetail
+    public partial class ManhattanPickTicketDetail : IGeneratedFlatFile
     {
         private int _errorSequence;
         [FixedLengthField(1, 9, PaddingChar = '0', Padding = Padding.Left, NullValue="000000000")]

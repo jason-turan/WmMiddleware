@@ -27,7 +27,7 @@ namespace WmMiddleware.Picking.DependencyInjection
             Bind<ITransferControlRepository>().To<TransferControlRepository>();
             Bind<ITransferControlManager>().To<TransferControlManager>();
             Bind<IConfigurationManager>().To<MiddlewareConfigurationManager>();
-            Bind<ICarrierReadRepository>().To<WmDatabaseCarrierRepository>();
+            Bind<ICarrierReadRepository>().To<WmDatabaseCarrierRepository>().WithConstructorArgument("useThirdPartyBilling", false);
         }
     }
 }

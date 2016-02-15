@@ -13,8 +13,8 @@ namespace Middleware.Wm.Inventory
         }
 
         public int HeaderId { get; set; }
-        public ICollection<LineItem> Items { get; set; }
-        public ICollection<string> SpecialInstructions { get; set; }
+        public List<LineItem> Items { get; set; }
+        public List<string> SpecialInstructions { get; set; }
         public string Company { get; set; }
         public string OrderNumber { get; set; }
         public DateTime OrderDate { get; set; }

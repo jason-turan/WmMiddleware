@@ -1,7 +1,7 @@
 ﻿using WmMiddleware.Configuration;
 using WmMiddleware.TransferControl.Ftp;
 
-namespace Middleware.WarehouseManagement.Aurora.PickTickets.Ftp
+namespace Middleware.Wm.Aurora.PickTickets.Ftp
 {
     public class AuroraFtpClientConfiguration : IFtpClientConfiguration
     {

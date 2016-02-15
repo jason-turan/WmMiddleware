@@ -7,8 +7,8 @@
     <ProjectGuid>{0F65C07A-002D-46FB-8F0A-C9738B25D054}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Middleware.WarehouseManagement.Aurora.PickTickets</RootNamespace>
-    <AssemblyName>Middleware.WarehouseManagement.Aurora.PickTickets</AssemblyName>
+    <RootNamespace>Middleware.Wm.Aurora.PickTickets</RootNamespace>
+    <AssemblyName>Middleware.Wm.Aurora.PickTickets</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -77,6 +77,7 @@
     <Compile Include="PickTicketJob.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ManhattanOrderConfiguration.cs" />
     <Compile Include="Repositories\XmlOrderWriter.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +107,10 @@
     <ProjectReference Include="..\WmMiddleware.ManhattanOutboundData\WmMiddleware.Outbound.csproj">
       <Project>{0C7E1466-F223-4D93-B53D-E896D0271F5D}</Project>
       <Name>WmMiddleware.Outbound</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WmMiddleware.Picking\WmMiddleware.Picking.csproj">
+      <Project>{299A19F1-8DDC-4532-9DD9-FFF0FFCFEDED}</Project>
+      <Name>WmMiddleware.Picking</Name>
     </ProjectReference>
     <ProjectReference Include="..\WmMiddleware.TransferControl\WmMiddleware.TransferControl.csproj">
       <Project>{F788DD6F-2DF7-45BA-950A-EC5CBC5731D8}</Project>

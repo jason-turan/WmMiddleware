@@ -1,7 +1,7 @@
 ﻿using Middleware.Jobs;
-using Middleware.WarehouseManagement.Aurora.PickTickets.DependencyInjection;
+using Middleware.Wm.Aurora.PickTickets.DependencyInjection;
 
-namespace Middleware.WarehouseManagement.Aurora.PickTickets
+namespace Middleware.Wm.Aurora.PickTickets
 {
     public class Program
     {

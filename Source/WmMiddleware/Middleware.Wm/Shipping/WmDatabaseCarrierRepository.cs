@@ -10,17 +10,23 @@ namespace Middleware.Wm.Shipping
 {
     public class WmDatabaseCarrierRepository : ICarrierReadRepository
     {
+        private readonly bool _useThirdPartyBilling;
         private readonly MemoryCache _cache = new MemoryCache("Middleware.Wm.Shipping.DatabaseCarrierRespository");
 
-        public string GetOmsShipMethod(string code, bool useThirdPartyBilling)
+        public WmDatabaseCarrierRepository(bool useThirdPartyBilling)
         {
-            var serviceCode = GetCachedServiceCodes().FirstOrDefault(sc => sc.IsThirdPartyBilling == useThirdPartyBilling && sc.Code.Equals(code, StringComparison.InvariantCultureIgnoreCase));
+            _useThirdPartyBilling = useThirdPartyBilling;
+        }
+
+        public string GetOmsShipMethod(string code)
+        {
+            var serviceCode = GetCachedServiceCodes().FirstOrDefault(sc => sc.IsThirdPartyBilling == _useThirdPartyBilling && sc.Code.Equals(code, StringComparison.InvariantCultureIgnoreCase));
             return serviceCode == null ? null : serviceCode.OmsShipMethod;
         }
 
-        public string GetCode(string omsShipMethod, bool useThirdPartyBilling)
+        public string GetCode(string omsShipMethod)
         {
-            var serviceCode = GetCachedServiceCodes().OrderBy(sc => sc.Code).FirstOrDefault(sc => sc.IsThirdPartyBilling == useThirdPartyBilling && string.Equals(sc.OmsShipMethod, omsShipMethod, StringComparison.InvariantCultureIgnoreCase));
+            var serviceCode = GetCachedServiceCodes().OrderBy(sc => sc.Code).FirstOrDefault(sc => sc.IsThirdPartyBilling == _useThirdPartyBilling && string.Equals(sc.OmsShipMethod, omsShipMethod, StringComparison.InvariantCultureIgnoreCase));
             return serviceCode == null ? null : serviceCode.Code;
         }
 

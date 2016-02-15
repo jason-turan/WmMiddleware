@@ -11,7 +11,7 @@ using WmMiddleware.TransferControl.Control;
 using WmMiddleware.TransferControl.Models;
 using WmMiddleware.TransferControl.Repositories;
 
-namespace Middleware.WarehouseManagement.Aurora.PickTickets
+namespace Middleware.Wm.Aurora.PickTickets
 {
     public class PickTicketJob : OutboundProcessor
     {

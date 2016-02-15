@@ -7,7 +7,7 @@ using Middleware.Wm.Inventory;
 using WmMiddleware.Configuration;
 using WmMiddleware.TransferControl.Ftp;
 
-namespace Middleware.WarehouseManagement.Aurora.PickTickets.Repositories
+namespace Middleware.Wm.Aurora.PickTickets.Repositories
 {
     public class XmlOrderWriter : IOrderWriter
     {

@@ -2,7 +2,7 @@
 {
     public interface ICarrierReadRepository
     {
-        string GetOmsShipMethod(string code, bool useThirdPartyBilling = false);
-        string GetCode(string omsShipMethod, bool useThirdPartyBilling = false);
+        string GetOmsShipMethod(string code);
+        string GetCode(string omsShipMethod);
     }
 }
