@@ -15,7 +15,7 @@ namespace Middleware.Wm.Manhattan.Inventory
 
         }
 
-        public ManhattanPickTicketHeader(Order order, string batchControlNumber, string companyNumber, string warehouseNumber, ICountryReader countryReader, ICarrierReadRepository carrierRepository)
+        public ManhattanPickTicketHeader(Order order, string batchControlNumber, string companyNumber, string warehouseNumber, string shipTo, ICountryReader countryReader, ICarrierReadRepository carrierRepository)
         {
             BatchControlNumber = batchControlNumber;
             CreateDate = DateTime.Now;
@@ -29,7 +29,7 @@ namespace Middleware.Wm.Manhattan.Inventory
             OrderNumber = order.ControlNumber;
             MiscellaneousIns20Byte11 = order.OrderNumber; // Save order number in misc field to retrieve from ship files
             OrderType = order.OrderPriority;
-            ShipTo = "CDS";
+            ShipTo = shipTo;
             ShipToName = order.ShippingAddress.Name;
             ShipToAddr1 = order.ShippingAddress.Line1;
             ShipToAddr2 = order.ShippingAddress.Line2;

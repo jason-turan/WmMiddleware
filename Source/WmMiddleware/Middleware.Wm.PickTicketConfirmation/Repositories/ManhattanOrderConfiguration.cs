@@ -40,6 +40,11 @@ namespace Middleware.Wm.PickTicketConfirmation.Repositories
             return _configurationManager.GetBatchControlNumber();
         }
 
+        public string GetShipTo()
+        {
+            return "CDX";
+        }
+
         public IEnumerable<ManhattanPickTicketInstruction> GetPickTicketInstructions(Order order, string batchControlNumber, int instructionControlNumber)
         {
             yield break;
@@ -57,7 +62,7 @@ namespace Middleware.Wm.PickTicketConfirmation.Repositories
 
         public string GetSpecialInstructionFilePath(long controlNumber)
         {
-            return null;
+            return _configurationManager.GetPath(ManhattanDataFileType.PickSpecialInstructions, controlNumber);
         }
 
         public int GetJobId()

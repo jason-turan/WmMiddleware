@@ -67,6 +67,7 @@ namespace Middleware.Wm.Manhattan.Inventory
             var warehouseNumber = _configuration.GetWarehouseNumber();
             var companyNumber = _configuration.GetCompanyNumber();
             var warehouseAddress = _configuration.GetWarehouseAddress();
+            var shipTo = _configuration.GetShipTo();
 
             var controlNumber = _configuration.GetBatchControlNumber();
             var batchControlNumber = warehouseNumber + controlNumber.ToString("D8");
@@ -80,7 +81,7 @@ namespace Middleware.Wm.Manhattan.Inventory
             {
                 order.BillingAddress = warehouseAddress;
 
-                headerList.Add(new ManhattanPickTicketHeader(order, batchControlNumber, companyNumber, warehouseNumber, _countryReader, _carrierReadRepository));
+                headerList.Add(new ManhattanPickTicketHeader(order, batchControlNumber, companyNumber, warehouseNumber, shipTo, _countryReader, _carrierReadRepository));
                 detailList.AddRange(CombineItems(order, batchControlNumber, companyNumber, warehouseNumber));
                 var instructionControlNumber = 1;
                 foreach (var instruction in order.SpecialInstructions)

@@ -9,6 +9,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         string GetCompanyNumber();
         Address GetWarehouseAddress();
         long GetBatchControlNumber();
+        string GetShipTo();
 
         IEnumerable<ManhattanPickTicketInstruction> GetPickTicketInstructions(Order order, string batchControlNumber, int instructionControlNumber);
 

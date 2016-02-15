@@ -61,7 +61,7 @@ namespace WmMiddleware.Picking.Repositories
             {
                 order.BillingAddress = warehouseAddress;
 
-                headerList.Add(new ManhattanPickTicketHeader(order, batchControlNumber, companyNumber, warehouseNumber, _countryReader, _carrierRepository));
+                headerList.Add(new ManhattanPickTicketHeader(order, batchControlNumber, companyNumber, warehouseNumber, "CDS", _countryReader, _carrierRepository));
                 detailList.AddRange(CombineItems(order, batchControlNumber, companyNumber, warehouseNumber));
                 var instructionControlNumber = 1;
                 foreach (var instruction in order.SpecialInstructions)

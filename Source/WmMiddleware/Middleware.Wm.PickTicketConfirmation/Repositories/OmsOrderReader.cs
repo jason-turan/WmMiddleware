@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using Dapper;
 using Middleware.Wm.Inventory;
@@ -21,7 +22,24 @@ namespace Middleware.Wm.PickTicketConfirmation.Repositories
 
         public void SetAsProcessed(IEnumerable<Order> orders)
         {
-            throw new NotImplementedException();
+            using (var connection = DatabaseConnectionFactory.GetGpConnection())
+            {
+                var orderTable = new DataTable();
+                orderTable.Columns.Add("OrderNumber");
+                foreach (var order in orders)
+                {
+                    orderTable.Rows.Add(order.OrderNumber);
+                }
+
+                var parameter = new
+                {
+                    OrderNumberTable = orderTable.AsTableValuedParameter("[dbo].[OrderNumberTable]"),
+                    Status = "READ"
+                };
+
+                connection.Open();
+                connection.Execute("[sp_UpdateBNCOrderStatus]", parameter, commandType: CommandType.StoredProcedure);
+            }
         }
 
         private static IEnumerable<Order> GroupOrders(IEnumerable<OmsOrderResult> orderResults)
