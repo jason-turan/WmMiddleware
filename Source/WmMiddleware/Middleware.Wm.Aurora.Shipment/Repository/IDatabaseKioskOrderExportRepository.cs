@@ -8,7 +8,7 @@ namespace Middleware.Wm.Aurora.Shipment.Repository
         void InsertDatabaseKioskOrderExport(IList<DatabaseKioskOrderExport> kioskOrderExports);
 
         void InsertDatabaseKioskOrderDetailExport(IList<DatabaseKioskOrderDetailExport> kiosKioskOrderDetailExports);
-
+        
         IList<DatabaseKioskOrderExport> GetDatabaseKioskOrderExports();
 
         IList<DatabaseKioskOrderDetailExport> GetDatabaseKioskOrderDetailExports();

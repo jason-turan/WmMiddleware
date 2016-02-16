@@ -2,6 +2,6 @@
 {
     public class AuroraShipmentDetail
     {
-
+        public string Sku { get; set; }
     }
 }

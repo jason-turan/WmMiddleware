@@ -5,5 +5,7 @@ namespace Middleware.Wm.Aurora.Shipment.Repository
     public interface IAuroraShipmentRepository
     {
         void SaveShipments(IList<Models.AuroraShipment> shipments);
+
+        IList<Models.AuroraShipment> GetShipments();
     }
 }
