@@ -36,6 +36,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Development\MiddlewareIntegration\Dependencies\Dapper\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper.Contrib, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Development\MiddlewareIntegration\Dependencies\Dapper\Dapper.Contrib.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\..\..\Dependencies\Ninject\Ninject.dll</HintPath>
     </Reference>
@@ -50,11 +58,17 @@
   <ItemGroup>
     <Compile Include="AuroraShipmentJob.cs" />
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
+    <Compile Include="Models\DatabaseKioskOrderDetailExport.cs" />
+    <Compile Include="Models\DatabaseKioskOrderExport.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\DatabaseKioskOrderExportRepository.cs" />
+    <Compile Include="Repository\IDatabaseKioskOrderExportRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Middleware.Jobs\Middleware.Jobs.csproj">
@@ -74,6 +88,7 @@
       <Name>WmMiddleware.TransferControl</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

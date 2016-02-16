@@ -16,6 +16,16 @@ namespace WmMiddleware.Configuration.Database
             return GetConnection("WarehouseManagementTransactionConnection");
         }
 
+        public static IDbConnection GetDwhExportConnection()
+        {
+            return GetConnection("DwhExportConnection");
+        }
+
+        public static IDbConnection GetDeckisKioskonnection()
+        {
+            return GetConnection("DeckIsKioskConnection");
+        }
+
         public static IDbConnection GetIntegrationManagementConnection()
         {
             return GetConnection("IntegrationManagementConnection");

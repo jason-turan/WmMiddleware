@@ -31,7 +31,8 @@ namespace WmMiddleware.ProductReceiving.Models
             ShippedAsnQuantity = item.UnitsShipped;
             PurchaseOrderNumber = shippingNotification.CustomerPurchaseOrderReference;
         }
-
+        #region "Bl"
+        #endregion
         public DateTime CreateDate
         {
             get { return ManhattanExtensions.ParseDateTime(DateCreated, TimeCreated); }
