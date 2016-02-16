@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using Middleware.Wm.Manhattan.Shipment;
 using WmMiddleware.Shipment.Models;
-using WmMiddleware.Shipment.Models.Generated;
 
 namespace WmMiddleware.Shipment.Repository
 {

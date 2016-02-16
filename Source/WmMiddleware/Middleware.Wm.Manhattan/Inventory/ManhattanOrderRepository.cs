@@ -36,11 +36,6 @@ namespace Middleware.Wm.Manhattan.Inventory
             var headers = _headerRepository.Get(headerFileLocation);
             var details = _detailRepository.Get(detailsFileLocation);
 
-            if (instructionsFileLocation != null)
-            {
-                throw new NotImplementedException();
-            }
-
             var orders = headers.ToDictionary(h => h.PickticketControlNumber, h => h.ToOrder(_carrierReadRepository, _countryReader));
 
             foreach (var detail in details)

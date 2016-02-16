@@ -20,7 +20,7 @@ namespace Middleware.Wm.Aurora.Shipment
         {
             var orders = _databaseKioskOrderExportRepository.GetDatabaseKioskOrderExports();
             var orderDetails = _databaseKioskOrderExportRepository.GetDatabaseKioskOrderDetailExports();
-
+            
             _databaseKioskOrderExportRepository.InsertDatabaseKioskOrderExport(orders);
             _databaseKioskOrderExportRepository.InsertDatabaseKioskOrderDetailExport(orderDetails);
         }

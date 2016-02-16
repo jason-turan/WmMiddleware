@@ -1,9 +1,9 @@
 ﻿using System;
-using WmMiddleware.Configuration.Manhattan;
+using WmMiddleware.Configuration.Mainframe;
 
 namespace WmMiddleware.ProductUpdating.Configuration
 {
-    public interface IProductUpdatingConfiguration : IManhattanConfiguration
+    public interface IProductUpdatingConfiguration : IMainframeConfiguration
     {
         DateTime? GetLastSuccessfulRun();
         void SetLastSuccessfulRun(DateTime timeRun);

@@ -1,11 +1,11 @@
 ﻿using Middleware.Wm.Inventory;
 using WmMiddleware.Configuration;
-using WmMiddleware.Configuration.Manhattan;
 using MiddleWare.Log;
+using WmMiddleware.Configuration.Mainframe;
 
 namespace WmMiddleware.Picking.Configuration
 {
-    public class PickConfiguration : ManhattanConfiguration, IPickConfiguration
+    public class PickConfiguration : MainframeConfiguration, IPickConfiguration
     {
         public PickConfiguration(ILog log) : base(log)
         {

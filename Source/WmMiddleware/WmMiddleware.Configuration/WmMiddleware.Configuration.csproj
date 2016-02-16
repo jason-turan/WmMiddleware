@@ -56,9 +56,9 @@
     <Compile Include="MiddlewareConfigurationManager.cs" />
     <Compile Include="IConfigurationManager.cs" />
     <Compile Include="Database\DatabaseConnectionFactory.cs" />
-    <Compile Include="Manhattan\BatchControlNumberType.cs" />
-    <Compile Include="Manhattan\IManhattanConfiguration.cs" />
-    <Compile Include="Manhattan\ManhattanConfiguration.cs" />
+    <Compile Include="Mainframe\BatchControlNumberType.cs" />
+    <Compile Include="Mainframe\IMainframeConfiguration.cs" />
+    <Compile Include="Mainframe\MainframeConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

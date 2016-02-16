@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
-using WmMiddleware.Configuration.Manhattan;
 using MiddleWare.Log;
+using WmMiddleware.Configuration.Mainframe;
 
 namespace WmMiddleware.ProductUpdating.Configuration
 {
-    public class ProductUpdatingConfiguration : ManhattanConfiguration, IProductUpdatingConfiguration
+    public class ProductUpdatingConfiguration : MainframeConfiguration, IProductUpdatingConfiguration
     {
         private readonly ILog _log;
         private static readonly string ConfigFileName = AppDomain.CurrentDomain.BaseDirectory + "ProductUpdatingValues.config";

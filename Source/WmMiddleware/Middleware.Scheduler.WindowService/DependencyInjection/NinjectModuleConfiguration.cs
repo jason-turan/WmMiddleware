@@ -2,7 +2,7 @@
 using Quartz;
 using Quartz.Impl;
 using Quartz.Spi;
-using WmMiddleware.Configuration.Manhattan;
+using WmMiddleware.Configuration.Mainframe;
 using Middleware.Jobs.Job;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
@@ -18,7 +18,7 @@ namespace Middleware.Scheduler.WindowService.DependencyInjection
             Bind<IJobFactory>().To<NinjectQuartzFactory>();
             Bind<ISchedulerFactory>().To<StdSchedulerFactory>();
             Bind<IServer>().To<Server>();
-            Bind<IManhattanConfiguration>().To<ManhattanConfiguration>();
+            Bind<IMainframeConfiguration>().To<MainframeConfiguration>();
             Bind<IJobRepository>().To<JobRepository>();
             Bind<IConsoleJob>().To<ConsoleJob>();
             Bind<IServerScheduler>().To<ServerScheduler>();

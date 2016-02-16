@@ -1,6 +1,6 @@
-﻿namespace WmMiddleware.Configuration.Manhattan
+﻿namespace WmMiddleware.Configuration.Mainframe
 {
-    public interface IManhattanConfiguration : IConfigurationManager
+    public interface IMainframeConfiguration : IConfigurationManager
     {
         long GetBatchControlNumber();
         string GetPath(string filePrefix, long batchControlNumber);

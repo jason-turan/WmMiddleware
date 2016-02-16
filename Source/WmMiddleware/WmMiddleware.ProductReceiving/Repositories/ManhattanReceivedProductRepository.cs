@@ -4,7 +4,7 @@ using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
 using Middleware.Wm.DataFiles;
 using WmMiddleware.Configuration;
-using WmMiddleware.Configuration.Manhattan;
+using WmMiddleware.Configuration.Mainframe;
 using WmMiddleware.ProductReceiving.Models;
 using WmMiddleware.TransferControl.Control;
 
@@ -12,7 +12,7 @@ namespace WmMiddleware.ProductReceiving.Repositories
 {
     public class ManhattanReceivedProductRepository : IReceivedProductWriter
     {
-        private readonly IManhattanConfiguration _configuration;
+        private readonly IMainframeConfiguration _configuration;
         private readonly DataFileRepository<ManhattanCaseDetail> _caseDetailFileRepository = new DataFileRepository<ManhattanCaseDetail>();
         private readonly DataFileRepository<ManhattanSkuDetail> _skuDetailFileRepository = new DataFileRepository<ManhattanSkuDetail>();
         private readonly DataFileRepository<ManhattanReceivedProductHeader> _headerFileRepository = new DataFileRepository<ManhattanReceivedProductHeader>();
@@ -20,7 +20,7 @@ namespace WmMiddleware.ProductReceiving.Repositories
         private readonly IJobRepository _jobRepository;
 
         public ManhattanReceivedProductRepository(ITransferControlManager transferControlManager, 
-                                                  IManhattanConfiguration configuration,
+                                                  IMainframeConfiguration configuration,
                                                   IJobRepository jobRepository)
         {
             _transferControlManager = transferControlManager;

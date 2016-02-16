@@ -2,9 +2,9 @@
 using System.Data;
 using Dapper;
 using Dapper.Contrib.Extensions;
+using Middleware.Wm.Manhattan.Shipment;
 using WmMiddleware.Configuration.Database;
 using WmMiddleware.Shipment.Models;
-using WmMiddleware.Shipment.Models.Generated;
 
 namespace WmMiddleware.Shipment.Repository
 {

@@ -7,7 +7,7 @@ using Middleware.Wm.DataFiles;
 
 // ReSharper disable InconsistentNaming
 // ReSharper disable CheckNamespace
-namespace WmMiddleware.Shipment.Models.Generated
+namespace Middleware.Wm.Manhattan.Shipment
 {
     // Generated with FlatFileClassGenerator
     [FixedLengthFile]

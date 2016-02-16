@@ -20,7 +20,7 @@ namespace Middleware.Wm.Aurora.Shipment.DependencyInjection
             Bind<IFileIo>().To<FileIo>();
             Bind<ITransferControlRepository>().To<TransferControlRepository>();
             Bind<IDatabaseKioskOrderExportRepository>().To<DatabaseKioskOrderExportRepository>();
-
+            
             // TODO  Bind<IFtpClientConfiguration>().To<AuroraFtpClientConfiguration>();
         }
     }

@@ -1,13 +1,13 @@
 ﻿using System.IO;
 using Dapper;
-using WmMiddleware.Configuration.Database;
 using MiddleWare.Log;
+using WmMiddleware.Configuration.Database;
 
-namespace WmMiddleware.Configuration.Manhattan
+namespace WmMiddleware.Configuration.Mainframe
 {
-    public class ManhattanConfiguration : MiddlewareConfigurationManager, IManhattanConfiguration
+    public class MainframeConfiguration : MiddlewareConfigurationManager, IMainframeConfiguration
     {
-        public ManhattanConfiguration(ILog log) : base(log)
+        public MainframeConfiguration(ILog log) : base(log)
         {
         }
 

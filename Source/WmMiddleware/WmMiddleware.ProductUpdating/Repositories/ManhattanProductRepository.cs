@@ -4,7 +4,7 @@ using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
 using Middleware.Wm.DataFiles;
 using WmMiddleware.Configuration;
-using WmMiddleware.Configuration.Manhattan;
+using WmMiddleware.Configuration.Mainframe;
 using WmMiddleware.ProductUpdating.Models;
 using WmMiddleware.TransferControl.Control;
 
@@ -12,12 +12,12 @@ namespace WmMiddleware.ProductUpdating.Repositories
 {
     public class ManhattanProductRepository : IProductWriter
     {
-        private readonly IManhattanConfiguration _configuration;
+        private readonly IMainframeConfiguration _configuration;
         private readonly DataFileRepository<ManhattanProduct> _productRepository = new DataFileRepository<ManhattanProduct>();
         private readonly ITransferControlManager _transferControlManager;
         private readonly IJobRepository _jobRepository;
 
-        public ManhattanProductRepository(IManhattanConfiguration configuration, 
+        public ManhattanProductRepository(IMainframeConfiguration configuration, 
                                           ITransferControlManager transferControlManager,
                                           IJobRepository jobRepository)
         {

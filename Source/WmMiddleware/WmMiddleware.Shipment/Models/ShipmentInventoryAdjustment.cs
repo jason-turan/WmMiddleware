@@ -1,5 +1,5 @@
 ﻿using Middleware.Wm.Extensions;
-using WmMiddleware.Shipment.Models.Generated;
+using Middleware.Wm.Manhattan.Shipment;
 
 namespace WmMiddleware.Shipment.Models
 {
