@@ -10,8 +10,8 @@ namespace WmMiddleware.TransferControl.Repositories
 {
     public class TransferControlRepository : ITransferControlRepository
     {
-        public const string InboundAurora = "InboundAurora";
-        public const string InboundManhattan = "InboundManhattan";
+        public const string InboundAurora = "AuroraInbound";
+        public const string InboundManhattan = "ManhattanInbound";
         public const string Outbound = "Outbound";
 
         private const string SelectTransferControlSql = @"SELECT [TransferControlId]
