@@ -4,8 +4,6 @@
     {
         ManhattanInbound,
         AuroraInbound,
-        Outbound,
-        Admin,
-        Integration
+        Outbound
     }
 }

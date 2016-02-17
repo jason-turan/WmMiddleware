@@ -51,15 +51,6 @@ namespace Middleware.Alerts
 
         public void RunUnitOfWork(string jobKey)
         {
-            var stopWatch = new Stopwatch();
-            stopWatch.Start();
-
-            while (stopWatch.Elapsed.Minutes < 5)
-            {
-                _log.Info("Just running...");
-                Thread.Sleep(1000);
-            }
-
             ResolveRecoveries();
 
             var failureList = _jobRepository.GetJobs()

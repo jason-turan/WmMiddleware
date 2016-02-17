@@ -33,12 +33,12 @@ namespace Middleware.WM.Aurora.TransferControl.Configuration
 
         public string GetInboundFileDirectory()
         {
-            return _configurationManager.GetKey<string>(AuroraPrefix + ConfigurationKey.TransferControlInboundFileProcessedDirectory);
+            return _configurationManager.GetKey<string>(AuroraPrefix + ConfigurationKey.TransferControlInboundFileDirectory);
         }
 
         public string GetInboundFileProcessedDirectory()
         {
-            return _configurationManager.GetKey<string>(AuroraPrefix + ConfigurationKey.TransferControlInboundFileDirectory);
+            return _configurationManager.GetKey<string>(AuroraPrefix + ConfigurationKey.TransferControlInboundFileProcessedDirectory);
         }
 
         public string GetInboundMasterControlFilename()

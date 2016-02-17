@@ -96,7 +96,7 @@ INSERT INTO ConfigurationItem([Key], Value, EnvironmentId)
 VALUES ('TransferControl_InboundFileDirectory', 'D:\FTP_Manhattan\to_manhattan\', 2);
 
 INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
-VALUES ('TransferControl_InboundFileProcessedDirectory', 'D:\FTP_Manhattan\to_manhattan\Processed\', 2);
+VALUES ('', 'D:\FTP_Manhattan\to_manhattan\Processed\', 2);
 
 INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
 VALUES ('TransferControl_OutboundFileDirectory', 'D:\FTP_Manhattan\from_manhattan\', 2);
