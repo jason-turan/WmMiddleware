@@ -9,12 +9,12 @@ using WmMiddleware.Picking.Configuration;
 
 namespace Middleware.Wm.PickTicketConfirmation.Configuration
 {
-    internal class AuroraOrderConfiguration : IMainframeOrderConfiguration
+    internal class ManhattanOrderConfiguration : IMainframeOrderConfiguration
     {
         private readonly IPickConfiguration _configurationManager;
         private readonly IJobRepository _jobRepository;
 
-        public AuroraOrderConfiguration(IPickConfiguration configurationManager, IJobRepository jobRepository)
+        public ManhattanOrderConfiguration(IPickConfiguration configurationManager, IJobRepository jobRepository)
         {
             _configurationManager = configurationManager;
             _jobRepository = jobRepository;

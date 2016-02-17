@@ -63,7 +63,7 @@
     <Compile Include="PickTicketConfirmationJob.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Configuration\AuroraOrderConfiguration.cs" />
+    <Compile Include="Configuration\ManhattanOrderConfiguration.cs" />
     <Compile Include="Repositories\ManhattanOrderWriter.cs" />
     <Compile Include="Repositories\OmsOrderReader.cs" />
     <Compile Include="Models\OmsOrderResult.g.cs" />

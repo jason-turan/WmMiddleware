@@ -27,7 +27,7 @@ namespace Middleware.Wm.PickTicketConfirmation.DependencyInjection
             Bind<IUnitOfWork>().To<PickTicketConfirmationJob>();
             Bind<ICarrierReadRepository>().To<WmDatabaseCarrierRepository>().WithConstructorArgument("useThirdPartyBilling", true);
             Bind<ICountryReader>().To<DatabaseCountryRepository>();
-            Bind<IMainframeOrderConfiguration>().To<AuroraOrderConfiguration>();
+            Bind<IMainframeOrderConfiguration>().To<ManhattanOrderConfiguration>();
             Bind<IOrderWriter>().To<ManhattanOrderWriter>();
             Bind<IOrderReader>().To<OmsOrderReader>();
             Bind<IManhattanOrderRepository>().To<ManhattanOrderRepository>();
