@@ -7,14 +7,14 @@ using Middleware.Wm.Manhattan.Inventory;
 using WmMiddleware.Configuration;
 using WmMiddleware.Picking.Configuration;
 
-namespace Middleware.Wm.Aurora.PickTickets.Repositories
+namespace Middleware.Wm.PickTicketConfirmation.Configuration
 {
-    internal class ManhattanOrderConfiguration : IManhattanOrderConfiguration
+    internal class AuroraOrderConfiguration : IMainframeOrderConfiguration
     {
         private readonly IPickConfiguration _configurationManager;
         private readonly IJobRepository _jobRepository;
 
-        public ManhattanOrderConfiguration(IPickConfiguration configurationManager, IJobRepository jobRepository)
+        public AuroraOrderConfiguration(IPickConfiguration configurationManager, IJobRepository jobRepository)
         {
             _configurationManager = configurationManager;
             _jobRepository = jobRepository;
@@ -52,22 +52,22 @@ namespace Middleware.Wm.Aurora.PickTickets.Repositories
 
         public string GetHeaderFilePath(long controlNumber)
         {
-            return _configurationManager.GetPath(ManhattanDataFileType.PickHeader, controlNumber);
+            return _configurationManager.GetPath(ManhattanDataFileType.PickHeader, controlNumber, "Aurora_");
         }
 
         public string GetDetailFilePath(long controlNumber)
         {
-            return _configurationManager.GetPath(ManhattanDataFileType.PickDetail, controlNumber);
+            return _configurationManager.GetPath(ManhattanDataFileType.PickDetail, controlNumber, "Aurora_");
         }
 
         public string GetSpecialInstructionFilePath(long controlNumber)
         {
-            return _configurationManager.GetPath(ManhattanDataFileType.PickSpecialInstructions, controlNumber);
+            return _configurationManager.GetPath(ManhattanDataFileType.PickSpecialInstructions, controlNumber, "Aurora_");
         }
 
         public int GetJobId()
         {
-            return _jobRepository.GetJob(JobKey.PickJob).JobId;
+            return _jobRepository.GetJob(JobKey.AuroraPickConfirmationJob).JobId;
         }
     }
 }

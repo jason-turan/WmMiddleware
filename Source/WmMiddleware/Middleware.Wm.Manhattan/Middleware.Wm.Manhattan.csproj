@@ -59,7 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Inventory\IManhattanOrderConfiguration.cs" />
+    <Compile Include="Inventory\IMainframeOrderConfiguration.cs" />
     <Compile Include="Inventory\IManhattanOrderRepository.cs" />
     <Compile Include="Inventory\ManhattanOrderRepository.cs" />
     <Compile Include="Inventory\ManhattanPickTicketDetail.cs" />

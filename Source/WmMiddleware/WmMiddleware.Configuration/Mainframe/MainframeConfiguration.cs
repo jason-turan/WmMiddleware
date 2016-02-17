@@ -20,9 +20,12 @@ namespace WmMiddleware.Configuration.Mainframe
             }
         }
 
-        public string GetPath(string filePrefix, long batchControlNumber)
+        public string GetPath(string filePrefix, long batchControlNumber, string configurationKeyPrefix = null)
         {
-            var outputLocation = GetKey<string>(ConfigurationKey.TransferControlInboundFileDirectory);
+            var outputLocation = GetKey<string>(configurationKeyPrefix == null ? 
+                                                ConfigurationKey.TransferControlInboundFileDirectory : 
+                                                configurationKeyPrefix + ConfigurationKey.TransferControlInboundFileDirectory);
+
             return Path.Combine(outputLocation, string.Format("{0}{1:D8}", filePrefix, batchControlNumber));
         }
     }

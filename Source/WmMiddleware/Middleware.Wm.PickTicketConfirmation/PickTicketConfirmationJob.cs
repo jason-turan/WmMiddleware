@@ -31,7 +31,9 @@ namespace Middleware.Wm.PickTicketConfirmation
 
                 foreach (var order in orders)
                 {
-                    logBuilder.AppendLine(string.Format("Order Number: {0} <SKUs: {1}>", order.OrderNumber, string.Join(",", order.Items.Select(i => i.ItemSku))));
+                    logBuilder.AppendLine(string.Format("Order Number: {0} <SKUs: {1}>", 
+                                                        order.OrderNumber, 
+                                                        string.Join(",", order.Items.Select(i => i.ItemSku))));
                 }
 
                 _logger.Debug(logBuilder.ToString());

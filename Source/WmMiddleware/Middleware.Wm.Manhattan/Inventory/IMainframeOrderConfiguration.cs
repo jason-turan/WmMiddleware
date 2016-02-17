@@ -3,7 +3,7 @@ using Middleware.Wm.Inventory;
 
 namespace Middleware.Wm.Manhattan.Inventory
 {
-    public interface IManhattanOrderConfiguration
+    public interface IMainframeOrderConfiguration
     {
         string GetWarehouseNumber();
         string GetCompanyNumber();

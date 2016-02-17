@@ -32,7 +32,6 @@ namespace Middleware.Wm.Aurora.PickTickets.DependencyInjection
             Bind<IFtpClientConfiguration>().To<AuroraFtpClientConfiguration>();
             Bind<ICountryReader>().To<DatabaseCountryRepository>();
             Bind<IManhattanOrderRepository>().To<ManhattanOrderRepository>();
-            Bind<IManhattanOrderConfiguration>().To<ManhattanOrderConfiguration>();
             Bind<IPickConfiguration>().To<PickConfiguration>();
             Bind<ITransferControlManager>().To<TransferControlManager>();
         }

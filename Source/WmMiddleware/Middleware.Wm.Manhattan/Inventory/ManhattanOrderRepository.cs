@@ -13,14 +13,17 @@ namespace Middleware.Wm.Manhattan.Inventory
     {
         private readonly ICarrierReadRepository _carrierReadRepository;
         private readonly ICountryReader _countryReader;
-        private readonly IManhattanOrderConfiguration _configuration;
+        private readonly IMainframeOrderConfiguration _configuration;
         private readonly ITransferControlManager _transferControlManager;
 
         private readonly DataFileRepository<ManhattanPickTicketHeader> _headerRepository = new DataFileRepository<ManhattanPickTicketHeader>();
         private readonly DataFileRepository<ManhattanPickTicketDetail> _detailRepository = new DataFileRepository<ManhattanPickTicketDetail>();
         private readonly DataFileRepository<ManhattanPickTicketInstruction> _instructionRepository = new DataFileRepository<ManhattanPickTicketInstruction>();
 
-        public ManhattanOrderRepository(ICarrierReadRepository carrierReadRepository, ICountryReader countryReader, IManhattanOrderConfiguration configuration, ITransferControlManager transferControlManager)
+        public ManhattanOrderRepository(ICarrierReadRepository carrierReadRepository, 
+                                        ICountryReader countryReader, 
+                                        IMainframeOrderConfiguration configuration, 
+                                        ITransferControlManager transferControlManager)
         {
             _carrierReadRepository = carrierReadRepository;
             _countryReader = countryReader;
@@ -70,8 +73,7 @@ namespace Middleware.Wm.Manhattan.Inventory
             var detailList = new List<ManhattanPickTicketDetail>();
             var headerList = new List<ManhattanPickTicketHeader>();
             var instructionList = new List<ManhattanPickTicketInstruction>();
-
-
+            
             foreach (var order in allOrders)
             {
                 order.BillingAddress = warehouseAddress;

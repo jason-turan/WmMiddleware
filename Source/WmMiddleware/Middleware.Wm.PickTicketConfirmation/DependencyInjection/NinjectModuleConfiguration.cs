@@ -3,6 +3,7 @@ using Middleware.Jobs.Repositories;
 using Middleware.Wm.Inventory;
 using Middleware.Wm.Locations;
 using Middleware.Wm.Manhattan.Inventory;
+using Middleware.Wm.PickTicketConfirmation.Configuration;
 using Middleware.Wm.PickTicketConfirmation.Repositories;
 using Middleware.Wm.Shipping;
 using MiddleWare.Log;
@@ -26,7 +27,7 @@ namespace Middleware.Wm.PickTicketConfirmation.DependencyInjection
             Bind<IUnitOfWork>().To<PickTicketConfirmationJob>();
             Bind<ICarrierReadRepository>().To<WmDatabaseCarrierRepository>().WithConstructorArgument("useThirdPartyBilling", true);
             Bind<ICountryReader>().To<DatabaseCountryRepository>();
-            Bind<IManhattanOrderConfiguration>().To<ManhattanOrderConfiguration>();
+            Bind<IMainframeOrderConfiguration>().To<AuroraOrderConfiguration>();
             Bind<IOrderWriter>().To<ManhattanOrderWriter>();
             Bind<IOrderReader>().To<OmsOrderReader>();
             Bind<IManhattanOrderRepository>().To<ManhattanOrderRepository>();

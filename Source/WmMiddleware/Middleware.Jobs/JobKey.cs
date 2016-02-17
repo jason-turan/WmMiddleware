@@ -11,5 +11,6 @@
         public const string Pix = "Pix";
         public const string ShipmentCancellationEmailJob = "Shipment Cancellation Email Job";
         public const string AuroraShipmentJob = "Aurora Shipment Job";
+        public const string AuroraPickConfirmationJob = "Aurora Pick Confirmation Job";
     }
 }
