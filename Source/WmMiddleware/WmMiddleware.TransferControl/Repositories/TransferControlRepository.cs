@@ -10,8 +10,8 @@ namespace WmMiddleware.TransferControl.Repositories
 {
     public class TransferControlRepository : ITransferControlRepository
     {
-        public const string Inbound = "Inbound";
-
+        public const string InboundAurora = "InboundAurora";
+        public const string InboundManhattan = "InboundManhattan";
         public const string Outbound = "Outbound";
 
         private const string SelectTransferControlSql = @"SELECT [TransferControlId]
@@ -146,8 +146,11 @@ namespace WmMiddleware.TransferControl.Repositories
         {
             switch (transferControlSearchCriteria.JobType)
             {
-                case JobType.Inbound:
-                    selectTransferControl = selectTransferControl + " AND j.JobType = '" + Inbound + "'";
+                case JobType.AuroraInbound:
+                    selectTransferControl = selectTransferControl + " AND j.JobType = '" + InboundAurora + "'";
+                    break;
+                case JobType.ManhattanInbound:
+                    selectTransferControl = selectTransferControl + " AND j.JobType = '" + InboundManhattan + "'";
                     break;
                 case JobType.Outbound:
                     selectTransferControl = selectTransferControl + " AND j.JobType = '" + Outbound + "'";

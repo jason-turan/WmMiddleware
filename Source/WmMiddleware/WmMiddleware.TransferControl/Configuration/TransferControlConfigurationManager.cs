@@ -1,4 +1,7 @@
-﻿using WmMiddleware.Configuration;
+﻿using System.Collections.Generic;
+using Middleware.Jobs;
+using Middleware.Jobs.Models;
+using WmMiddleware.Configuration;
 
 namespace WmMiddleware.TransferControl.Configuration
 {
@@ -9,6 +12,11 @@ namespace WmMiddleware.TransferControl.Configuration
         public TransferControlConfigurationManager(IConfigurationManager configurationManager)
         {
             _configurationManager = configurationManager;
+        }
+
+        public JobType GetInboundJobType()
+        {
+            return JobType.ManhattanInbound;
         }
 
         public string GetOutboundFileDirectory()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Middleware.Jobs.Models;
+using Middleware.Jobs.Repositories;
 using Middleware.Wm.DataFiles;
 using Middleware.Wm.Extensions;
 using MiddleWare.Log;
@@ -41,13 +42,15 @@ namespace WmMiddleware.TransferControl.Control
         {
             bool allSucceeded = true;
 
+
             var transferControls =
                 _transferControlRepository.FindTransferControls(new TransferControlSearchCriteria
                 {
                     Processed = false,
-                    JobType = JobType.Inbound
-                }).ToList();
+                    JobType = _configuration.GetInboundJobType(),
 
+                }).ToList();
+            
             if (transferControls.Count == 0)
             {
                 _log.Info("Inbound: No records to process");

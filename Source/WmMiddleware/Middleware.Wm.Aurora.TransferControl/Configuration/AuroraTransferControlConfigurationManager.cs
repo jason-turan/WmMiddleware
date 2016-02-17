@@ -1,4 +1,7 @@
-﻿using WmMiddleware.Configuration;
+﻿using System.Collections.Generic;
+using Middleware.Jobs;
+using Middleware.Jobs.Models;
+using WmMiddleware.Configuration;
 using WmMiddleware.TransferControl.Configuration;
 
 namespace Middleware.WM.Aurora.TransferControl.Configuration
@@ -11,6 +14,11 @@ namespace Middleware.WM.Aurora.TransferControl.Configuration
         public AuroraTransferControlConfigurationManager(IConfigurationManager configurationManager)
         {
             _configurationManager = configurationManager;
+        }
+
+        public JobType GetInboundJobType()
+        {
+            return JobType.AuroraInbound;
         }
 
         public string GetOutboundFileDirectory()

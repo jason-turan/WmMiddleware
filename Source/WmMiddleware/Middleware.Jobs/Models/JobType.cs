@@ -2,7 +2,8 @@
 {
     public enum JobType
     {
-        Inbound,
+        ManhattanInbound,
+        AuroraInbound,
         Outbound,
         Admin,
         Integration

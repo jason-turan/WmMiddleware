@@ -1,7 +1,10 @@
-﻿namespace WmMiddleware.TransferControl.Configuration
+﻿using Middleware.Jobs.Models;
+
+namespace WmMiddleware.TransferControl.Configuration
 {
     public interface ITransferControlConfigurationManager
     {
+        JobType GetInboundJobType();
         string GetOutboundFileDirectory();
         string GetOutboundFileProcessedDirectory();
         string GetInboundFileDirectory();
