@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5AFD35B7-FB46-4008-8B46-AD127762D358}</ProjectGuid>
+    <ProjectGuid>{0FAC9C07-F2EB-4118-BED1-D2C7E786BE20}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WmMiddleware.InventorySync</RootNamespace>
-    <AssemblyName>WmMiddleware.InventorySync</AssemblyName>
+    <RootNamespace>Middleware.Wm.StlInventoryUpdate</RootNamespace>
+    <AssemblyName>Middleware.Wm.StlInventoryUpdate</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -25,7 +25,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -37,30 +36,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dapper, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Development\MiddlewareIntegration\Dependencies\Dapper\Dapper.dll</HintPath>
+    <Reference Include="Dapper">
+      <HintPath>..\..\..\Dependencies\Dapper\Dapper.dll</HintPath>
     </Reference>
     <Reference Include="Dapper.Contrib">
-      <HintPath>..\..\..\..\Development\MiddlewareIntegration\Dependencies\Dapper\Dapper.Contrib.dll</HintPath>
-    </Reference>
-    <Reference Include="FlatFile.Core">
-      <HintPath>..\..\..\Dependencies\FlatFile\FlatFile.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="FlatFile.Core.Attributes">
-      <HintPath>..\..\..\Dependencies\FlatFile\FlatFile.Core.Attributes.dll</HintPath>
-    </Reference>
-    <Reference Include="FlatFile.FixedLength">
-      <HintPath>..\..\..\Dependencies\FlatFile\FlatFile.FixedLength.dll</HintPath>
-    </Reference>
-    <Reference Include="FlatFile.FixedLength.Attributes">
-      <HintPath>..\..\..\Dependencies\FlatFile\FlatFile.FixedLength.Attributes.dll</HintPath>
+      <HintPath>..\..\..\Dependencies\Dapper\Dapper.Contrib.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\..\..\Dependencies\Ninject\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -68,45 +55,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
-    <Compile Include="InventorySyncJob.cs" />
-    <Compile Include="Models\Generated\ManhattanInventorySync.cs" />
-    <Compile Include="Models\InventorySyncProcessing.cs" />
+    <Compile Include="IStlInventoryUpdateJob.cs" />
+    <Compile Include="Models\StlInventoryItem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\IInventorySyncRepository.cs" />
-    <Compile Include="Repository\InventorySyncRepository.cs" />
+    <Compile Include="Repository\IStlInventoryUpdateRepository.cs" />
+    <Compile Include="Repository\StlInventoryUpdateRepository.cs" />
+    <Compile Include="StlInventoryUpdateJob.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Middleware.Jobs\Middleware.Jobs.csproj">
-      <Project>{C728CADC-8056-46C9-B2BB-A70C4119F96E}</Project>
+      <Project>{c728cadc-8056-46c9-b2bb-a70c4119f96e}</Project>
       <Name>Middleware.Jobs</Name>
     </ProjectReference>
     <ProjectReference Include="..\MiddleWare.Log\Middleware.Log.csproj">
-      <Project>{AEEDD741-C346-45BA-A867-3F54B66477A4}</Project>
+      <Project>{aeedd741-c346-45ba-a867-3f54b66477a4}</Project>
       <Name>Middleware.Log</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Middleware.Wm.ManhattanOutboundData\WmMiddleware.Outbound.csproj">
-      <Project>{0C7E1466-F223-4D93-B53D-E896D0271F5D}</Project>
-      <Name>WmMiddleware.Outbound</Name>
+    <ProjectReference Include="..\Middleware.Wm.Configuration\Middleware.Wm.Configuration.csproj">
+      <Project>{150356a5-306b-4da5-8d0c-504da59f0e02}</Project>
+      <Name>Middleware.Wm.Configuration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Middleware.Wm.TransferControl\WmMiddleware.TransferControl.csproj">
-      <Project>{F788DD6F-2DF7-45BA-950A-EC5CBC5731D8}</Project>
-      <Name>WmMiddleware.TransferControl</Name>
+    <ProjectReference Include="..\Middleware.Wm.Pix\Middleware.Wm.Pix.csproj">
+      <Project>{21adff87-bb23-46ba-ae47-07b8eda135bf}</Project>
+      <Name>Middleware.Wm.Pix</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Middleware.Wm\Middleware.Wm.csproj">
-      <Project>{763AB0EE-41AE-45DA-8C2C-43547E64C5FC}</Project>
-      <Name>Middleware.Wm</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Middleware.Wm.Configuration\WmMiddleware.Configuration.csproj">
-      <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>
-      <Name>WmMiddleware.Configuration</Name>
+    <ProjectReference Include="..\Middleware.Wm.Shipment\Middleware.Wm.Shipment.csproj">
+      <Project>{b4c7e72d-cdb6-4fea-abdf-3564a588a762}</Project>
+      <Name>Middleware.Wm.Shipment</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5D3D0478-40A1-45F9-9BF0-12E6AAD7B321}</ProjectGuid>
+    <ProjectGuid>{F1D97E59-C5C6-4C9F-B83D-30800B159890}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WmMiddleware.Picking.Tests</RootNamespace>
-    <AssemblyName>WmMiddleware.Picking.Tests</AssemblyName>
+    <RootNamespace>Middleware.Wm.TransferControl.Tests</RootNamespace>
+    <AssemblyName>Middleware.Wm.TransferControl.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -39,7 +39,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\..\..\Dependencies\RhinoMock\Rhino.Mocks.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Transactions" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -54,13 +58,29 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="PickTicketHeaderTests.cs" />
+    <Compile Include="FtpTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ControlTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="TestFiles\I115091001%2520Pickticket%2520header" />
-    <None Include="TestFiles\I215091001%2520Pickticket%2520detail" />
-    <None Include="TestFiles\I315091001%2520Pickticket%2520special%2520instructions" />
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MiddleWare.Log\Middleware.Log.csproj">
+      <Project>{AEEDD741-C346-45BA-A867-3F54B66477A4}</Project>
+      <Name>Middleware.Log</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Middleware.Wm.Configuration\Middleware.Wm.Configuration.csproj">
+      <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>
+      <Name>Middleware.Wm.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Middleware.Wm.TransferControl\Middleware.Wm.TransferControl.csproj">
+      <Project>{F788DD6F-2DF7-45BA-950A-EC5CBC5731D8}</Project>
+      <Name>Middleware.Wm.TransferControl</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Unit\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

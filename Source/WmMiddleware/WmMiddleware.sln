@@ -102,37 +102,37 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Manhattan", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.PickTicketConfirmation", "Middleware.Wm.PickTicketConfirmation\Middleware.Wm.PickTicketConfirmation.csproj", "{5D10EC8B-E052-4A16-8924-214719A5C6E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.Configuration", "Middleware.Wm.Configuration\WmMiddleware.Configuration.csproj", "{150356A5-306B-4DA5-8D0C-504DA59F0E02}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Configuration", "Middleware.Wm.Configuration\Middleware.Wm.Configuration.csproj", "{150356A5-306B-4DA5-8D0C-504DA59F0E02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.GeneralLedgerReconcilliation", "Middleware.Wm.GeneralLedgerReconcilliation\WmMiddleware.GeneralLedgerReconcilliation.csproj", "{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.GeneralLedgerReconcilliation", "Middleware.Wm.GeneralLedgerReconcilliation\Middleware.Wm.GeneralLedgerReconcilliation.csproj", "{C7D1ABE8-8BF0-498D-942E-0C3D33B067F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.InventorySync", "Middleware.Wm.InventorySync\WmMiddleware.InventorySync.csproj", "{5AFD35B7-FB46-4008-8B46-AD127762D358}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.InventorySync", "Middleware.Wm.InventorySync\Middleware.Wm.InventorySync.csproj", "{5AFD35B7-FB46-4008-8B46-AD127762D358}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.Outbound", "Middleware.Wm.ManhattanOutboundData\WmMiddleware.Outbound.csproj", "{0C7E1466-F223-4D93-B53D-E896D0271F5D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Outbound", "Middleware.Wm.ManhattanOutboundData\Middleware.Wm.Outbound.csproj", "{0C7E1466-F223-4D93-B53D-E896D0271F5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.Picking", "Middleware.Wm.Picking\WmMiddleware.Picking.csproj", "{299A19F1-8DDC-4532-9DD9-FFF0FFCFEDED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Picking", "Middleware.Wm.Picking\Middleware.Wm.Picking.csproj", "{299A19F1-8DDC-4532-9DD9-FFF0FFCFEDED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.Picking.Tests", "Middleware.Wm.Picking.Tests\WmMiddleware.Picking.Tests.csproj", "{5D3D0478-40A1-45F9-9BF0-12E6AAD7B321}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Picking.Tests", "Middleware.Wm.Picking.Tests\Middleware.Wm.Picking.Tests.csproj", "{5D3D0478-40A1-45F9-9BF0-12E6AAD7B321}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.Pix", "Middleware.Wm.Pix\WmMiddleware.Pix.csproj", "{21ADFF87-BB23-46BA-AE47-07B8EDA135BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Pix", "Middleware.Wm.Pix\Middleware.Wm.Pix.csproj", "{21ADFF87-BB23-46BA-AE47-07B8EDA135BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.PixReturn", "Middleware.Wm.PixReturn\WmMiddleware.PixReturn.csproj", "{BF945C8E-81B4-4ADF-8F33-E64FF48DD0B7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.PixReturn", "Middleware.Wm.PixReturn\Middleware.Wm.PixReturn.csproj", "{BF945C8E-81B4-4ADF-8F33-E64FF48DD0B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.ProductReceiving", "Middleware.Wm.ProductReceiving\WmMiddleware.ProductReceiving.csproj", "{81105C89-FD8E-44FC-84C1-B52FFFAE3508}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.ProductReceiving", "Middleware.Wm.ProductReceiving\Middleware.Wm.ProductReceiving.csproj", "{81105C89-FD8E-44FC-84C1-B52FFFAE3508}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.ProductUpdating", "Middleware.Wm.ProductUpdating\WmMiddleware.ProductUpdating.csproj", "{29B19F64-6443-4A62-A3D1-AEC8C8514824}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.ProductUpdating", "Middleware.Wm.ProductUpdating\Middleware.Wm.ProductUpdating.csproj", "{29B19F64-6443-4A62-A3D1-AEC8C8514824}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.Shipment", "Middleware.Wm.Shipment\WmMiddleware.Shipment.csproj", "{B4C7E72D-CDB6-4FEA-ABDF-3564A588A762}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Shipment", "Middleware.Wm.Shipment\Middleware.Wm.Shipment.csproj", "{B4C7E72D-CDB6-4FEA-ABDF-3564A588A762}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.ShipmentCancellationEmail", "Middleware.Wm.ShipmentCancellationEmail\WmMiddleware.ShipmentCancellationEmail.csproj", "{FED3ABD9-CB01-426A-B4DE-F9A59B296841}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.ShipmentCancellationEmail", "Middleware.Wm.ShipmentCancellationEmail\Middleware.Wm.ShipmentCancellationEmail.csproj", "{FED3ABD9-CB01-426A-B4DE-F9A59B296841}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.StlInventorySync", "Middleware.Wm.StlInventorySync\WmMiddleware.StlInventorySync.csproj", "{5DC50C59-AA52-4ABE-8DDB-9993D4833F2F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.StlInventorySync", "Middleware.Wm.StlInventorySync\Middleware.Wm.StlInventorySync.csproj", "{5DC50C59-AA52-4ABE-8DDB-9993D4833F2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.StlInventoryUpdate", "Middleware.Wm.StlInventoryUpdate\WmMiddleware.StlInventoryUpdate.csproj", "{0FAC9C07-F2EB-4118-BED1-D2C7E786BE20}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.StlInventoryUpdate", "Middleware.Wm.StlInventoryUpdate\Middleware.Wm.StlInventoryUpdate.csproj", "{0FAC9C07-F2EB-4118-BED1-D2C7E786BE20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.TransferControl", "Middleware.Wm.TransferControl\WmMiddleware.TransferControl.csproj", "{F788DD6F-2DF7-45BA-950A-EC5CBC5731D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.TransferControl", "Middleware.Wm.TransferControl\Middleware.Wm.TransferControl.csproj", "{F788DD6F-2DF7-45BA-950A-EC5CBC5731D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmMiddleware.TransferControl.Tests", "Middleware.Wm.TransferControl.Tests\WmMiddleware.TransferControl.Tests.csproj", "{F1D97E59-C5C6-4C9F-B83D-30800B159890}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.TransferControl.Tests", "Middleware.Wm.TransferControl.Tests\Middleware.Wm.TransferControl.Tests.csproj", "{F1D97E59-C5C6-4C9F-B83D-30800B159890}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -182,52 +182,52 @@ Global
 		SccProjectUniqueName14 = Middleware.Wm.PickTicketConfirmation\\Middleware.Wm.PickTicketConfirmation.csproj
 		SccProjectName14 = Middleware.Wm.PickTicketConfirmation
 		SccLocalPath14 = Middleware.Wm.PickTicketConfirmation
-		SccProjectUniqueName15 = Middleware.Wm.Configuration\\WmMiddleware.Configuration.csproj
+		SccProjectUniqueName15 = Middleware.Wm.Configuration\\Middleware.Wm.Configuration.csproj
 		SccProjectName15 = Middleware.Wm.Configuration
 		SccLocalPath15 = Middleware.Wm.Configuration
-		SccProjectUniqueName16 = Middleware.Wm.GeneralLedgerReconcilliation\\WmMiddleware.GeneralLedgerReconcilliation.csproj
+		SccProjectUniqueName16 = Middleware.Wm.GeneralLedgerReconcilliation\\Middleware.Wm.GeneralLedgerReconcilliation.csproj
 		SccProjectName16 = Middleware.Wm.GeneralLedgerReconcilliation
 		SccLocalPath16 = Middleware.Wm.GeneralLedgerReconcilliation
-		SccProjectUniqueName17 = Middleware.Wm.InventorySync\\WmMiddleware.InventorySync.csproj
+		SccProjectUniqueName17 = Middleware.Wm.InventorySync\\Middleware.Wm.InventorySync.csproj
 		SccProjectName17 = Middleware.Wm.InventorySync
 		SccLocalPath17 = Middleware.Wm.InventorySync
-		SccProjectUniqueName18 = Middleware.Wm.ManhattanOutboundData\\WmMiddleware.Outbound.csproj
+		SccProjectUniqueName18 = Middleware.Wm.ManhattanOutboundData\\Middleware.Wm.Outbound.csproj
 		SccProjectName18 = Middleware.Wm.ManhattanOutboundData
 		SccLocalPath18 = Middleware.Wm.ManhattanOutboundData
-		SccProjectUniqueName19 = Middleware.Wm.Picking\\WmMiddleware.Picking.csproj
+		SccProjectUniqueName19 = Middleware.Wm.Picking\\Middleware.Wm.Picking.csproj
 		SccProjectName19 = Middleware.Wm.Picking
 		SccLocalPath19 = Middleware.Wm.Picking
-		SccProjectUniqueName20 = Middleware.Wm.Picking.Tests\\WmMiddleware.Picking.Tests.csproj
+		SccProjectUniqueName20 = Middleware.Wm.Picking.Tests\\Middleware.Wm.Picking.Tests.csproj
 		SccProjectName20 = Middleware.Wm.Picking.Tests
 		SccLocalPath20 = Middleware.Wm.Picking.Tests
-		SccProjectUniqueName21 = Middleware.Wm.Pix\\WmMiddleware.Pix.csproj
+		SccProjectUniqueName21 = Middleware.Wm.Pix\\Middleware.Wm.Pix.csproj
 		SccProjectName21 = Middleware.Wm.Pix
 		SccLocalPath21 = Middleware.Wm.Pix
-		SccProjectUniqueName22 = Middleware.Wm.PixReturn\\WmMiddleware.PixReturn.csproj
+		SccProjectUniqueName22 = Middleware.Wm.PixReturn\\Middleware.Wm.PixReturn.csproj
 		SccProjectName22 = Middleware.Wm.PixReturn
 		SccLocalPath22 = Middleware.Wm.PixReturn
-		SccProjectUniqueName23 = Middleware.Wm.ProductReceiving\\WmMiddleware.ProductReceiving.csproj
+		SccProjectUniqueName23 = Middleware.Wm.ProductReceiving\\Middleware.Wm.ProductReceiving.csproj
 		SccProjectName23 = Middleware.Wm.ProductReceiving
 		SccLocalPath23 = Middleware.Wm.ProductReceiving
-		SccProjectUniqueName24 = Middleware.Wm.ProductUpdating\\WmMiddleware.ProductUpdating.csproj
+		SccProjectUniqueName24 = Middleware.Wm.ProductUpdating\\Middleware.Wm.ProductUpdating.csproj
 		SccProjectName24 = Middleware.Wm.ProductUpdating
 		SccLocalPath24 = Middleware.Wm.ProductUpdating
-		SccProjectUniqueName25 = Middleware.Wm.Shipment\\WmMiddleware.Shipment.csproj
+		SccProjectUniqueName25 = Middleware.Wm.Shipment\\Middleware.Wm.Shipment.csproj
 		SccProjectName25 = Middleware.Wm.Shipment
 		SccLocalPath25 = Middleware.Wm.Shipment
-		SccProjectUniqueName26 = Middleware.Wm.ShipmentCancellationEmail\\WmMiddleware.ShipmentCancellationEmail.csproj
+		SccProjectUniqueName26 = Middleware.Wm.ShipmentCancellationEmail\\Middleware.Wm.ShipmentCancellationEmail.csproj
 		SccProjectName26 = Middleware.Wm.ShipmentCancellationEmail
 		SccLocalPath26 = Middleware.Wm.ShipmentCancellationEmail
-		SccProjectUniqueName27 = Middleware.Wm.StlInventorySync\\WmMiddleware.StlInventorySync.csproj
+		SccProjectUniqueName27 = Middleware.Wm.StlInventorySync\\Middleware.Wm.StlInventorySync.csproj
 		SccProjectName27 = Middleware.Wm.StlInventorySync
 		SccLocalPath27 = Middleware.Wm.StlInventorySync
-		SccProjectUniqueName28 = Middleware.Wm.StlInventoryUpdate\\WmMiddleware.StlInventoryUpdate.csproj
+		SccProjectUniqueName28 = Middleware.Wm.StlInventoryUpdate\\Middleware.Wm.StlInventoryUpdate.csproj
 		SccProjectName28 = Middleware.Wm.StlInventoryUpdate
 		SccLocalPath28 = Middleware.Wm.StlInventoryUpdate
-		SccProjectUniqueName29 = Middleware.Wm.TransferControl\\WmMiddleware.TransferControl.csproj
+		SccProjectUniqueName29 = Middleware.Wm.TransferControl\\Middleware.Wm.TransferControl.csproj
 		SccProjectName29 = Middleware.Wm.TransferControl
 		SccLocalPath29 = Middleware.Wm.TransferControl
-		SccProjectUniqueName30 = Middleware.Wm.TransferControl.Tests\\WmMiddleware.TransferControl.Tests.csproj
+		SccProjectUniqueName30 = Middleware.Wm.TransferControl.Tests\\Middleware.Wm.TransferControl.Tests.csproj
 		SccProjectName30 = Middleware.Wm.TransferControl.Tests
 		SccLocalPath30 = Middleware.Wm.TransferControl.Tests
 	EndGlobalSection

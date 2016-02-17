@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5DC50C59-AA52-4ABE-8DDB-9993D4833F2F}</ProjectGuid>
+    <ProjectGuid>{FED3ABD9-CB01-426A-B4DE-F9A59B296841}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WmMiddleware.StlInventorySync</RootNamespace>
-    <AssemblyName>WmMiddleware.StlInventorySync</AssemblyName>
+    <RootNamespace>Middleware.Wm.ShipmentCancellationEmail</RootNamespace>
+    <AssemblyName>Middleware.Wm.ShipmentCancellationEmail</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -25,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -40,15 +41,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Dependencies\Dapper\Dapper.dll</HintPath>
     </Reference>
-    <Reference Include="Dapper.Contrib">
-      <HintPath>..\..\..\Dependencies\Dapper\Dapper.Contrib.dll</HintPath>
-    </Reference>
     <Reference Include="Ninject">
-      <HintPath>..\..\..\Dependencies\Ninject\Ninject.dll</HintPath>
+      <HintPath>..\..\..\..\Development\MiddlewareIntegration\Dependencies\Ninject\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,48 +54,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
-    <Compile Include="Models\StlInventory.cs" />
+    <Compile Include="Models\ShipmentCancellationEmail.cs" />
+    <Compile Include="Models\ShipmentCancellationEmailDistribution.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\IStlInventoryRepository.cs" />
-    <Compile Include="Repository\StlInventoryRepository.cs" />
-    <Compile Include="StlInventorySyncJob.cs" />
+    <Compile Include="Repository\CancellationEmailDistributionRepository.cs" />
+    <Compile Include="Repository\ICancellationEmailDistributionRepository.cs" />
+    <Compile Include="ShipmentCancellationEmailJob.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Middleware.Jobs\Middleware.Jobs.csproj">
-      <Project>{c728cadc-8056-46c9-b2bb-a70c4119f96e}</Project>
+      <Project>{C728CADC-8056-46C9-B2BB-A70C4119F96E}</Project>
       <Name>Middleware.Jobs</Name>
     </ProjectReference>
     <ProjectReference Include="..\MiddleWare.Log\Middleware.Log.csproj">
-      <Project>{aeedd741-c346-45ba-a867-3f54b66477a4}</Project>
+      <Project>{AEEDD741-C346-45BA-A867-3F54B66477A4}</Project>
       <Name>Middleware.Log</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Middleware.Wm.StlInventoryUpdate\WmMiddleware.StlInventoryUpdate.csproj">
-      <Project>{0FAC9C07-F2EB-4118-BED1-D2C7E786BE20}</Project>
-      <Name>WmMiddleware.StlInventoryUpdate</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Middleware.Wm\Middleware.Wm.csproj">
-      <Project>{763AB0EE-41AE-45DA-8C2C-43547E64C5FC}</Project>
-      <Name>Middleware.Wm</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Middleware.Wm.Configuration\WmMiddleware.Configuration.csproj">
-      <Project>{150356a5-306b-4da5-8d0c-504da59f0e02}</Project>
-      <Name>WmMiddleware.Configuration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Middleware.Wm.InventorySync\WmMiddleware.InventorySync.csproj">
-      <Project>{5afd35b7-fb46-4008-8b46-ad127762d358}</Project>
-      <Name>WmMiddleware.InventorySync</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Middleware.Wm.Pix\WmMiddleware.Pix.csproj">
-      <Project>{21adff87-bb23-46ba-ae47-07b8eda135bf}</Project>
-      <Name>WmMiddleware.Pix</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Middleware.Wm.Shipment\WmMiddleware.Shipment.csproj">
-      <Project>{b4c7e72d-cdb6-4fea-abdf-3564a588a762}</Project>
-      <Name>WmMiddleware.Shipment</Name>
+    <ProjectReference Include="..\Middleware.Wm.Configuration\Middleware.Wm.Configuration.csproj">
+      <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>
+      <Name>Middleware.Wm.Configuration</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

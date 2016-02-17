@@ -80,21 +80,21 @@
       <Project>{AEEDD741-C346-45BA-A867-3F54B66477A4}</Project>
       <Name>Middleware.Log</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Middleware.Wm.Configuration\WmMiddleware.Configuration.csproj">
+    <ProjectReference Include="..\Middleware.Wm.Configuration\Middleware.Wm.Configuration.csproj">
       <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>
-      <Name>WmMiddleware.Configuration</Name>
+      <Name>Middleware.Wm.Configuration</Name>
     </ProjectReference>
     <ProjectReference Include="..\Middleware.Wm.Manhattan\Middleware.Wm.Manhattan.csproj">
       <Project>{87AE9E18-B3DC-4605-BE2A-FA7B6C50DAD6}</Project>
       <Name>Middleware.Wm.Manhattan</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Middleware.Wm.Picking\WmMiddleware.Picking.csproj">
+    <ProjectReference Include="..\Middleware.Wm.Picking\Middleware.Wm.Picking.csproj">
       <Project>{299A19F1-8DDC-4532-9DD9-FFF0FFCFEDED}</Project>
-      <Name>WmMiddleware.Picking</Name>
+      <Name>Middleware.Wm.Picking</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Middleware.Wm.TransferControl\WmMiddleware.TransferControl.csproj">
+    <ProjectReference Include="..\Middleware.Wm.TransferControl\Middleware.Wm.TransferControl.csproj">
       <Project>{F788DD6F-2DF7-45BA-950A-EC5CBC5731D8}</Project>
-      <Name>WmMiddleware.TransferControl</Name>
+      <Name>Middleware.Wm.TransferControl</Name>
     </ProjectReference>
     <ProjectReference Include="..\Middleware.Wm\Middleware.Wm.csproj">
       <Project>{763AB0EE-41AE-45DA-8C2C-43547E64C5FC}</Project>

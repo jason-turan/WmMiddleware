@@ -164,9 +164,9 @@
       <Project>{fa926702-2fc7-4c85-8ecd-91f2424f0037}</Project>
       <Name>Middleware.Wm.Aurora.TransferControl</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Middleware.Wm.Configuration\WmMiddleware.Configuration.csproj">
+    <ProjectReference Include="..\Middleware.Wm.Configuration\Middleware.Wm.Configuration.csproj">
       <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>
-      <Name>WmMiddleware.Configuration</Name>
+      <Name>Middleware.Wm.Configuration</Name>
     </ProjectReference>
     <ProjectReference Include="..\Middleware.Wm.LoggingAndFileMaintenance\Middleware.Wm.LoggingAndFileMaintenance.csproj">
       <Project>{24615298-1937-4540-b572-3fee0d65a820}</Project>
