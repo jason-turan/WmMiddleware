@@ -148,6 +148,7 @@ namespace WmMiddleware.TransferControl.Control
 
             if (!enableFtpTransmission)
             {
+                _log.Warning("FTP upload is not enabled.  File " + fileInfo.FullName + " was NOT sent to host.");
                 return;
             }
 
