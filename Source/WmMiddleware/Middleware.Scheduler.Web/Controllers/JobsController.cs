@@ -33,8 +33,7 @@ namespace Middleware.Scheduler.Web.Controllers
             try
             {
                 return Json(_jobService.GetJobs().
-                    OrderByDescending(a => a.IsActive).
-                    ThenBy(ob => ob.NextRunDateTime), JsonRequestBehavior.AllowGet);
+                    OrderBy(a => a.JobKey), JsonRequestBehavior.AllowGet);
             }
             catch (Exception exception)
             {

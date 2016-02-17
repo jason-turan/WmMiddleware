@@ -27,6 +27,11 @@
 
     self.executeJob = function(job) {
         if (confirm("Are you sure you want to launch " + job.JobKey + "?")) {
+
+            if (!job.IsActive) {
+                alert("You are launching an inactive job. This will activate the job.");
+            }
+
             self.launchJob(job);
         }
     };
