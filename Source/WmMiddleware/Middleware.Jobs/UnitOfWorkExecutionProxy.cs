@@ -30,29 +30,28 @@ namespace Middleware.Jobs
 
             var jobKey = args[0];
 
+            var job = jobRepository.GetJob(jobKey);
+
             var stopWatch = new Stopwatch();
             stopWatch.Start();
 
             try
             {
-                var job = jobRepository.GetJob(jobKey);
                 job.LastRunStatus = JobRunStatus.Running;
                 jobRepository.UpdateJob(job);
                 ((IUnitOfWork)kernel.Get(typeof(T))).RunUnitOfWork(jobKey);
                 job.LastRunStatus = JobRunStatus.Success;
-                jobRepository.UpdateJob(job);
                 logger.Info("Successful execution of " + kernel.Get(typeof(T)));
+
             }
             catch (Exception exception)
             {
-                var job = jobRepository.GetJob(jobKey);
                 job.LastRunStatus = JobRunStatus.Failure;
                 logger.Exception(exception);
             }
             finally
             {
                 stopWatch.Stop();
-                var job = jobRepository.GetJob(jobKey);
                 job.LastRunDateTime = DateTime.Now;
                 job.LastRunExecutionTime = stopWatch.ElapsedMilliseconds;
 
