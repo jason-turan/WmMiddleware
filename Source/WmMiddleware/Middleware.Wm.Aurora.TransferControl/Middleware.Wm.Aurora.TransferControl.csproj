@@ -69,12 +69,12 @@
       <Project>{0F65C07A-002D-46FB-8F0A-C9738B25D054}</Project>
       <Name>Middleware.Wm.Aurora.PickTickets</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WmMiddleware.Configuration\WmMiddleware.Configuration.csproj">
+    <ProjectReference Include="..\Middleware.Wm.Configuration\WmMiddleware.Configuration.csproj">
       <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>
       <Name>WmMiddleware.Configuration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WmMiddleware.TransferControl\WmMiddleware.TransferControl.csproj">
-      <Project>{f788dd6f-2df7-45ba-950a-ec5cbc5731d8}</Project>
+    <ProjectReference Include="..\Middleware.Wm.TransferControl\WmMiddleware.TransferControl.csproj">
+      <Project>{F788DD6F-2DF7-45BA-950A-EC5CBC5731D8}</Project>
       <Name>WmMiddleware.TransferControl</Name>
     </ProjectReference>
   </ItemGroup>

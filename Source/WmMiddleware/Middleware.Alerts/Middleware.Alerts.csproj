@@ -61,10 +61,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WmMiddleware.Configuration\WmMiddleware.Configuration.csproj">
-      <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>
-      <Name>WmMiddleware.Configuration</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Middleware.Jobs\Middleware.Jobs.csproj">
       <Project>{C728CADC-8056-46C9-B2BB-A70C4119F96E}</Project>
       <Name>Middleware.Jobs</Name>
@@ -72,6 +68,10 @@
     <ProjectReference Include="..\MiddleWare.Log\Middleware.Log.csproj">
       <Project>{AEEDD741-C346-45BA-A867-3F54B66477A4}</Project>
       <Name>Middleware.Log</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Middleware.Wm.Configuration\WmMiddleware.Configuration.csproj">
+      <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>
+      <Name>WmMiddleware.Configuration</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

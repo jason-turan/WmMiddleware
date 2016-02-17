@@ -77,15 +77,15 @@
       <Project>{aeedd741-c346-45ba-a867-3f54b66477a4}</Project>
       <Name>Middleware.Log</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WmMiddleware.Configuration\WmMiddleware.Configuration.csproj">
+    <ProjectReference Include="..\Middleware.Wm.Configuration\WmMiddleware.Configuration.csproj">
       <Project>{150356a5-306b-4da5-8d0c-504da59f0e02}</Project>
       <Name>WmMiddleware.Configuration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WmMiddleware.Pix\WmMiddleware.Pix.csproj">
+    <ProjectReference Include="..\Middleware.Wm.Pix\WmMiddleware.Pix.csproj">
       <Project>{21adff87-bb23-46ba-ae47-07b8eda135bf}</Project>
       <Name>WmMiddleware.Pix</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WmMiddleware.Shipment\WmMiddleware.Shipment.csproj">
+    <ProjectReference Include="..\Middleware.Wm.Shipment\WmMiddleware.Shipment.csproj">
       <Project>{b4c7e72d-cdb6-4fea-abdf-3564a588a762}</Project>
       <Name>WmMiddleware.Shipment</Name>
     </ProjectReference>

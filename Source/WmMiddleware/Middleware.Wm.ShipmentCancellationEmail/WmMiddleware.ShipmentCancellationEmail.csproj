@@ -74,7 +74,7 @@
       <Project>{AEEDD741-C346-45BA-A867-3F54B66477A4}</Project>
       <Name>Middleware.Log</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WmMiddleware.Configuration\WmMiddleware.Configuration.csproj">
+    <ProjectReference Include="..\Middleware.Wm.Configuration\WmMiddleware.Configuration.csproj">
       <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>
       <Name>WmMiddleware.Configuration</Name>
     </ProjectReference>

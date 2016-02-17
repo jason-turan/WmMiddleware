@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using Dapper;
-using WmMiddleware.Configuration.Database;
 using Middleware.Jobs.Models;
+using WmMiddleware.Configuration.Database;
 
 namespace Middleware.Jobs.Repositories
 {

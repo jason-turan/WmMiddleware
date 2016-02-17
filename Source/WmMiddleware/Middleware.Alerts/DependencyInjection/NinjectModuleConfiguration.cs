@@ -1,8 +1,8 @@
 ﻿using Middleware.Jobs;
 using Ninject.Modules;
-using WmMiddleware.Configuration;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
+using WmMiddleware.Configuration;
 
 namespace Middleware.Alerts.DependencyInjection
 {

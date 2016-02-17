@@ -79,7 +79,7 @@
     <Folder Include="Picking\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WmMiddleware.Configuration\WmMiddleware.Configuration.csproj">
+    <ProjectReference Include="..\Middleware.Wm.Configuration\WmMiddleware.Configuration.csproj">
       <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>
       <Name>WmMiddleware.Configuration</Name>
     </ProjectReference>

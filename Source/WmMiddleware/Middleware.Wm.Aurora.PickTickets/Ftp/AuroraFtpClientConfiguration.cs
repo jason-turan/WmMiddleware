@@ -1,4 +1,5 @@
-﻿using WmMiddleware.Configuration;
+﻿
+using WmMiddleware.Configuration;
 using WmMiddleware.TransferControl.Ftp;
 
 namespace Middleware.Wm.Aurora.PickTickets.Ftp

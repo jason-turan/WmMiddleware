@@ -6,6 +6,7 @@ using Ninject.Modules;
 using WmMiddleware.Configuration;
 using WmMiddleware.Configuration.Mainframe;
 using WmMiddleware.TransferControl.Control;
+using WmMiddleware.TransferControl.Ftp;
 using WmMiddleware.TransferControl.Repositories;
 
 namespace Middleware.Wm.Aurora.Shipment.DependencyInjection
@@ -24,7 +25,7 @@ namespace Middleware.Wm.Aurora.Shipment.DependencyInjection
             Bind<ITransferControlRepository>().To<TransferControlRepository>();
             Bind<ITransferControlManager>().To<TransferControlManager>();
             Bind<IMainframeConfiguration>().To<MainframeConfiguration>();
-            // TODO  Bind<IFtpClientConfiguration>().To<AuroraFtpClientConfiguration>();
+           // Bind<IFtpClientConfiguration>().To<AuroraFtpClientConfiguration>();
         }
     }
 }

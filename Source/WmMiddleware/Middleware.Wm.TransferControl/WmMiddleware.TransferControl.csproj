@@ -126,7 +126,7 @@
       <Project>{763AB0EE-41AE-45DA-8C2C-43547E64C5FC}</Project>
       <Name>Middleware.Wm</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WmMiddleware.Configuration\WmMiddleware.Configuration.csproj">
+    <ProjectReference Include="..\Middleware.Wm.Configuration\WmMiddleware.Configuration.csproj">
       <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>
       <Name>WmMiddleware.Configuration</Name>
     </ProjectReference>
