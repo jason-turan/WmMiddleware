@@ -52,17 +52,17 @@ namespace Middleware.Wm.PickTicketConfirmation.Configuration
 
         public string GetHeaderFilePath(long controlNumber)
         {
-            return _configurationManager.GetPath(ManhattanDataFileType.PickHeader, controlNumber, "Aurora_");
+            return _configurationManager.GetPath(ManhattanDataFileType.PickHeader, controlNumber);
         }
 
         public string GetDetailFilePath(long controlNumber)
         {
-            return _configurationManager.GetPath(ManhattanDataFileType.PickDetail, controlNumber, "Aurora_");
+            return _configurationManager.GetPath(ManhattanDataFileType.PickDetail, controlNumber);
         }
 
         public string GetSpecialInstructionFilePath(long controlNumber)
         {
-            return _configurationManager.GetPath(ManhattanDataFileType.PickSpecialInstructions, controlNumber, "Aurora_");
+            return _configurationManager.GetPath(ManhattanDataFileType.PickSpecialInstructions, controlNumber);
         }
 
         public int GetJobId()
