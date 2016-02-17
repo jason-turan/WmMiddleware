@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using Middleware.Wm.Aurora.Shipment.Models;
 using Middleware.Wm.DataFiles;
+using Middleware.Wm.Extensions;
 using Middleware.Wm.Manhattan.Shipment;
 using WmMiddleware.Configuration;
 using WmMiddleware.Configuration.Mainframe;
@@ -51,7 +54,8 @@ namespace Middleware.Wm.Aurora.Shipment.Repository
             {
                 var auroraShipment = new AuroraShipment() 
                 {
-                    OrderNumber = databaseKioskOrderExport.order_number
+                    OrderNumber = databaseKioskOrderExport.order_number,
+                    Details =  new List<AuroraShipmentDetail>()
                 };
 
                 foreach (var databaseKioskOrderDetailExport in shipmentDetails.Where(sd => sd.order_number == auroraShipment.OrderNumber))
@@ -86,20 +90,41 @@ namespace Middleware.Wm.Aurora.Shipment.Repository
             var controlNumber = _configuration.GetBatchControlNumber();
             var batchControlNumber = warehouseNumber + controlNumber.ToString("D8");
 
+            var now = DateTime.Now;
+            var createdDate = now.ToManhattanDate();
+            var createdTime = now.ToManhattanTime();
+
             foreach (var shipment in shipments)
             {
-                headers.Add(new ManhattanShipmentHeader
+                try
                 {
-                    OrderNumber = shipment.OrderNumber
-                });
-
-                foreach (var detail in shipment.Details)
-                {
-                    lineItems.Add(new ManhattanShipmentLineItem
+                    headers.Add(new ManhattanShipmentHeader
                     {
-                        CustomerSku = detail.Sku
+                        OrderNumber = shipment.OrderNumber,
+                        DateCreated = createdDate,
+                        TimeCreated = createdTime,
+                        Company = _configuration.GetKey<string>(ConfigurationKey.CompanyNumber),
+                        Warehouse = _configuration.GetKey<string>(ConfigurationKey.WarehouseNumber),
+                        Division = _configuration.GetKey<string>(ConfigurationKey.WarehouseNumber),
+                        PickticketControlNumber = shipment.OrderNumber,
+                        Pickticketnumber = shipment.OrderNumber,
+                        Soldto = "NBUS",
                     });
+
+                    foreach (var detail in shipment.Details)
+                    {
+                        lineItems.Add(new ManhattanShipmentLineItem
+                        {
+                            CustomerSku = detail.Sku
+                        });
+                    }
                 }
+                catch (Exception)
+                {
+                    
+                    throw;
+                }
+
             }
 
             var headerFilePath = _configuration.GetPath(ManhattanDataFileType.ShipmentHeader, controlNumber);

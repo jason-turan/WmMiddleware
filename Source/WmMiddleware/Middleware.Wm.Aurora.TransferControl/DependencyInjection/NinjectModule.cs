@@ -1,5 +1,6 @@
 ﻿using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
+using Middleware.Wm.Aurora.PickTickets.Ftp;
 using Middleware.WM.Aurora.TransferControl.Configuration;
 using MiddleWare.Log;
 using Ninject.Modules;
@@ -28,6 +29,8 @@ namespace Middleware.WM.Aurora.TransferControl.DependencyInjection
             Bind<ITransferControlRepository>().To<TransferControlRepository>();
             Bind<IConfigurationManager>().To<MiddlewareConfigurationManager>();
             Bind<ITransferControlConfigurationManager>().To<AuroraTransferControlConfigurationManager>();
+            Bind<IFtpClientFactory>().To<FtpClientFactory>();
+            Bind<IFtpClientConfiguration>().To<AuroraFtpClientConfiguration>();
         }
     }
 }

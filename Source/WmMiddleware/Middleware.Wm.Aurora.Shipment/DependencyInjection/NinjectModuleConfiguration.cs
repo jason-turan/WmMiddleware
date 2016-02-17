@@ -4,6 +4,7 @@ using MiddleWare.Log;
 using Middleware.Wm.Aurora.Shipment.Repository;
 using Ninject.Modules;
 using WmMiddleware.Configuration;
+using WmMiddleware.Configuration.Mainframe;
 using WmMiddleware.TransferControl.Control;
 using WmMiddleware.TransferControl.Repositories;
 
@@ -18,9 +19,11 @@ namespace Middleware.Wm.Aurora.Shipment.DependencyInjection
             Bind<IConfigurationManager>().To<MiddlewareConfigurationManager>();
             Bind<IUnitOfWork>().To<AuroraShipmentJob>();
             Bind<IFileIo>().To<FileIo>();
-            Bind<ITransferControlRepository>().To<TransferControlRepository>();
             Bind<IDatabaseKioskOrderExportRepository>().To<DatabaseKioskOrderExportRepository>();
-            
+            Bind<IAuroraShipmentRepository>().To<AuroraShipmentRepository>();
+            Bind<ITransferControlRepository>().To<TransferControlRepository>();
+            Bind<ITransferControlManager>().To<TransferControlManager>();
+            Bind<IMainframeConfiguration>().To<MainframeConfiguration>();
             // TODO  Bind<IFtpClientConfiguration>().To<AuroraFtpClientConfiguration>();
         }
     }
