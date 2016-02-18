@@ -47,7 +47,6 @@ namespace Middleware.Wm.PickTicketConfirmation.Models
                 OriginalOrderId = original_order,
                 PaymentApplied = string.Equals(payment_applied, "yes", StringComparison.InvariantCultureIgnoreCase),
                 PaymentOnly = string.Equals(payment_only, "yes", StringComparison.InvariantCultureIgnoreCase),
-                ShippingMethod = shipping_method,
                 ShippingNote = shipping_note,
                 ShippingPhone = ship_phone,
                 TransactionType = trans_type
