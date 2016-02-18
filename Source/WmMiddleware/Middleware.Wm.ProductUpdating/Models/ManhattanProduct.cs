@@ -1,7 +1,7 @@
 ﻿using System;
 using Middleware.Wm.Extensions;
 
-namespace WmMiddleware.ProductUpdating.Models
+namespace Middleware.Wm.ProductUpdating.Models
 {
     internal partial class ManhattanProduct
     {

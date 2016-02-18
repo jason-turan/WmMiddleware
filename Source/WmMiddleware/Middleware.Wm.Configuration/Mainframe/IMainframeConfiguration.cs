@@ -1,4 +1,4 @@
-﻿namespace WmMiddleware.Configuration.Mainframe
+﻿namespace Middleware.Wm.Configuration.Mainframe
 {
     public interface IMainframeConfiguration : IConfigurationManager
     {

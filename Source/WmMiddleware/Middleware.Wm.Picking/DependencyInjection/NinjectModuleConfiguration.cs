@@ -1,17 +1,17 @@
 ﻿using Middleware.Jobs;
-using Ninject.Modules;
 using Middleware.Jobs.Repositories;
+using MiddleWare.Log;
+using Middleware.Wm.Configuration;
 using Middleware.Wm.Inventory;
 using Middleware.Wm.Locations;
+using Middleware.Wm.Picking.Configuration;
+using Middleware.Wm.Picking.Repositories;
 using Middleware.Wm.Shipping;
-using MiddleWare.Log;
-using WmMiddleware.Configuration;
-using WmMiddleware.Picking.Configuration;
-using WmMiddleware.Picking.Repositories;
-using WmMiddleware.TransferControl.Control;
-using WmMiddleware.TransferControl.Repositories;
+using Middleware.Wm.TransferControl.Control;
+using Middleware.Wm.TransferControl.Repositories;
+using Ninject.Modules;
 
-namespace WmMiddleware.Picking.DependencyInjection
+namespace Middleware.Wm.Picking.DependencyInjection
 {
     public class NinjectModuleConfiguration : NinjectModule
     {

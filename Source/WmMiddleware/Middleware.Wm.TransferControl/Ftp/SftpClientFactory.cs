@@ -1,4 +1,4 @@
-﻿namespace WmMiddleware.TransferControl.Ftp
+﻿namespace Middleware.Wm.TransferControl.Ftp
 {
     public class SftpClientFactory : IFtpClientFactory
     {

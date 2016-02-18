@@ -1,4 +1,4 @@
-﻿namespace WmMiddleware.Configuration
+﻿namespace Middleware.Wm.Configuration
 {
     public static class ConfigurationKey
     {

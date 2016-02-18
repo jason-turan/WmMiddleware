@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Data;
 using Dapper;
 using Dapper.Contrib.Extensions;
-using WmMiddleware.Configuration.Database;
-using WmMiddleware.Pix.Models;
+using Middleware.Wm.Configuration.Database;
+using Middleware.Wm.Pix.Models;
 using WmMiddleware.Pix.Models.Generated;
 
-namespace WmMiddleware.Pix.Repository
+namespace Middleware.Wm.Pix.Repository
 {
     public class PerpetualInventoryTransferRepository : IPerpetualInventoryTransferRepository
     {

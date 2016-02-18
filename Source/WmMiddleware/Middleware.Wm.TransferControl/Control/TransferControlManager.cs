@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using WmMiddleware.TransferControl.Models;
-using WmMiddleware.TransferControl.Repositories;
+using Middleware.Wm.TransferControl.Models;
+using Middleware.Wm.TransferControl.Repositories;
 
-namespace WmMiddleware.TransferControl.Control
+namespace Middleware.Wm.TransferControl.Control
 {
     public class TransferControlManager : ITransferControlManager
     {

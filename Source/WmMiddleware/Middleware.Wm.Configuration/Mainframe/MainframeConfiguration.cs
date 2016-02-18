@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using Dapper;
 using MiddleWare.Log;
-using WmMiddleware.Configuration.Database;
+using Middleware.Wm.Configuration.Database;
 
-namespace WmMiddleware.Configuration.Mainframe
+namespace Middleware.Wm.Configuration.Mainframe
 {
     public class MainframeConfiguration : MiddlewareConfigurationManager, IMainframeConfiguration
     {

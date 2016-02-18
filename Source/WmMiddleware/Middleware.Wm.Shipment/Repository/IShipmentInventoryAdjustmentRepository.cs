@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using WmMiddleware.Shipment.Models;
+using Middleware.Wm.Shipment.Models;
 
 namespace WmMiddleware.Shipment.Repository
 {

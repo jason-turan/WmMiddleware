@@ -1,13 +1,14 @@
 ﻿using Middleware.Jobs;
-using Ninject.Modules;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
-using WmMiddleware.Configuration;
-using WmMiddleware.InventorySync.Repository;
-using WmMiddleware.TransferControl.Control;
-using WmMiddleware.TransferControl.Repositories;
+using Middleware.Wm.Configuration;
+using Middleware.Wm.InventorySync.Repository;
+using Middleware.Wm.TransferControl.Control;
+using Middleware.Wm.TransferControl.Repositories;
+using Ninject.Modules;
+using WmMiddleware.InventorySync;
 
-namespace WmMiddleware.InventorySync.DependencyInjection
+namespace Middleware.Wm.InventorySync.DependencyInjection
 {
     public class NinjectModuleConfiguration : NinjectModule
     {

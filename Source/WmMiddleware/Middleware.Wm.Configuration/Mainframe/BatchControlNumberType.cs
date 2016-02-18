@@ -1,4 +1,4 @@
-﻿namespace WmMiddleware.Configuration.Mainframe
+﻿namespace Middleware.Wm.Configuration.Mainframe
 {
     public enum BatchControlNumberType
     {

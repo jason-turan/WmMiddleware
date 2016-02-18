@@ -1,6 +1,6 @@
-using WmMiddleware.PixReturn.Models;
+using Middleware.Wm.PixReturn.Models;
 
-namespace WmMiddleware.PixReturn.Repository
+namespace Middleware.Wm.PixReturn.Repository
 {
     public interface IDatabaseRowReturnRepository
     {

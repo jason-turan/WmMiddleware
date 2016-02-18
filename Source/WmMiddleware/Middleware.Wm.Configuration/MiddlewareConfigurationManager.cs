@@ -5,10 +5,10 @@ using System.Data;
 using System.Linq;
 using System.Runtime.Caching;
 using Dapper;
-using WmMiddleware.Configuration.Database;
 using MiddleWare.Log;
+using Middleware.Wm.Configuration.Database;
 
-namespace WmMiddleware.Configuration
+namespace Middleware.Wm.Configuration
 {
     public class MiddlewareConfigurationManager : IConfigurationManager
     {

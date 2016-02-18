@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+using Middleware.Wm.Configuration;
 using Middleware.Wm.Inventory;
-using WmMiddleware.Configuration;
-using WmMiddleware.TransferControl.Ftp;
+using Middleware.Wm.TransferControl.Ftp;
 
 namespace Middleware.Wm.Aurora.PickTickets.Repositories
 {

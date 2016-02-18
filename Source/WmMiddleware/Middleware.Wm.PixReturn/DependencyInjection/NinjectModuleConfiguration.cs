@@ -1,12 +1,12 @@
 ﻿using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
+using Middleware.Wm.Configuration;
+using Middleware.Wm.Pix.Repository;
+using Middleware.Wm.PixReturn.Repository;
 using Ninject.Modules;
-using WmMiddleware.Configuration;
-using WmMiddleware.Pix.Repository;
-using WmMiddleware.PixReturn.Repository;
 
-namespace WmMiddleware.PixReturn.DependencyInjection
+namespace Middleware.Wm.PixReturn.DependencyInjection
 {
     public class NinjectModuleConfiguration : NinjectModule
     {

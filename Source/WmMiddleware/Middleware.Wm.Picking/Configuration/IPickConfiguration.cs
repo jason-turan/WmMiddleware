@@ -1,7 +1,7 @@
-﻿using Middleware.Wm.Inventory;
-using WmMiddleware.Configuration.Mainframe;
+﻿using Middleware.Wm.Configuration.Mainframe;
+using Middleware.Wm.Inventory;
 
-namespace WmMiddleware.Picking.Configuration
+namespace Middleware.Wm.Picking.Configuration
 {
     public interface IPickConfiguration : IMainframeConfiguration
     {

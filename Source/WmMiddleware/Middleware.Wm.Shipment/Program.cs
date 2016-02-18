@@ -1,5 +1,5 @@
 ﻿using Middleware.Jobs;
-using WmMiddleware.Shipment.DependencyInjection;
+using Middleware.Wm.Shipment.DependencyInjection;
 
 namespace WmMiddleware.Shipment
 {

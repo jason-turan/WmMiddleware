@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using WmMiddleware.Pix.Models;
+using Middleware.Wm.Pix.Models;
 
-namespace WmMiddleware.Pix.Repository
+namespace Middleware.Wm.Pix.Repository
 {
     public class PixReturnRepository : IPixReturnRepository
     {

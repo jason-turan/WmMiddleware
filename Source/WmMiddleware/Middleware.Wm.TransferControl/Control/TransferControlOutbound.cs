@@ -4,14 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Transactions;
 using Middleware.Jobs.Repositories;
-using Middleware.Wm.DataFiles;
 using MiddleWare.Log;
-using WmMiddleware.TransferControl.Configuration;
-using WmMiddleware.TransferControl.Models;
-using WmMiddleware.TransferControl.Models.Generated;
-using WmMiddleware.TransferControl.Repositories;
+using Middleware.Wm.DataFiles;
+using Middleware.Wm.TransferControl.Configuration;
+using Middleware.Wm.TransferControl.Models;
+using Middleware.Wm.TransferControl.Repositories;
 
-namespace WmMiddleware.TransferControl.Control
+namespace Middleware.Wm.TransferControl.Control
 {
     public class TransferControlOutbound : ITransferControlOutbound
     {

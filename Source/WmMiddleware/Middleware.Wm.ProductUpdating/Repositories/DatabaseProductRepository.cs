@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using Dapper;
-using WmMiddleware.Configuration.Database;
-using WmMiddleware.ProductUpdating.Models;
+using Middleware.Wm.Configuration.Database;
+using Middleware.Wm.ProductUpdating.Models;
 
-namespace WmMiddleware.ProductUpdating.Repositories
+namespace Middleware.Wm.ProductUpdating.Repositories
 {
     public class DatabaseProductRepository : IProductReader
     {

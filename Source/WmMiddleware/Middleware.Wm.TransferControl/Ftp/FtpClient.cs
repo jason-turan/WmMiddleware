@@ -2,9 +2,9 @@
 using System.IO;
 using System.Net;
 using MiddleWare.Log;
-using WmMiddleware.TransferControl.Models;
+using Middleware.Wm.TransferControl.Models;
 
-namespace WmMiddleware.TransferControl.Ftp
+namespace Middleware.Wm.TransferControl.Ftp
 {
     public class FtpClient : IFtpClient
     {

@@ -3,10 +3,10 @@ using System.Linq;
 using System.Text;
 using Middleware.Jobs;
 using MiddleWare.Log;
-using WmMiddleware.ProductUpdating.Configuration;
-using WmMiddleware.ProductUpdating.Repositories;
+using Middleware.Wm.ProductUpdating.Configuration;
+using Middleware.Wm.ProductUpdating.Repositories;
 
-namespace WmMiddleware.ProductUpdating
+namespace Middleware.Wm.ProductUpdating
 {
     public class ProductUpdatingJob : IUnitOfWork
     {

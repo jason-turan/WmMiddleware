@@ -5,7 +5,7 @@ using Middleware.Wm.DataFiles;
 using Middleware.Wm.Inventory;
 using Middleware.Wm.Locations;
 using Middleware.Wm.Shipping;
-using WmMiddleware.TransferControl.Control;
+using Middleware.Wm.TransferControl.Control;
 
 namespace Middleware.Wm.Manhattan.Inventory
 {

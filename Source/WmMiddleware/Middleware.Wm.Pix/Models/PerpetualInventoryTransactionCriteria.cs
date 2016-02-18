@@ -1,4 +1,4 @@
-﻿namespace WmMiddleware.Pix.Models
+﻿namespace Middleware.Wm.Pix.Models
 {
     public class PerpetualInventoryTransactionCriteria
     {

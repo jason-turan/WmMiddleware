@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
 using Middleware.Jobs;
-using Middleware.Wm.Extensions;
 using MiddleWare.Log;
-using WmMiddleware.Pix.Repository;
-using WmMiddleware.PixReturn.Models;
-using WmMiddleware.PixReturn.Repository;
+using Middleware.Wm.Extensions;
+using Middleware.Wm.Pix.Repository;
+using Middleware.Wm.PixReturn.Models;
+using Middleware.Wm.PixReturn.Repository;
 
-namespace WmMiddleware.PixReturn
+namespace Middleware.Wm.PixReturn
 {
     public class PixReturnJob : IUnitOfWork
     {
@@ -92,7 +92,7 @@ namespace WmMiddleware.PixReturn
             }
         }
 
-        private static string GetConditionCode(IEnumerable<ManhattanConditionCode> conditionCodes, Pix.Models.PixReturn unprocessedReturn)
+        private static string GetConditionCode(IEnumerable<ManhattanConditionCode> conditionCodes, Middleware.Wm.Pix.Models.PixReturn unprocessedReturn)
         {
             var conditionCode = conditionCodes.SingleOrDefault(cc => cc.Code == unprocessedReturn.ConditionCode);
             var reason = string.Empty;

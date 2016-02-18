@@ -2,11 +2,11 @@
 using System.Data;
 using System.Linq;
 using Dapper;
-using WmMiddleware.Configuration.Database;
 using Middleware.Jobs.Models;
-using WmMiddleware.TransferControl.Models;
+using Middleware.Wm.Configuration.Database;
+using Middleware.Wm.TransferControl.Models;
 
-namespace WmMiddleware.TransferControl.Repositories
+namespace Middleware.Wm.TransferControl.Repositories
 {
     public class TransferControlRepository : ITransferControlRepository
     {

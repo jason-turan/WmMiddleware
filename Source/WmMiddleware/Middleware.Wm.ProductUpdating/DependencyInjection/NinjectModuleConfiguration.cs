@@ -1,16 +1,16 @@
 ﻿using Middleware.Jobs;
-using Ninject.Modules;
-using WmMiddleware.Configuration;
-using WmMiddleware.Configuration.Mainframe;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
-using WmMiddleware.ProductUpdating.Configuration;
-using WmMiddleware.ProductUpdating.Repositories;
-using WmMiddleware.TransferControl.Control;
-using WmMiddleware.TransferControl.Ftp;
-using WmMiddleware.TransferControl.Repositories;
+using Middleware.Wm.Configuration;
+using Middleware.Wm.Configuration.Mainframe;
+using Middleware.Wm.ProductUpdating.Configuration;
+using Middleware.Wm.ProductUpdating.Repositories;
+using Middleware.Wm.TransferControl.Control;
+using Middleware.Wm.TransferControl.Ftp;
+using Middleware.Wm.TransferControl.Repositories;
+using Ninject.Modules;
 
-namespace WmMiddleware.ProductUpdating.DependencyInjection
+namespace Middleware.Wm.ProductUpdating.DependencyInjection
 {
     public class NinjectModuleConfiguration : NinjectModule
     {

@@ -2,17 +2,17 @@
 using System.IO;
 using System.Linq;
 using Middleware.Jobs.Repositories;
-using Middleware.Wm.DataFiles;
 using MiddleWare.Log;
+using Middleware.Wm.Configuration;
+using Middleware.Wm.DataFiles;
 using Middleware.Wm.Manhattan.Shipment;
-using WmMiddleware.Configuration;
-using WmMiddleware.ManhattanOutboundData;
+using Middleware.Wm.Outbound;
+using Middleware.Wm.TransferControl.Control;
+using Middleware.Wm.TransferControl.Models;
+using Middleware.Wm.TransferControl.Repositories;
 using WmMiddleware.Shipment.Repository;
-using WmMiddleware.TransferControl.Control;
-using WmMiddleware.TransferControl.Models;
-using WmMiddleware.TransferControl.Repositories;
 
-namespace WmMiddleware.Shipment
+namespace Middleware.Wm.Shipment
 {
     public class ShipmentJob : OutboundProcessor
     {

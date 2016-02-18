@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Middleware.Jobs.Repositories;
+﻿using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
+using Middleware.Wm.Configuration;
+using Middleware.Wm.Pix.Repository;
+using Middleware.Wm.StlInventoryUpdate.Repository;
 using Ninject.Modules;
-using WmMiddleware.Configuration;
-using WmMiddleware.Pix.Repository;
 using WmMiddleware.Shipment.Repository;
-using WmMiddleware.StlInventoryUpdate.Repository;
 
-namespace WmMiddleware.StlInventoryUpdate.DependencyInjection
+namespace Middleware.Wm.StlInventoryUpdate.DependencyInjection
 {
     public class NinjectModuleConfiguration : NinjectModule
     {

@@ -1,10 +1,10 @@
 ﻿using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
+using Middleware.Wm.Configuration;
 using Ninject.Modules;
-using WmMiddleware.Configuration;
 
-namespace WmMiddleware.GeneralLedgerReconcilliation.DependencyInjection
+namespace Middleware.Wm.GeneralLedgerReconcilliation.DependencyInjection
 {
     public class NinjectModuleConfiguration : NinjectModule
     {

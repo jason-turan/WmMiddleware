@@ -1,7 +1,7 @@
 ﻿using System;
 using Dapper.Contrib.Extensions;
 
-namespace WmMiddleware.PixReturn.Models
+namespace Middleware.Wm.PixReturn.Models
 {
     [Table("Row_Return")]
     public class DatabaseRowReturn

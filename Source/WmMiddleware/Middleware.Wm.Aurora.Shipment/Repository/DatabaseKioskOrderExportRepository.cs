@@ -5,8 +5,8 @@ using Dapper;
 using Dapper.Contrib.Extensions;
 using MiddleWare.Log;
 using Middleware.Wm.Aurora.Shipment.Models;
-using WmMiddleware.Configuration.Database;
 using System.Collections.Generic;
+using Middleware.Wm.Configuration.Database;
 
 namespace Middleware.Wm.Aurora.Shipment.Repository
 {

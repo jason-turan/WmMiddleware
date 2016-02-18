@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
+using Middleware.Wm.Configuration;
 using Middleware.Wm.DataFiles;
 using Middleware.Wm.Inventory;
 using Middleware.Wm.Locations;
 using Middleware.Wm.Manhattan.Inventory;
+using Middleware.Wm.Picking.Configuration;
 using Middleware.Wm.Shipping;
-using WmMiddleware.Configuration;
-using WmMiddleware.Picking.Configuration;
-using WmMiddleware.TransferControl.Control;
+using Middleware.Wm.TransferControl.Control;
 
-namespace WmMiddleware.Picking.Repositories
+namespace Middleware.Wm.Picking.Repositories
 {
     public class ManhattanPickRepository : IOrderWriter
     {

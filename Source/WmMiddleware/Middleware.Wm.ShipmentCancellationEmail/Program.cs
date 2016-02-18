@@ -1,5 +1,5 @@
 ﻿using Middleware.Jobs;
-using WmMiddleware.ShipmentCancellationEmail.DependencyInjection;
+using Middleware.Wm.ShipmentCancellationEmail.DependencyInjection;
 
 namespace WmMiddleware.ShipmentCancellationEmail
 {

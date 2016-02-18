@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using Middleware.Jobs;
-using Middleware.Jobs.Models;
-using WmMiddleware.Configuration;
+﻿using Middleware.Jobs.Models;
+using Middleware.Wm.Configuration;
 
-namespace WmMiddleware.TransferControl.Configuration
+namespace Middleware.Wm.TransferControl.Configuration
 {
     public class TransferControlConfigurationManager : ITransferControlConfigurationManager
     {

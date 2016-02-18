@@ -1,6 +1,7 @@
 ﻿using System;
+
 // ReSharper disable once CheckNamespace
-namespace WmMiddleware.ProductReceiving.Models
+namespace Middleware.Wm.ProductReceivingng.Models
 {
     // ReSharper disable InconsistentNaming
     public partial class DatabasePurchaseReturn

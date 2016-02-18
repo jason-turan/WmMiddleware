@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using Dapper;
-using WmMiddleware.Configuration.Database;
+using Middleware.Wm.Configuration.Database;
 
 namespace Middleware.Wm.LoggingAndFileMaintenance.Repository
 {

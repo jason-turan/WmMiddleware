@@ -3,8 +3,8 @@ using Middleware.Integration.Repositories;
 using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
+using Middleware.Wm.Configuration;
 using Ninject.Modules;
-using WmMiddleware.Configuration;
 
 namespace Middleware.Integration.DependencyInjection
 {

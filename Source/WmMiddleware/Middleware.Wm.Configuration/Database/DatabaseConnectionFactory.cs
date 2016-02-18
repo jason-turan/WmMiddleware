@@ -2,7 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 
-namespace WmMiddleware.Configuration.Database
+namespace Middleware.Wm.Configuration.Database
 {
     public static class DatabaseConnectionFactory
     {

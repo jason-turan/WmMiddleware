@@ -3,13 +3,13 @@ using Middleware.Jobs.Repositories;
 using Middleware.Wm.Aurora.PickTickets.Ftp;
 using Middleware.WM.Aurora.TransferControl.Configuration;
 using MiddleWare.Log;
+using Middleware.Wm.Configuration;
+using Middleware.Wm.TransferControl;
+using Middleware.Wm.TransferControl.Configuration;
+using Middleware.Wm.TransferControl.Control;
+using Middleware.Wm.TransferControl.Ftp;
+using Middleware.Wm.TransferControl.Repositories;
 using Ninject.Modules;
-using WmMiddleware.Configuration;
-using WmMiddleware.TransferControl;
-using WmMiddleware.TransferControl.Configuration;
-using WmMiddleware.TransferControl.Control;
-using WmMiddleware.TransferControl.Ftp;
-using WmMiddleware.TransferControl.Repositories;
 
 namespace Middleware.WM.Aurora.TransferControl.DependencyInjection
 {

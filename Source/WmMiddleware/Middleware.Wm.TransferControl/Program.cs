@@ -1,7 +1,7 @@
 ﻿using Middleware.Jobs;
-using WmMiddleware.TransferControl.DependencyInjection;
+using Middleware.Wm.TransferControl.DependencyInjection;
 
-namespace WmMiddleware.TransferControl
+namespace Middleware.Wm.TransferControl
 {
     public class Program
     {

@@ -1,7 +1,7 @@
 ﻿using Middleware.Jobs;
-using WmMiddleware.ProductUpdating.DependencyInjection;
+using Middleware.Wm.ProductUpdating.DependencyInjection;
 
-namespace WmMiddleware.ProductUpdating
+namespace Middleware.Wm.ProductUpdating
 {
     class Program
     {

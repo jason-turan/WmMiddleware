@@ -1,10 +1,11 @@
 ﻿using System.Linq;
 using Middleware.Jobs;
 using MiddleWare.Log;
+using Middleware.Wm.Pix.Models;
+using Middleware.Wm.Pix.Repository;
 using WmMiddleware.Pix.Models;
-using WmMiddleware.Pix.Repository;
 
-namespace WmMiddleware.GeneralLedgerReconcilliation
+namespace Middleware.Wm.GeneralLedgerReconcilliation
 {
     public class GeneralLedgerReconcilliationJob : IUnitOfWork
     {

@@ -2,9 +2,9 @@
 using System.Text;
 using Middleware.Jobs;
 using MiddleWare.Log;
-using WmMiddleware.ProductReceiving.Repositories;
+using Middleware.Wm.ProductReceivingng.Repositories;
 
-namespace WmMiddleware.ProductReceiving
+namespace Middleware.Wm.ProductReceivingng
 {
     public class ProductReceivingJob : IUnitOfWork
     {

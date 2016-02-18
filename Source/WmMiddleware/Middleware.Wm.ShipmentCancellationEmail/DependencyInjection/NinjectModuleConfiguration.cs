@@ -1,11 +1,12 @@
 ﻿using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
+using Middleware.Wm.Configuration;
+using Middleware.Wm.ShipmentCancellationEmail.Repository;
 using Ninject.Modules;
-using WmMiddleware.Configuration;
-using WmMiddleware.ShipmentCancellationEmail.Repository;
+using WmMiddleware.ShipmentCancellationEmail;
 
-namespace WmMiddleware.ShipmentCancellationEmail.DependencyInjection
+namespace Middleware.Wm.ShipmentCancellationEmail.DependencyInjection
 {
     public class NinjectModuleConfiguration : NinjectModule
     {

@@ -1,8 +1,8 @@
 ﻿using System.IO;
 using MiddleWare.Log;
-using WmMiddleware.Configuration;
+using Middleware.Wm.Configuration;
 
-namespace WmMiddleware.TransferControl.Ftp
+namespace Middleware.Wm.TransferControl.Ftp
 {
     public class ManhattanFtp : IManhattanFtp
     {

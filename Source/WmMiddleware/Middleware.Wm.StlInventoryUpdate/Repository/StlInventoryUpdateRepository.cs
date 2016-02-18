@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using Dapper;
-using WmMiddleware.Configuration.Database;
+using Middleware.Wm.Configuration.Database;
+using Middleware.Wm.StlInventoryUpdate.Models;
 
-namespace WmMiddleware.StlInventoryUpdate.Repository
+namespace Middleware.Wm.StlInventoryUpdate.Repository
 {
     public class StlInventoryUpdateRepository : IStlInventoryUpdateRepository
     {
 
-        public void UpdateStlInventory(IList<Models.StlInventoryItem> stlInventoryList)
+        public void UpdateStlInventory(IList<StlInventoryItem> stlInventoryList)
         {
             using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
             {

@@ -1,5 +1,5 @@
 ﻿using Middleware.Jobs;
-using WmMiddleware.Pix.DependencyInjection;
+using Middleware.Wm.Pix.DependencyInjection;
 
 namespace WmMiddleware.Pix
 {

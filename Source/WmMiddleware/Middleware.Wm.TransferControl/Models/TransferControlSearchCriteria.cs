@@ -1,6 +1,6 @@
 ﻿using Middleware.Jobs.Models;
 
-namespace WmMiddleware.TransferControl.Models
+namespace Middleware.Wm.TransferControl.Models
 {
     public class TransferControlSearchCriteria
     {

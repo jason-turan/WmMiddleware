@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
-using WmMiddleware.ShipmentCancellationEmail.Models;
+using Middleware.Wm.ShipmentCancellationEmail.Models;
 
-namespace WmMiddleware.ShipmentCancellationEmail.Repository
+namespace Middleware.Wm.ShipmentCancellationEmail.Repository
 {
     public interface ICancellationEmailDistributionRepository
     {
         ShipmentCancellationEmailDistribution GetShipmentCancellationEmailDistribution(string company);
 
-        IEnumerable<Models.ShipmentCancellationEmail> GetShipmentEmailCancellations();
+        IEnumerable<Middleware.Wm.ShipmentCancellationEmail.Models.ShipmentCancellationEmail> GetShipmentEmailCancellations();
 
         string GetCompanyFromOrderNumber(string orderNumber);
     }

@@ -1,8 +1,8 @@
-﻿using Ninject.Modules;
+﻿using Middleware.Wm.Configuration.Mainframe;
+using Ninject.Modules;
 using Quartz;
 using Quartz.Impl;
 using Quartz.Spi;
-using WmMiddleware.Configuration.Mainframe;
 using Middleware.Jobs.Job;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;

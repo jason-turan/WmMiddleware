@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using Middleware.Jobs.Repositories;
-using Middleware.Wm.DataFiles;
 using MiddleWare.Log;
-using WmMiddleware.Configuration;
-using WmMiddleware.ManhattanOutboundData;
+using Middleware.Wm.Configuration;
+using Middleware.Wm.DataFiles;
+using Middleware.Wm.Outbound;
+using Middleware.Wm.Pix.Repository;
+using Middleware.Wm.TransferControl.Control;
+using Middleware.Wm.TransferControl.Models;
+using Middleware.Wm.TransferControl.Repositories;
 using WmMiddleware.Pix.Models.Generated;
-using WmMiddleware.Pix.Repository;
-using WmMiddleware.TransferControl.Control;
-using WmMiddleware.TransferControl.Models;
-using WmMiddleware.TransferControl.Repositories;
 
-namespace WmMiddleware.Pix
+namespace Middleware.Wm.Pix
 {
     public class PixJob : OutboundProcessor
     {

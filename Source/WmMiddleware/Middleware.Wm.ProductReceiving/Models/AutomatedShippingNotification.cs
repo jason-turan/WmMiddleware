@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace WmMiddleware.ProductReceiving.Models
+namespace Middleware.Wm.ProductReceivingng.Models
 {
     public class AutomatedShippingNotification : IReceivedProduct
     {

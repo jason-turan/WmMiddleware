@@ -2,7 +2,7 @@
 using System.IO;
 using MiddleWare.Log;
 
-namespace WmMiddleware.TransferControl.Control
+namespace Middleware.Wm.TransferControl.Control
 {
     public class FileIo : IFileIo
     {

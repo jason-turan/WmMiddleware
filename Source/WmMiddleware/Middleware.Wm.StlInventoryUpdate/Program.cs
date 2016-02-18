@@ -1,7 +1,7 @@
 ﻿using Middleware.Jobs;
-using WmMiddleware.StlInventoryUpdate.DependencyInjection;
+using Middleware.Wm.StlInventoryUpdate.DependencyInjection;
 
-namespace WmMiddleware.StlInventoryUpdate
+namespace Middleware.Wm.StlInventoryUpdate
 {
     class Program
     {

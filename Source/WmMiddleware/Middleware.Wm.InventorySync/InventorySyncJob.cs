@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using Middleware.Jobs.Repositories;
-using Middleware.Wm.DataFiles;
 using MiddleWare.Log;
-using WmMiddleware.Configuration;
-using WmMiddleware.InventorySync.Models;
-using WmMiddleware.InventorySync.Repository;
-using WmMiddleware.ManhattanOutboundData;
-using WmMiddleware.TransferControl.Control;
-using WmMiddleware.TransferControl.Models;
-using WmMiddleware.TransferControl.Repositories;
+using Middleware.Wm.Configuration;
+using Middleware.Wm.DataFiles;
+using Middleware.Wm.InventorySync.Models;
+using Middleware.Wm.InventorySync.Repository;
+using Middleware.Wm.Outbound;
+using Middleware.Wm.TransferControl.Control;
+using Middleware.Wm.TransferControl.Models;
+using Middleware.Wm.TransferControl.Repositories;
+using WmMiddleware.InventorySync.Models.Generated;
 
-namespace WmMiddleware.InventorySync
+namespace Middleware.Wm.InventorySync
 {
     public class InventorySyncJob : OutboundProcessor
     {
@@ -38,7 +39,7 @@ namespace WmMiddleware.InventorySync
 
             var transferControlFile = transferControlFiles.First();
 
-            var pixRepository = new DataFileRepository<Models.Generated.ManhattanInventorySync>();
+            var pixRepository = new DataFileRepository<ManhattanInventorySync>();
             var inventorySync = pixRepository.Get(transferControlFile.FileLocation).ToList();
             _inventorySyncRepository.InsertInventorySync(inventorySync);
 

@@ -2,13 +2,13 @@
 using System.Linq;
 using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
+using Middleware.Wm.Configuration;
+using Middleware.Wm.Configuration.Mainframe;
 using Middleware.Wm.DataFiles;
-using WmMiddleware.Configuration;
-using WmMiddleware.Configuration.Mainframe;
-using WmMiddleware.ProductReceiving.Models;
-using WmMiddleware.TransferControl.Control;
+using Middleware.Wm.ProductReceivingng.Models;
+using Middleware.Wm.TransferControl.Control;
 
-namespace WmMiddleware.ProductReceiving.Repositories
+namespace Middleware.Wm.ProductReceivingng.Repositories
 {
     public class ManhattanReceivedProductRepository : IReceivedProductWriter
     {

@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using Middleware.Jobs.Repositories;
+using Middleware.Wm.Configuration;
 using Middleware.Wm.DataFiles;
 using Middleware.Wm.Inventory;
 using Middleware.Wm.Manhattan.Inventory;
 using MiddleWare.Log;
-using WmMiddleware.Configuration;
-using WmMiddleware.ManhattanOutboundData;
-using WmMiddleware.TransferControl.Control;
-using WmMiddleware.TransferControl.Models;
-using WmMiddleware.TransferControl.Repositories;
+using Middleware.Wm.Outbound;
+using Middleware.Wm.TransferControl.Control;
+using Middleware.Wm.TransferControl.Models;
+using Middleware.Wm.TransferControl.Repositories;
 
 namespace Middleware.Wm.Aurora.PickTickets
 {

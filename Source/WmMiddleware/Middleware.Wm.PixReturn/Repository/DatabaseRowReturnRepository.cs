@@ -1,10 +1,10 @@
 ﻿using System.Data;
 using Dapper;
 using Dapper.Contrib.Extensions;
-using WmMiddleware.Configuration.Database;
-using WmMiddleware.PixReturn.Models;
+using Middleware.Wm.Configuration.Database;
+using Middleware.Wm.PixReturn.Models;
 
-namespace WmMiddleware.PixReturn.Repository
+namespace Middleware.Wm.PixReturn.Repository
 {
     public class DatabaseRowReturnRepository : IDatabaseRowReturnRepository
     {

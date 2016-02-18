@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using WmMiddleware.Pix.Models;
+using Middleware.Wm.Pix.Models;
 using WmMiddleware.Pix.Models.Generated;
 
-namespace WmMiddleware.Pix.Repository
+namespace Middleware.Wm.Pix.Repository
 {
     public interface IPerpetualInventoryTransferRepository
     {

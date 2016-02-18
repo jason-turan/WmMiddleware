@@ -1,4 +1,4 @@
-﻿namespace WmMiddleware.PixReturn.Models
+﻿namespace Middleware.Wm.PixReturn.Models
 {
     public class ManhattanConditionCode
     {

@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Dapper;
 using Middleware.Integration.Models;
-using WmMiddleware.Configuration.Database;
+using Middleware.Wm.Configuration.Database;
 
 namespace Middleware.Integration.Repositories
 {

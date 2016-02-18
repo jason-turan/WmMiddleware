@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using WmMiddleware.ProductUpdating.Models;
+using Middleware.Wm.ProductUpdating.Models;
 
-namespace WmMiddleware.ProductUpdating.Repositories
+namespace Middleware.Wm.ProductUpdating.Repositories
 {
     public interface IProductWriter
     {

@@ -2,10 +2,10 @@
 using System.Data;
 using System.Linq;
 using Dapper;
-using WmMiddleware.Configuration.Database;
-using WmMiddleware.ShipmentCancellationEmail.Models;
+using Middleware.Wm.Configuration.Database;
+using Middleware.Wm.ShipmentCancellationEmail.Models;
 
-namespace WmMiddleware.ShipmentCancellationEmail.Repository
+namespace Middleware.Wm.ShipmentCancellationEmail.Repository
 {
     public class CancellationEmailDistributionRepository : ICancellationEmailDistributionRepository
     {
@@ -22,11 +22,11 @@ namespace WmMiddleware.ShipmentCancellationEmail.Repository
             }
         }
 
-        public IEnumerable<Models.ShipmentCancellationEmail> GetShipmentEmailCancellations()
+        public IEnumerable<Middleware.Wm.ShipmentCancellationEmail.Models.ShipmentCancellationEmail> GetShipmentEmailCancellations()
         {
             using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
             {
-                return connection.Query<Models.ShipmentCancellationEmail>("sp_GetCancellationsForEmailNotification", commandType: CommandType.StoredProcedure);
+                return connection.Query<Middleware.Wm.ShipmentCancellationEmail.Models.ShipmentCancellationEmail>("sp_GetCancellationsForEmailNotification", commandType: CommandType.StoredProcedure);
             }
         }
 

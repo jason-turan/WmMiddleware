@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using WmMiddleware.Pix.Models;
+using Middleware.Wm.Pix.Models;
 
-namespace WmMiddleware.Pix.Repository
+namespace Middleware.Wm.Pix.Repository
 {
     public interface IPixInventoryAdjustmentRepository
     {

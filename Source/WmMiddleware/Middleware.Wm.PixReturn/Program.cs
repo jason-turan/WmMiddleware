@@ -1,7 +1,7 @@
 ﻿using Middleware.Jobs;
-using WmMiddleware.PixReturn.DependencyInjection;
+using Middleware.Wm.PixReturn.DependencyInjection;
 
-namespace WmMiddleware.PixReturn
+namespace Middleware.Wm.PixReturn
 {
     class Program
     {

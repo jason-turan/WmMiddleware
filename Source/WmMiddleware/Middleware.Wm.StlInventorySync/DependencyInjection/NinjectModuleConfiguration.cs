@@ -1,15 +1,15 @@
 ﻿using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
+using Middleware.Wm.Configuration;
+using Middleware.Wm.InventorySync.Repository;
+using Middleware.Wm.Pix.Repository;
+using Middleware.Wm.StlInventorySync.Repository;
+using Middleware.Wm.StlInventoryUpdate.Repository;
 using Ninject.Modules;
-using WmMiddleware.InventorySync.Repository;
-using WmMiddleware.Pix.Repository;
 using WmMiddleware.Shipment.Repository;
-using WmMiddleware.StlInventorySync.Repository;
-using WmMiddleware.Configuration;
-using WmMiddleware.StlInventoryUpdate.Repository;
 
-namespace WmMiddleware.StlInventorySync.DependencyInjection
+namespace Middleware.Wm.StlInventorySync.DependencyInjection
 {
     public class NinjectModuleConfiguration : NinjectModule
     {

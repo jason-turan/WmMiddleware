@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Middleware.Wm.StlInventoryUpdate.Models;
 
-namespace WmMiddleware.StlInventoryUpdate.Repository
+namespace Middleware.Wm.StlInventoryUpdate.Repository
 {
     public interface IStlInventoryUpdateRepository
     {
 
-        void UpdateStlInventory(IList<Models.StlInventoryItem> stlInventoryList);
+        void UpdateStlInventory(IList<StlInventoryItem> stlInventoryList);
 
     }
 }

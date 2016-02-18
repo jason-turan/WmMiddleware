@@ -2,13 +2,13 @@
 using System.Linq;
 using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
+using Middleware.Wm.Configuration;
+using Middleware.Wm.Configuration.Mainframe;
 using Middleware.Wm.DataFiles;
-using WmMiddleware.Configuration;
-using WmMiddleware.Configuration.Mainframe;
-using WmMiddleware.ProductUpdating.Models;
-using WmMiddleware.TransferControl.Control;
+using Middleware.Wm.ProductUpdating.Models;
+using Middleware.Wm.TransferControl.Control;
 
-namespace WmMiddleware.ProductUpdating.Repositories
+namespace Middleware.Wm.ProductUpdating.Repositories
 {
     public class ManhattanProductRepository : IProductWriter
     {

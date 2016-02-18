@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace WmMiddleware.TransferControl.Ftp
+namespace Middleware.Wm.TransferControl.Ftp
 {
     public class SftpClient : IFtpClient
     {

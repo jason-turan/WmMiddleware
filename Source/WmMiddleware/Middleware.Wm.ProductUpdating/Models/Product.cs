@@ -1,4 +1,4 @@
-﻿namespace WmMiddleware.ProductUpdating.Models
+﻿namespace Middleware.Wm.ProductUpdating.Models
 {
     public class Product
     {

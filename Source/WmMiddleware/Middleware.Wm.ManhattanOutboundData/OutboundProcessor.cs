@@ -6,14 +6,14 @@ using System.Transactions;
 using Middleware.Jobs;
 using Middleware.Jobs.Models;
 using Middleware.Jobs.Repositories;
-using Middleware.Wm.DataFiles;
 using MiddleWare.Log;
-using WmMiddleware.Configuration;
-using WmMiddleware.TransferControl.Control;
-using WmMiddleware.TransferControl.Models;
-using WmMiddleware.TransferControl.Repositories;
+using Middleware.Wm.Configuration;
+using Middleware.Wm.DataFiles;
+using Middleware.Wm.TransferControl.Control;
+using Middleware.Wm.TransferControl.Models;
+using Middleware.Wm.TransferControl.Repositories;
 
-namespace WmMiddleware.ManhattanOutboundData
+namespace Middleware.Wm.Outbound
 {
     public abstract class OutboundProcessor : IUnitOfWork
     {

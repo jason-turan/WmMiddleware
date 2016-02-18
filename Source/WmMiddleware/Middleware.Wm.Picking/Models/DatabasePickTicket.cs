@@ -1,6 +1,6 @@
 ﻿using Middleware.Wm.Inventory;
 
-namespace WmMiddleware.Picking.Models
+namespace Middleware.Wm.Picking.Models
 {
     public partial class DatabasePickTicket
     {

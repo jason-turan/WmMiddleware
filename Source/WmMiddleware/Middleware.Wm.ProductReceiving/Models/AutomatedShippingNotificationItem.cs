@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WmMiddleware.ProductReceiving.Models
+namespace Middleware.Wm.ProductReceivingng.Models
 {
     public class AutomatedShippingNotificationItem
     {

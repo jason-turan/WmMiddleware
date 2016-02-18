@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MiddleWare.Log;
+using Middleware.Wm.TransferControl.Configuration;
+using Middleware.Wm.TransferControl.Control;
+using Middleware.Wm.TransferControl.Ftp;
+using Middleware.Wm.TransferControl.Models;
+using Middleware.Wm.TransferControl.Repositories;
 using Rhino.Mocks;
-using WmMiddleware.TransferControl.Configuration;
-using WmMiddleware.TransferControl.Control;
-using WmMiddleware.TransferControl.Ftp;
-using WmMiddleware.TransferControl.Models;
-using WmMiddleware.TransferControl.Repositories;
 
-namespace WmMiddleware.TransferControl.Tests
+namespace Middleware.Wm.TransferControl.Tests
 {
     [TestClass]
     public class ControlTests
@@ -34,13 +34,13 @@ namespace WmMiddleware.TransferControl.Tests
             ILog log;
             IFileIo io;
             ITransferControlRepository mock = CreateMocks(out ftp, out manager, out log, out io);
-            var list2 = new List<Models.TransferControl>();
-            var item = new Models.TransferControl
+            var list2 = new List<Middleware.Wm.TransferControl.Models.TransferControl>();
+            var item = new Middleware.Wm.TransferControl.Models.TransferControl
             {
                 BatchControlNumber = "1"
             };
             list2.Add(item);
-            List<Models.TransferControl> objToReturn = list2;
+            List<Middleware.Wm.TransferControl.Models.TransferControl> objToReturn = list2;
             mock.Stub(r => r.FindTransferControls(new TransferControlSearchCriteria())).IgnoreArguments().Return(objToReturn);
             log.Expect(l => l.Exception(Arg<string>.Is.Equal("Inbound : Fatal exception processing batch 1"), Arg<Exception>.Is.Anything));
             ITransferControlInbound inbound = new TransferControlInbound(mock, ftp, manager, log, io);
@@ -90,8 +90,8 @@ namespace WmMiddleware.TransferControl.Tests
 
         private static void MockUnprocessedTransferControl(ITransferControlRepository mockRepository)
         {
-            var objToReturn = new List<Models.TransferControl>();
-            var item = new Models.TransferControl();
+            var objToReturn = new List<Middleware.Wm.TransferControl.Models.TransferControl>();
+            var item = new Middleware.Wm.TransferControl.Models.TransferControl();
             var file = new TransferControlFile
             {
                 FileLocation = "mock"
@@ -113,7 +113,7 @@ namespace WmMiddleware.TransferControl.Tests
             IFileIo io;
             ITransferControlRepository mock = CreateMocks(out ftp, out manager, out log, out io);
             MockConfiguration(manager, true);
-            mock.Stub(r => r.FindTransferControls(new TransferControlSearchCriteria())).IgnoreArguments().Return(new List<Models.TransferControl>());
+            mock.Stub(r => r.FindTransferControls(new TransferControlSearchCriteria())).IgnoreArguments().Return(new List<Middleware.Wm.TransferControl.Models.TransferControl>());
             log.Expect(l => l.Info("Inbound: No records to process"));
             Assert.IsTrue(new TransferControlInbound(mock, ftp, manager, log, io).Process());
             log.VerifyAllExpectations();

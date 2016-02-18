@@ -1,6 +1,6 @@
-﻿using WmMiddleware.Configuration;
+﻿using Middleware.Wm.Configuration;
 
-namespace WmMiddleware.TransferControl.Ftp
+namespace Middleware.Wm.TransferControl.Ftp
 {
     public class ManhattanFtpConfiguration : IFtpClientConfiguration
     {

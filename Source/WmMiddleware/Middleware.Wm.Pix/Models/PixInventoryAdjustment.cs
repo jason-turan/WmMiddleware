@@ -1,8 +1,9 @@
 ﻿using System;
 using Middleware.Wm.Extensions;
+using WmMiddleware.Pix.Models;
 using WmMiddleware.Pix.Models.Generated;
 
-namespace WmMiddleware.Pix.Models
+namespace Middleware.Wm.Pix.Models
 {
     public class PixInventoryAdjustment
     {

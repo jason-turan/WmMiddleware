@@ -1,11 +1,10 @@
 ﻿using System;
 using System.IO;
 using Middleware.Jobs;
-using WmMiddleware.Configuration;
-using WmMiddleware.TransferControl.Configuration;
-using WmMiddleware.TransferControl.Control;
+using Middleware.Wm.TransferControl.Configuration;
+using Middleware.Wm.TransferControl.Control;
 
-namespace WmMiddleware.TransferControl
+namespace Middleware.Wm.TransferControl
 {
     public class TransferControlJob : IUnitOfWork
     {

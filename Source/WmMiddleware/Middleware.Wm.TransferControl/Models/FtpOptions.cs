@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace WmMiddleware.TransferControl.Models
+namespace Middleware.Wm.TransferControl.Models
 {
     public class FtpOptions
     {

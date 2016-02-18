@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using WmMiddleware.StlInventorySync.Models;
+using Middleware.Wm.StlInventorySync.Models;
 
-namespace WmMiddleware.StlInventorySync.Repository
+namespace Middleware.Wm.StlInventorySync.Repository
 {
     public interface IStlInventoryRepository
     {

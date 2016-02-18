@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Dapper.Contrib.Extensions;
-using WmMiddleware.Configuration.Database;
-using WmMiddleware.InventorySync.Repository;
-using WmMiddleware.StlInventorySync.Models;
+using Middleware.Wm.Configuration.Database;
+using Middleware.Wm.InventorySync.Repository;
+using Middleware.Wm.StlInventorySync.Models;
 
-namespace WmMiddleware.StlInventorySync.Repository
+namespace Middleware.Wm.StlInventorySync.Repository
 {
     public class StlInventoryRepository : IStlInventoryRepository
     {

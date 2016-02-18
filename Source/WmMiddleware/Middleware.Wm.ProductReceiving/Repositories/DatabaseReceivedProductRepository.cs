@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using Dapper;
-using WmMiddleware.Configuration.Database;
-using WmMiddleware.ProductReceiving.Models;
+using Middleware.Wm.Configuration.Database;
+using Middleware.Wm.ProductReceivingng.Models;
+using DatabaseAutomatedShippingNotification = Middleware.Wm.ProductReceivingng.Models.DatabaseAutomatedShippingNotification;
+using DatabasePurchaseOrder = Middleware.Wm.ProductReceivingng.Models.DatabasePurchaseOrder;
+using DatabasePurchaseReturn = Middleware.Wm.ProductReceivingng.Models.DatabasePurchaseReturn;
 
-namespace WmMiddleware.ProductReceiving.Repositories
+namespace Middleware.Wm.ProductReceivingng.Repositories
 {
     public class DatabaseReceivedProductRepository : IReceivedProductReader
     {

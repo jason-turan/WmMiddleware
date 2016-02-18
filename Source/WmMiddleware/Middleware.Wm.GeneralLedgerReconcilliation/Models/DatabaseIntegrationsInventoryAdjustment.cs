@@ -1,7 +1,7 @@
 ﻿using System;
 using Dapper.Contrib.Extensions;
 
-namespace WmMiddleware.GeneralLedgerReconcilliation.Models
+namespace Middleware.Wm.GeneralLedgerReconcilliation.Models
 {
     // ReSharper disable InconsistentNaming
     // ReSharper disable CheckNamespace

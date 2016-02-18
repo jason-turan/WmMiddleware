@@ -1,4 +1,4 @@
-﻿namespace WmMiddleware.StlInventoryUpdate.Models
+﻿namespace Middleware.Wm.StlInventoryUpdate.Models
 {
     public class StlInventoryItem
     {

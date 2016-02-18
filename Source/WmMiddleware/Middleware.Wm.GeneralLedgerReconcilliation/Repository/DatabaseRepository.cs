@@ -1,8 +1,8 @@
 ﻿using Dapper.Contrib.Extensions;
-using WmMiddleware.Configuration.Database;
-using WmMiddleware.GeneralLedgerReconcilliation.Models;
+using Middleware.Wm.Configuration.Database;
+using Middleware.Wm.GeneralLedgerReconcilliation.Models;
 
-namespace WmMiddleware.GeneralLedgerReconcilliation.Repository
+namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
 {
     public class DatabaseRepository : IDatabaseRepository
     {

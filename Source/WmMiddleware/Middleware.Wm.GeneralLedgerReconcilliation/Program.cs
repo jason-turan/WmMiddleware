@@ -1,7 +1,7 @@
 ﻿using Middleware.Jobs;
-using WmMiddleware.GeneralLedgerReconcilliation.DependencyInjection;
+using Middleware.Wm.GeneralLedgerReconcilliation.DependencyInjection;
 
-namespace WmMiddleware.GeneralLedgerReconcilliation
+namespace Middleware.Wm.GeneralLedgerReconcilliation
 {
     class Program
     {

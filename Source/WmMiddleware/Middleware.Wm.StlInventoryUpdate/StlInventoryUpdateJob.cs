@@ -1,13 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MiddleWare.Log;
-using WmMiddleware.Pix.Repository;
-using WmMiddleware.Shipment.Repository;
-using WmMiddleware.StlInventoryUpdate.Repository;
 using System.Transactions;
+using MiddleWare.Log;
+using Middleware.Wm.Pix.Models;
+using Middleware.Wm.Pix.Repository;
+using Middleware.Wm.Shipment.Models;
+using Middleware.Wm.StlInventoryUpdate.Models;
+using Middleware.Wm.StlInventoryUpdate.Repository;
+using WmMiddleware.Shipment.Repository;
 
-namespace WmMiddleware.StlInventoryUpdate
+namespace Middleware.Wm.StlInventoryUpdate
 {
     public class StlInventoryUpdateJob : IStlInventoryUpdateJob
     {
@@ -39,7 +42,7 @@ namespace WmMiddleware.StlInventoryUpdate
 
             //--group the adjustments by UPC
             var stlInventoryItems = JoinAdjustments(pixInventoryAdjustments, shipmentInventoryAdjustments).GroupBy(d => d.Upc)
-                        .Select(g => new Models.StlInventoryItem
+                        .Select(g => new StlInventoryItem
                             {
                                 Upc = g.First().Upc,
                                 Quantity = g.Sum(s => s.Quantity),
@@ -84,12 +87,12 @@ namespace WmMiddleware.StlInventoryUpdate
             }
         }
 
-        private IEnumerable<Models.StlInventoryItem> JoinAdjustments(IEnumerable<Pix.Models.PixInventoryAdjustment> pixAdjustments,
-            IEnumerable<Shipment.Models.ShipmentInventoryAdjustment> shipmentAdjustments)
+        private IEnumerable<StlInventoryItem> JoinAdjustments(IEnumerable<PixInventoryAdjustment> pixAdjustments,
+            IEnumerable<ShipmentInventoryAdjustment> shipmentAdjustments)
         {
             foreach (var x in pixAdjustments)
             {
-                yield return new Models.StlInventoryItem
+                yield return new StlInventoryItem
                 {
                     Upc = x.Upc,
                     Attribute = x.Attribute,
@@ -101,7 +104,7 @@ namespace WmMiddleware.StlInventoryUpdate
 
             foreach (var x in shipmentAdjustments)
             {
-                yield return new Models.StlInventoryItem
+                yield return new StlInventoryItem
                 {
                     Upc = x.Upc,
                     Attribute = x.Attribute,

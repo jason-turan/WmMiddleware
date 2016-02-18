@@ -2,11 +2,11 @@
 using System.Data;
 using Dapper;
 using Dapper.Contrib.Extensions;
-using WmMiddleware.Configuration.Database;
-using WmMiddleware.InventorySync.Models;
+using Middleware.Wm.Configuration.Database;
+using Middleware.Wm.InventorySync.Models;
 using WmMiddleware.InventorySync.Models.Generated;
 
-namespace WmMiddleware.InventorySync.Repository
+namespace Middleware.Wm.InventorySync.Repository
 {
     public class InventorySyncRepository : IInventorySyncRepository
     {

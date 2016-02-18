@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using WmMiddleware.InventorySync.Models;
+using Middleware.Wm.InventorySync.Models;
 using WmMiddleware.InventorySync.Models.Generated;
 
-namespace WmMiddleware.InventorySync.Repository
+namespace Middleware.Wm.InventorySync.Repository
 {
     public interface IInventorySyncRepository
     {
-        void InsertInventorySync(IList<Models.Generated.ManhattanInventorySync> inventorySync);
+        void InsertInventorySync(IList<ManhattanInventorySync> inventorySync);
 
         IEnumerable<ManhattanInventorySync> FindManhattanInventorySync();
 

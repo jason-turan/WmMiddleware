@@ -1,6 +1,6 @@
 ﻿using Middleware.Jobs.Models;
 
-namespace WmMiddleware.TransferControl.Configuration
+namespace Middleware.Wm.TransferControl.Configuration
 {
     public interface ITransferControlConfigurationManager
     {

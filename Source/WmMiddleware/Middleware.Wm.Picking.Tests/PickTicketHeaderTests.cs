@@ -1,7 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace WmMiddleware.Picking.Tests
+namespace Middleware.Wm.Picking.Tests
 {
     [TestClass]
     public class PickTicketHeaderTests

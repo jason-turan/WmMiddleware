@@ -3,7 +3,7 @@ using Dapper.Contrib.Extensions;
 using Middleware.Wm.Extensions;
 using WmMiddleware.InventorySync.Models.Generated;
 
-namespace WmMiddleware.StlInventorySync.Models
+namespace Middleware.Wm.StlInventorySync.Models
 {
 
     [Table("StlInventory")]
@@ -55,3 +55,4 @@ namespace WmMiddleware.StlInventorySync.Models
 
     }
 }
+ 

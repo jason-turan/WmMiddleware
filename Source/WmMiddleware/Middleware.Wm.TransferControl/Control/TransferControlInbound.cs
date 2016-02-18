@@ -2,18 +2,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Middleware.Jobs.Models;
-using Middleware.Jobs.Repositories;
+using MiddleWare.Log;
 using Middleware.Wm.DataFiles;
 using Middleware.Wm.Extensions;
-using MiddleWare.Log;
-using WmMiddleware.TransferControl.Configuration;
-using WmMiddleware.TransferControl.Ftp;
-using WmMiddleware.TransferControl.Models;
-using WmMiddleware.TransferControl.Models.Generated;
-using WmMiddleware.TransferControl.Repositories;
+using Middleware.Wm.TransferControl.Configuration;
+using Middleware.Wm.TransferControl.Ftp;
+using Middleware.Wm.TransferControl.Models;
+using Middleware.Wm.TransferControl.Repositories;
 
-namespace WmMiddleware.TransferControl.Control
+namespace Middleware.Wm.TransferControl.Control
 {
     public class TransferControlInbound : ITransferControlInbound
     {

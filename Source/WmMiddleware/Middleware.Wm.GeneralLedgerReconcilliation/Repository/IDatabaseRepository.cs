@@ -1,6 +1,6 @@
-﻿using WmMiddleware.GeneralLedgerReconcilliation.Models;
+﻿using Middleware.Wm.GeneralLedgerReconcilliation.Models;
 
-namespace WmMiddleware.GeneralLedgerReconcilliation.Repository
+namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
 {
     public interface IDatabaseRepository
     {

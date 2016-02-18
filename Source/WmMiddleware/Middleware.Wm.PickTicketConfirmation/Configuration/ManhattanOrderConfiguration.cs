@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
+using Middleware.Wm.Configuration;
 using Middleware.Wm.DataFiles;
 using Middleware.Wm.Inventory;
 using Middleware.Wm.Manhattan.Inventory;
-using WmMiddleware.Configuration;
-using WmMiddleware.Picking.Configuration;
+using Middleware.Wm.Picking.Configuration;
 
 namespace Middleware.Wm.PickTicketConfirmation.Configuration
 {

@@ -2,11 +2,11 @@
 using System.Net.Mail;
 using Middleware.Jobs;
 using MiddleWare.Log;
-using WmMiddleware.Configuration;
-using WmMiddleware.ShipmentCancellationEmail.Models;
-using WmMiddleware.ShipmentCancellationEmail.Repository;
+using Middleware.Wm.Configuration;
+using Middleware.Wm.ShipmentCancellationEmail.Models;
+using Middleware.Wm.ShipmentCancellationEmail.Repository;
 
-namespace WmMiddleware.ShipmentCancellationEmail
+namespace Middleware.Wm.ShipmentCancellationEmail
 {
     public class ShipmentCancellationEmailJob : IUnitOfWork
     {
@@ -44,7 +44,7 @@ namespace WmMiddleware.ShipmentCancellationEmail
             }
         }
 
-        private void SendEmail(Models.ShipmentCancellationEmail cancellation, ShipmentCancellationEmailDistribution distribution)
+        private void SendEmail(Middleware.Wm.ShipmentCancellationEmail.Models.ShipmentCancellationEmail cancellation, ShipmentCancellationEmailDistribution distribution)
         {            
             var smptServer =
                 _configurationManager.GetKey<string>(ConfigurationKey.SmptServer);

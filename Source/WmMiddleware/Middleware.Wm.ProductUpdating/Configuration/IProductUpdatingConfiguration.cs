@@ -1,7 +1,7 @@
 ﻿using System;
-using WmMiddleware.Configuration.Mainframe;
+using Middleware.Wm.Configuration.Mainframe;
 
-namespace WmMiddleware.ProductUpdating.Configuration
+namespace Middleware.Wm.ProductUpdating.Configuration
 {
     public interface IProductUpdatingConfiguration : IMainframeConfiguration
     {

@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using System.Text;
 using Middleware.Jobs;
-using Middleware.Wm.Inventory;
 using MiddleWare.Log;
+using Middleware.Wm.Inventory;
 
-namespace WmMiddleware.Picking
+namespace Middleware.Wm.Picking
 {
     public class PickJob : IUnitOfWork
     {

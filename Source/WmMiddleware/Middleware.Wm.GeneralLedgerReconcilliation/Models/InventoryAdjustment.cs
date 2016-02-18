@@ -1,4 +1,4 @@
-﻿namespace WmMiddleware.GeneralLedgerReconcilliation.Models
+﻿namespace Middleware.Wm.GeneralLedgerReconcilliation.Models
 {
     public class InventoryAdjustment
     {

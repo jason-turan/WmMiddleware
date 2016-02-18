@@ -2,9 +2,9 @@
 using System.Data;
 using System.Linq;
 using Dapper;
+using Middleware.Wm.Configuration.Database;
 using Middleware.Wm.Inventory;
 using Middleware.Wm.PickTicketConfirmation.Models;
-using WmMiddleware.Configuration.Database;
 
 namespace Middleware.Wm.PickTicketConfirmation.Repositories
 {

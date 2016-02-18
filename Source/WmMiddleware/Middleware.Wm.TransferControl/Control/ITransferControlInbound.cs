@@ -1,4 +1,4 @@
-namespace WmMiddleware.TransferControl.Control
+namespace Middleware.Wm.TransferControl.Control
 {
     public interface ITransferControlInbound
     {

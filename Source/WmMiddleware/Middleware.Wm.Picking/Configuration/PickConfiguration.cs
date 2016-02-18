@@ -1,9 +1,9 @@
-﻿using Middleware.Wm.Inventory;
-using WmMiddleware.Configuration;
-using MiddleWare.Log;
-using WmMiddleware.Configuration.Mainframe;
+﻿using MiddleWare.Log;
+using Middleware.Wm.Configuration;
+using Middleware.Wm.Configuration.Mainframe;
+using Middleware.Wm.Inventory;
 
-namespace WmMiddleware.Picking.Configuration
+namespace Middleware.Wm.Picking.Configuration
 {
     public class PickConfiguration : MainframeConfiguration, IPickConfiguration
     {

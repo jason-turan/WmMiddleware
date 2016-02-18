@@ -8,7 +8,7 @@ using Middleware.Jobs;
 using Middleware.Jobs.Models;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
-using WmMiddleware.Configuration;
+using Middleware.Wm.Configuration;
 
 namespace Middleware.Alerts
 {

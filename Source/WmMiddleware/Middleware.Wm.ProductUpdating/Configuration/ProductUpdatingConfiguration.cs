@@ -2,9 +2,9 @@
 using System.Globalization;
 using System.IO;
 using MiddleWare.Log;
-using WmMiddleware.Configuration.Mainframe;
+using Middleware.Wm.Configuration.Mainframe;
 
-namespace WmMiddleware.ProductUpdating.Configuration
+namespace Middleware.Wm.ProductUpdating.Configuration
 {
     public class ProductUpdatingConfiguration : MainframeConfiguration, IProductUpdatingConfiguration
     {

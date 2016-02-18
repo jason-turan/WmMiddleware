@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.Caching;
 using Dapper;
-using WmMiddleware.Configuration.Database;
+using Middleware.Wm.Configuration.Database;
 
 namespace Middleware.Wm.Locations
 {

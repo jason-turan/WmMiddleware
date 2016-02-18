@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WmMiddleware.PixReturn.Models
+namespace Middleware.Wm.PixReturn.Models
 {
     public class ReturnOnWeb
     {

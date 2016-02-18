@@ -1,6 +1,6 @@
 ﻿using Middleware.Jobs;
 
-namespace WmMiddleware.StlInventoryUpdate
+namespace Middleware.Wm.StlInventoryUpdate
 {
     public interface IStlInventoryUpdateJob : IUnitOfWork
     {

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Dapper;
-using WmMiddleware.Configuration.Database;
-using WmMiddleware.PixReturn.Models;
+using Middleware.Wm.Configuration.Database;
+using Middleware.Wm.PixReturn.Models;
 
-namespace WmMiddleware.PixReturn.Repository
+namespace Middleware.Wm.PixReturn.Repository
 {
     public class ManhattanConditionCodeRepository : IManhattanConditionCodeRepository
     {

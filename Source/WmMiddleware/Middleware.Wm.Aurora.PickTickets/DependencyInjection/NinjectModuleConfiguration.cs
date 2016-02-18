@@ -2,17 +2,17 @@
 using Middleware.Jobs.Repositories;
 using Middleware.Wm.Aurora.PickTickets.Ftp;
 using Middleware.Wm.Aurora.PickTickets.Repositories;
+using Middleware.Wm.Configuration;
 using Middleware.Wm.Inventory;
 using Middleware.Wm.Locations;
 using Middleware.Wm.Manhattan.Inventory;
+using Middleware.Wm.Picking.Configuration;
 using Middleware.Wm.Shipping;
 using MiddleWare.Log;
+using Middleware.Wm.TransferControl.Control;
+using Middleware.Wm.TransferControl.Ftp;
+using Middleware.Wm.TransferControl.Repositories;
 using Ninject.Modules;
-using WmMiddleware.Configuration;
-using WmMiddleware.Picking.Configuration;
-using WmMiddleware.TransferControl.Control;
-using WmMiddleware.TransferControl.Ftp;
-using WmMiddleware.TransferControl.Repositories;
 
 namespace Middleware.Wm.Aurora.PickTickets.DependencyInjection
 {

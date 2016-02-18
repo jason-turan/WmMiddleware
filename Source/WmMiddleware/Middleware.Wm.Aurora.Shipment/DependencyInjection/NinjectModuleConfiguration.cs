@@ -2,12 +2,11 @@
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using Middleware.Wm.Aurora.Shipment.Repository;
+using Middleware.Wm.Configuration;
+using Middleware.Wm.Configuration.Mainframe;
+using Middleware.Wm.TransferControl.Control;
+using Middleware.Wm.TransferControl.Repositories;
 using Ninject.Modules;
-using WmMiddleware.Configuration;
-using WmMiddleware.Configuration.Mainframe;
-using WmMiddleware.TransferControl.Control;
-using WmMiddleware.TransferControl.Ftp;
-using WmMiddleware.TransferControl.Repositories;
 
 namespace Middleware.Wm.Aurora.Shipment.DependencyInjection
 {

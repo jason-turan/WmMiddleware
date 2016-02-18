@@ -1,7 +1,7 @@
 ﻿using Middleware.Jobs;
-using WmMiddleware.Picking.DependencyInjection;
+using Middleware.Wm.Picking.DependencyInjection;
 
-namespace WmMiddleware.Picking
+namespace Middleware.Wm.Picking
 {
     public class Program
     {

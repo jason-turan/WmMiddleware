@@ -1,4 +1,4 @@
-﻿namespace WmMiddleware.ShipmentCancellationEmail.Models
+﻿namespace Middleware.Wm.ShipmentCancellationEmail.Models
 {
     public class ShipmentCancellationEmail
     {

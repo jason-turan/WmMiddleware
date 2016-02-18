@@ -2,15 +2,15 @@
 using System.Transactions;
 using Middleware.Jobs;
 using MiddleWare.Log;
-using WmMiddleware.InventorySync.Models;
-using WmMiddleware.InventorySync.Repository;
-using WmMiddleware.Pix.Repository;
-using WmMiddleware.StlInventorySync.Repository;
-using WmMiddleware.StlInventoryUpdate;
-using WmMiddleware.StlInventoryUpdate.Repository;
+using Middleware.Wm.InventorySync.Models;
+using Middleware.Wm.InventorySync.Repository;
+using Middleware.Wm.Pix.Repository;
+using Middleware.Wm.StlInventorySync.Repository;
+using Middleware.Wm.StlInventoryUpdate;
+using Middleware.Wm.StlInventoryUpdate.Repository;
 using WmMiddleware.Shipment.Repository;
 
-namespace WmMiddleware.StlInventorySync
+namespace Middleware.Wm.StlInventorySync
 {
     public class StlInventorySyncJob : IUnitOfWork
     {

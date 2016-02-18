@@ -1,7 +1,7 @@
 ﻿using System;
 
 // ReSharper disable once CheckNamespace
-namespace WmMiddleware.Picking.Models
+namespace Middleware.Wm.Picking.Models
 {
     // DO NOT CHANGE THE NAMES OF PROPERTIES IN THIS CLASS
     // ReSharper disable InconsistentNaming

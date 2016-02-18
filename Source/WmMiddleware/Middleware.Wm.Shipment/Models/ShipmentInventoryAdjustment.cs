@@ -1,7 +1,7 @@
 ﻿using Middleware.Wm.Extensions;
 using Middleware.Wm.Manhattan.Shipment;
 
-namespace WmMiddleware.Shipment.Models
+namespace Middleware.Wm.Shipment.Models
 {
     public class ShipmentInventoryAdjustment
     {

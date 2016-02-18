@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using Dapper;
 using Middleware.Jobs.Models;
-using WmMiddleware.Configuration.Database;
+using Middleware.Wm.Configuration.Database;
 
 namespace Middleware.Jobs.Repositories
 {

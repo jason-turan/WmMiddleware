@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using WmMiddleware.ProductReceiving.Models;
+using Middleware.Wm.ProductReceivingng.Models;
 
-namespace WmMiddleware.ProductReceiving.Repositories
+namespace Middleware.Wm.ProductReceivingng.Repositories
 {
     public interface IReceivedProductWriter
     {

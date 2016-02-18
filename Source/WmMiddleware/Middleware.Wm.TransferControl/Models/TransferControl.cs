@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WmMiddleware.TransferControl.Models
+namespace Middleware.Wm.TransferControl.Models
 {
     public class TransferControl
     {
