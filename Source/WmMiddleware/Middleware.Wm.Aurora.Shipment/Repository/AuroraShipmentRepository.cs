@@ -52,7 +52,7 @@ namespace Middleware.Wm.Aurora.Shipment.Repository
 
             foreach (var databaseKioskOrderExport in shipments)
             {
-                var auroraShipment = new AuroraShipment() 
+                var auroraShipment = new AuroraShipment
                 {
                     OrderNumber = databaseKioskOrderExport.order_number,
                     Details =  new List<AuroraShipmentDetail>()
@@ -60,7 +60,7 @@ namespace Middleware.Wm.Aurora.Shipment.Repository
 
                 foreach (var databaseKioskOrderDetailExport in shipmentDetails.Where(sd => sd.order_number == auroraShipment.OrderNumber))
                 {
-                    auroraShipment.Details.Add(new AuroraShipmentDetail()
+                    auroraShipment.Details.Add(new AuroraShipmentDetail
                     {
                         Sku = databaseKioskOrderDetailExport.upc_number
                     });
@@ -72,7 +72,7 @@ namespace Middleware.Wm.Aurora.Shipment.Repository
             return auroraShipments;
         }
 
-        public void SaveShipments(IList<Models.AuroraShipment> shipments)
+        public void SaveShipments(IList<AuroraShipment> shipments)
         {
             if (!shipments.Any())
             {

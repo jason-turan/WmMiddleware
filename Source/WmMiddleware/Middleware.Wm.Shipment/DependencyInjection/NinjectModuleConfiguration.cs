@@ -2,11 +2,10 @@
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using Middleware.Wm.Configuration;
+using Middleware.Wm.Shipment.Repository;
 using Middleware.Wm.TransferControl.Control;
 using Middleware.Wm.TransferControl.Repositories;
 using Ninject.Modules;
-using WmMiddleware.Shipment;
-using WmMiddleware.Shipment.Repository;
 
 namespace Middleware.Wm.Shipment.DependencyInjection
 {

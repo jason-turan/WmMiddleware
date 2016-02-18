@@ -7,10 +7,10 @@ using Middleware.Wm.Configuration;
 using Middleware.Wm.DataFiles;
 using Middleware.Wm.Manhattan.Shipment;
 using Middleware.Wm.Outbound;
+using Middleware.Wm.Shipment.Repository;
 using Middleware.Wm.TransferControl.Control;
 using Middleware.Wm.TransferControl.Models;
 using Middleware.Wm.TransferControl.Repositories;
-using WmMiddleware.Shipment.Repository;
 
 namespace Middleware.Wm.Shipment
 {

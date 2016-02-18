@@ -2,7 +2,7 @@
 using System.Linq;
 using Middleware.Wm.Shipment.Models;
 
-namespace WmMiddleware.Shipment.Repository
+namespace Middleware.Wm.Shipment.Repository
 {
     public class ShipmentInventoryAdjustmentRepository : IShipmentInventoryAdjustmentRepository
     {

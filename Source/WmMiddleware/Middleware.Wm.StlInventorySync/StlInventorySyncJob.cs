@@ -5,10 +5,10 @@ using MiddleWare.Log;
 using Middleware.Wm.InventorySync.Models;
 using Middleware.Wm.InventorySync.Repository;
 using Middleware.Wm.Pix.Repository;
+using Middleware.Wm.Shipment.Repository;
 using Middleware.Wm.StlInventorySync.Repository;
 using Middleware.Wm.StlInventoryUpdate;
 using Middleware.Wm.StlInventoryUpdate.Repository;
-using WmMiddleware.Shipment.Repository;
 
 namespace Middleware.Wm.StlInventorySync
 {

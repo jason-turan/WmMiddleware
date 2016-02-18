@@ -6,9 +6,9 @@ using MiddleWare.Log;
 using Middleware.Wm.Pix.Models;
 using Middleware.Wm.Pix.Repository;
 using Middleware.Wm.Shipment.Models;
+using Middleware.Wm.Shipment.Repository;
 using Middleware.Wm.StlInventoryUpdate.Models;
 using Middleware.Wm.StlInventoryUpdate.Repository;
-using WmMiddleware.Shipment.Repository;
 
 namespace Middleware.Wm.StlInventoryUpdate
 {

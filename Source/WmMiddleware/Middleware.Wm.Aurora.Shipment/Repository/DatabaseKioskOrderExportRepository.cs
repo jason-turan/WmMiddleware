@@ -27,6 +27,14 @@ namespace Middleware.Wm.Aurora.Shipment.Repository
             }
         }
 
+        public void InsertDatabaseKioskOrderExportProcessing(KioskOrderExportProcessing kioskOrderExportProcessing)
+        {
+            using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
+            {
+                connection.Insert(kioskOrderExportProcessing);
+            }
+        }
+
         public void InsertDatabaseKioskOrderDetailExport(IList<DatabaseKioskOrderDetailExport> kiosKioskOrderDetailExports)
         {
             using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())

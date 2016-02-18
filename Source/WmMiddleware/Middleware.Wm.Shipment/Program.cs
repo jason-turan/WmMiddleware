@@ -1,7 +1,7 @@
 ﻿using Middleware.Jobs;
 using Middleware.Wm.Shipment.DependencyInjection;
 
-namespace WmMiddleware.Shipment
+namespace Middleware.Wm.Shipment
 {
     public class Program
     {

@@ -2,9 +2,9 @@
 using MiddleWare.Log;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.Pix.Repository;
+using Middleware.Wm.Shipment.Repository;
 using Middleware.Wm.StlInventoryUpdate.Repository;
 using Ninject.Modules;
-using WmMiddleware.Shipment.Repository;
 
 namespace Middleware.Wm.StlInventoryUpdate.DependencyInjection
 {

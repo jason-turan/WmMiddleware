@@ -2,7 +2,7 @@
 using Middleware.Wm.Manhattan.Shipment;
 using Middleware.Wm.Shipment.Models;
 
-namespace WmMiddleware.Shipment.Repository
+namespace Middleware.Wm.Shipment.Repository
 {
     public interface IShipmentRepository
     {
