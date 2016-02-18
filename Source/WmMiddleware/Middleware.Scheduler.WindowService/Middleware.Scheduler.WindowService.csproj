@@ -270,8 +270,8 @@
     <Copy SourceFiles="..\Middleware.Wm.Pix\bin\$(Configuration)\Middleware.Wm.Pix.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\Middleware.Alerts\bin\$(Configuration)\Middleware.Alerts.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\Middleware.Integration\bin\$(Configuration)\Middleware.Integration.exe.config" DestinationFolder="$(TargetDir)" />
-    <Copy SourceFiles="..\Middleware.Wm.PixReturn\bin\$(Configuration)\WmMiddleware.PixReturn.exe.config" DestinationFolder="$(TargetDir)" />
-    <Copy SourceFiles="..\Middleware.Wm.GeneralLedgerReconcilliation\bin\$(Configuration)\WmMiddleware.GeneralLedgerReconcilliation.exe.config" DestinationFolder="$(TargetDir)" />
+    <Copy SourceFiles="..\Middleware.Wm.PixReturn\bin\$(Configuration)\Middleware.Wm.PixReturn.exe.config" DestinationFolder="$(TargetDir)" />
+    <Copy SourceFiles="..\Middleware.Wm.GeneralLedgerReconcilliation\bin\$(Configuration)\Middleware.Wm.GeneralLedgerReconcilliation.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\Middleware.Wm.PickTicketConfirmation\bin\$(Configuration)\Middleware.Wm.PickTicketConfirmation.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\Middleware.Wm.Aurora.TransferControl\bin\$(Configuration)\Middleware.Wm.Aurora.TransferControl.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\Middleware.Wm.Aurora.Shipment\bin\$(Configuration)\Middleware.Wm.Aurora.Shipment.exe.config" DestinationFolder="$(TargetDir)" />
