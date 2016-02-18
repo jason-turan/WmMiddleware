@@ -37,7 +37,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -262,6 +262,9 @@
   -->
   <Target Name="AfterBuild">
     <Copy SourceFiles="..\Middleware.Wm.Picking\bin\$(Configuration)\Middleware.Wm.Picking.exe.config" DestinationFolder="$(TargetDir)" />
+    <Copy SourceFiles="..\Middleware.Wm.StlInventorySync\bin\$(Configuration)\Middleware.Wm.StlInventorySync.exe.config" DestinationFolder="$(TargetDir)" />
+    <Copy SourceFiles="..\Middleware.Wm.StlInventoryUpdate\bin\$(Configuration)\Middleware.Wm.StlInventoryUpdate.exe.config" DestinationFolder="$(TargetDir)" />
+    <Copy SourceFiles="..\Middleware.Wm.ShipmentCancellationEmail\bin\$(Configuration)\Middleware.Wm.ShipmentCancellationEmail.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\Middleware.Wm.TransferControl\bin\$(Configuration)\Middleware.Wm.TransferControl.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\Middleware.Wm.ProductReceiving\bin\$(Configuration)\Middleware.Wm.ProductReceiving.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\Middleware.Wm.ProductUpdating\bin\$(Configuration)\Middleware.Wm.ProductUpdating.exe.config" DestinationFolder="$(TargetDir)" />
