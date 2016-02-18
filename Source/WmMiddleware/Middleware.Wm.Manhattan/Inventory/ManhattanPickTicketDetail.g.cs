@@ -2,7 +2,7 @@ using System;
 using System.Globalization;
 using FlatFile.FixedLength;
 using FlatFile.FixedLength.Attributes;
-using Middleware.Wm.DataFiles;
+using Middleware.Wm.Manhattan.DataFiles;
 
 namespace Middleware.Wm.Manhattan.Inventory
 {

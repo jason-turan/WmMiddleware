@@ -1,4 +1,4 @@
-﻿namespace Middleware.Wm.DataFiles
+﻿namespace Middleware.Wm.Manhattan.DataFiles
 {
     public interface IGeneratedFlatFile
     {

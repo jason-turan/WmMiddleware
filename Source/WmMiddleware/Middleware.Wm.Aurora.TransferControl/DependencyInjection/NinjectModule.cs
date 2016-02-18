@@ -4,6 +4,7 @@ using Middleware.Wm.Aurora.PickTickets.Ftp;
 using Middleware.WM.Aurora.TransferControl.Configuration;
 using MiddleWare.Log;
 using Middleware.Wm.Configuration;
+using Middleware.Wm.Manhattan.Control;
 using Middleware.Wm.TransferControl;
 using Middleware.Wm.TransferControl.Configuration;
 using Middleware.Wm.TransferControl.Control;

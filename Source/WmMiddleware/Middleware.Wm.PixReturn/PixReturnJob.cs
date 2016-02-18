@@ -4,7 +4,7 @@ using System.Linq;
 using System.Transactions;
 using Middleware.Jobs;
 using MiddleWare.Log;
-using Middleware.Wm.Extensions;
+using Middleware.Wm.Manhattan.Extensions;
 using Middleware.Wm.Pix.Repository;
 using Middleware.Wm.PixReturn.Models;
 using Middleware.Wm.PixReturn.Repository;
@@ -92,7 +92,7 @@ namespace Middleware.Wm.PixReturn
             }
         }
 
-        private static string GetConditionCode(IEnumerable<ManhattanConditionCode> conditionCodes, Middleware.Wm.Pix.Models.PixReturn unprocessedReturn)
+        private static string GetConditionCode(IEnumerable<ManhattanConditionCode> conditionCodes, Pix.Models.PixReturn unprocessedReturn)
         {
             var conditionCode = conditionCodes.SingleOrDefault(cc => cc.Code == unprocessedReturn.ConditionCode);
             var reason = string.Empty;

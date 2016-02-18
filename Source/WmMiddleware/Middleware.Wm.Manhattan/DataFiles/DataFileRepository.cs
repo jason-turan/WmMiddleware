@@ -7,7 +7,7 @@ using FlatFile.Core;
 using FlatFile.FixedLength.Attributes;
 using FlatFile.FixedLength.Implementation;
 
-namespace Middleware.Wm.DataFiles
+namespace Middleware.Wm.Manhattan.DataFiles
 {
     public class DataFileRepository<T> where T : class, new()
     {

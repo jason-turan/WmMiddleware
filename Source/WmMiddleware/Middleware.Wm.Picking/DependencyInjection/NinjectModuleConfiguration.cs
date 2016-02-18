@@ -4,6 +4,7 @@ using MiddleWare.Log;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.Inventory;
 using Middleware.Wm.Locations;
+using Middleware.Wm.Manhattan.Control;
 using Middleware.Wm.Picking.Configuration;
 using Middleware.Wm.Picking.Repositories;
 using Middleware.Wm.Shipping;

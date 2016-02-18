@@ -4,6 +4,7 @@ using System.Linq;
 using Middleware.Wm.Extensions;
 using Middleware.Wm.Inventory;
 using Middleware.Wm.Locations;
+using Middleware.Wm.Manhattan.Extensions;
 using Middleware.Wm.Shipping;
 
 namespace Middleware.Wm.Manhattan.Inventory

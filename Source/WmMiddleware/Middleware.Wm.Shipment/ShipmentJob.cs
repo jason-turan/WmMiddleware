@@ -4,7 +4,7 @@ using System.Linq;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using Middleware.Wm.Configuration;
-using Middleware.Wm.DataFiles;
+using Middleware.Wm.Manhattan.DataFiles;
 using Middleware.Wm.Manhattan.Shipment;
 using Middleware.Wm.Outbound;
 using Middleware.Wm.Shipment.Repository;

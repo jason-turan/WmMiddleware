@@ -76,6 +76,10 @@
       <Project>{aeedd741-c346-45ba-a867-3f54b66477a4}</Project>
       <Name>Middleware.Log</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Middleware.Wm.Manhattan\Middleware.Wm.Manhattan.csproj">
+      <Project>{87AE9E18-B3DC-4605-BE2A-FA7B6C50DAD6}</Project>
+      <Name>Middleware.Wm.Manhattan</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Middleware.Wm.StlInventoryUpdate\Middleware.Wm.StlInventoryUpdate.csproj">
       <Project>{0FAC9C07-F2EB-4118-BED1-D2C7E786BE20}</Project>
       <Name>Middleware.Wm.StlInventoryUpdate</Name>

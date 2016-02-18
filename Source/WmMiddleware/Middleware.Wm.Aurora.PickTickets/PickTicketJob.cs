@@ -2,8 +2,8 @@
 using System.IO;
 using Middleware.Jobs.Repositories;
 using Middleware.Wm.Configuration;
-using Middleware.Wm.DataFiles;
 using Middleware.Wm.Inventory;
+using Middleware.Wm.Manhattan.DataFiles;
 using Middleware.Wm.Manhattan.Inventory;
 using MiddleWare.Log;
 using Middleware.Wm.Outbound;

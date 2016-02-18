@@ -3,7 +3,7 @@ using System.Globalization;
 using Dapper.Contrib.Extensions;
 using FlatFile.FixedLength;
 using FlatFile.FixedLength.Attributes;
-using Middleware.Wm.DataFiles;
+using Middleware.Wm.Manhattan.DataFiles;
 
 // ReSharper disable InconsistentNaming
 // ReSharper disable CheckNamespace

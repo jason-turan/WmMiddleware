@@ -59,10 +59,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataFiles\DataFileRepository.cs" />
-    <Compile Include="DataFiles\IGeneratedFlatFile.cs" />
-    <Compile Include="DataFiles\ManhattanDataFileType.cs" />
-    <Compile Include="Extensions\ManhattanExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Inventory\Address.cs" />
     <Compile Include="Inventory\IOrderReader.cs" />

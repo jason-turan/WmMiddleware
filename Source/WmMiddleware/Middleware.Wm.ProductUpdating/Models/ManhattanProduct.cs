@@ -1,5 +1,6 @@
 ﻿using System;
 using Middleware.Wm.Extensions;
+using Middleware.Wm.Manhattan.Extensions;
 
 namespace Middleware.Wm.ProductUpdating.Models
 {

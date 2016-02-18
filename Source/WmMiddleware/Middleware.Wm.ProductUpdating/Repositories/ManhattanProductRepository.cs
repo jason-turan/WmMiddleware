@@ -4,9 +4,9 @@ using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.Configuration.Mainframe;
-using Middleware.Wm.DataFiles;
+using Middleware.Wm.Manhattan.Control;
+using Middleware.Wm.Manhattan.DataFiles;
 using Middleware.Wm.ProductUpdating.Models;
-using Middleware.Wm.TransferControl.Control;
 
 namespace Middleware.Wm.ProductUpdating.Repositories
 {

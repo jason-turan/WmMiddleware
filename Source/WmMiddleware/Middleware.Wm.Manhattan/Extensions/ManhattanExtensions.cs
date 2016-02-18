@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace Middleware.Wm.Extensions
+namespace Middleware.Wm.Manhattan.Extensions
 {
     public static class ManhattanExtensions
     {

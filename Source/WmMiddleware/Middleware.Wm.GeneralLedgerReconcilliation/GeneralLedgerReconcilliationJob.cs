@@ -3,7 +3,6 @@ using Middleware.Jobs;
 using MiddleWare.Log;
 using Middleware.Wm.Pix.Models;
 using Middleware.Wm.Pix.Repository;
-using WmMiddleware.Pix.Models;
 
 namespace Middleware.Wm.GeneralLedgerReconcilliation
 {

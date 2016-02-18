@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Middleware.Wm.DataFiles;
 using Middleware.Wm.Inventory;
 using Middleware.Wm.Locations;
+using Middleware.Wm.Manhattan.Control;
+using Middleware.Wm.Manhattan.DataFiles;
 using Middleware.Wm.Shipping;
-using Middleware.Wm.TransferControl.Control;
 
 namespace Middleware.Wm.Manhattan.Inventory
 {

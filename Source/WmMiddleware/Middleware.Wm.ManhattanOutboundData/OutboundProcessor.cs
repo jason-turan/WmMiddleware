@@ -8,7 +8,7 @@ using Middleware.Jobs.Models;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using Middleware.Wm.Configuration;
-using Middleware.Wm.DataFiles;
+using Middleware.Wm.Manhattan.DataFiles;
 using Middleware.Wm.TransferControl.Control;
 using Middleware.Wm.TransferControl.Models;
 using Middleware.Wm.TransferControl.Repositories;

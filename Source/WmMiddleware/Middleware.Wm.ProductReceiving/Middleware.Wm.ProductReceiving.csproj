@@ -133,6 +133,10 @@
       <Project>{AEEDD741-C346-45BA-A867-3F54B66477A4}</Project>
       <Name>Middleware.Log</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Middleware.Wm.Manhattan\Middleware.Wm.Manhattan.csproj">
+      <Project>{87AE9E18-B3DC-4605-BE2A-FA7B6C50DAD6}</Project>
+      <Name>Middleware.Wm.Manhattan</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Middleware.Wm.TransferControl\Middleware.Wm.TransferControl.csproj">
       <Project>{F788DD6F-2DF7-45BA-950A-EC5CBC5731D8}</Project>
       <Name>Middleware.Wm.TransferControl</Name>

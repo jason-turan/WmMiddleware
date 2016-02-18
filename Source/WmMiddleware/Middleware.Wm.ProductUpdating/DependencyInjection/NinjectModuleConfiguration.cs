@@ -3,6 +3,7 @@ using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.Configuration.Mainframe;
+using Middleware.Wm.Manhattan.Control;
 using Middleware.Wm.ProductUpdating.Configuration;
 using Middleware.Wm.ProductUpdating.Repositories;
 using Middleware.Wm.TransferControl.Control;

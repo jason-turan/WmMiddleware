@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Middleware.Wm.TransferControl.Control
+namespace Middleware.Wm.Manhattan.Control
 {
     public interface ITransferControlManager
     {

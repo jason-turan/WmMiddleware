@@ -3,6 +3,7 @@ using Middleware.Jobs.Repositories;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.Inventory;
 using Middleware.Wm.Locations;
+using Middleware.Wm.Manhattan.Control;
 using Middleware.Wm.Manhattan.Inventory;
 using Middleware.Wm.Picking.Configuration;
 using Middleware.Wm.PickTicketConfirmation.Configuration;
