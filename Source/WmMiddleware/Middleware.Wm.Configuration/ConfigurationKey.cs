@@ -34,10 +34,10 @@
         public const string PhoneNumber = "PhoneNumber";
         public const string UpsAccountNumber = "UpsAccountNumber";
 
-        public const string OmsAuroraLocalDirectory = "OmsAurora_LocalDirectory";
-        public const string OmsAuroraSftpUsername = "OmsAurora_Sftp_Username";
-        public const string OmsAuroraSftpPassword = "OmsAurora_Sftp_Password";
-        public const string OmsAuroraSftpDirectory = "OmsAurora_Sftp_Directory";
-        public const string OmsAuroraSftpHost = "OmsAurora_Sftp_Host";
+        public const string OmsAuroraLocalDirectory = "Oms_LocalDirectory";
+        public const string OmsAuroraSftpUsername = "Oms_Sftp_Username";
+        public const string OmsAuroraSftpPassword = "Oms_Sftp_Password";
+        public const string OmsAuroraSftpDirectory = "Oms_Sftp_Directory";
+        public const string OmsAuroraSftpHost = "Oms_Sftp_Host";
     }
 }
