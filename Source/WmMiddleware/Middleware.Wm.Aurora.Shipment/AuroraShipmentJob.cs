@@ -1,5 +1,6 @@
 ﻿using Middleware.Jobs;
 using Middleware.Wm.Aurora.Shipment.Repository;
+using Middleware.Wm.Manhattan.Shipment;
 
 namespace Middleware.Wm.Aurora.Shipment
 {
@@ -7,14 +8,16 @@ namespace Middleware.Wm.Aurora.Shipment
     {
         private readonly IAuroraShipmentRepository _auroraShipmentRepository;
 
-        public AuroraShipmentJob(IAuroraShipmentRepository auroraShipmentRepository)
+        public AuroraShipmentJob(IAuroraShipmentRepository auroraShipmentRepository, IShipmentRepository shipmentRepository)
         {
             _auroraShipmentRepository = auroraShipmentRepository;
         }
 
         public void RunUnitOfWork(string jobKey)
         {
-            _auroraShipmentRepository.SaveShipments(_auroraShipmentRepository.GetShipments());
+         //   var shipments = FindManhattanShipmentHeaders
+
+           // _auroraShipmentRepository.SaveShipments(_auroraShipmentRepository.GetShipments());
         }
     }
 }

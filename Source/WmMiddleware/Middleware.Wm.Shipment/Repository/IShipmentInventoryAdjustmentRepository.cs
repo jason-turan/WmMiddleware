@@ -6,5 +6,6 @@ namespace Middleware.Wm.Shipment.Repository
     public interface IShipmentInventoryAdjustmentRepository
     {
         IEnumerable<ShipmentInventoryAdjustment> GetUnprocessedInventoryAdjustments();
+        void InsertShipmentInventoryAdjustmentProcessing(IList<ShipmentInventoryAdjustment> shipmentInventoryAdjustments);
     }
 }

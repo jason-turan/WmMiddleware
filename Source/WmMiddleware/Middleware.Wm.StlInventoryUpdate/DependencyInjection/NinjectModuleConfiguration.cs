@@ -15,7 +15,6 @@ namespace Middleware.Wm.StlInventoryUpdate.DependencyInjection
             Bind<ILog>().To<Log4Net>();
             Bind<IStlInventoryUpdateJob>().To<StlInventoryUpdateJob>();
             Bind<IStlInventoryUpdateRepository>().To<StlInventoryUpdateRepository>();
-            Bind<IShipmentRepository>().To<ShipmentRepository>();
             Bind<IShipmentInventoryAdjustmentRepository>().To<ShipmentInventoryAdjustmentRepository>();
             Bind<IPerpetualInventoryTransferRepository>().To<PerpetualInventoryTransferRepository>();
             Bind<IPixInventoryAdjustmentRepository>().To<PixInventoryAdjustmentRepository>();

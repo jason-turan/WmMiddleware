@@ -4,6 +4,7 @@ using Middleware.Jobs;
 using MiddleWare.Log;
 using Middleware.Wm.InventorySync.Models;
 using Middleware.Wm.InventorySync.Repository;
+using Middleware.Wm.Manhattan.Shipment;
 using Middleware.Wm.Pix.Repository;
 using Middleware.Wm.Shipment.Repository;
 using Middleware.Wm.StlInventorySync.Repository;
@@ -41,8 +42,11 @@ namespace Middleware.Wm.StlInventorySync
         public void RunUnitOfWork(string jobKey)
         {
             //initialize update job to ensure outstanding PIX/Shipments are consumed before the sync
-            var stlInventoryUpdateJob = new StlInventoryUpdateJob(_log, _stlInventoryUpdateRepository, _shipmentRepository, _shipmentInventoryAdjustmentRepository,
-                _perpetualInventoryTransferRepository, _pixInventoryAdjustmentRepository);
+            var stlInventoryUpdateJob = new StlInventoryUpdateJob(_log, 
+                                                                  _stlInventoryUpdateRepository, 
+                                                                  _shipmentInventoryAdjustmentRepository,
+                                                                  _perpetualInventoryTransferRepository, 
+                                                                  _pixInventoryAdjustmentRepository);
             
             //execute StlInventoryUpdate job. 
             stlInventoryUpdateJob.RunUnitOfWork("Stl Inventory Update");

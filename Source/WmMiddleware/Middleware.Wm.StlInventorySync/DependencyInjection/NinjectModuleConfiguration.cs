@@ -3,6 +3,7 @@ using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.InventorySync.Repository;
+using Middleware.Wm.Manhattan.Shipment;
 using Middleware.Wm.Pix.Repository;
 using Middleware.Wm.Shipment.Repository;
 using Middleware.Wm.StlInventorySync.Repository;

@@ -16,19 +16,17 @@ namespace Middleware.Wm.StlInventoryUpdate
     {
         private readonly IStlInventoryUpdateRepository _stlInventoryUpdateRepository;
         private readonly IShipmentInventoryAdjustmentRepository _shipmentInventoryAdjustmentRepository;
-        private readonly IShipmentRepository _shipmentRepository;
         private readonly IPixInventoryAdjustmentRepository _pixInventoryAdjustmentRepository;
         private readonly IPerpetualInventoryTransferRepository _perpetualInventoryTransferRepository;
 
         private readonly ILog _log;
 
-        public StlInventoryUpdateJob(ILog log, IStlInventoryUpdateRepository stlInventoryUpdateRepository, 
-            IShipmentRepository shipmentRepository, IShipmentInventoryAdjustmentRepository shipmentInventoryAdjustmentRepository,
+        public StlInventoryUpdateJob(ILog log, IStlInventoryUpdateRepository stlInventoryUpdateRepository,
+             IShipmentInventoryAdjustmentRepository shipmentInventoryAdjustmentRepository,
             IPerpetualInventoryTransferRepository perpetualInventoryTransferRepository, IPixInventoryAdjustmentRepository pixInventoryAdjustmentRepository)
         {
             _log = log;
             _stlInventoryUpdateRepository = stlInventoryUpdateRepository;
-            _shipmentRepository = shipmentRepository;
             _shipmentInventoryAdjustmentRepository = shipmentInventoryAdjustmentRepository;
             _perpetualInventoryTransferRepository = perpetualInventoryTransferRepository;
             _pixInventoryAdjustmentRepository = pixInventoryAdjustmentRepository;
@@ -81,7 +79,7 @@ namespace Middleware.Wm.StlInventoryUpdate
 
                 //--flag the raw manhattan data as processed. 
                 _perpetualInventoryTransferRepository.InsertPixInventoryAdjustmentProcessing(pixInventoryAdjustments);
-                _shipmentRepository.InsertShipmentInventoryAdjustmentProcessing(shipmentInventoryAdjustments);
+                _shipmentInventoryAdjustmentRepository.InsertShipmentInventoryAdjustmentProcessing(shipmentInventoryAdjustments);
 
                 transactionScope.Complete();
             }
