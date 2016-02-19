@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Middleware.Jobs;
 using MiddleWare.Log;
+using Middleware.Wm.GeneralLedgerReconcilliation.Models;
 using Middleware.Wm.GeneralLedgerReconcilliation.Repository;
 using Middleware.Wm.Pix.Models;
 using Middleware.Wm.Pix.Repository;
@@ -42,7 +44,15 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation
                      Where(manhattanPerpetualInventoryTransfer => manhattanPerpetualInventoryTransfer.TransactionType == TransactionType.InventoryAdjustment).
                      Where(manhattanPerpetualInventoryTransfer => manhattanPerpetualInventoryTransfer.TransactionReasonCode != string.Empty))
             {
+                var gl = generalLedgerTransactionReasonCodeMap.SingleOrDefault(g => g.TransactionReasonCode == manhattanPerpetualInventoryTransfer.TransactionReasonCode);
 
+                var databaseIntegrationsInventoryAdjustment = new DatabaseIntegrationsInventoryAdjustment
+                {
+                    IntegrationDT = DateTime.Now, 
+                    UOM = "Each", 
+                    created_date = DateTime.Now,
+                    
+                };
             }
         }
     }

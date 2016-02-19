@@ -4,11 +4,11 @@ using Middleware.Wm.TransferControl.Ftp;
 
 namespace Middleware.Wm.Aurora.PickTickets.Ftp
 {
-    public class AuroraFtpClientConfiguration : IFtpClientConfiguration
+    public class OmsFtpClientConfiguration : IFtpClientConfiguration
     {
         private readonly IConfigurationManager _configurationManager;
 
-        public AuroraFtpClientConfiguration(IConfigurationManager configurationManager)
+        public OmsFtpClientConfiguration(IConfigurationManager configurationManager)
         {
             _configurationManager = configurationManager;
         }

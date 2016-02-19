@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Configuration\AuroraTransferControlConfigurationManager.cs" />
     <Compile Include="DependencyInjection\NinjectModule.cs" />
+    <Compile Include="Ftp\AuroraFtpClientConfiguration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -64,10 +65,6 @@
     <ProjectReference Include="..\MiddleWare.Log\Middleware.Log.csproj">
       <Project>{AEEDD741-C346-45BA-A867-3F54B66477A4}</Project>
       <Name>Middleware.Log</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Middleware.Wm.Aurora.PickTickets\Middleware.Wm.Aurora.PickTickets.csproj">
-      <Project>{0F65C07A-002D-46FB-8F0A-C9738B25D054}</Project>
-      <Name>Middleware.Wm.Aurora.PickTickets</Name>
     </ProjectReference>
     <ProjectReference Include="..\Middleware.Wm.Configuration\Middleware.Wm.Configuration.csproj">
       <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>

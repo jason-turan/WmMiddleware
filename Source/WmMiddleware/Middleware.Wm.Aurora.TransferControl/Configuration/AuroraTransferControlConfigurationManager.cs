@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Middleware.Jobs;
-using Middleware.Jobs.Models;
+﻿using Middleware.Jobs.Models;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.TransferControl.Configuration;
 
@@ -9,7 +7,7 @@ namespace Middleware.WM.Aurora.TransferControl.Configuration
     public class AuroraTransferControlConfigurationManager : ITransferControlConfigurationManager
     {
         private readonly IConfigurationManager _configurationManager;
-        private const string AuroraPrefix = "Aurora_";
+        public const string AuroraPrefix = "Aurora_";
 
         public AuroraTransferControlConfigurationManager(IConfigurationManager configurationManager)
         {

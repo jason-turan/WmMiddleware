@@ -30,7 +30,7 @@ namespace Middleware.Wm.Aurora.PickTickets.DependencyInjection
             Bind<ITransferControlRepository>().To<TransferControlRepository>();
             Bind<ICarrierReadRepository>().To<WmDatabaseCarrierRepository>().WithConstructorArgument("useThirdPartyBilling", true);
             Bind<IFtpClientFactory>().To<SftpClientFactory>();
-            Bind<IFtpClientConfiguration>().To<AuroraFtpClientConfiguration>();
+            Bind<IFtpClientConfiguration>().To<OmsFtpClientConfiguration>();
             Bind<ICountryReader>().To<DatabaseCountryRepository>();
             Bind<IManhattanOrderRepository>().To<ManhattanOrderRepository>();
             Bind<IPickConfiguration>().To<PickConfiguration>();

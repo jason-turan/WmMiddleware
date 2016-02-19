@@ -1,8 +1,8 @@
 ﻿using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
-using Middleware.Wm.Aurora.PickTickets.Ftp;
 using Middleware.WM.Aurora.TransferControl.Configuration;
 using MiddleWare.Log;
+using Middleware.Wm.Aurora.TransferControl.Ftp;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.Manhattan.Control;
 using Middleware.Wm.TransferControl;

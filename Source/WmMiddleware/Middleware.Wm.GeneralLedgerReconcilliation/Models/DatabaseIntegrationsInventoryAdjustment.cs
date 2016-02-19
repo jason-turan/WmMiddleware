@@ -8,21 +8,21 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Models
     [Table("Integrations_Inventory_Adjustment")]
     public class DatabaseIntegrationsInventoryAdjustment
     {
-        private string batch_id { get; set; }
-        private string batch_source { get; set; }
-        private DateTime batch_create_dt { get; set; }
-        private DateTime created_date { get; set; }
-        private string item_key_id { get; set; }
-        private string UOM { get; set; }
-        private int qty { get; set; }
-        private DateTime inventory_variance_date { get; set; }
-        private string gl_account { get; set; }
-        private string variance_account { get; set; }
-        private string reason_code { get; set; }
-        private string IntegrationStatus { get; set; }
-        private DateTime IntegrationMessage { get; set; }
-        private DateTime IntegrationDT { get; set; }
-        private string IntegrationBatchID { get; set; }
+        public string batch_id { get; set; }
+        public string batch_source { get; set; }
+        public DateTime batch_create_dt { get; set; }
+        public DateTime created_date { get; set; }
+        public string item_key_id { get; set; }
+        public string UOM { get; set; }
+        public int qty { get; set; }
+        public DateTime inventory_variance_date { get; set; }
+        public string gl_account { get; set; }
+        public string variance_account { get; set; }
+        public string reason_code { get; set; }
+        public string IntegrationStatus { get; set; }
+        public DateTime IntegrationMessage { get; set; }
+        public DateTime IntegrationDT { get; set; }
+        public string IntegrationBatchID { get; set; }
     }
     // ReSharper restore InconsistentNaming
     // ReSharper restore CheckNamespace
