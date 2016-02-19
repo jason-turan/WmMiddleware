@@ -17,7 +17,7 @@
         public const string TransferControlInboundFileProcessedDirectory = "TransferControl_InboundFileProcessedDirectory";
         
         public const string TransferControlFtpEnable = "TransferControl_Ftp_Enable";
-        public const string TransferControlFtpManhattanServer = "TransferControl_Ftp_ManhattanServer";
+        public const string TransferControlFtpServer = "TransferControl_Ftp_Server";
         public const string TransferControlFtpUserName = "TransferControl_Ftp_UserName";
         public const string TransferControlFtpPassword = "TransferControl_Ftp_Password";
         

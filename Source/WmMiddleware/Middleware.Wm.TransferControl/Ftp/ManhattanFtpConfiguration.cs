@@ -13,7 +13,7 @@ namespace Middleware.Wm.TransferControl.Ftp
 
         public string GetHost()
         {
-            return _configuration.GetKey<string>(ConfigurationKey.TransferControlFtpManhattanServer);
+            return _configuration.GetKey<string>(ConfigurationKey.TransferControlFtpServer);
         }
 
         public string GetPassword()
