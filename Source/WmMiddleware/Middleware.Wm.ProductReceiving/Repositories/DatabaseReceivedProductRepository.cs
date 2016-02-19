@@ -153,7 +153,7 @@ namespace Middleware.Wm.ProductReceivingng.Repositories
             foreach (var group in groupedNotifications)
             {
                 var asn = group.First().ToAutomatedShippingNotification();
-                foreach (var item in group.GroupBy(a => a.SKU))
+                foreach (var item in group.GroupBy(a => new {a.SKU, a.ParentMUID}))
                 {
                     var asnItem = item.First().ToAutomatedShippingNotificationItem();
                     asnItem.CartonQuantity = item.Sum(i => i.CartonQTY);

@@ -87,7 +87,7 @@ namespace Middleware.Wm.ProductReceivingng.Models
 
         public override string ToString()
         {
-            return AutomatedShippingNotificationNumber;
+            return ExternalUid;
         }
     }
 }
