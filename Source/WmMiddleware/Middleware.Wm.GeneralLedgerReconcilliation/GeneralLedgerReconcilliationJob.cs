@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Middleware.Jobs;
 using MiddleWare.Log;
+using Middleware.Wm.GeneralLedgerReconcilliation.Repository;
 using Middleware.Wm.Pix.Models;
 using Middleware.Wm.Pix.Repository;
 
@@ -11,11 +12,15 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation
         private readonly ILog _log;
 
         private readonly IPerpetualInventoryTransferRepository _perpetualInventoryTransferRepository;
+        private readonly IGeneralLedgerReconcilliationRepository _generalLedgerReconcilliationRepository;
 
-        public GeneralLedgerReconcilliationJob(ILog log, IPerpetualInventoryTransferRepository perpetualInventoryTransferRepository)
+        public GeneralLedgerReconcilliationJob(ILog log, 
+                                               IPerpetualInventoryTransferRepository perpetualInventoryTransferRepository,
+                                               IGeneralLedgerReconcilliationRepository generalLedgerReconcilliationRepository)
         {
             _log = log;
             _perpetualInventoryTransferRepository = perpetualInventoryTransferRepository;
+            _generalLedgerReconcilliationRepository = generalLedgerReconcilliationRepository;
         }
 
         public void RunUnitOfWork(string jobKey)
@@ -30,27 +35,14 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation
 
             _log.Info("Processing " + unprocessed.Count() + " records");
 
-            foreach (var manhattanPerpetualInventoryTransfer in unprocessed.Where(u => u.InventoryAdjustmentQuantity != 0))
+            var generalLedgerTransactionReasonCodeMap = _generalLedgerReconcilliationRepository.GetGeneralLedgerTransactionReasonCodeMap();
+
+            foreach (var manhattanPerpetualInventoryTransfer 
+                     in unprocessed.Where(u => u.InventoryAdjustmentQuantity != 0).
+                     Where(manhattanPerpetualInventoryTransfer => manhattanPerpetualInventoryTransfer.TransactionType == TransactionType.InventoryAdjustment).
+                     Where(manhattanPerpetualInventoryTransfer => manhattanPerpetualInventoryTransfer.TransactionReasonCode != string.Empty))
             {
-                if (manhattanPerpetualInventoryTransfer.TransactionType == TransactionType.InventoryAdjustment)
-                {
-                    var adjustment = new PixInventoryAdjustment(manhattanPerpetualInventoryTransfer);
 
-                    if (adjustment.Quantity > 0)
-                    {
-                        // create PO
-                    }
-                    else
-                    {
-                        // write Integrations_Inventory_Adjustment
-                    }
-                }
-
-                if (manhattanPerpetualInventoryTransfer.TransactionType == TransactionType.Return)
-                {
-                    var returnTransaction = new PixReturn(manhattanPerpetualInventoryTransfer);
-                    
-                }
             }
         }
     }

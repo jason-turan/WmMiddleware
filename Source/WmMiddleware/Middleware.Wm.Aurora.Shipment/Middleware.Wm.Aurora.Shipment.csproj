@@ -63,6 +63,7 @@
     <Compile Include="Models\AuroraShipment.cs" />
     <Compile Include="Models\AuroraShipmentDetail.cs" />
     <Compile Include="Models\KioskOrderExportProcessing.cs" />
+    <Compile Include="Models\ManhattanShipmentBncProcessing.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AuroraShipmentRepository.cs" />

@@ -76,6 +76,14 @@ namespace Middleware.Wm.Manhattan.Shipment
                                                                                               lineItemParameters, 
                                                                                               commandType: CommandType.StoredProcedure).ToList();
 
+                    manhattanShipment.ManhattanShipmentCartonHeader = connection.Query<ManhattanShipmentCartonHeader>("sp_GetManhattanShipmentCartonHeader", 
+                                                                                                                      lineItemParameters,
+                                                                                                                      commandType: CommandType.StoredProcedure).ToList();
+
+                    manhattanShipment.ManhattanShipmentCartonDetails = connection.Query<ManhattanShipmentCartonDetail>("sp_GetManhattanShipmentCartonDetails",
+                                                                                                                      lineItemParameters,
+                                                                                                                      commandType: CommandType.StoredProcedure).ToList();
+
                     manhattanShipments.Add(manhattanShipment);
                 }
 

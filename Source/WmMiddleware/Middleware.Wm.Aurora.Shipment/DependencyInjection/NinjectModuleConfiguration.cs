@@ -5,6 +5,7 @@ using Middleware.Wm.Aurora.Shipment.Repository;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.Configuration.Mainframe;
 using Middleware.Wm.Manhattan.Control;
+using Middleware.Wm.Manhattan.Shipment;
 using Middleware.Wm.TransferControl.Control;
 using Middleware.Wm.TransferControl.Repositories;
 using Ninject.Modules;
@@ -25,7 +26,8 @@ namespace Middleware.Wm.Aurora.Shipment.DependencyInjection
             Bind<ITransferControlRepository>().To<TransferControlRepository>();
             Bind<ITransferControlManager>().To<TransferControlManager>();
             Bind<IMainframeConfiguration>().To<MainframeConfiguration>();
-           // Bind<IFtpClientConfiguration>().To<AuroraFtpClientConfiguration>();
+            Bind<IShipmentRepository>().To<ShipmentRepository>();
+            // Bind<IFtpClientConfiguration>().To<AuroraFtpClientConfiguration>();
         }
     }
 }

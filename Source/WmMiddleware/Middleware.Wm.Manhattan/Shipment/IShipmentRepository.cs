@@ -11,5 +11,6 @@ namespace Middleware.Wm.Manhattan.Shipment
         void InsertShipmentCartonDetails(IList<ManhattanShipmentCartonDetail> shipmentCartonDetails);
         IEnumerable<ManhattanShipmentLineItem> FindShipmentLineItems();
         IList<ManhattanShipment> FindManhattanShipmentHeaders(ManhattanShipmentSearchCriteria criteria);
+
     }
 }
