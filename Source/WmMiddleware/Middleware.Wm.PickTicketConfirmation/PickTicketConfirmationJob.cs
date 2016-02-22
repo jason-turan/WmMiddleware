@@ -1,8 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Text;
 using Middleware.Jobs;
 using Middleware.Wm.Inventory;
 using MiddleWare.Log;
+using Middleware.Wm.PickTicketConfirmation.Models;
+using Middleware.Wm.PickTicketConfirmation.Repositories;
 
 namespace Middleware.Wm.PickTicketConfirmation
 {
@@ -12,12 +15,17 @@ namespace Middleware.Wm.PickTicketConfirmation
 
         private IOrderReader SourceRepository { get; set; }
         private IOrderWriter DestinationRepository { get; set; }
+        private readonly IPickTicketProcessingRepository _pickTicketProcessingRepository;
 
-        public PickTicketConfirmationJob(ILog logger, IOrderReader sourceRepository, IOrderWriter destinationRepository)
+        public PickTicketConfirmationJob(ILog logger, 
+                                         IOrderReader sourceRepository, 
+                                         IOrderWriter destinationRepository,
+                                         IPickTicketProcessingRepository pickTicketProcessingRepository )
         {
             _logger = logger;
             SourceRepository = sourceRepository;
             DestinationRepository = destinationRepository;
+            _pickTicketProcessingRepository = pickTicketProcessingRepository;
         }
 
         public void RunUnitOfWork(string jobKey)
@@ -40,6 +48,9 @@ namespace Middleware.Wm.PickTicketConfirmation
 
                 DestinationRepository.SaveOrders(orders);
                 SourceRepository.SetAsProcessed(orders);
+
+                var processed = orders.Select(s => new PickTicketConfirmationOrderProcessing {ControlNumber = s.ControlNumber, OrderNumber = s.OrderNumber, ProcessedDate = DateTime.Now}).ToList();
+                _pickTicketProcessingRepository.InsertPickTicketProcessing(processed);
             }
             else
             {

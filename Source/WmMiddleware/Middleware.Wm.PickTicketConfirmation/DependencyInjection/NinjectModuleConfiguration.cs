@@ -33,6 +33,7 @@ namespace Middleware.Wm.PickTicketConfirmation.DependencyInjection
             Bind<IPickConfiguration>().To<PickConfiguration>();
             Bind<ITransferControlManager>().To<TransferControlManager>();
             Bind<ITransferControlRepository>().To<TransferControlRepository>();
+            Bind<IPickTicketProcessingRepository>().To<PickTicketOrderConfirmationProcessingRepository>();
         }
     }
 }

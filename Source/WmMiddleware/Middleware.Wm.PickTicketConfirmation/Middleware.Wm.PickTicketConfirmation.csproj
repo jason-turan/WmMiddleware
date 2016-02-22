@@ -39,8 +39,9 @@
     <Reference Include="Dapper">
       <HintPath>..\..\..\Dependencies\Dapper\Dapper.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="Dapper.Contrib, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Dependencies\Dapper\Dapper.Contrib.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\..\..\Dependencies\Ninject\Ninject.dll</HintPath>
@@ -61,12 +62,15 @@
     <Compile Include="Models\DatabasePickTicket.cs" />
     <Compile Include="Models\DatabasePickTicket.g.cs" />
     <Compile Include="Models\OmsOrderResult.cs" />
+    <Compile Include="Models\PickTicketConfirmationOrderProcessing.cs" />
     <Compile Include="PickTicketConfirmationJob.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IPickTicketProcessingRepository.cs" />
     <Compile Include="Repositories\ManhattanOrderWriter.cs" />
     <Compile Include="Repositories\OmsOrderReader.cs" />
     <Compile Include="Models\OmsOrderResult.g.cs" />
+    <Compile Include="Repositories\PickTicketOrderConfirmationProcessingRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
