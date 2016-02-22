@@ -57,8 +57,8 @@ namespace Middleware.Wm.ProductUpdating.Models
             get { return ManhattanExtensions.ParseDateTime(DateCreated, TimeCreated); }
             set
             {
-                DateCreated = value.ToManhattanDate();
-                TimeCreated = value.ToManhattanTime();
+                DateCreated = value.ToMainframeDate();
+                TimeCreated = value.ToMainframeTime();
             }
         }
     }

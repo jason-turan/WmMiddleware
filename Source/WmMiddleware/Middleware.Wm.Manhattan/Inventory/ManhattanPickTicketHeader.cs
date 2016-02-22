@@ -71,13 +71,13 @@ namespace Middleware.Wm.Manhattan.Inventory
             get { return ManhattanExtensions.ParseDateTime(DateCreated, TimeCreated); }
             set
             {
-                DateCreated = value.ToManhattanDate();
-                TimeCreated = value.ToManhattanTime();
+                DateCreated = value.ToMainframeDate();
+                TimeCreated = value.ToMainframeTime();
                 ProcessedDate = DateCreated;
                 ProcessedTime = TimeCreated;
-                PickticketGenerationDate = value.ToManhattanDate();
-                OrderDate = value.ToManhattanDate();
-                CancelDate = (value + TimeSpan.FromDays(10)).ToManhattanDate();
+                PickticketGenerationDate = value.ToMainframeDate();
+                OrderDate = value.ToMainframeDate();
+                CancelDate = (value + TimeSpan.FromDays(10)).ToMainframeDate();
                 StopShipDate = CancelDate;
             }
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Middleware.Jobs.Models;
 using MiddleWare.Log;
 using Middleware.Wm.Manhattan.DataFiles;
 using Middleware.Wm.Manhattan.Extensions;
@@ -14,8 +15,12 @@ namespace Middleware.Wm.TransferControl.Control
 {
     public class TransferControlInbound : ITransferControlInbound
     {
-        private const string TransferType = "I00";
+        private const string ManhattanTransferType = "I00";
+        private const string AuroraTransferType = "OT2";
         private const string StatusFlag = "10";
+        private const string AuoraProcessCodeForWarehouse = "1045"; // this tells Aurora to process co 10, whse 45
+        private const decimal AuroraPriority = (decimal) 900.00;
+
         private readonly ITransferControlRepository _transferControlRepository;
         private readonly IManhattanFtp _manhattanFtp;
         private readonly ITransferControlConfigurationManager _configuration;
@@ -87,15 +92,20 @@ namespace Middleware.Wm.TransferControl.Control
             var master = new TransferControlMaster
             {
                 BatchControlNumber = transferControl.BatchControlNumber,
-                TransferType = TransferType,
+                TransferType = ManhattanTransferType,
                 Library = _configuration.GetInboundFtpLocation(),
                 Filename = fileInfo.Name,
                 Member = fileInfo.Name,
                 StatusFlag = StatusFlag,
-                DateCreated = DateTime.Now.ToManhattanDate(),
-                TimeCreated = DateTime.Now.ToManhattanTime(),
+                DateCreated = DateTime.Now.ToMainframeDate(),
+                TimeCreated = DateTime.Now.ToMainframeTime(),
                 UserId = _configuration.GetInboundFtpUsername(),
             };
+
+            if (_configuration.GetInboundJobType() == JobType.AuroraInbound)
+            {
+                ProcessAuroraTransferControl(transferControl, master);
+            }
 
             _log.Debug("Inbound : processing batch " +
                        transferControl.BatchControlNumber +
@@ -107,13 +117,29 @@ namespace Middleware.Wm.TransferControl.Control
             return master;
         }
 
+        private static void ProcessAuroraTransferControl(Models.TransferControl transferControl, TransferControlMaster master)
+        {
+            master.TransferType = AuroraTransferType;
+            master.Priority = AuroraPriority;
+            master.CustomRecordExpansionField = AuoraProcessCodeForWarehouse;
+            master.DateLastModified = DateTime.Now.ToMainframeDate();
+            master.TimeLastModified = DateTime.Now.ToMainframeTime();
+            if (transferControl.ReceivedDate != null)
+            {
+                master.BeginDate = transferControl.ReceivedDate.Value.ToMainframeDate();
+                master.BeginTime = transferControl.ReceivedDate.Value.ToMainframeTime();
+            }
+            master.EndDate = DateTime.Now.ToMainframeDate();
+            master.EndTime = DateTime.Now.ToMainframeTime();
+        }
+
         private void AppendMasterControl(IEnumerable<TransferControlMaster> files,
                                           Models.TransferControl transferControl)
         {
             try
             {
                 var transferControlWriter = new DataFileRepository<TransferControlMaster>();
-
+                
                 WriteFile(transferControlWriter, files);
 
                 FtpAppendTransferControl();

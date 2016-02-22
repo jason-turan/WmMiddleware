@@ -22,6 +22,8 @@ namespace Middleware.Wm.Aurora.Shipment.Repository
 {
     public class AuroraShipmentRepository : IAuroraShipmentRepository
     {
+        private const string ShippedCompany = "10";
+
         private readonly ILog _log;
         private readonly DataFileRepository<ManhattanShipmentLineItem> _detailFileRepository = new DataFileRepository<ManhattanShipmentLineItem>();
         private readonly DataFileRepository<ManhattanShipmentHeader> _headerFileRepository = new DataFileRepository<ManhattanShipmentHeader>();
@@ -99,8 +101,8 @@ namespace Middleware.Wm.Aurora.Shipment.Repository
         //    var batchControlNumber = warehouseNumber + controlNumber.ToString("D8");
 
         //    var now = DateTime.Now;
-        //    var createdDate = now.ToManhattanDate();
-        //    var createdTime = now.ToManhattanTime();
+        //    var createdDate = now.ToMainframeDate();
+        //    var createdTime = now.ToMainframeTime();
 
         //    foreach (var shipment in shipments)
         //    {
@@ -169,10 +171,36 @@ namespace Middleware.Wm.Aurora.Shipment.Repository
             var warehouseNumber = _configuration.GetKey<string>(ConfigurationKey.WarehouseNumber);
             var batchControlNumber = warehouseNumber + controlNumber.ToString("D8");
 
-            var headerPath = _configuration.GetPath(ManhattanDataFileType.ShipmentHeader, controlNumber, "Aurora_");
-            var detailsPath = _configuration.GetPath(ManhattanDataFileType.ShipmentDetail, controlNumber, "Aurora_");
-            var cartonPath = _configuration.GetPath(ManhattanDataFileType.CartonHeader, controlNumber, "Aurora_");
-            var cartonDetailsrPath = _configuration.GetPath(ManhattanDataFileType.CartonDetail, controlNumber, "Aurora_");
+
+            foreach (var shipment in manhattanShipment)
+            {
+                shipment.Header.BatchControlNumber = batchControlNumber;
+                shipment.Header.Company = ShippedCompany;
+
+                foreach (var detail in shipment.LineItems)
+                {
+                    detail.BatchControlNumber = batchControlNumber;
+                    detail.ShippedCompany = ShippedCompany;
+                }
+
+                foreach (var carton in shipment.ManhattanShipmentCartonHeader)
+                {
+                    carton.BatchControlNumber = batchControlNumber;
+                    carton.Company = ShippedCompany;
+                }
+
+                foreach (var cartonDetail in shipment.ManhattanShipmentCartonDetails)
+                {
+                    cartonDetail.BatchControlNumber = batchControlNumber;
+                    cartonDetail.Company = ShippedCompany;
+                }
+            }
+
+            // aurora needs the warehouse number inserted in filename path at position 3 and 4
+            var headerPath = _configuration.GetPath(ManhattanDataFileType.ShipmentHeader, controlNumber, warehouseNumber, "Aurora_");
+            var detailsPath = _configuration.GetPath(ManhattanDataFileType.ShipmentDetail, controlNumber, warehouseNumber, "Aurora_");
+            var cartonPath = _configuration.GetPath(ManhattanDataFileType.CartonHeader, controlNumber, warehouseNumber, "Aurora_");
+            var cartonDetailsrPath = _configuration.GetPath(ManhattanDataFileType.CartonDetail, controlNumber, warehouseNumber, "Aurora_");
 
             _headerFileRepository.Save(manhattanShipment.Select(s => s.Header), headerPath);
             _detailFileRepository.Save(manhattanShipment.SelectMany(d => d.LineItems), detailsPath);

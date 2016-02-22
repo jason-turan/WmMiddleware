@@ -20,11 +20,15 @@ namespace Middleware.Wm.Configuration.Mainframe
             }
         }
 
-        public string GetPath(string filePrefix, long batchControlNumber, string configurationKeyPrefix = null)
+        public string GetPath(string filePrefix, long batchControlNumber, string warehouseNumber, string configurationKeyPrefix)
         {
-            var outputLocation = GetKey<string>(configurationKeyPrefix == null ? 
-                                                ConfigurationKey.TransferControlInboundFileDirectory : 
-                                                configurationKeyPrefix + ConfigurationKey.TransferControlInboundFileDirectory);
+            var outputLocation = GetKey<string>(configurationKeyPrefix + ConfigurationKey.TransferControlInboundFileDirectory);
+            return Path.Combine(outputLocation, string.Format("{0}{1}{2:D6}", filePrefix, warehouseNumber, batchControlNumber));
+        }
+
+        public string GetPath(string filePrefix, long batchControlNumber)
+        {
+            var outputLocation = GetKey<string>(ConfigurationKey.TransferControlInboundFileDirectory);
 
             return Path.Combine(outputLocation, string.Format("{0}{1:D8}", filePrefix, batchControlNumber));
         }

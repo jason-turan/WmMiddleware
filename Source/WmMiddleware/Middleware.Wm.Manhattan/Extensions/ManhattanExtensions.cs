@@ -10,12 +10,12 @@ namespace Middleware.Wm.Manhattan.Extensions
             return DateTime.ParseExact(date.ToString("D8") + time.ToString("D6"), "yyyyMMddhhmmss", CultureInfo.InvariantCulture, dateTimeStyles);
         }
 
-        public static int ToManhattanDate(this DateTime dateTime)
+        public static int ToMainframeDate(this DateTime dateTime)
         {
             return int.Parse(dateTime.ToString("yyyyMMdd"));
         }
 
-        public static int ToManhattanTime(this DateTime dateTime)
+        public static int ToMainframeTime(this DateTime dateTime)
         {
             return int.Parse(dateTime.ToString("HHmmss"));
         }

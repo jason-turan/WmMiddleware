@@ -3,6 +3,7 @@
     public interface IMainframeConfiguration : IConfigurationManager
     {
         long GetBatchControlNumber();
-        string GetPath(string filePrefix, long batchControlNumber, string configurationKeyPrefix = null);
+        string GetPath(string filePrefix, long batchControlNumber);
+        string GetPath(string filePrefix, long batchControlNumber, string warehouseNumber, string configurationKeyPrefix);
     }
 }
