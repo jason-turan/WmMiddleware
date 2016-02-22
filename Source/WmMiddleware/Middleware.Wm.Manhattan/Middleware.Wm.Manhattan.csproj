@@ -69,8 +69,12 @@
     <Compile Include="DataFiles\ManhattanDataFileType.cs" />
     <Compile Include="Extensions\ManhattanExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Inventory\AuroraPickTicketRepository.cs" />
+    <Compile Include="Inventory\IAuroraPicketTicketRepository.cs" />
     <Compile Include="Inventory\IMainframeOrderConfiguration.cs" />
     <Compile Include="Inventory\IManhattanOrderRepository.cs" />
+    <Compile Include="Inventory\IPickConfiguration.cs" />
+    <Compile Include="Inventory\ManhattanOrderConfiguration.cs" />
     <Compile Include="Inventory\ManhattanOrderRepository.cs" />
     <Compile Include="Inventory\ManhattanPickTicketDetail.cs" />
     <Compile Include="Inventory\ManhattanPickTicketDetail.g.cs" />
@@ -78,6 +82,7 @@
     <Compile Include="Inventory\ManhattanPickTicketHeader.g.cs" />
     <Compile Include="Inventory\ManhattanPickTicketInstruction.cs" />
     <Compile Include="Inventory\ManhattanPickTicketInstruction.g.cs" />
+    <Compile Include="Inventory\PickConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shipment\IShipmentRepository.cs" />
     <Compile Include="Shipment\ManhattanShipment.cs" />
@@ -90,6 +95,14 @@
     <Compile Include="Text\StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Middleware.Jobs\Middleware.Jobs.csproj">
+      <Project>{C728CADC-8056-46C9-B2BB-A70C4119F96E}</Project>
+      <Name>Middleware.Jobs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MiddleWare.Log\Middleware.Log.csproj">
+      <Project>{AEEDD741-C346-45BA-A867-3F54B66477A4}</Project>
+      <Name>Middleware.Log</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Middleware.Wm.Configuration\Middleware.Wm.Configuration.csproj">
       <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>
       <Name>Middleware.Wm.Configuration</Name>

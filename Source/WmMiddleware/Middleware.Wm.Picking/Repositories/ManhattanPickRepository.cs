@@ -9,9 +9,7 @@ using Middleware.Wm.Locations;
 using Middleware.Wm.Manhattan.Control;
 using Middleware.Wm.Manhattan.DataFiles;
 using Middleware.Wm.Manhattan.Inventory;
-using Middleware.Wm.Picking.Configuration;
 using Middleware.Wm.Shipping;
-using Middleware.Wm.TransferControl.Control;
 
 namespace Middleware.Wm.Picking.Repositories
 {

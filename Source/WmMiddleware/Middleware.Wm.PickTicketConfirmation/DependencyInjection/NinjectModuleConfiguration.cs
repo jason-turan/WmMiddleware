@@ -5,8 +5,6 @@ using Middleware.Wm.Inventory;
 using Middleware.Wm.Locations;
 using Middleware.Wm.Manhattan.Control;
 using Middleware.Wm.Manhattan.Inventory;
-using Middleware.Wm.Picking.Configuration;
-using Middleware.Wm.PickTicketConfirmation.Configuration;
 using Middleware.Wm.PickTicketConfirmation.Repositories;
 using Middleware.Wm.Shipping;
 using MiddleWare.Log;

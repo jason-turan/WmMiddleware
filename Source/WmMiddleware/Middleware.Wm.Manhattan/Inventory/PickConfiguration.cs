@@ -3,7 +3,7 @@ using Middleware.Wm.Configuration;
 using Middleware.Wm.Configuration.Mainframe;
 using Middleware.Wm.Inventory;
 
-namespace Middleware.Wm.Picking.Configuration
+namespace Middleware.Wm.Manhattan.Inventory
 {
     public class PickConfiguration : MainframeConfiguration, IPickConfiguration
     {

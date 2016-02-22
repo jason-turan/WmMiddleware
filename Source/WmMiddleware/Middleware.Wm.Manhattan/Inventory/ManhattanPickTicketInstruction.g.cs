@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using Dapper.Contrib.Extensions;
 using FlatFile.FixedLength;
 using FlatFile.FixedLength.Attributes;
 using Middleware.Wm.Manhattan.DataFiles;
@@ -8,8 +9,12 @@ namespace Middleware.Wm.Manhattan.Inventory
 {
     // Generated with FlatFileClassGenerator
     [FixedLengthFile]
+    [Table("AuroraPickTicketInstruction")]
     public partial class ManhattanPickTicketInstruction : IGeneratedFlatFile
     {
+        [Key]
+        public int AuroraPickTicketInstructionId { get; set; }
+
         private int _errorSequence;
         [FixedLengthField(1, 9, PaddingChar = '0', Padding = Padding.Left, NullValue="000000000")]
         public int ErrorSequence
@@ -182,6 +187,7 @@ namespace Middleware.Wm.Manhattan.Inventory
             }
         }
 
+        [Write(false)]
         public int TotalFileLength { get { return 227; } }
     }
 }

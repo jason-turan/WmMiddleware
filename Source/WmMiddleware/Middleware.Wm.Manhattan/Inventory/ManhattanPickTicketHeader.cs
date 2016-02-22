@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
+using Dapper.Contrib.Extensions;
 using Middleware.Wm.Extensions;
 using Middleware.Wm.Inventory;
 using Middleware.Wm.Locations;
@@ -64,7 +65,7 @@ namespace Middleware.Wm.Manhattan.Inventory
             CartonNumberType = "2";
             VasType = "Y";
         }
-
+        [Write(false)]
         public DateTime CreateDate
         {
             get { return ManhattanExtensions.ParseDateTime(DateCreated, TimeCreated); }
@@ -111,7 +112,7 @@ namespace Middleware.Wm.Manhattan.Inventory
                     State = ShipToState,
                     Zip = ShipToZip
                 },
-                OrderNumber = OrderNumber, //MiscellaneousIns20Byte11, ?
+                OrderNumber = PickticketControlNumber, //MiscellaneousIns20Byte11, ?
                 OrderDate = (OrderDate != 0 ? ManhattanExtensions.ParseDateTime(OrderDate, 0, DateTimeStyles.AssumeUniversal) : ManhattanExtensions.ParseDateTime(DateCreated, 0, DateTimeStyles.AssumeUniversal)).ToUniversalTime(),
                 BillingPhone = TelephoneNumber,
                 ShippingPhone = TelephoneNumber,

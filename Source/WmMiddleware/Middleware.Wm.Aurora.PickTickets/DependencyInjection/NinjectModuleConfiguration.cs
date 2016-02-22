@@ -3,11 +3,11 @@ using Middleware.Jobs.Repositories;
 using Middleware.Wm.Aurora.PickTickets.Ftp;
 using Middleware.Wm.Aurora.PickTickets.Repositories;
 using Middleware.Wm.Configuration;
+using Middleware.Wm.Configuration.Mainframe;
 using Middleware.Wm.Inventory;
 using Middleware.Wm.Locations;
 using Middleware.Wm.Manhattan.Control;
 using Middleware.Wm.Manhattan.Inventory;
-using Middleware.Wm.Picking.Configuration;
 using Middleware.Wm.Shipping;
 using MiddleWare.Log;
 using Middleware.Wm.TransferControl.Control;
@@ -35,6 +35,8 @@ namespace Middleware.Wm.Aurora.PickTickets.DependencyInjection
             Bind<IManhattanOrderRepository>().To<ManhattanOrderRepository>();
             Bind<IPickConfiguration>().To<PickConfiguration>();
             Bind<ITransferControlManager>().To<TransferControlManager>();
+            Bind<IAuroraPickTicketRepository>().To<AuroraPickTicketRepository>();
+            Bind<IMainframeOrderConfiguration>().To<ManhattanOrderConfiguration>();
         }
     }
 }

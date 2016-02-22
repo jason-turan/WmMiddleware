@@ -31,14 +31,26 @@ namespace Middleware.Wm.Manhattan.Inventory
             _transferControlManager = transferControlManager;
         }
 
-        public ICollection<Order> GetOrders(string headerFileLocation, string detailsFileLocation, string instructionsFileLocation)
+        public IList<ManhattanPickTicketHeader> GetManhattanPickTicketHeaders(string headerFileLocation)
         {
             if (headerFileLocation == null) throw new ArgumentNullException("headerFileLocation");
+            return _headerRepository.Get(headerFileLocation).ToList();
+        }
+
+        public IList<ManhattanPickTicketDetail> GetManhattanPickTicketDetails(string detailsFileLocation)
+        {
             if (detailsFileLocation == null) throw new ArgumentNullException("detailsFileLocation");
+            return _detailRepository.Get(detailsFileLocation).ToList();
+        }
 
-            var headers = _headerRepository.Get(headerFileLocation);
-            var details = _detailRepository.Get(detailsFileLocation);
+        public IList<ManhattanPickTicketInstruction> GetManhattanPickTicketInstructions(string instructionsFileLocation)
+        {
+            if (instructionsFileLocation == null) throw new ArgumentNullException("instructionsFileLocation");
+            return _instructionRepository.Get(instructionsFileLocation).ToList();
+        }
 
+        public ICollection<Order> GetOrders(IList<ManhattanPickTicketHeader> headers, IList<ManhattanPickTicketDetail> details)
+        {
             var orders = headers.ToDictionary(h => h.PickticketControlNumber, h => h.ToOrder(_carrierReadRepository, _countryReader));
 
             foreach (var detail in details)

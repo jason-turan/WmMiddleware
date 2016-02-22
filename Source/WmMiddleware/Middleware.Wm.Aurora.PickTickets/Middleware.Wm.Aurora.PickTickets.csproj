@@ -40,6 +40,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Dependencies\Dapper\Dapper.dll</HintPath>
     </Reference>
+    <Reference Include="Dapper.Contrib, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Dependencies\Dapper\Dapper.Contrib.dll</HintPath>
+    </Reference>
     <Reference Include="FlatFile.Core, Version=0.2.19.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Dependencies\FlatFile\FlatFile.Core.dll</HintPath>
@@ -77,6 +81,8 @@
     <Compile Include="PickTicketJob.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AuroraPickTicketRepository.cs" />
+    <Compile Include="Repositories\IAuroraPicketTicketRepository.cs" />
     <Compile Include="Repositories\XmlOrderWriter.cs" />
   </ItemGroup>
   <ItemGroup>

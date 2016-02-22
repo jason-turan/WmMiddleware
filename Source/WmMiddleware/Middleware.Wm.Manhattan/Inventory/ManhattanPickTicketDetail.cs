@@ -1,4 +1,5 @@
 ﻿using System;
+using Dapper.Contrib.Extensions;
 using Middleware.Wm.Extensions;
 using Middleware.Wm.Inventory;
 using Middleware.Wm.Manhattan.Extensions;
@@ -38,7 +39,8 @@ namespace Middleware.Wm.Manhattan.Inventory
             RecordExpansionField = "N";
             CustomRecordExpansionField = item.ItemDescription;
         }
-
+        
+        [Write(false)]
         public DateTime CreateDate
         {
             get { return ManhattanExtensions.ParseDateTime(DateCreated, TimeCreated); }

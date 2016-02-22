@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using Middleware.Jobs.Repositories;
+using Middleware.Wm.Aurora.PickTickets.Repositories;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.Inventory;
 using Middleware.Wm.Manhattan.DataFiles;
@@ -17,12 +19,21 @@ namespace Middleware.Wm.Aurora.PickTickets
     {
         private readonly IOrderWriter _destinationRepository;
         private readonly IManhattanOrderRepository _manhattanOrderRepository;
+        private readonly IAuroraPickTicketRepository _auroraPickTicketRepository;
 
-        public PickTicketJob(ILog logger, IOrderWriter destinationRepository, IConfigurationManager configurationManager, IFileIo fileIo, IJobRepository jobRepository, ITransferControlRepository transferControlRepository, IManhattanOrderRepository manhattanOrderRepository)
+        public PickTicketJob(ILog logger, 
+                             IOrderWriter destinationRepository, 
+                             IConfigurationManager configurationManager, 
+                             IFileIo fileIo, 
+                             IJobRepository jobRepository, 
+                             ITransferControlRepository transferControlRepository, 
+                             IManhattanOrderRepository manhattanOrderRepository,
+                             IAuroraPickTicketRepository auroraPickTicketRepository)
             : base(logger, configurationManager, fileIo, jobRepository, transferControlRepository)
         {
             _destinationRepository = destinationRepository;
             _manhattanOrderRepository = manhattanOrderRepository;
+            _auroraPickTicketRepository = auroraPickTicketRepository;
         }
 
         protected override void ProcessFiles(ICollection<TransferControlFile> transferControlFiles)
@@ -58,7 +69,15 @@ namespace Middleware.Wm.Aurora.PickTickets
                 throw new InvalidDataException("File list does not contain a header, detail, and instruction file.");
             }
 
-            var orders = _manhattanOrderRepository.GetOrders(headerFile.FileLocation, detailFile.FileLocation, null);
+            var headers = _manhattanOrderRepository.GetManhattanPickTicketHeaders(headerFile.FileLocation);
+            var details = _manhattanOrderRepository.GetManhattanPickTicketDetails(detailFile.FileLocation);
+            var instructions = _manhattanOrderRepository.GetManhattanPickTicketInstructions(specialInstructionsFile.FileLocation);
+
+            var orders = _manhattanOrderRepository.GetOrders(headers, details);
+
+            _auroraPickTicketRepository.InsertAuroraPickTicketHeader(headers);
+            _auroraPickTicketRepository.InsertAuroraPickTicketDetail(details);
+            _auroraPickTicketRepository.InsertAuroraPickTicketInstruction(instructions);
 
             _destinationRepository.SaveOrders(orders);
         }

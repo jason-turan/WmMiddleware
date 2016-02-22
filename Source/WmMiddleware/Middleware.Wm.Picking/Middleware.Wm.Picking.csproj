@@ -21,7 +21,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -78,8 +78,6 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Configuration\IPickConfiguration.cs" />
-    <Compile Include="Configuration\PickConfiguration.cs" />
     <Compile Include="Models\DatabasePickTicket.cs" />
     <Compile Include="Models\Generated\DatabasePickTicket.cs" />
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />

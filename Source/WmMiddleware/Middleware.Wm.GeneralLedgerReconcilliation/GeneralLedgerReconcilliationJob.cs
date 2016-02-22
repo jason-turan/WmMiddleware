@@ -51,7 +51,8 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation
                     IntegrationDT = DateTime.Now, 
                     UOM = "Each", 
                     created_date = DateTime.Now,
-                    
+                    gl_account = gl.GeneralLedgerAccount,
+
                 };
             }
         }

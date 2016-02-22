@@ -2,10 +2,11 @@
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using Middleware.Wm.Configuration;
+using Middleware.Wm.Configuration.Mainframe;
 using Middleware.Wm.Inventory;
 using Middleware.Wm.Locations;
 using Middleware.Wm.Manhattan.Control;
-using Middleware.Wm.Picking.Configuration;
+using Middleware.Wm.Manhattan.Inventory;
 using Middleware.Wm.Picking.Repositories;
 using Middleware.Wm.Shipping;
 using Middleware.Wm.TransferControl.Control;
@@ -29,6 +30,7 @@ namespace Middleware.Wm.Picking.DependencyInjection
             Bind<ITransferControlManager>().To<TransferControlManager>();
             Bind<IConfigurationManager>().To<MiddlewareConfigurationManager>();
             Bind<ICarrierReadRepository>().To<WmDatabaseCarrierRepository>().WithConstructorArgument("useThirdPartyBilling", false);
+
         }
     }
 }

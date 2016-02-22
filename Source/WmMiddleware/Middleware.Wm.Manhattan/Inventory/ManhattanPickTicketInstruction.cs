@@ -1,4 +1,5 @@
 ﻿using System;
+using Dapper.Contrib.Extensions;
 using Middleware.Wm.Extensions;
 using Middleware.Wm.Manhattan.Extensions;
 
@@ -22,6 +23,7 @@ namespace Middleware.Wm.Manhattan.Inventory
             SpecialInstructionDescription = instruction;
         }
 
+        [Write(false)]
         public DateTime CreateDate
         {
             get { return ManhattanExtensions.ParseDateTime(DateCreated, TimeCreated); }

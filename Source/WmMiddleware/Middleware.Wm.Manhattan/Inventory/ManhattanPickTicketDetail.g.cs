@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using Dapper.Contrib.Extensions;
 using FlatFile.FixedLength;
 using FlatFile.FixedLength.Attributes;
 using Middleware.Wm.Manhattan.DataFiles;
@@ -8,8 +9,12 @@ namespace Middleware.Wm.Manhattan.Inventory
 {
     // Generated with FlatFileClassGenerator
     [FixedLengthFile]
+    [Table("AuroraPickTicketDetail")]
     public partial class ManhattanPickTicketDetail : IGeneratedFlatFile
     {
+        [Key]
+        public int AuroraPickTicketDetailId { get; set; }
+
         private int _errorSequence;
         [FixedLengthField(1, 9, PaddingChar = '0', Padding = Padding.Left, NullValue="000000000")]
         public int ErrorSequence
@@ -545,6 +550,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _originalOrderQuantity;
+        [Write(false)]
         [FixedLengthField(43, 11, PaddingChar = '0', Padding = Padding.Left, NullValue="00000000000")]
         public long OriginalOrderQuantity_Backing
         {
@@ -564,6 +570,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         // Used by New Balance
         // Pick qty
         private long _originalPickticketQuantity;
+        [Write(false)]
         [FixedLengthField(44, 11, PaddingChar = '0', Padding = Padding.Left, NullValue="00000000000")]
         public long OriginalPickticketQuantity_Backing
         {
@@ -583,6 +590,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         // Used by New Balance
         // Pick qty
         private long _pickticketQuantity;
+        [Write(false)]
         [FixedLengthField(45, 11, PaddingChar = '0', Padding = Padding.Left, NullValue="00000000000")]
         public long PickticketQuantity_Backing
         {
@@ -600,6 +608,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _cancelQuantity;
+        [Write(false)]
         [FixedLengthField(46, 11, PaddingChar = '0', Padding = Padding.Left, NullValue="00000000000")]
         public long CancelQuantity_Backing
         {
@@ -617,6 +626,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _packMultipleQuantity;
+        [Write(false)]
         [FixedLengthField(47, 11, PaddingChar = '0', Padding = Padding.Left, NullValue="00000000000")]
         public long PackMultipleQuantity_Backing
         {
@@ -636,6 +646,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         // Used by New Balance
         // Always 1
         private long _boxQuantity;
+        [Write(false)]
         [FixedLengthField(48, 11, PaddingChar = '0', Padding = Padding.Left, NullValue="00000000000")]
         public long BoxQuantity_Backing
         {
@@ -653,6 +664,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _packQuantity;
+        [Write(false)]
         [FixedLengthField(49, 11, PaddingChar = '0', Padding = Padding.Left, NullValue="00000000000")]
         public long PackQuantity_Backing
         {
@@ -670,6 +682,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _caseQuantity;
+        [Write(false)]
         [FixedLengthField(50, 11, PaddingChar = '0', Padding = Padding.Left, NullValue="00000000000")]
         public long CaseQuantity_Backing
         {
@@ -687,6 +700,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _tierQuantity;
+        [Write(false)]
         [FixedLengthField(51, 11, PaddingChar = '0', Padding = Padding.Left, NullValue="00000000000")]
         public long TierQuantity_Backing
         {
@@ -704,6 +718,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _palletQuantity;
+        [Write(false)]
         [FixedLengthField(52, 11, PaddingChar = '0', Padding = Padding.Left, NullValue="00000000000")]
         public long PalletQuantity_Backing
         {
@@ -721,6 +736,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _unitWeight;
+        [Write(false)]
         [FixedLengthField(53, 13, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000")]
         public long UnitWeight_Backing
         {
@@ -738,6 +754,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _unitVolume;
+        [Write(false)]
         [FixedLengthField(54, 13, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000")]
         public long UnitVolume_Backing
         {
@@ -755,6 +772,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _innerPackWieght;
+        [Write(false)]
         [FixedLengthField(55, 13, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000")]
         public long InnerPackWieght_Backing
         {
@@ -772,6 +790,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _innerPackVolume;
+        [Write(false)]
         [FixedLengthField(56, 13, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000")]
         public long InnerPackVolume_Backing
         {
@@ -789,6 +808,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _packMultipleWeight;
+        [Write(false)]
         [FixedLengthField(57, 13, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000")]
         public long PackMultipleWeight_Backing
         {
@@ -806,6 +826,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _packMultipleVolume;
+        [Write(false)]
         [FixedLengthField(58, 13, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000")]
         public long PackMultipleVolume_Backing
         {
@@ -889,6 +910,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         // Used by New Balance
         // Pre pack units (JBA - NMAP010).  If not a prepack then this is 0.
         private long _numberUnitsInPpacks;
+        [Write(false)]
         [FixedLengthField(64, 11, PaddingChar = '0', Padding = Padding.Left, NullValue="00000000000")]
         public long NumberUnitsInPpacks_Backing
         {
@@ -978,6 +1000,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private int _criticalDimension1;
+        [Write(false)]
         [FixedLengthField(71, 7, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000")]
         public int CriticalDimension1_Backing
         {
@@ -995,6 +1018,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private int _criticalDimension2;
+        [Write(false)]
         [FixedLengthField(72, 7, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000")]
         public int CriticalDimension2_Backing
         {
@@ -1012,6 +1036,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private int _criticalDimension3;
+        [Write(false)]
         [FixedLengthField(73, 7, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000")]
         public int CriticalDimension3_Backing
         {
@@ -1029,6 +1054,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _stdCaseWeight;
+        [Write(false)]
         [FixedLengthField(74, 13, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000")]
         public long StdCaseWeight_Backing
         {
@@ -1046,6 +1072,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _stdCaseVolume;
+        [Write(false)]
         [FixedLengthField(75, 13, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000")]
         public long StdCaseVolume_Backing
         {
@@ -1151,6 +1178,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         // Used by New Balance
         // Either from NB Database (NOEP003) Customer Cross Reference, RPRC03 or if the customer number exists in NMAP050 table ORDP.  Prints on Packing List.
         private long _price;
+        [Write(false)]
         [FixedLengthField(83, 19, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000000000")]
         public long Price_Backing
         {
@@ -1169,6 +1197,7 @@ namespace Middleware.Wm.Manhattan.Inventory
 
         // unit price our customer is paying - needed for comm invoice
         private long _retailPrice;
+        [Write(false)]
         [FixedLengthField(84, 19, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000000000")]
         public long RetailPrice_Backing
         {
@@ -1186,6 +1215,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _discountDollars;
+        [Write(false)]
         [FixedLengthField(85, 19, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000000000")]
         public long DiscountDollars_Backing
         {
@@ -1215,6 +1245,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private int _taxPercentage;
+        [Write(false)]
         [FixedLengthField(87, 5, PaddingChar = '0', Padding = Padding.Left, NullValue="00000")]
         public int TaxPercentage_Backing
         {
@@ -1292,6 +1323,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private int _pickRate;
+        [Write(false)]
         [FixedLengthField(93, 9, PaddingChar = '0', Padding = Padding.Left, NullValue="000000000")]
         public int PickRate_Backing
         {
@@ -1309,6 +1341,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private int _packRate;
+        [Write(false)]
         [FixedLengthField(94, 9, PaddingChar = '0', Padding = Padding.Left, NullValue="000000000")]
         public int PackRate_Backing
         {
@@ -1374,6 +1407,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private int _ruleNumber;
+        [Write(false)]
         [FixedLengthField(99, 5, PaddingChar = '0', Padding = Padding.Left, NullValue="00000")]
         public int RuleNumber_Backing
         {
@@ -1579,6 +1613,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _miscellaneousNum1;
+        [Write(false)]
         [FixedLengthField(115, 13, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000")]
         public long MiscellaneousNum1_Backing
         {
@@ -1596,6 +1631,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _miscellaneousNum2;
+        [Write(false)]
         [FixedLengthField(116, 13, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000")]
         public long MiscellaneousNum2_Backing
         {
@@ -1613,6 +1649,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _miscellaneousNum3;
+        [Write(false)]
         [FixedLengthField(117, 13, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000")]
         public long MiscellaneousNum3_Backing
         {
@@ -1630,6 +1667,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _miscellaneousNum4;
+        [Write(false)]
         [FixedLengthField(118, 13, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000")]
         public long MiscellaneousNum4_Backing
         {
@@ -1647,6 +1685,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _miscellaneousNum5;
+        [Write(false)]
         [FixedLengthField(119, 13, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000")]
         public long MiscellaneousNum5_Backing
         {
@@ -2052,6 +2091,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _miscellaneousNumber6;
+        [Write(false)]
         [FixedLengthField(152, 13, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000")]
         public long MiscellaneousNumber6_Backing
         {
@@ -2069,6 +2109,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _miscellaneousNumber7;
+        [Write(false)]
         [FixedLengthField(153, 13, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000")]
         public long MiscellaneousNumber7_Backing
         {
@@ -2088,6 +2129,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         // Used by New Balance
         // Price Carbella's customers are paying, prints on carbellas packlist.
         private long _miscellaneousNumber8;
+        [Write(false)]
         [FixedLengthField(154, 13, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000")]
         public long MiscellaneousNumber8_Backing
         {
@@ -2105,6 +2147,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _miscellaneousNumber9;
+        [Write(false)]
         [FixedLengthField(155, 13, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000")]
         public long MiscellaneousNumber9_Backing
         {
@@ -2122,6 +2165,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _miscellaneousNumber10;
+        [Write(false)]
         [FixedLengthField(156, 13, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000")]
         public long MiscellaneousNumber10_Backing
         {
@@ -2139,6 +2183,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _miscellaneousNumber11;
+        [Write(false)]
         [FixedLengthField(157, 13, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000")]
         public long MiscellaneousNumber11_Backing
         {
@@ -2156,6 +2201,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _miscellaneousNumber12;
+        [Write(false)]
         [FixedLengthField(158, 13, PaddingChar = '0', Padding = Padding.Left, NullValue="0000000000000")]
         public long MiscellaneousNumber12_Backing
         {
@@ -2257,6 +2303,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private int _exceedForFullCaseAlloc;
+        [Write(false)]
         [FixedLengthField(166, 5, PaddingChar = '0', Padding = Padding.Left, NullValue="00000")]
         public int ExceedForFullCaseAlloc_Backing
         {
@@ -2298,6 +2345,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private int _customerMaxPalletCube;
+        [Write(false)]
         [FixedLengthField(169, 9, PaddingChar = '0', Padding = Padding.Left, NullValue="000000000")]
         public int CustomerMaxPalletCube_Backing
         {
@@ -2315,6 +2363,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _bundleQuantity;
+        [Write(false)]
         [FixedLengthField(170, 11, PaddingChar = '0', Padding = Padding.Left, NullValue="00000000000")]
         public long BundleQuantity_Backing
         {
@@ -2332,6 +2381,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         }
 
         private long _maximumDispenseQuantity;
+        [Write(false)]
         [FixedLengthField(171, 11, PaddingChar = '0', Padding = Padding.Left, NullValue="00000000000")]
         public long MaximumDispenseQuantity_Backing
         {
@@ -2359,7 +2409,7 @@ namespace Middleware.Wm.Manhattan.Inventory
                 _preticketed = value;
             }
         }
-
+        [Write(false)]
 public int TotalFileLength { get { return 1551; } }
     }
 }
