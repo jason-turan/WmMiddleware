@@ -1,21 +1,50 @@
-﻿using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using Dapper;
-using Middleware.Wm.Configuration.Database;
+﻿using System;
+using System.Collections.Generic;
+using MiddleWare.Log;
 using Middleware.Wm.GeneralLedgerReconcilliation.Models;
+using WmMiddleware.Pix.Models.Generated;
 
 namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
 {
     public class GeneralLedgerReconcilliationRepository : IGeneralLedgerReconcilliationRepository
     {
-        public IList<GeneralLedgerTransactionReasonCodeMap> GetGeneralLedgerTransactionReasonCodeMap()
+        private readonly ILog _log;
+        private readonly IDatabaseRepository _databaseRepository;
+
+        public GeneralLedgerReconcilliationRepository(ILog log, IDatabaseRepository databaseRepository)
         {
-            using (var connection = DatabaseConnectionFactory.GetWarehouseManagementConnection())
+            _log = log;
+            _databaseRepository = databaseRepository;
+        }
+
+        public void ProcessInventoryAdjustments(IEnumerable<ManhattanPerpetualInventoryTransfer> unprocessed)
+        {
+            foreach (var pix in unprocessed)
             {
-                connection.Open();
-                return connection.Query<GeneralLedgerTransactionReasonCodeMap>("sp_GetGeneralLedgerTransactionReasonCodeMap", 
-                                                                               commandType: CommandType.StoredProcedure).ToList();
+                try
+                {
+                    var glTransactionReasonMap = _databaseRepository.GetGeneralLedgerTransactionReasonCodeMap();
+                    var glInterface = new GeneralLedgerInventoryTransactionInterface(pix, glTransactionReasonMap);
+
+                    if (glInterface.GeneralLedgerAccount == null)
+                    {
+                        _log.Warning("No GL mapping found for transaction " + pix.ManhattanPerpetualInventoryTransferId);
+                    }
+                    else
+                    {
+                        _databaseRepository.InsertIntegrationInventoryAdjustment(new DatabaseIntegrationsInventoryAdjustment(glInterface));
+                    }
+
+                    _databaseRepository.InsertPixGeneralLedgerProcessing(new PixGeneralLedgerProcessing
+                    {
+                        ManhattanPerpetualInventoryTransferId = pix.ManhattanPerpetualInventoryTransferId,
+                        ProcessedDate = DateTime.Now
+                    });
+                }
+                catch (Exception exception)
+                {
+                    _log.Exception("Fatal error processing pix transaction number " + pix.TransactionNumber, exception);
+                }
             }
         }
     }

@@ -1296,6 +1296,9 @@ namespace WmMiddleware.Pix.Models.Generated
             }
         }
 
+        [Write(false)]
+        public string ProductClass { get; set; }
+
         [Write(false)] // dapper attribute specifying not to write this property to the database
         public int TotalFileLength { get { return 977; } }
     }

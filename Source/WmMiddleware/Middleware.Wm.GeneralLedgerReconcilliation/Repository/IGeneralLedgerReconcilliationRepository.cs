@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Middleware.Wm.GeneralLedgerReconcilliation.Models;
+using WmMiddleware.Pix.Models.Generated;
 
 namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
 {
     public interface IGeneralLedgerReconcilliationRepository
     {
-        IList<GeneralLedgerTransactionReasonCodeMap> GetGeneralLedgerTransactionReasonCodeMap();
+        void ProcessInventoryAdjustments(IEnumerable<ManhattanPerpetualInventoryTransfer> unprocessed);
     }
 }

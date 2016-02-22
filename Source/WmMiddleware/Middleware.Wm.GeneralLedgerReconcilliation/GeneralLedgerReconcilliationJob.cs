@@ -1,8 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Middleware.Jobs;
 using MiddleWare.Log;
-using Middleware.Wm.GeneralLedgerReconcilliation.Models;
 using Middleware.Wm.GeneralLedgerReconcilliation.Repository;
 using Middleware.Wm.Pix.Models;
 using Middleware.Wm.Pix.Repository;
@@ -16,9 +14,9 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation
         private readonly IPerpetualInventoryTransferRepository _perpetualInventoryTransferRepository;
         private readonly IGeneralLedgerReconcilliationRepository _generalLedgerReconcilliationRepository;
 
-        public GeneralLedgerReconcilliationJob(ILog log, 
-                                               IPerpetualInventoryTransferRepository perpetualInventoryTransferRepository,
-                                               IGeneralLedgerReconcilliationRepository generalLedgerReconcilliationRepository)
+        public GeneralLedgerReconcilliationJob(ILog log,
+            IPerpetualInventoryTransferRepository perpetualInventoryTransferRepository,
+            IGeneralLedgerReconcilliationRepository generalLedgerReconcilliationRepository)
         {
             _log = log;
             _perpetualInventoryTransferRepository = perpetualInventoryTransferRepository;
@@ -27,34 +25,26 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation
 
         public void RunUnitOfWork(string jobKey)
         {
-            var unprocessed = 
+            ProcessPixInventoryAdjustments();
+
+            // TODO Process PO
+
+            // TODO Process Return
+
+            // TODO Process BnC
+        }
+
+        private void ProcessPixInventoryAdjustments()
+        {
+            var unprocessed =
                 _perpetualInventoryTransferRepository.FindPerpetualInventoryTransfers(new PerpetualInventoryTransactionCriteria
-                                                                                      {
-                                                                                         ProcessType = ProcessType.GeneralLedger
-                                                                                      }).ToList();
-
-            _log.Info(string.Format("Processing {0} records", unprocessed.Count()));
-
-            _log.Info("Processing " + unprocessed.Count() + " records");
-
-            var generalLedgerTransactionReasonCodeMap = _generalLedgerReconcilliationRepository.GetGeneralLedgerTransactionReasonCodeMap();
-
-            foreach (var manhattanPerpetualInventoryTransfer 
-                     in unprocessed.Where(u => u.InventoryAdjustmentQuantity != 0).
-                     Where(manhattanPerpetualInventoryTransfer => manhattanPerpetualInventoryTransfer.TransactionType == TransactionType.InventoryAdjustment).
-                     Where(manhattanPerpetualInventoryTransfer => manhattanPerpetualInventoryTransfer.TransactionReasonCode != string.Empty))
-            {
-                var gl = generalLedgerTransactionReasonCodeMap.SingleOrDefault(g => g.TransactionReasonCode == manhattanPerpetualInventoryTransfer.TransactionReasonCode);
-
-                var databaseIntegrationsInventoryAdjustment = new DatabaseIntegrationsInventoryAdjustment
                 {
-                    IntegrationDT = DateTime.Now, 
-                    UOM = "Each", 
-                    created_date = DateTime.Now,
-                    gl_account = gl.GeneralLedgerAccount,
+                    ProcessType = ProcessType.GeneralLedger,
+                    TransactionType = TransactionType.InventoryAdjustment
+                }).ToList();
 
-                };
-            }
+            _log.Info(string.Format("{0} adjustment records found...", unprocessed.Count()));
+            _generalLedgerReconcilliationRepository.ProcessInventoryAdjustments(unprocessed);
         }
     }
 }
