@@ -110,6 +110,10 @@
     <Compile Include="Control\TransferControlOutbound.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Middleware.Wm.Configuration\databaseConnections.config">
+      <Link>databaseConnections.config</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>

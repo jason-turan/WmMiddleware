@@ -227,6 +227,10 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Global.asax" />
+    <Content Include="..\Middleware.Wm.Configuration\databaseConnections.config">
+      <Link>databaseConnections.config</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\PublishProfiles\DeployToSTLMW01.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\json2.js" />
