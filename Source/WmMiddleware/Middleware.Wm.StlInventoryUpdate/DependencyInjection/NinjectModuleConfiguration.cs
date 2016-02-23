@@ -1,6 +1,7 @@
 ﻿using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using Middleware.Wm.Configuration;
+using Middleware.Wm.Manhattan.Shipment;
 using Middleware.Wm.Pix.Repository;
 using Middleware.Wm.Shipment.Repository;
 using Middleware.Wm.StlInventoryUpdate.Repository;
@@ -20,6 +21,7 @@ namespace Middleware.Wm.StlInventoryUpdate.DependencyInjection
             Bind<IPixInventoryAdjustmentRepository>().To<PixInventoryAdjustmentRepository>();
             Bind<IJobRepository>().To<JobRepository>();
             Bind<IConfigurationManager>().To<MiddlewareConfigurationManager>();
+            Bind<IShipmentRepository>().To<ShipmentRepository>();
         }
     }
 }

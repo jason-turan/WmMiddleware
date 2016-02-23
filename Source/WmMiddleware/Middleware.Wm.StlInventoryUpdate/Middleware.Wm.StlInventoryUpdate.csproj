@@ -85,6 +85,10 @@
       <Project>{150356a5-306b-4da5-8d0c-504da59f0e02}</Project>
       <Name>Middleware.Wm.Configuration</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Middleware.Wm.Manhattan\Middleware.Wm.Manhattan.csproj">
+      <Project>{87AE9E18-B3DC-4605-BE2A-FA7B6C50DAD6}</Project>
+      <Name>Middleware.Wm.Manhattan</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Middleware.Wm.Pix\Middleware.Wm.Pix.csproj">
       <Project>{21adff87-bb23-46ba-ae47-07b8eda135bf}</Project>
       <Name>Middleware.Wm.Pix</Name>
