@@ -12,6 +12,8 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Models
             _pix = pix;
         }
 
+        public string VendorOrderNumber { get; set; }
+
         public string Sku
         {
             get
@@ -22,7 +24,21 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Models
 
         public string QuantityInvoiced { get; set; }
 
-        public string UnitOfMeasure { get; set; }
+        public string UnitOfMeasure
+        {
+            get { return "Each"; }
+        }
+
+        public int NumberUnitsShipped
+        {
+            get { return (int)_pix.UnitsShipped; }
+        }
+
+        public string PoNumber
+        {
+            get { return _pix.Ponumber; }
+        }
+
 
         public string InvoiceNumber { get; set; }
 
@@ -30,13 +46,7 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Models
 
         public DateTime PurchaserPoDate { get; set; }
 
-        public string PoNumber { get; set; }
-
-        public string VendorOrderNumber { get; set; }
-
         public string Shippeddatetimereference { get; set; }
-
-        public int NumberUnitsShipped { get; set; }
 
         public int NumberLineItems { get; set; }
 

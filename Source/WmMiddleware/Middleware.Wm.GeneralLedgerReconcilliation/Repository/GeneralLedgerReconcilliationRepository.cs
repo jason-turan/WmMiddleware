@@ -9,6 +9,7 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
 {
     public class GeneralLedgerReconcilliationRepository : IGeneralLedgerReconcilliationRepository
     {
+        private const string CharityTransactionCode = "90";
         private readonly ILog _log;
         private readonly IDatabaseRepository _databaseRepository;
 
@@ -49,6 +50,7 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
                     else
                     {
                         // map to charity
+                        pix.TransactionReasonCode = CharityTransactionCode;
                         WriteGeneralLedger(pix);    
                     }
                 }

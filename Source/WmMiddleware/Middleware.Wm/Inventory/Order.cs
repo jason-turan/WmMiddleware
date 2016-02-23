@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using Middleware.Wm.Extensions;
 
 namespace Middleware.Wm.Inventory
@@ -42,11 +43,18 @@ namespace Middleware.Wm.Inventory
         public string GiftMessage1 { get; set; } 
         public string GiftMessage2 { get; set; } 
         public string OrderSource { get; set; } 
-        public bool PaymentApplied { get; set; } 
+        public bool PaymentApplied { get; set; }
 
+        [XmlIgnore]
         public string ArAccountNumber { get; set; }
+        
+        [XmlIgnore]
         public string CustomerPurchaseOrderNumber { get; set; }
+        
+        [XmlIgnore]
         public OrderType? OrderType { get; set; }
+
+        [XmlIgnore]
         public Dictionary<string, int> LineItems { get; set; }
 
         public string ControlNumber
