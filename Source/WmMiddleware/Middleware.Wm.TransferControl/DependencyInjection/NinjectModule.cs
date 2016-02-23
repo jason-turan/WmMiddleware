@@ -19,7 +19,7 @@ namespace Middleware.Wm.TransferControl.DependencyInjection
             Bind<IFileIo>().To<FileIo>();
             Bind<IUnitOfWork>().To<TransferControlJob>();
             Bind<IJobRepository>().To<JobRepository>();
-            Bind<IManhattanFtp>().To<ManhattanFtp>();
+            Bind<IMainframeFtp>().To<MainframeFtp>();
             Bind<ITransferControlOutbound>().To<TransferControlOutbound>();
             Bind<ITransferControlManager>().To<TransferControlManager>();
             Bind<ITransferControlInbound>().To<TransferControlInbound>();
@@ -27,7 +27,7 @@ namespace Middleware.Wm.TransferControl.DependencyInjection
             Bind<IConfigurationManager>().To<MiddlewareConfigurationManager>();
             Bind<ITransferControlConfigurationManager>().To<TransferControlConfigurationManager>();
             Bind<IFtpClientFactory>().To<FtpClientFactory>();
-            Bind<IFtpClientConfiguration>().To<ManhattanFtpConfiguration>();
+            Bind<IFtpClientConfiguration>().To<MainframeFtpConfiguration>();
         }
     }
 }

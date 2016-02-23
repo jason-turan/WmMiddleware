@@ -13,6 +13,7 @@ namespace Middleware.Wm.TransferControl.Configuration
         string GetOutboundMasterControlFilename();
         string GetInboundFtpLocation();
         string GetInboundFtpUsername();
+        string GetInboundMasterFileFtpLocation();
         bool IsFtpEnabled();
     }
 }

@@ -26,7 +26,7 @@ namespace Middleware.Wm.ProductUpdating.DependencyInjection
             Bind<IProductUpdatingConfiguration>().To<ProductUpdatingConfiguration>();
             Bind<ITransferControlRepository>().To<TransferControlRepository>();
             Bind<ITransferControlManager>().To<TransferControlManager>();
-            Bind<IManhattanFtp>().To<ManhattanFtp>();
+            Bind<IMainframeFtp>().To<MainframeFtp>();
             Bind<IConfigurationManager>().To<MiddlewareConfigurationManager>();
             log4net.Config.XmlConfigurator.Configure();
         }

@@ -57,6 +57,11 @@ namespace Middleware.Wm.TransferControl.Configuration
             return _configurationManager.GetKey<string>(ConfigurationKey.TransferControlFtpUserName);
         }
 
+        public string GetInboundMasterFileFtpLocation()
+        {
+            return _configurationManager.GetKey<string>(ConfigurationKey.TransferControlInboundMasterFileFtpLocation);
+        }
+
         public bool IsFtpEnabled()
         {
             return _configurationManager.GetKey<bool>(ConfigurationKey.TransferControlFtpEnable);

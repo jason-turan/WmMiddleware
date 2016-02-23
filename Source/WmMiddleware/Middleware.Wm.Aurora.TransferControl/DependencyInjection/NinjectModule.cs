@@ -22,7 +22,7 @@ namespace Middleware.WM.Aurora.TransferControl.DependencyInjection
             Bind<IFileIo>().To<FileIo>();
             Bind<IUnitOfWork>().To<TransferControlJob>();
             Bind<IJobRepository>().To<JobRepository>();
-            Bind<IManhattanFtp>().To<ManhattanFtp>();
+            Bind<IMainframeFtp>().To<MainframeFtp>();
             Bind<IFtpClient>().To<FtpClient>();
             Bind<ITransferControlOutbound>().To<TransferControlOutbound>();
             Bind<ITransferControlManager>().To<TransferControlManager>();

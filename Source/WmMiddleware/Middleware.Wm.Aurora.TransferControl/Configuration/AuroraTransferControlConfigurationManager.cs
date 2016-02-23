@@ -63,5 +63,10 @@ namespace Middleware.WM.Aurora.TransferControl.Configuration
         {
             return _configurationManager.GetKey<bool>(AuroraPrefix + ConfigurationKey.TransferControlFtpEnable);
         }
+
+        public string GetInboundMasterFileFtpLocation()
+        {
+            return _configurationManager.GetKey<string>(AuroraPrefix + ConfigurationKey.TransferControlInboundMasterFileFtpLocation);
+        }
     }
 }

@@ -2,11 +2,11 @@
 
 namespace Middleware.Wm.TransferControl.Ftp
 {
-    public class ManhattanFtpConfiguration : IFtpClientConfiguration
+    public class MainframeFtpConfiguration : IFtpClientConfiguration
     {
         private readonly IConfigurationManager _configuration;
 
-        public ManhattanFtpConfiguration(IConfigurationManager configuration)
+        public MainframeFtpConfiguration(IConfigurationManager configuration)
         {
             _configuration = configuration;
         }

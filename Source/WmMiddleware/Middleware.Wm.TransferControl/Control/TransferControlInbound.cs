@@ -22,13 +22,13 @@ namespace Middleware.Wm.TransferControl.Control
         private const decimal AuroraPriority = (decimal) 900.00;
 
         private readonly ITransferControlRepository _transferControlRepository;
-        private readonly IManhattanFtp _manhattanFtp;
+        private readonly IMainframeFtp _manhattanFtp;
         private readonly ITransferControlConfigurationManager _configuration;
         private readonly ILog _log;
         private readonly IFileIo _fileIo;
 
         public TransferControlInbound(ITransferControlRepository transferControlRepository,
-            IManhattanFtp manhattanFtp,
+            IMainframeFtp manhattanFtp,
             ITransferControlConfigurationManager configuration,
             ILog log,
             IFileIo fileIo)
@@ -175,7 +175,7 @@ namespace Middleware.Wm.TransferControl.Control
                 return;
             }
 
-            _manhattanFtp.UploadInboundFile(fileInfo);
+            _manhattanFtp.UploadInboundFile(fileInfo, _configuration.GetInboundFileDirectory());
 
             MoveInboundFileToProcessedFolder(fileInfo);
         }
@@ -198,7 +198,9 @@ namespace Middleware.Wm.TransferControl.Control
 
             var masterControlFile = GetMasterControlFilePath();
 
-            _manhattanFtp.AppendInboundMasterControl(masterControlFile);
+            _manhattanFtp.AppendInboundMasterControl(masterControlFile,
+                                                     _configuration.GetInboundMasterFileFtpLocation(), 
+                                                     _configuration.GetInboundMasterControlFilename());
         }
 
         private FileInfo GetMasterControlFilePath()

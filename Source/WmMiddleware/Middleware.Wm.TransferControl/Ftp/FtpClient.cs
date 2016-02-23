@@ -23,22 +23,33 @@ namespace Middleware.Wm.TransferControl.Ftp
             if (!localFile.Exists)
                 throw new Exception(string.Format("The local file does not exist, the file path:{0}", localFile.FullName));
 
-            string url = _ftpOptions.Host.TrimEnd('/') + PathCharacter + remoteFileName;
-            FtpWebRequest request = CreateRequest(url, WebRequestMethods.Ftp.UploadFile, _ftpOptions);
-
-            using (Stream rs = request.GetRequestStream())
-            using (FileStream fs = localFile.OpenRead())
+            try
             {
-                var buffer = new byte[4096]; //4K
-                // var bufferCount = 0;
-                int count = fs.Read(buffer, 0, buffer.Length);
-                while (count > 0)
+
+
+                string url = _ftpOptions.Host.TrimEnd('/') + PathCharacter + remoteFileName;
+                FtpWebRequest request = CreateRequest(url, WebRequestMethods.Ftp.UploadFile, _ftpOptions);
+
+                using (Stream rs = request.GetRequestStream())
+                using (FileStream fs = localFile.OpenRead())
                 {
-                    rs.Write(buffer, 0, count);
-                    // _log.Debug("Writing " + localFile.Name + " part " + bufferCount);
-                    count = fs.Read(buffer, 0, buffer.Length);
-                    // bufferCount++;
+                    var buffer = new byte[4096]; //4K
+                    // var bufferCount = 0;
+                    int count = fs.Read(buffer, 0, buffer.Length);
+                    while (count > 0)
+                    {
+                        rs.Write(buffer, 0, count);
+                        // _log.Debug("Writing " + localFile.Name + " part " + bufferCount);
+                        count = fs.Read(buffer, 0, buffer.Length);
+                        // bufferCount++;
+                    }
                 }
+            }
+            catch (WebException e)
+            {
+                var status = ((FtpWebResponse)e.Response).StatusDescription;
+                _log.Warning("Failure of status: " + status);
+                throw;
             }
 
             return true;

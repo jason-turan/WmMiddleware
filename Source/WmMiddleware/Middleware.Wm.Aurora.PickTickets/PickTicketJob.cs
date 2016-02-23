@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data;
 using System.IO;
 using Middleware.Jobs.Repositories;
 using Middleware.Wm.Aurora.PickTickets.Repositories;
