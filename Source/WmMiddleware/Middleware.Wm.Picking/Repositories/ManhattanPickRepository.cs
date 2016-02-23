@@ -91,6 +91,7 @@ namespace Middleware.Wm.Picking.Repositories
             {
                 var combinedItem = itemGroup.First().Clone();
                 combinedItem.Quantity = itemGroup.Sum(i => i.Quantity);
+
                 yield return new ManhattanPickTicketDetail(combinedItem, batchControlNumber, order.ControlNumber, companyNumber, warehouseNumber);
             }
         }

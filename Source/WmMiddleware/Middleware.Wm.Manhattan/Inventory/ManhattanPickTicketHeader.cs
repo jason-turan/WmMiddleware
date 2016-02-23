@@ -17,8 +17,17 @@ namespace Middleware.Wm.Manhattan.Inventory
 
         }
 
-        public ManhattanPickTicketHeader(Order order, string batchControlNumber, string companyNumber, string warehouseNumber, string shipTo, ICountryReader countryReader, ICarrierReadRepository carrierRepository)
+        public ManhattanPickTicketHeader(Order order, 
+                                         string batchControlNumber, 
+                                         string companyNumber, 
+                                         string warehouseNumber, 
+                                         string shipTo, 
+                                         ICountryReader countryReader, 
+                                         ICarrierReadRepository carrierRepository)
         {
+            // need for BNC
+     
+
             BatchControlNumber = batchControlNumber;
             CreateDate = DateTime.Now;
             UserId = order.OrderSource == null ? null : order.OrderSource.Truncate(10);
@@ -42,8 +51,19 @@ namespace Middleware.Wm.Manhattan.Inventory
             ShipVia = carrierRepository.GetCode(order.ShippingMethod);
             ShipToCountry = countryReader.GetCountryCode(order.ShippingAddress.Country).ToString(CultureInfo.InvariantCulture);
             PackingSlipType = "P5";
-            SoldTo = string.Equals("NBWE", order.Company, StringComparison.InvariantCultureIgnoreCase) ? "NBUS" : order.Company;
-            ArAccountNumber = SoldTo; // Requested by Manhattan team on 1/25 to be same as PHSOTO/Soldto
+
+            if (order.OrderType.HasValue && order.OrderType.Value == Wm.Inventory.OrderType.BrickAndClick)
+            {
+                CustomerPurchaseOrderNumber = order.CustomerPurchaseOrderNumber;
+                ArAccountNumber = order.ArAccountNumber.Trim();
+                SoldTo = ArAccountNumber;
+            }
+            else
+            {
+                SoldTo = string.Equals("NBWE", order.Company, StringComparison.InvariantCultureIgnoreCase) ? "NBUS" : order.Company;
+                ArAccountNumber = SoldTo; // Requested by Manhattan team on 1/25 to be same as PHSOTO/Soldto
+            }
+
             SoldToName = order.BillingAddress.Name;
             SoldToAddr1 = order.BillingAddress.Line1;
             SoldToAddr2 = order.BillingAddress.Line2;

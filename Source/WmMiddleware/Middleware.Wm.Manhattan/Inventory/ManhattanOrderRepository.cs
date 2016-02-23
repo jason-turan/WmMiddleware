@@ -62,7 +62,10 @@ namespace Middleware.Wm.Manhattan.Inventory
             return orders.Values;
         }
 
-        public void SaveOrders(IEnumerable<Order> orders, string headerFileLocation, string detailsFileLocation, string instructionsFileLocation)
+        public void SaveOrders(IEnumerable<Order> orders, 
+                               string headerFileLocation, 
+                               string detailsFileLocation, 
+                               string instructionsFileLocation)
         {
             if (headerFileLocation == null) throw new ArgumentNullException("headerFileLocation");
             if (detailsFileLocation == null) throw new ArgumentNullException("detailsFileLocation");
@@ -122,6 +125,10 @@ namespace Middleware.Wm.Manhattan.Inventory
             {
                 var combinedItem = itemGroup.First().Clone();
                 combinedItem.Quantity = itemGroup.Sum(i => i.Quantity);
+                if (order.OrderType.HasValue && order.OrderType.Value == OrderType.BrickAndClick)
+                {
+                    combinedItem.ItemNumber = order.LineItems[itemGroup.Key];
+                }
                 yield return new ManhattanPickTicketDetail(combinedItem, batchControlNumber, order.ControlNumber, companyNumber, warehouseNumber);
             }
         }

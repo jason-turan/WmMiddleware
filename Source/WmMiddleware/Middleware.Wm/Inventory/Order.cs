@@ -4,6 +4,11 @@ using Middleware.Wm.Extensions;
 
 namespace Middleware.Wm.Inventory
 {
+    public enum OrderType
+    {
+        BrickAndClick,
+        Other
+    }
     public class Order
     {
         public Order()
@@ -38,6 +43,11 @@ namespace Middleware.Wm.Inventory
         public string GiftMessage2 { get; set; } 
         public string OrderSource { get; set; } 
         public bool PaymentApplied { get; set; } 
+
+        public string ArAccountNumber { get; set; }
+        public string CustomerPurchaseOrderNumber { get; set; }
+        public OrderType? OrderType { get; set; }
+        public Dictionary<string, int> LineItems { get; set; }
 
         public string ControlNumber
         {

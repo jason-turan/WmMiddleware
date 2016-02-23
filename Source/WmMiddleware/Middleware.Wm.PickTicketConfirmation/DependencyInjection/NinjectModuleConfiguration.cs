@@ -1,5 +1,6 @@
 ﻿using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
+using Middleware.Wm.Aurora.PickTickets.Repositories;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.Inventory;
 using Middleware.Wm.Locations;
@@ -34,6 +35,7 @@ namespace Middleware.Wm.PickTicketConfirmation.DependencyInjection
             Bind<ITransferControlManager>().To<TransferControlManager>();
             Bind<ITransferControlRepository>().To<TransferControlRepository>();
             Bind<IPickTicketProcessingRepository>().To<PickTicketOrderConfirmationProcessingRepository>();
+            Bind<IAuroraPickTicketRepository>().To<AuroraPickTicketRepository>();
         }
     }
 }

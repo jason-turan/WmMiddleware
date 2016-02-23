@@ -29,9 +29,29 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation
 
             ProcessPixPurchaseOrders();
 
-            // TODO Process Returns
+            ProcessReturns();
 
             // TODO Process BnC
+        }
+
+        private void ProcessReturns()
+        {
+            var unprocessed =
+            _perpetualInventoryTransferRepository.FindPerpetualInventoryTransfers(new PerpetualInventoryTransactionCriteria
+            {
+                ProcessType = ProcessType.GeneralLedgerPurchaseReturn,
+                TransactionType = TransactionType.QuantityAdjust,
+                TransactionCode = TransactionCode.Return
+            }).ToList();
+
+            _log.Info(string.Format("{0} purchase return records found process...", unprocessed.Count()));
+
+            if (unprocessed.Count == 0)
+            {
+                return;
+            }
+
+            _generalLedgerReconcilliationRepository.ProcessPurchaseReturns(unprocessed);
         }
 
         private void ProcessPixInventoryAdjustments()
@@ -39,7 +59,7 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation
             var unprocessed =
                 _perpetualInventoryTransferRepository.FindPerpetualInventoryTransfers(new PerpetualInventoryTransactionCriteria
                 {
-                    ProcessType = ProcessType.GeneralLedger,
+                    ProcessType = ProcessType.GeneralLedgerInventoryAdjustment,
                     TransactionType = TransactionType.InventoryAdjustment
                 }).ToList();
 
@@ -58,7 +78,7 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation
             var unprocessed =
                 _perpetualInventoryTransferRepository.FindPerpetualInventoryTransfers(new PerpetualInventoryTransactionCriteria
                 {
-                    ProcessType = ProcessType.GeneralLedger,
+                    ProcessType = ProcessType.GeneralLedgerPurchaseOrder,
                     TransactionType = TransactionType.QuantityAdjust,
                     TransactionCode = TransactionCode.PurchaseOrder
                 }).ToList();

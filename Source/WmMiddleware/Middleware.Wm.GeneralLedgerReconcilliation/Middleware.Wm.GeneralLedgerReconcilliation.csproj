@@ -66,8 +66,8 @@
     <Compile Include="Models\DatabasePurchaseOrderHeaderInterface.cs" />
     <Compile Include="Models\GeneralLedgerInventoryTransactionInterface.cs" />
     <Compile Include="Models\GeneralLedgerTransactionReasonCodeMap.cs" />
-    <Compile Include="Models\InventoryAdjustment.cs" />
     <Compile Include="Models\PixGeneralLedgerProcessing.cs" />
+    <Compile Include="Models\PurchaseOrderGeneralLedger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\DatabaseRepository.cs" />

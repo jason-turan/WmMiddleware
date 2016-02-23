@@ -9,7 +9,8 @@ namespace Middleware.Wm.PickTicketConfirmation.Repositories
         private readonly IManhattanOrderRepository _manhattanOrderRepository;
         private readonly IMainframeOrderConfiguration _configuration;
 
-        public ManhattanOrderWriter(IManhattanOrderRepository manhattanOrderRepository, IMainframeOrderConfiguration configuration)
+        public ManhattanOrderWriter(IManhattanOrderRepository manhattanOrderRepository, 
+                                    IMainframeOrderConfiguration configuration)
         {
             _manhattanOrderRepository = manhattanOrderRepository;
             _configuration = configuration;

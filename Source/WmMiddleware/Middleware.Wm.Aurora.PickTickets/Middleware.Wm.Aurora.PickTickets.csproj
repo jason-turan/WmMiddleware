@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
     <Compile Include="Ftp\OmsFtpClientConfiguration.cs" />
+    <Compile Include="Models\AuroraPickTicket.cs" />
     <Compile Include="PickTicketJob.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MiddleWare.Log;
 using Middleware.Wm.GeneralLedgerReconcilliation.Models;
+using Middleware.Wm.Pix.Models;
 using WmMiddleware.Pix.Models.Generated;
 
 namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
@@ -23,29 +24,80 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
             {
                 try
                 {
-                    var glTransactionReasonMap = _databaseRepository.GetGeneralLedgerTransactionReasonCodeMap();
-                    var glInterface = new GeneralLedgerInventoryTransactionInterface(pix, glTransactionReasonMap);
-
-                    if (glInterface.GeneralLedgerAccount == null)
-                    {
-                        _log.Warning("No GL mapping found for transaction " + pix.ManhattanPerpetualInventoryTransferId);
-                    }
-                    else
-                    {
-                        _databaseRepository.InsertIntegrationInventoryAdjustment(new DatabaseIntegrationsInventoryAdjustment(glInterface));
-                    }
-
-                    _databaseRepository.InsertPixGeneralLedgerProcessing(new PixGeneralLedgerProcessing
-                    {
-                        ManhattanPerpetualInventoryTransferId = pix.ManhattanPerpetualInventoryTransferId,
-                        ProcessedDate = DateTime.Now
-                    });
+                    WriteGeneralLedger(pix);
                 }
                 catch (Exception exception)
                 {
                     _log.Exception("Fatal error processing pix transaction number " + pix.TransactionNumber, exception);
                 }
             }
+        }
+
+        public void ProcessPurchaseReturns(IEnumerable<ManhattanPerpetualInventoryTransfer> unprocessed)
+        {
+            foreach (var pix in unprocessed)
+            {
+                try
+                {
+                    var pixReturn = new PixReturn(pix);
+
+                    if (pixReturn.ReturnToStock())
+                    {
+                        // no action - will be accounted for in return processing
+                        MarkAsProcessed(pix);
+                    }
+                    else
+                    {
+                        // map to charity
+                        WriteGeneralLedger(pix);    
+                    }
+                }
+                catch (Exception exception)
+                {
+                    _log.Exception("Fatal error processing pix transaction number " + pix.TransactionNumber, exception);
+                }
+            }
+        }
+
+        public void ProcessPurchaseorders(IEnumerable<ManhattanPerpetualInventoryTransfer> unprocessed)
+        {
+            foreach (var pix in unprocessed)
+            {
+                try
+                {
+
+                }
+                catch (Exception exception)
+                {
+                    _log.Exception("Fatal error processing pix transaction number " + pix.TransactionNumber, exception);
+                }
+            }
+        }
+
+        private void MarkAsProcessed(ManhattanPerpetualInventoryTransfer manhattanPerpetualInventoryTransfer)
+        {
+            _databaseRepository.InsertPixGeneralLedgerProcessing(new PixGeneralLedgerProcessing
+            {
+                ManhattanPerpetualInventoryTransferId = manhattanPerpetualInventoryTransfer.ManhattanPerpetualInventoryTransferId,
+                ProcessedDate = DateTime.Now
+            });
+        }
+
+        private void WriteGeneralLedger(ManhattanPerpetualInventoryTransfer pix)
+        {
+            var glTransactionReasonMap = _databaseRepository.GetGeneralLedgerTransactionReasonCodeMap();
+            var glInterface = new GeneralLedgerInventoryTransactionInterface(pix, glTransactionReasonMap);
+
+            if (glInterface.GeneralLedgerAccount == null)
+            {
+                _log.Warning("No GL mapping found for transaction " + pix.ManhattanPerpetualInventoryTransferId);
+            }
+            else
+            {
+                _databaseRepository.InsertIntegrationInventoryAdjustment(new DatabaseIntegrationsInventoryAdjustment(glInterface));
+            }
+
+            MarkAsProcessed(pix);
         }
     }
 }
