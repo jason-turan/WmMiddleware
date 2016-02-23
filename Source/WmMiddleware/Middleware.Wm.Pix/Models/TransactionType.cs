@@ -2,9 +2,8 @@
 {
     public class TransactionType
     {
-        public const string Return = "603";
+        public const string QuantityAdjust = "603";
         public const string InventoryAdjustment = "300";
-        public const string Unknown = "606";
-
+        public const string NonAllocatable = "606";
     }
 }

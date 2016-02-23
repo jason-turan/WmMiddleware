@@ -25,10 +25,10 @@ namespace Middleware.Wm.Manhattan.Inventory
             ProgramId = UserId;
             Company = companyNumber;
             Division = warehouseNumber;
-            PickticketControlNumber = order.ControlNumber.Substring(0,10);
+            PickticketControlNumber = order.ControlNumber.Length > 10 ? order.ControlNumber.Substring(0, 10) : order.ControlNumber;
             Warehouse = warehouseNumber;
-            PickticketNumber = order.ControlNumber.Substring(0, 10);
-            OrderNumber = order.ControlNumber.Substring(0,10);
+            PickticketNumber = order.ControlNumber.Length > 10 ? order.ControlNumber.Substring(0, 10) : order.ControlNumber;
+            OrderNumber = order.ControlNumber.Length > 10 ? order.ControlNumber.Substring(0, 10) : order.ControlNumber;
             MiscellaneousIns20Byte11 = order.OrderNumber; // Save order number in misc field to retrieve from ship files
             OrderType = order.OrderPriority;
             ShipTo = shipTo;

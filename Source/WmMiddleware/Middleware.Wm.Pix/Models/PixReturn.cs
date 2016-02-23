@@ -1,5 +1,4 @@
 ﻿using System;
-using WmMiddleware.Pix.Models;
 using WmMiddleware.Pix.Models.Generated;
 
 namespace Middleware.Wm.Pix.Models
@@ -15,7 +14,7 @@ namespace Middleware.Wm.Pix.Models
                 throw new ArgumentException(perpetualInventoryTransfer.TransactionCode + " is not a valid pix return code");
             }
 
-            if (perpetualInventoryTransfer.TransactionType != TransactionType.Return)
+            if (perpetualInventoryTransfer.TransactionType != TransactionType.QuantityAdjust)
             {
                 throw new ArgumentException(perpetualInventoryTransfer.TransactionType + " is not a valid pix return type");
             }

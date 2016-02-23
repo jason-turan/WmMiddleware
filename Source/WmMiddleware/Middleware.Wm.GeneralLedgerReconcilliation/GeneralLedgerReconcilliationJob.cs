@@ -15,8 +15,8 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation
         private readonly IGeneralLedgerReconcilliationRepository _generalLedgerReconcilliationRepository;
 
         public GeneralLedgerReconcilliationJob(ILog log,
-            IPerpetualInventoryTransferRepository perpetualInventoryTransferRepository,
-            IGeneralLedgerReconcilliationRepository generalLedgerReconcilliationRepository)
+                                               IPerpetualInventoryTransferRepository perpetualInventoryTransferRepository,
+                                               IGeneralLedgerReconcilliationRepository generalLedgerReconcilliationRepository)
         {
             _log = log;
             _perpetualInventoryTransferRepository = perpetualInventoryTransferRepository;
@@ -27,9 +27,9 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation
         {
             ProcessPixInventoryAdjustments();
 
-            // TODO Process PO
+            ProcessPixPurchaseOrders();
 
-            // TODO Process Return
+            // TODO Process Returns
 
             // TODO Process BnC
         }
@@ -43,8 +43,33 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation
                     TransactionType = TransactionType.InventoryAdjustment
                 }).ToList();
 
-            _log.Info(string.Format("{0} adjustment records found...", unprocessed.Count()));
+            _log.Info(string.Format("{0} inv. adjustment records found to process...", unprocessed.Count()));
+
+            if (unprocessed.Count == 0)
+            {
+                return;
+            }
+
             _generalLedgerReconcilliationRepository.ProcessInventoryAdjustments(unprocessed);
         }
+
+        private void ProcessPixPurchaseOrders()
+        {
+            var unprocessed =
+                _perpetualInventoryTransferRepository.FindPerpetualInventoryTransfers(new PerpetualInventoryTransactionCriteria
+                {
+                    ProcessType = ProcessType.GeneralLedger,
+                    TransactionType = TransactionType.QuantityAdjust,
+                    TransactionCode = TransactionCode.PurchaseOrder
+                }).ToList();
+
+            _log.Info(string.Format("{0} purchase order records found process...", unprocessed.Count()));
+
+            if (unprocessed.Count == 0)
+            {
+                return;
+            }
+        }
+
     }
 }

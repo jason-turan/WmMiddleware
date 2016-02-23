@@ -19,7 +19,7 @@ namespace Middleware.Wm.Manhattan.Inventory
             CreateDate = DateTime.Now;
             Company = companyNumber;
             Division = warehouseNumber;
-            PickticketControlNumber = pickticketControlNumber.Substring(0,10);
+            PickticketControlNumber = pickticketControlNumber.Length > 10 ? pickticketControlNumber.Substring(0,10) : pickticketControlNumber;
             
             PickticketLineNumber = (int)item.ItemNumber;//stored as double? truncate?
             Warehouse = warehouseNumber;

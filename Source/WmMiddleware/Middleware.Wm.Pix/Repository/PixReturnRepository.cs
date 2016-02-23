@@ -18,7 +18,7 @@ namespace Middleware.Wm.Pix.Repository
             var returnCriteria = new PerpetualInventoryTransactionCriteria
             {
                 TransactionCode = TransactionCode.Return, 
-                TransactionType = TransactionType.Return, 
+                TransactionType = TransactionType.QuantityAdjust, 
                 ProcessType = ProcessType.Return
             };
 
