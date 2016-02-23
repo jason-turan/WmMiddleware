@@ -27,7 +27,7 @@ namespace Middleware.Wm.Picking
             if (orders.Any())
             {
                 var logBuilder = new StringBuilder();
-                logBuilder.AppendLine("Processing orders.");
+                logBuilder.AppendLine("Processing " + orders.Count + " orders.");
 
                 foreach (var order in orders)
                 {

@@ -30,7 +30,7 @@ namespace Middleware.Wm.ProductUpdating
             if (products.Any())
             {
                 var logBuilder = new StringBuilder();
-                logBuilder.AppendLine("Processing products.");
+                logBuilder.AppendLine("Processing " + products.Count + " products.");
 
                 foreach (var product in products)
                 {
