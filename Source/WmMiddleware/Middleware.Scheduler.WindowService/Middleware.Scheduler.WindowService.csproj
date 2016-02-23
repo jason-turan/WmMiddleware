@@ -283,5 +283,6 @@
     <Copy SourceFiles="..\Middleware.Wm.Aurora.TransferControl\bin\$(Configuration)\Middleware.Wm.Aurora.TransferControl.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\Middleware.Wm.Aurora.Shipment\bin\$(Configuration)\Middleware.Wm.Aurora.Shipment.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\Middleware.Wm.LoggingAndFileMaintenance\bin\$(Configuration)\Middleware.Wm.LoggingAndFileMaintenance.exe.config" DestinationFolder="$(TargetDir)" />
+    <Copy SourceFiles="..\Middleware.Wm.Aurora.PickTickets\bin\$(Configuration)\Middleware.Wm.Aurora.PickTickets.exe.config" DestinationFolder="$(TargetDir)" />
   </Target>
 </Project>
