@@ -17,25 +17,18 @@ namespace Middleware.Wm.TransferControl.Ftp
 
         public void AppendInboundMasterControl(FileInfo masterControlFile, string masterControlPath, string masterControlFileName)
         {
-            _ftpClient.Append(masterControlFile, masterControlPath + "/" + masterControlFileName);
+            var remotePath = masterControlPath + "/" + masterControlFileName;
+            _log.Debug("file upload " + masterControlFile.FullName + " to remote path " + remotePath);
+            _ftpClient.Append(masterControlFile, remotePath);
             _log.Info("Successfully appended to master control file.");
         }
         
         public void UploadInboundFile(FileInfo fileInfo, string destinationFtpPath)
         {
-
+            var remotePath = destinationFtpPath + "/" + fileInfo.Name;
+            _log.Debug("file upload " + fileInfo.FullName + " to remote path " + remotePath);
             _ftpClient.Upload(fileInfo, destinationFtpPath + "/" + fileInfo.Name);
-
             _log.Info("Successfully uploaded " + fileInfo.FullName + " to " + destinationFtpPath);
         }
-
-        private string GetMasterControlFtpPath(string masterControlPath, string masterControlFileName)
-        {
-            //var masterControlPath = _configuration.GetKey<string>(ConfigurationKey.TransferControlInboundMasterFileFtpLocation);
-            //var masterControlFileName = _configuration.GetKey<string>(ConfigurationKey.TransferControlInboundMasterControlFilename);
-
-            return masterControlPath + "/" + masterControlFileName;
-        }
-
     }
 }

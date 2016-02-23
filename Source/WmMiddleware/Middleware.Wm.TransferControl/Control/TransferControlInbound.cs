@@ -175,7 +175,7 @@ namespace Middleware.Wm.TransferControl.Control
                 return;
             }
 
-            _manhattanFtp.UploadInboundFile(fileInfo, _configuration.GetInboundFileDirectory());
+            _manhattanFtp.UploadInboundFile(fileInfo, _configuration.GetInboundFtpLocation());
 
             MoveInboundFileToProcessedFolder(fileInfo);
         }
