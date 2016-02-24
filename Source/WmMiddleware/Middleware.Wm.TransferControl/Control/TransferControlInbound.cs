@@ -65,7 +65,7 @@ namespace Middleware.Wm.TransferControl.Control
                 {
                     var fileList = new List<TransferControlMaster>();
 
-                    foreach (var file in transferControl.Files)
+                    foreach (var file in transferControl.Files.OrderByDescending(o => o.FileLocation))
                     {
                         // each file of the batch gets its own row
                         fileList.Add(UploadFile(file, transferControl));
@@ -162,7 +162,7 @@ namespace Middleware.Wm.TransferControl.Control
             var masterControlFileName = _configuration.GetInboundMasterControlFilename();
             var inboundFileDirectory = _configuration.GetInboundFileDirectory();
 
-            transferControlWriter.Save(masters, Path.Combine(inboundFileDirectory, masterControlFileName));
+            transferControlWriter.Save(masters.OrderByDescending(o => o.Filename), Path.Combine(inboundFileDirectory, masterControlFileName));
         }
 
         private void FtpUploadFile(FileInfo fileInfo)

@@ -84,9 +84,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IShipmentInventoryAdjustmentRepository.cs" />
-    <Compile Include="Repository\IShipmentRepository.cs" />
     <Compile Include="Repository\ShipmentInventoryAdjustmentRepository.cs" />
-    <Compile Include="Repository\ShipmentRepository.cs" />
     <Compile Include="ShipmentJob.cs" />
   </ItemGroup>
   <ItemGroup>
