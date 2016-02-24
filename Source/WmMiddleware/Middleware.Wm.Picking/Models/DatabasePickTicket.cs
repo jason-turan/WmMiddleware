@@ -1,4 +1,6 @@
-﻿using Middleware.Wm.Inventory;
+﻿using Middleware.Wm.Extensions;
+using Middleware.Wm.Inventory;
+using Middleware.Wm.Manhattan.Extensions;
 
 namespace Middleware.Wm.Picking.Models
 {
@@ -65,7 +67,7 @@ namespace Middleware.Wm.Picking.Models
                 Color = Color,
                 SeasonYear = SeasonYear,
                 Style = Style,
-                Size = Size
+                Size = Size.ConvertToManhattanSize()
             };
         }
     }

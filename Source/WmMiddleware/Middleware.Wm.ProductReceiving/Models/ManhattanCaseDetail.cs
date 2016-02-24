@@ -1,6 +1,7 @@
 ﻿using System;
 using Middleware.Wm.Extensions;
 using Middleware.Wm.Manhattan.Extensions;
+using StringExtensions = Middleware.Wm.Manhattan.Extensions.StringExtensions;
 
 namespace Middleware.Wm.ProductReceivingng.Models
 {
@@ -27,7 +28,7 @@ namespace Middleware.Wm.ProductReceivingng.Models
             SeasonYear = item.SeasonYear;
             Style = item.Style;
             Color = item.Color;
-            SecDimension = item.Size.ToManhattanSize().Truncate(3);
+            SecDimension = StringExtensions.ConvertToManhattanSize(item.Size).Truncate(3);
             ShipmentNumber = shippingNotification.ExternalUid;
             ShippedAsnQuantity = item.UnitsShipped;
             PurchaseOrderNumber = shippingNotification.CustomerPurchaseOrderReference;

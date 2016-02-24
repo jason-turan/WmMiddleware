@@ -6,13 +6,14 @@ using System.Text;
 using FlatFile.Core;
 using FlatFile.FixedLength.Attributes;
 using FlatFile.FixedLength.Implementation;
+using Middleware.Wm.Manhattan.Text;
 
 namespace Middleware.Wm.Manhattan.DataFiles
 {
     public class DataFileRepository<T> where T : class, new()
     {
         private readonly IFlatFileEngine _engine = new FixedLengthFileEngineFactory().GetEngine<T>();
-        
+
         public void Save(IEnumerable<T> items, string location)
         {
             var path = Path.GetDirectoryName(location);
@@ -21,9 +22,23 @@ namespace Middleware.Wm.Manhattan.DataFiles
                 Directory.CreateDirectory(path);
             }
 
-            using (var stream = File.Create(location))
+            using (var scrubStream = new MemoryStream())
             {
-                _engine.Write(stream, items);
+                _engine.Write(scrubStream, items);
+                scrubStream.Position = 0;
+
+                using (var scrubReader = new StreamReader(scrubStream))
+                using (var stream = File.Create(location))
+                using (var streamWriter = new StreamWriter(stream))
+                {
+                    var line = scrubReader.ReadLine();
+                    while (line != null)
+                    {
+                        streamWriter.WriteLine(line.Englify());
+                        line = scrubReader.ReadLine();
+                    }
+                }
+
             }
         }
 

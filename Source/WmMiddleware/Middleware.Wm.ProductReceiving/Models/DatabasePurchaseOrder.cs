@@ -1,4 +1,6 @@
-﻿namespace Middleware.Wm.ProductReceivingng.Models
+﻿using Middleware.Wm.Manhattan.Extensions;
+
+namespace Middleware.Wm.ProductReceivingng.Models
 {
     internal partial class DatabasePurchaseOrder
     {
@@ -41,7 +43,7 @@
                 Style = Style,
                 Color = Color,
                 SeasonYear = SeasonYear,
-                Size = Size
+                Size = Size.ConvertToManhattanSize()
             };
         }
     }

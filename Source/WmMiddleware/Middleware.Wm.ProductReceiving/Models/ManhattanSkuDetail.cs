@@ -22,7 +22,7 @@ namespace Middleware.Wm.ProductReceivingng.Models
             SeasonYear = item.StyleYear;
             Style = item.Style; 
             Color = item.ProductAttribute;
-            SecDimension = item.ProductSize.ToManhattanSize().Truncate(3);
+            SecDimension = item.ProductSize.ConvertToManhattanSize().Truncate(3);
             InventoryType = "F";
             UnitsShipped = item.TotalQuantity;
         }
@@ -38,7 +38,7 @@ namespace Middleware.Wm.ProductReceivingng.Models
             SeasonYear = item.SeasonYear;
             Style = item.Style;
             Color = item.Color;
-            SecDimension = item.Size.ToManhattanSize().Truncate(3);
+            SecDimension = item.Size.ConvertToManhattanSize().Truncate(3);
             InventoryType = "F";
             UnitsShipped = item.QuantityOrdered;
             Function = "2";

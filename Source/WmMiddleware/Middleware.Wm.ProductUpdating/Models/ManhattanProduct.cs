@@ -1,6 +1,7 @@
 ﻿using System;
 using Middleware.Wm.Extensions;
 using Middleware.Wm.Manhattan.Extensions;
+using StringExtensions = Middleware.Wm.Manhattan.Extensions.StringExtensions;
 
 namespace Middleware.Wm.ProductUpdating.Models
 {
@@ -20,7 +21,7 @@ namespace Middleware.Wm.ProductUpdating.Models
             SeasonYear = product.MasterStyleSeason;
             Style = product.Style.Truncate(8);
             Color = product.Attribute;
-            SecDimension = product.Size.ToManhattanSize().Truncate(3);
+            SecDimension = StringExtensions.ConvertToManhattanSize(product.Size).Truncate(3);
             ProductSubgroup = product.BrandCode;
             ProductType = SeasonYear;
             StyleDescription = product.Description;

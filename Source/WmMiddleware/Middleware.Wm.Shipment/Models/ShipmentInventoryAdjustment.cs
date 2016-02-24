@@ -1,4 +1,4 @@
-﻿using Middleware.Wm.Extensions;
+﻿using Middleware.Wm.Manhattan.Extensions;
 using Middleware.Wm.Manhattan.Shipment;
 
 namespace Middleware.Wm.Shipment.Models
@@ -32,7 +32,7 @@ namespace Middleware.Wm.Shipment.Models
 
         public string Size
         {
-            get { return _manhattanShipmentLineItem.ShippedSecDimn.ToEcommSize(); }
+            get { return _manhattanShipmentLineItem.ShippedSecDimn.ConvertFromManhattanSize(); }
         }
 
         public string Attribute

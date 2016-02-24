@@ -1,4 +1,7 @@
-﻿namespace Middleware.Wm.ProductReceivingng.Models
+﻿using Middleware.Wm.Extensions;
+using Middleware.Wm.Manhattan.Extensions;
+
+namespace Middleware.Wm.ProductReceivingng.Models
 {
     internal partial class DatabaseAutomatedShippingNotification
     {
@@ -88,7 +91,7 @@
                 Style = Style,
                 Color = Color,
                 SeasonYear = SeasonYear,
-                Size = Size,
+                Size = Size.ConvertToManhattanSize(),
                 Sku = SKU,
                 Uom = UOM,
                 Upc = UPC,

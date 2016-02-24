@@ -26,7 +26,7 @@ namespace Middleware.Wm.Manhattan.Inventory
             SeasonYear = item.SeasonYear;
             Style = item.Style;
             Color = item.Color;
-            SecDimension = item.Size.ToManhattanSize().Truncate(3);
+            SecDimension = item.Size.ConvertToManhattanSize().Truncate(3);
             PackageBarcode = item.ItemSku;
             InventoryType = "F";
             OriginalOrderQuantity = item.Quantity;

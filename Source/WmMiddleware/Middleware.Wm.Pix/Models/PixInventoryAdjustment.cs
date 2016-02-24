@@ -1,6 +1,6 @@
 ﻿using System;
 using Middleware.Wm.Extensions;
-using WmMiddleware.Pix.Models;
+using Middleware.Wm.Manhattan.Extensions;
 using WmMiddleware.Pix.Models.Generated;
 
 namespace Middleware.Wm.Pix.Models
@@ -42,7 +42,7 @@ namespace Middleware.Wm.Pix.Models
 
         public string Size
         {
-            get { return _perpetualInventoryTransfer.SecDimension.ToEcommSize(); }
+            get { return _perpetualInventoryTransfer.SecDimension.ConvertFromManhattanSize(); }
         }
 
         public string Attribute

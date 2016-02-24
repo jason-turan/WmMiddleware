@@ -1,6 +1,7 @@
 ﻿using System;
 using Dapper.Contrib.Extensions;
 using Middleware.Wm.Extensions;
+using Middleware.Wm.Manhattan.Extensions;
 using WmMiddleware.InventorySync.Models.Generated;
 
 namespace Middleware.Wm.StlInventorySync.Models
@@ -30,7 +31,7 @@ namespace Middleware.Wm.StlInventorySync.Models
 
         public string Size
         {
-            get { return _manhattanInventorySync.SecDimension.ToEcommSize(); }
+            get { return _manhattanInventorySync.SecDimension.ConvertFromManhattanSize(); }
         }
 
         public string Attribute
