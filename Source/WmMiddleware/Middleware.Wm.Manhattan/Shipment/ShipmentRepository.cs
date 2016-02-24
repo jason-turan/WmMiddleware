@@ -4,7 +4,6 @@ using System.Linq;
 using Dapper;
 using Dapper.Contrib.Extensions;
 using Middleware.Wm.Configuration.Database;
-using Middleware.Wm.Shipment.Models;
 
 namespace Middleware.Wm.Manhattan.Shipment
 {

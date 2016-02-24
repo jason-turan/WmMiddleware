@@ -1,4 +1,4 @@
-﻿namespace Middleware.Wm.Shipment.Models
+﻿namespace Middleware.Wm.Manhattan.Shipment
 {
     public class ManhattanShipmentSearchCriteria
     {

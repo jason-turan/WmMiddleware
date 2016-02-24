@@ -3,7 +3,6 @@ using MiddleWare.Log;
 using Middleware.Wm.Aurora.Shipment.Models;
 using Middleware.Wm.Aurora.Shipment.Repository;
 using Middleware.Wm.Manhattan.Shipment;
-using Middleware.Wm.Shipment.Models;
 
 namespace Middleware.Wm.Aurora.Shipment
 {

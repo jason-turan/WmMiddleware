@@ -39,12 +39,19 @@ namespace Middleware.Wm.ShipmentCancellationEmail
             foreach (var cancellation in cancellations)
             {
                 cancellation.Company = _cancellationEmailDistributionRepository.GetCompanyFromOrderNumber(cancellation.OrderNumber + "-" + cancellation.LineNumber);
-                var distribution = _cancellationEmailDistributionRepository.GetShipmentCancellationEmailDistribution(cancellation.Company);
-                SendEmail(cancellation, distribution);
+                if (cancellation.Company == null)
+                {
+                    _log.Warning("Cannot find company for cancelled order " + cancellation.OrderNumber + "-" + cancellation.LineNumber);
+                }
+                else
+                {
+                    var distribution = _cancellationEmailDistributionRepository.GetShipmentCancellationEmailDistribution(cancellation.Company);
+                    SendEmail(cancellation, distribution);    
+                }
             }
         }
 
-        private void SendEmail(Middleware.Wm.ShipmentCancellationEmail.Models.ShipmentCancellationEmail cancellation, ShipmentCancellationEmailDistribution distribution)
+        private void SendEmail(Models.ShipmentCancellationEmail cancellation, ShipmentCancellationEmailDistribution distribution)
         {            
             var smptServer =
                 _configurationManager.GetKey<string>(ConfigurationKey.SmptServer);

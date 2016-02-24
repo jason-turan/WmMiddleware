@@ -22,11 +22,11 @@ namespace Middleware.Wm.ShipmentCancellationEmail.Repository
             }
         }
 
-        public IEnumerable<Middleware.Wm.ShipmentCancellationEmail.Models.ShipmentCancellationEmail> GetShipmentEmailCancellations()
+        public IEnumerable<Models.ShipmentCancellationEmail> GetShipmentEmailCancellations()
         {
             using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
             {
-                return connection.Query<Middleware.Wm.ShipmentCancellationEmail.Models.ShipmentCancellationEmail>("sp_GetCancellationsForEmailNotification", commandType: CommandType.StoredProcedure);
+                return connection.Query<Models.ShipmentCancellationEmail>("sp_GetCancellationsForEmailNotification", commandType: CommandType.StoredProcedure);
             }
         }
 

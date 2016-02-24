@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Middleware.Wm.Shipment.Models;
 
 namespace Middleware.Wm.Manhattan.Shipment
 {
