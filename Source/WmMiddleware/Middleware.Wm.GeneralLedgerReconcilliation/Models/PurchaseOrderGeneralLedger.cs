@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using Middleware.Wm.Manhattan.Extensions;
 using WmMiddleware.Pix.Models.Generated;
 
 namespace Middleware.Wm.GeneralLedgerReconcilliation.Models
@@ -16,13 +18,8 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Models
 
         public string Sku
         {
-            get
-            {
-                return _pix.PackageBarcode;
-            }
+            get { return _pix.PackageBarcode; }
         }
-
-        public string QuantityInvoiced { get; set; }
 
         public string UnitOfMeasure
         {
@@ -31,25 +28,34 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Models
 
         public int NumberUnitsShipped
         {
-            get { return (int)_pix.UnitsShipped; }
+            get { return (int) _pix.UnitsShipped; }
         }
 
         public string PoNumber
         {
             get { return _pix.Ponumber; }
         }
-
-
-        public string InvoiceNumber { get; set; }
-
-        public DateTime InvoiceIssuedDate { get; set; }
+        
+        public string InvoiceNumber
+        {
+            get { return _pix.TransactionNumber.ToString(CultureInfo.InvariantCulture); }
+        }
+        
+        public DateTime InvoiceIssuedDate 
+        {
+            get { return MainframeExtensions.ParseDateTime(_pix.DateCreated, _pix.TimeCreated); }
+        }
 
         public DateTime PurchaserPoDate { get; set; }
 
-        public string Shippeddatetimereference { get; set; }
+        public string Shippeddatetimereference
+        {
+            get { return DateTime.Now.ToString("yyyyMMdd"); }
+        }
 
-        public int NumberLineItems { get; set; }
-
-        public decimal UnitPrice { get; set; }
+        public int LineItemNumber
+        {
+            get { return _pix.SequenceNumber; }
+        }
     }
 }

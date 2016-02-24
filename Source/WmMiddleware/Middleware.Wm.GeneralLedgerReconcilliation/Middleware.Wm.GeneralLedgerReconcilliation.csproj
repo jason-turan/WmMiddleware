@@ -49,6 +49,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,8 +63,9 @@
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
     <Compile Include="GeneralLedgerReconcilliationJob.cs" />
     <Compile Include="Models\DatabaseIntegrationsInventoryAdjustment.cs" />
-    <Compile Include="Models\DatabasePurchaseOrderDetailInterface.cs" />
-    <Compile Include="Models\DatabasePurchaseOrderHeaderInterface.cs" />
+    <Compile Include="Models\DatabasePurchaseOrderReceiptDetail.cs" />
+    <Compile Include="Models\DatabasePurchaseOrderReceiptDetailLineItem.cs" />
+    <Compile Include="Models\DatabasePurchaseOrderReceiptHeader.cs" />
     <Compile Include="Models\GeneralLedgerInventoryTransactionInterface.cs" />
     <Compile Include="Models\GeneralLedgerTransactionReasonCodeMap.cs" />
     <Compile Include="Models\PixGeneralLedgerProcessing.cs" />

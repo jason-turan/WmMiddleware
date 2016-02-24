@@ -78,7 +78,7 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Models
 
         public DateTime InventoryDate
         {
-            get { return ManhattanExtensions.ParseDateTime(_pix.DateCreated,0); }
+            get { return MainframeExtensions.ParseDateTime(_pix.DateCreated,0); }
         }
 
         public DateTime BatchDate

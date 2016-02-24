@@ -18,7 +18,7 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
             }
         }
 
-        public void InsertPurchaseOrderHeaderInterface(DatabasePurchaseOrderHeaderInterface databaseIntegrationsInventoryAdjustment)
+        public void InsertPurchaseOrderHeaderInterface(DatabasePurchaseOrderReceiptHeader databaseIntegrationsInventoryAdjustment)
         {
             using (var connection = DatabaseConnectionFactory.GetNbxWebConnection())
             {
@@ -26,7 +26,7 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
             }
         }
 
-        public void InsertPurchaseOrderDetailInterface(DatabasePurchaseOrderDetailInterface databaseIntegrationsInventoryAdjustment)
+        public void InsertPurchaseOrderDetailInterface(DatabasePurchaseOrderReceiptDetail databaseIntegrationsInventoryAdjustment)
         {
             using (var connection = DatabaseConnectionFactory.GetNbxWebConnection())
             {
@@ -58,6 +58,33 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
             {
                 connection.Open();
                 connection.Execute(insertInventorySyncProcessing, pixGeneralLedgerProcessing);
+            }
+        }
+
+        public int InsertDatabasePoReceiptHeader(DatabasePurchaseOrderReceiptHeader databasePurchaseReceiptHeader)
+        {
+            using (var connection = DatabaseConnectionFactory.GetNbxWebConnection())
+            {
+                connection.Open();
+                return (int) connection.Insert(databasePurchaseReceiptHeader);
+            }
+        }
+
+        public int InsertDatabasePurchaseOrderReceiptDetail(DatabasePurchaseOrderReceiptDetail databasePurchaseOrderDetailInterface)
+        {
+            using (var connection = DatabaseConnectionFactory.GetNbxWebConnection())
+            {
+                connection.Open();
+                return (int)connection.Insert(databasePurchaseOrderDetailInterface);
+            }
+        }
+
+        public void InsertDatabasePurchaseOrderReceiptDetailLineItem(DatabasePurchaseOrderReceiptDetailLineItem databasePurchaseOrderReceiptDetailLineItem)
+        {
+            using (var connection = DatabaseConnectionFactory.GetNbxWebConnection())
+            {
+                connection.Open();
+                connection.Insert(databasePurchaseOrderReceiptDetailLineItem);
             }
         }
     }

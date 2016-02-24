@@ -48,7 +48,7 @@ namespace Middleware.Wm.ProductReceivingng.Models
 
         public DateTime CreateDate
         {
-            get { return ManhattanExtensions.ParseDateTime(DateCreated, TimeCreated); }
+            get { return MainframeExtensions.ParseDateTime(DateCreated, TimeCreated); }
             set
             {
                 DateCreated = value.ToMainframeDate();

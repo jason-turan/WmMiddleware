@@ -89,6 +89,8 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation
             {
                 return;
             }
+
+            _generalLedgerReconcilliationRepository.ProcessPurchaseOrders(unprocessed);
         }
 
     }

@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace Middleware.Wm.Manhattan.Extensions
 {
-    public static class ManhattanExtensions
+    public static class MainframeExtensions
     {
         public static DateTime ParseDateTime(int date, int time, DateTimeStyles dateTimeStyles = DateTimeStyles.None)
         {

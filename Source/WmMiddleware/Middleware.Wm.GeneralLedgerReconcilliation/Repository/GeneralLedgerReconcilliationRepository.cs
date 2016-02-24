@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Transactions;
 using MiddleWare.Log;
 using Middleware.Wm.GeneralLedgerReconcilliation.Models;
 using Middleware.Wm.Pix.Models;
@@ -10,6 +13,9 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
     public class GeneralLedgerReconcilliationRepository : IGeneralLedgerReconcilliationRepository
     {
         private const string CharityTransactionCode = "90";
+        private const string PurchaseOrderInterfaceSenderId = "NONEDI";
+        private const string PurchaseOrderInterfaceRecipientId = "RNETR222";
+        private const string PurchaseOrderInterfaceIntegrationStatus = "NEW";
         private readonly ILog _log;
         private readonly IDatabaseRepository _databaseRepository;
 
@@ -61,17 +67,59 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
             }
         }
 
-        public void ProcessPurchaseorders(IEnumerable<ManhattanPerpetualInventoryTransfer> unprocessed)
+        public void ProcessPurchaseOrders(IList<ManhattanPerpetualInventoryTransfer> unprocessed)
         {
-            foreach (var pix in unprocessed)
+            foreach (var purchaseOrderGrouping in unprocessed.GroupBy(g => g.Ponumber))
             {
-                try
+                using (var scope = new TransactionScope())
                 {
+                    try
+                    {
+                        var firstRecordInGrouping = new PurchaseOrderGeneralLedger(purchaseOrderGrouping.First());
 
-                }
-                catch (Exception exception)
-                {
-                    _log.Exception("Fatal error processing pix transaction number " + pix.TransactionNumber, exception);
+                        var header = new DatabasePurchaseOrderReceiptHeader
+                        {
+                            SenderID = PurchaseOrderInterfaceSenderId,
+                            RecipientID = PurchaseOrderInterfaceRecipientId,
+                            TransactionDate = firstRecordInGrouping.Shippeddatetimereference
+                        };
+
+                        var detail = new DatabasePurchaseOrderReceiptDetail
+                        {
+                            POReceiptHeaderID = _databaseRepository.InsertDatabasePoReceiptHeader(header),
+                            PONumber = purchaseOrderGrouping.Key,
+                            InvoiceNumber = firstRecordInGrouping.InvoiceNumber,
+                            NumberLineItems = purchaseOrderGrouping.Count().ToString(CultureInfo.InvariantCulture),
+                            shippeddatetimereference = firstRecordInGrouping.Shippeddatetimereference,
+                            IntegrationStatus = PurchaseOrderInterfaceIntegrationStatus,
+                            DateAdded = DateTime.Now
+                        };
+
+                        var detailId = _databaseRepository.InsertDatabasePurchaseOrderReceiptDetail(detail);
+
+                        foreach (var pix in purchaseOrderGrouping.OrderBy(o => o.SequenceNumber))
+                        {
+                            var purchaseOrderGl = new PurchaseOrderGeneralLedger(pix);
+                            var databasePurchaseOrderReceiptDetailLineItem = new DatabasePurchaseOrderReceiptDetailLineItem
+                            {
+                                PoReceiptDetailId = detailId,
+                                LineNumber = purchaseOrderGl.LineItemNumber.ToString(CultureInfo.InvariantCulture),
+                                Upc = purchaseOrderGl.Sku,
+                                Uom = purchaseOrderGl.UnitOfMeasure,
+                                QuantityInvoiced = purchaseOrderGl.NumberUnitsShipped.ToString(CultureInfo.InvariantCulture),
+                                DateAdded = DateTime.Now
+                            };
+
+                            _databaseRepository.InsertDatabasePurchaseOrderReceiptDetailLineItem(databasePurchaseOrderReceiptDetailLineItem);
+                            MarkAsProcessed(pix);
+                        }
+
+                        scope.Complete();
+                    }
+                    catch (Exception exception)
+                    {
+                        _log.Exception("Fatal error processing pix transaction number " + purchaseOrderGrouping.Key, exception);
+                    }
                 }
             }
         }

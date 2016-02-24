@@ -9,6 +9,6 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
 
         void ProcessPurchaseReturns(IEnumerable<ManhattanPerpetualInventoryTransfer> unprocessed);
 
-        void ProcessPurchaseorders(IEnumerable<ManhattanPerpetualInventoryTransfer> unprocessed);
+        void ProcessPurchaseOrders(IList<ManhattanPerpetualInventoryTransfer> unprocessed);
     }
 }

@@ -88,7 +88,7 @@ namespace Middleware.Wm.Manhattan.Inventory
         [Write(false)]
         public DateTime CreateDate
         {
-            get { return ManhattanExtensions.ParseDateTime(DateCreated, TimeCreated); }
+            get { return MainframeExtensions.ParseDateTime(DateCreated, TimeCreated); }
             set
             {
                 DateCreated = value.ToMainframeDate();
@@ -133,7 +133,7 @@ namespace Middleware.Wm.Manhattan.Inventory
                     Zip = ShipToZip
                 },
                 OrderNumber = PickticketControlNumber, //MiscellaneousIns20Byte11, ?
-                OrderDate = (OrderDate != 0 ? ManhattanExtensions.ParseDateTime(OrderDate, 0, DateTimeStyles.AssumeUniversal) : ManhattanExtensions.ParseDateTime(DateCreated, 0, DateTimeStyles.AssumeUniversal)).ToUniversalTime(),
+                OrderDate = (OrderDate != 0 ? MainframeExtensions.ParseDateTime(OrderDate, 0, DateTimeStyles.AssumeUniversal) : MainframeExtensions.ParseDateTime(DateCreated, 0, DateTimeStyles.AssumeUniversal)).ToUniversalTime(),
                 BillingPhone = TelephoneNumber,
                 ShippingPhone = TelephoneNumber,
                 EmailAddress = "bncorder@newbalance.com",
