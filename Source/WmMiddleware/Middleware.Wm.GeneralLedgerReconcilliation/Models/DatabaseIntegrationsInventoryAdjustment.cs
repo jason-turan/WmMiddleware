@@ -14,7 +14,7 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Models
             batch_create_dt = glInterface.BatchDate;
             batch_id = glInterface.BatchIdentification;
             batch_source = glInterface.BatchSource;
-            gl_account = glInterface.GeneralLedgerAccount;
+            gl_account = glInterface.GeneralLedgerAccount.Trim();
             item_key_id = glInterface.Sku;
             UOM = glInterface.UnitOfMeasure;
             qty = glInterface.Quantity;
