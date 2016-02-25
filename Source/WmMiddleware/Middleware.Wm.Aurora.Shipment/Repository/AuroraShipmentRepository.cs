@@ -174,6 +174,8 @@ namespace Middleware.Wm.Aurora.Shipment.Repository
 
             foreach (var shipment in manhattanShipment)
             {
+                shipment.OriginalBatchControlNumber = shipment.Header.BatchControlNumber;
+
                 shipment.Header.BatchControlNumber = batchControlNumber;
                 shipment.Header.Company = ShippedCompany;
 

@@ -38,7 +38,7 @@ namespace Middleware.Wm.Aurora.Shipment
                 {
                     _auroraShipmentRepository.InsertManhattanShipmentBncProcessing(new ManhattanShipmentBncProcessing
                     {
-                        BatchControlNumber = manhattanShipment.Header.BatchControlNumber,
+                        BatchControlNumber = manhattanShipment.OriginalBatchControlNumber,
                         PickticketControlNumber = manhattanShipment.Header.PickticketControlNumber
                     });
                 }
