@@ -55,7 +55,8 @@ namespace Middleware.Wm.Manhattan.Shipment
             {
                 var parameters = new DynamicParameters();
                 parameters.Add("@ShipTo", criteria.ShipTo, DbType.String);
-
+                parameters.Add("@BncAuroraProcessing", criteria.UnprocessedForAuroraShipment, DbType.Boolean);
+                parameters.Add("@BncGeneralLedgerProcessing", criteria.UnprocessedForAuroraShipmentGeneralLedger, DbType.Boolean);
                 connection.Open();
                 
                 var headers = connection.Query<ManhattanShipmentHeader>("sp_FindManhattanShipmentHeader", 

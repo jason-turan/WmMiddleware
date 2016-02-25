@@ -1238,7 +1238,7 @@ namespace Middleware.Wm.Manhattan.Shipment
         public decimal MiscellaneousNum5
         {
             get { return MiscellaneousNum5_Backing / 100000.0m; }
-            set { MiscellaneousNum5_Backing = (int)(value * 100000.0m); }
+            set { MiscellaneousNum5_Backing = (long)(value * 100000.0m); }
         }
 
         private long _miscellaneousNum6;
@@ -1256,7 +1256,7 @@ namespace Middleware.Wm.Manhattan.Shipment
         public decimal MiscellaneousNum6
         {
             get { return MiscellaneousNum6_Backing / 100000.0m; }
-            set { MiscellaneousNum6_Backing = (int)(value * 100000.0m); }
+            set { MiscellaneousNum6_Backing = (long)(value * 100000.0m); }
         }
 
         private long _miscellaneousNum7;
@@ -1274,7 +1274,7 @@ namespace Middleware.Wm.Manhattan.Shipment
         public decimal MiscellaneousNum7
         {
             get { return MiscellaneousNum7_Backing / 100000.0m; }
-            set { MiscellaneousNum7_Backing = (int)(value * 100000.0m); }
+            set { MiscellaneousNum7_Backing = (long)(value * 100000.0m); }
         }
 
         private long _miscellaneousNum8;
@@ -1292,7 +1292,7 @@ namespace Middleware.Wm.Manhattan.Shipment
         public decimal MiscellaneousNum8
         {
             get { return MiscellaneousNum8_Backing / 100000.0m; }
-            set { MiscellaneousNum8_Backing = (int)(value * 100000.0m); }
+            set { MiscellaneousNum8_Backing = (long)(value * 100000.0m); }
         }
 
         private long _miscellaneousNum9;
@@ -1310,7 +1310,7 @@ namespace Middleware.Wm.Manhattan.Shipment
         public decimal MiscellaneousNum9
         {
             get { return MiscellaneousNum9_Backing / 100000.0m; }
-            set { MiscellaneousNum9_Backing = (int)(value * 100000.0m); }
+            set { MiscellaneousNum9_Backing = (long)(value * 100000.0m); }
         }
 
         private long _miscellaneousNum10;
@@ -1328,7 +1328,7 @@ namespace Middleware.Wm.Manhattan.Shipment
         public decimal MiscellaneousNum10
         {
             get { return MiscellaneousNum10_Backing / 100000.0m; }
-            set { MiscellaneousNum10_Backing = (int)(value * 100000.0m); }
+            set { MiscellaneousNum10_Backing = (long)(value * 100000.0m); }
         }
 
         private string _specialInstructionCode1;

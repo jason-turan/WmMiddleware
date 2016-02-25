@@ -25,7 +25,9 @@ namespace Middleware.Wm.Aurora.Shipment
         {
             var shipments = _shipmentRepository.FindManhattanShipmentHeaders(new ManhattanShipmentSearchCriteria
             {
-                ShipTo = ManhattanShipmentSearchCriteria.BrickAndClickShipTo
+                ShipTo = ManhattanShipmentSearchCriteria.BrickAndClickShipTo,
+                UnprocessedForAuroraShipmentGeneralLedger = false,
+                UnprocessedForAuroraShipment = true
             });
 
             if (shipments.Count > 0)

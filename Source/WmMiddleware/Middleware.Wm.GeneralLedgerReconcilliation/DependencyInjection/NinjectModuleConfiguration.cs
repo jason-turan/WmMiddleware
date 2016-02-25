@@ -3,6 +3,7 @@ using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.GeneralLedgerReconcilliation.Repository;
+using Middleware.Wm.Manhattan.Shipment;
 using Middleware.Wm.Pix.Repository;
 using Ninject.Modules;
 
@@ -19,6 +20,7 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.DependencyInjection
             Bind<IPerpetualInventoryTransferRepository>().To<PerpetualInventoryTransferRepository>();
             Bind<IGeneralLedgerReconcilliationRepository>().To<GeneralLedgerReconcilliationRepository>();
             Bind<IDatabaseRepository>().To<DatabaseRepository>();
+            Bind<IShipmentRepository>().To<ShipmentRepository>();
         }
     }
 }

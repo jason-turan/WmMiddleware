@@ -308,7 +308,7 @@ namespace Middleware.Wm.Manhattan.Shipment
         public decimal CartonVolume
         {
             get { return CartonVolume_Backing / 100000.0m; }
-            set { CartonVolume_Backing = (int)(value * 100000.0m); }
+            set { CartonVolume_Backing = (long)(value * 100000.0m); }
         }
 
         private long _estimatedWeight;
