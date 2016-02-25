@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Transactions;
+
 using MiddleWare.Log;
-using Middleware.Wm.Configuration.Database;
 using Middleware.Wm.Configuration.Transaction;
 using Middleware.Wm.GeneralLedgerReconcilliation.Models;
 using Middleware.Wm.Manhattan.Shipment;
@@ -108,9 +107,12 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
                     {
                         var gl = new ShipmentGeneralLedgerInventoryTransaction(lineItem);
                         _databaseRepository.InsertIntegrationInventoryAdjustment(new DatabaseIntegrationsInventoryAdjustment(gl));
+
+                        _log.Debug("Processed " + manhattanShipment.Header.PickticketControlNumber + " sku " + lineItem.PackageBarcode);
                     }
 
                     MarkManhtattanShipmentBrickAndClickProcessed(manhattanShipment);
+                    _log.Info("Completed GL for shipment bnc pick ticket control number " + manhattanShipment.Header.PickticketControlNumber);
                 }
                 catch (Exception exception)
                 {

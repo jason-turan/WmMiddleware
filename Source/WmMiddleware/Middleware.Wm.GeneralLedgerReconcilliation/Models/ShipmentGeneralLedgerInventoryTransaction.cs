@@ -22,6 +22,11 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Models
         {
             get
             {
+                if (_shipmentLineItem.ProductClass == null)
+                {
+                    return "17200-01-0000";
+                }
+
                 switch (_shipmentLineItem.ProductClass.ToUpper())
                 {
                     case "FOOTWEAR":
