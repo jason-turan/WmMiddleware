@@ -1,6 +1,0 @@
-CREATE TABLE ManhattanPerpetualInventoryTransferProcessing
-(
-	 ProcessingId INT PRIMARY KEY IDENTITY(1,1),
-	 ManhattanPerpetualInventoryTransferId INT FOREIGN KEY  REFERENCES ManhattanPerpetualInventoryTransfer(ManhattanPerpetualInventoryTransferId),
-	 ProcessedDate DATETIME NOT NULL
-)

@@ -2,28 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DbScripts", "DbScripts", "{A74B9459-51A0-4D56-8F5A-F17340F24F27}"
-	ProjectSection(SolutionItems) = preProject
-		ConfigurationItem.sql.txt = ConfigurationItem.sql.txt
-		Enviornment.sql.txt = Enviornment.sql.txt
-		IntegrationTask.sql.txt = IntegrationTask.sql.txt
-		Job.Sql.txt = Job.Sql.txt
-		JobHistory.Sql.txt = JobHistory.Sql.txt
-		Log.sql.txt = Log.sql.txt
-		LoggingAndFileMaintenance.sql.txt = LoggingAndFileMaintenance.sql.txt
-		ManhattanPerpetualInventoryTransferProcessing.sql.txt = ManhattanPerpetualInventoryTransferProcessing.sql.txt
-		ShipmentCancellationEmailDistribution.sql.txt = ShipmentCancellationEmailDistribution.sql.txt
-		TransferControl.Sql.txt = TransferControl.Sql.txt
-		TransferControlFileType.Sql.txt = TransferControlFileType.Sql.txt
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{110F3F5C-83ED-4683-9C4E-97AEF4B5D522}"
-	ProjectSection(SolutionItems) = preProject
-		AddJobs.sql.txt = AddJobs.sql.txt
-		ConfigItems.sql.txt = ConfigItems.sql.txt
-		EnvironmentData.sql.txt = EnvironmentData.sql.txt
-		LoggingAndFileMaintenanceData.sql.txt = LoggingAndFileMaintenanceData.sql.txt
-		TransferControlFileTypeData.Sql.txt = TransferControlFileTypeData.Sql.txt
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C5BB331B-3C14-4966-AC92-9F5907DD2567}"
 	ProjectSection(SolutionItems) = preProject
@@ -40,51 +18,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Scheduler.Web", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Integration", "Middleware.Integration\Middleware.Integration.csproj", "{BD53A64C-B782-4BD3-A771-4D2938DBEBFC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Generated", "Generated", "{3397B97D-15E7-4FE0-A9D4-F31719FAD773}"
-	ProjectSection(SolutionItems) = preProject
-		ManhattanPerpetualInventoryTransfer.sql.txt = ManhattanPerpetualInventoryTransfer.sql.txt
-		ManhattanShipmentCartonDetail.sql.txt = ManhattanShipmentCartonDetail.sql.txt
-		ManhattanShipmentCartonHeader.sql.txt = ManhattanShipmentCartonHeader.sql.txt
-		ManhattanShipmentHeader.sql.txt = ManhattanShipmentHeader.sql.txt
-		ManhattanShipmentLineItem.sql.txt = ManhattanShipmentLineItem.sql.txt
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WmTransactions", "WmTransactions", "{A45F0745-0FA6-4A30-A824-B94D5348F596}"
-	ProjectSection(SolutionItems) = preProject
-		ManhattanConditionCode.sql.txt = ManhattanConditionCode.sql.txt
-		ManhattanInventorySync.sql.txt = ManhattanInventorySync.sql.txt
-		ManhattanPerpetualInventoryTransferGeneralLedgerProcessing.sql.txt = ManhattanPerpetualInventoryTransferGeneralLedgerProcessing.sql.txt
-		ManhattanPerpetualInventoryTransferProcessing.sql.txt = ManhattanPerpetualInventoryTransferProcessing.sql.txt
-		ManhattanShipmentCancellationEmailProcessing.sql.txt = ManhattanShipmentCancellationEmailProcessing.sql.txt
-		ManhattanShipmentCartonDetail.sql.txt = ManhattanShipmentCartonDetail.sql.txt
-		ManhattanShipmentCartonHeader.sql.txt = ManhattanShipmentCartonHeader.sql.txt
-		ManhattanShipmentHeader.sql.txt = ManhattanShipmentHeader.sql.txt
-		ManhattanShipmentLineItem.sql.txt = ManhattanShipmentLineItem.sql.txt
-		ReturnReasonFromROWProcessing.sql.txt = ReturnReasonFromROWProcessing.sql.txt
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Aurora.TransferControl", "Middleware.WM.Aurora.TransferControl\Middleware.Wm.Aurora.TransferControl.csproj", "{FA926702-2FC7-4C85-8ECD-91F2424F0037}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StoredProcedures", "StoredProcedures", "{C940A561-5E39-404F-BCF7-F051BCA0B1A5}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NBXWeb", "NBXWeb", "{1160473C-5A7C-435F-802E-532E5DC20007}"
-	ProjectSection(SolutionItems) = preProject
-		sp_GetReturnReasonsFromROW.sql.txt = sp_GetReturnReasonsFromROW.sql.txt
-		sp_InsertReturnReasonFromROWProcessing.sql.txt = sp_InsertReturnReasonFromROWProcessing.sql.txt
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WarehouseManagement", "WarehouseManagement", "{B934365D-F67A-484D-846A-F0D1DD023BB4}"
-	ProjectSection(SolutionItems) = preProject
-		sp_GetIntegrationTask.sql.txt = sp_GetIntegrationTask.sql.txt
-		sp_GetIntegrationTaskEndpoint.sql.txt = sp_GetIntegrationTaskEndpoint.sql.txt
-		sp_GetShipmentCancellationEmailDistribution.sql.txt = sp_GetShipmentCancellationEmailDistribution.sql.txt
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WmTransactions", "WmTransactions", "{573405B0-EA3B-4C82-9126-63897A60E03F}"
-	ProjectSection(SolutionItems) = preProject
-		sp_FindManhattanPerpetualInventoryTransfers.sql.txt = sp_FindManhattanPerpetualInventoryTransfers.sql.txt
-		sp_GetCancellationsForEmailNotification.sql.txt = sp_GetCancellationsForEmailNotification.sql.txt
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Aurora.PickTickets", "Middleware.Wm.Aurora.PickTickets\Middleware.Wm.Aurora.PickTickets.csproj", "{0F65C07A-002D-46FB-8F0A-C9738B25D054}"
 EndProject
@@ -132,9 +66,141 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.TransferContr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.TransferControl.Tests", "Middleware.Wm.TransferControl.Tests\Middleware.Wm.TransferControl.Tests.csproj", "{F1D97E59-C5C6-4C9F-B83D-30800B159890}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegrationPOC", "IntegrationPOC", "{8D898B3C-12A9-43E2-94E7-6485AB56DDC2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WarehouseManagement", "WarehouseManagement", "{505F6D40-8F67-442F-B87C-6F321C542B6F}"
 	ProjectSection(SolutionItems) = preProject
-		integrationPoc_AllTablesAndData.sql.txt = integrationPoc_AllTablesAndData.sql.txt
+		Middleware.Database.Scripts\WarehouseManagement\dbo.CarrierServiceCodes.Table.sql = Middleware.Database.Scripts\WarehouseManagement\dbo.CarrierServiceCodes.Table.sql
+		Middleware.Database.Scripts\WarehouseManagement\dbo.ConfigurationItem.Table.sql = Middleware.Database.Scripts\WarehouseManagement\dbo.ConfigurationItem.Table.sql
+		Middleware.Database.Scripts\WarehouseManagement\dbo.CountryCodes.Table.sql = Middleware.Database.Scripts\WarehouseManagement\dbo.CountryCodes.Table.sql
+		Middleware.Database.Scripts\WarehouseManagement\dbo.Environment.Table.sql = Middleware.Database.Scripts\WarehouseManagement\dbo.Environment.Table.sql
+		Middleware.Database.Scripts\WarehouseManagement\dbo.GeneralLedgerTransactionReasonCodeMap.Table.sql = Middleware.Database.Scripts\WarehouseManagement\dbo.GeneralLedgerTransactionReasonCodeMap.Table.sql
+		Middleware.Database.Scripts\WarehouseManagement\dbo.GetIntegrationTaskEndpoint.StoredProcedure.sql = Middleware.Database.Scripts\WarehouseManagement\dbo.GetIntegrationTaskEndpoint.StoredProcedure.sql
+		Middleware.Database.Scripts\WarehouseManagement\dbo.Identity.Table.sql = Middleware.Database.Scripts\WarehouseManagement\dbo.Identity.Table.sql
+		Middleware.Database.Scripts\WarehouseManagement\dbo.Job.Table.sql = Middleware.Database.Scripts\WarehouseManagement\dbo.Job.Table.sql
+		Middleware.Database.Scripts\WarehouseManagement\dbo.JobHistory.Table.sqltxt = Middleware.Database.Scripts\WarehouseManagement\dbo.JobHistory.Table.sqltxt
+		Middleware.Database.Scripts\WarehouseManagement\dbo.Log.Table.sql.txt = Middleware.Database.Scripts\WarehouseManagement\dbo.Log.Table.sql.txt
+		Middleware.Database.Scripts\WarehouseManagement\dbo.LoggingAndFileMaintenance.Table.sql.txt = Middleware.Database.Scripts\WarehouseManagement\dbo.LoggingAndFileMaintenance.Table.sql.txt
+		Middleware.Database.Scripts\WarehouseManagement\dbo.ShipmentCancellationEmailDistribution.Table.sql = Middleware.Database.Scripts\WarehouseManagement\dbo.ShipmentCancellationEmailDistribution.Table.sql
+		Middleware.Database.Scripts\WarehouseManagement\dbo.SKUTableType.UserDefinedTableType.sql = Middleware.Database.Scripts\WarehouseManagement\dbo.SKUTableType.UserDefinedTableType.sql
+		Middleware.Database.Scripts\WarehouseManagement\dbo.sp_GetBatchControlNumber.StoredProcedure.sql = Middleware.Database.Scripts\WarehouseManagement\dbo.sp_GetBatchControlNumber.StoredProcedure.sql
+		Middleware.Database.Scripts\WarehouseManagement\dbo.sp_GetGeneralLedgerTransactionReasonCodeMap.StoredProcedure.sql = Middleware.Database.Scripts\WarehouseManagement\dbo.sp_GetGeneralLedgerTransactionReasonCodeMap.StoredProcedure.sql
+		Middleware.Database.Scripts\WarehouseManagement\dbo.sp_GetIntegrationTask.StoredProcedure.sql = Middleware.Database.Scripts\WarehouseManagement\dbo.sp_GetIntegrationTask.StoredProcedure.sql
+		Middleware.Database.Scripts\WarehouseManagement\dbo.sp_GetIntegrationTaskEndpoint.StoredProcedure.sql = Middleware.Database.Scripts\WarehouseManagement\dbo.sp_GetIntegrationTaskEndpoint.StoredProcedure.sql
+		Middleware.Database.Scripts\WarehouseManagement\dbo.sp_GetShipmentCancellationEmailDistribution.StoredProcedure.sql = Middleware.Database.Scripts\WarehouseManagement\dbo.sp_GetShipmentCancellationEmailDistribution.StoredProcedure.sql
+		Middleware.Database.Scripts\WarehouseManagement\dbo.sp_GetSpecialInstructions.StoredProcedure.sql = Middleware.Database.Scripts\WarehouseManagement\dbo.sp_GetSpecialInstructions.StoredProcedure.sql
+		Middleware.Database.Scripts\WarehouseManagement\dbo.SpecialInstruction.Table.sql = Middleware.Database.Scripts\WarehouseManagement\dbo.SpecialInstruction.Table.sql
+		Middleware.Database.Scripts\WarehouseManagement\dbo.SpecialInstructionSKU.Table.sql = Middleware.Database.Scripts\WarehouseManagement\dbo.SpecialInstructionSKU.Table.sql
+		Middleware.Database.Scripts\WarehouseManagement\dbo.TransferControl.Table.sql = Middleware.Database.Scripts\WarehouseManagement\dbo.TransferControl.Table.sql
+		Middleware.Database.Scripts\WarehouseManagement\dbo.TransferControlFile.Table.sql = Middleware.Database.Scripts\WarehouseManagement\dbo.TransferControlFile.Table.sql
+		Middleware.Database.Scripts\WarehouseManagement\dbo.TransferControlFileType.Table.sql = Middleware.Database.Scripts\WarehouseManagement\dbo.TransferControlFileType.Table.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WmTransactions", "WmTransactions", "{ED27989D-27C6-47AD-A374-A2722C9B2EDC}"
+	ProjectSection(SolutionItems) = preProject
+		Middleware.Database.Scripts\WmTransactions\dbo.AuroraPickTicketDetail.Table.sql = Middleware.Database.Scripts\WmTransactions\dbo.AuroraPickTicketDetail.Table.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.AuroraPickTicketHeader.Table.sql = Middleware.Database.Scripts\WmTransactions\dbo.AuroraPickTicketHeader.Table.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.AuroraPickTicketInstruction.Table.sql = Middleware.Database.Scripts\WmTransactions\dbo.AuroraPickTicketInstruction.Table.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.ECommSize.UserDefinedFunction.sql = Middleware.Database.Scripts\WmTransactions\dbo.ECommSize.UserDefinedFunction.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.InventoryPixProcessing.Table.sql = Middleware.Database.Scripts\WmTransactions\dbo.InventoryPixProcessing.Table.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.InventoryPixProcessingTable.UserDefinedTableType.sql = Middleware.Database.Scripts\WmTransactions\dbo.InventoryPixProcessingTable.UserDefinedTableType.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.InventoryShipmentProcessing.Table.sql = Middleware.Database.Scripts\WmTransactions\dbo.InventoryShipmentProcessing.Table.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.InventoryShipmentProcessingTable.UserDefinedTableType.sql = Middleware.Database.Scripts\WmTransactions\dbo.InventoryShipmentProcessingTable.UserDefinedTableType.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.InventorySyncProcessing.Table.sql = Middleware.Database.Scripts\WmTransactions\dbo.InventorySyncProcessing.Table.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.KioskOrderDetailExport.Table.sql = Middleware.Database.Scripts\WmTransactions\dbo.KioskOrderDetailExport.Table.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.KioskOrderExport.Table.sql = Middleware.Database.Scripts\WmTransactions\dbo.KioskOrderExport.Table.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.KioskOrderExportProcessing.Table.sql = Middleware.Database.Scripts\WmTransactions\dbo.KioskOrderExportProcessing.Table.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.ManhattanConditionCode.Table.sql = Middleware.Database.Scripts\WmTransactions\dbo.ManhattanConditionCode.Table.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.ManhattanInventorySync.Table.sql = Middleware.Database.Scripts\WmTransactions\dbo.ManhattanInventorySync.Table.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.ManhattanPerpetualInventoryTransfer.Table.sql = Middleware.Database.Scripts\WmTransactions\dbo.ManhattanPerpetualInventoryTransfer.Table.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.ManhattanPerpetualInventoryTransferGeneralLedgerProcessing.Table.sql = Middleware.Database.Scripts\WmTransactions\dbo.ManhattanPerpetualInventoryTransferGeneralLedgerProcessing.Table.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.ManhattanPerpetualInventoryTransferProcessing.Table.sql = Middleware.Database.Scripts\WmTransactions\dbo.ManhattanPerpetualInventoryTransferProcessing.Table.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.ManhattanShipmentBncGlProcessing.Table.sql = Middleware.Database.Scripts\WmTransactions\dbo.ManhattanShipmentBncGlProcessing.Table.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.ManhattanShipmentBncProcessing.Table.sql = Middleware.Database.Scripts\WmTransactions\dbo.ManhattanShipmentBncProcessing.Table.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.ManhattanShipmentCartonDetail.Table.sql = Middleware.Database.Scripts\WmTransactions\dbo.ManhattanShipmentCartonDetail.Table.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.ManhattanShipmentCartonHeader.Table.sql = Middleware.Database.Scripts\WmTransactions\dbo.ManhattanShipmentCartonHeader.Table.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.ManhattanShipmentHeader.Table.sql = Middleware.Database.Scripts\WmTransactions\dbo.ManhattanShipmentHeader.Table.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.ManhattanShipmentLineItem.Table.sql = Middleware.Database.Scripts\WmTransactions\dbo.ManhattanShipmentLineItem.Table.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.ManhattanShipmentLineItemCancellationProcessing.Table.sql = Middleware.Database.Scripts\WmTransactions\dbo.ManhattanShipmentLineItemCancellationProcessing.Table.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.OrderNumberTable.UserDefinedTableType.sql = Middleware.Database.Scripts\WmTransactions\dbo.OrderNumberTable.UserDefinedTableType.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.PickTicketConfirmationOrderProcessing.Table.sql = Middleware.Database.Scripts\WmTransactions\dbo.PickTicketConfirmationOrderProcessing.Table.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.sp_AuditStlInventory.StoredProcedure.sql = Middleware.Database.Scripts\WmTransactions\dbo.sp_AuditStlInventory.StoredProcedure.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.sp_FindManhattanInventorySync.StoredProcedure.sql = Middleware.Database.Scripts\WmTransactions\dbo.sp_FindManhattanInventorySync.StoredProcedure.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.sp_FindManhattanPerpetualInventoryTransfers.StoredProcedure.sql = Middleware.Database.Scripts\WmTransactions\dbo.sp_FindManhattanPerpetualInventoryTransfers.StoredProcedure.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.sp_FindManhattanPerpetualInventoryTransfers2.StoredProcedure.sql = Middleware.Database.Scripts\WmTransactions\dbo.sp_FindManhattanPerpetualInventoryTransfers2.StoredProcedure.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.sp_FindManhattanShipmentHeader.StoredProcedure.sql = Middleware.Database.Scripts\WmTransactions\dbo.sp_FindManhattanShipmentHeader.StoredProcedure.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.sp_FindManhattanShipmentLineItems.StoredProcedure.sql = Middleware.Database.Scripts\WmTransactions\dbo.sp_FindManhattanShipmentLineItems.StoredProcedure.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.sp_GetCancellationsForEmailNotification.StoredProcedure.sql = Middleware.Database.Scripts\WmTransactions\dbo.sp_GetCancellationsForEmailNotification.StoredProcedure.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.sp_GetCompanyFromOrderNumber.StoredProcedure.sql = Middleware.Database.Scripts\WmTransactions\dbo.sp_GetCompanyFromOrderNumber.StoredProcedure.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.sp_GetManhattanShipmentCartonDetails.StoredProcedure.sql = Middleware.Database.Scripts\WmTransactions\dbo.sp_GetManhattanShipmentCartonDetails.StoredProcedure.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.sp_GetManhattanShipmentCartonHeader.StoredProcedure.sql = Middleware.Database.Scripts\WmTransactions\dbo.sp_GetManhattanShipmentCartonHeader.StoredProcedure.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.sp_GetManhattanShipmentLineItem.StoredProcedure.sql = Middleware.Database.Scripts\WmTransactions\dbo.sp_GetManhattanShipmentLineItem.StoredProcedure.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.sp_InsertInventoryPixProcessing.StoredProcedure.sql = Middleware.Database.Scripts\WmTransactions\dbo.sp_InsertInventoryPixProcessing.StoredProcedure.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.sp_InsertInventoryShipmentProcessing.StoredProcedure.sql = Middleware.Database.Scripts\WmTransactions\dbo.sp_InsertInventoryShipmentProcessing.StoredProcedure.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.sp_InsertInventorySyncProcessing.StoredProcedure.sql = Middleware.Database.Scripts\WmTransactions\dbo.sp_InsertInventorySyncProcessing.StoredProcedure.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.sp_UpdateShipmentEmailStatus.StoredProcedure.sql = Middleware.Database.Scripts\WmTransactions\dbo.sp_UpdateShipmentEmailStatus.StoredProcedure.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.sp_UpdateSTLInventory.StoredProcedure.sql = Middleware.Database.Scripts\WmTransactions\dbo.sp_UpdateSTLInventory.StoredProcedure.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.STLInventory.Table.sql = Middleware.Database.Scripts\WmTransactions\dbo.STLInventory.Table.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.STLInventory_Latest.View.sql = Middleware.Database.Scripts\WmTransactions\dbo.STLInventory_Latest.View.sql
+		Middleware.Database.Scripts\WmTransactions\dbo.StlInventoryUpdateTable.UserDefinedTableType.sql = Middleware.Database.Scripts\WmTransactions\dbo.StlInventoryUpdateTable.UserDefinedTableType.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NBXWeb", "NBXWeb", "{7E28CEE8-1482-49B6-B994-68CF94832193}"
+	ProjectSection(SolutionItems) = preProject
+		Middleware.Database.Scripts\NBXWEB\dbo.BnC_Inventory_Cache.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.BnC_Inventory_Cache.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.Cadre_DropShipConfirmation_Detail.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.Cadre_DropShipConfirmation_Detail.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.Cadre_DropShipConfirmation_Header.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.Cadre_DropShipConfirmation_Header.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.GP_header.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.GP_header.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.GP_line_items.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.GP_line_items.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.Integrations_Inventory_Adjustment.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.Integrations_Inventory_Adjustment.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.InterfaceShipmentConfirmationDetail.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.InterfaceShipmentConfirmationDetail.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.InterfaceShipmentConfirmationHeader.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.InterfaceShipmentConfirmationHeader.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.Kiosk_Orderheader.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.Kiosk_Orderheader.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.Kiosk_OrderLineItems.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.Kiosk_OrderLineItems.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.Kiosk_ParsedShipConfirmation_Detail.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.Kiosk_ParsedShipConfirmation_Detail.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.Kiosk_ParsedShipConfirmation_Header.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.Kiosk_ParsedShipConfirmation_Header.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.Kiosk_ShipmentConfirmationDetail.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.Kiosk_ShipmentConfirmationDetail.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.Kiosk_ShipmentConfirmationHeader.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.Kiosk_ShipmentConfirmationHeader.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.NBWE_Inventory_Cache.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.NBWE_Inventory_Cache.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.OrderNumberTable.UserDefinedTableType.sql = Middleware.Database.Scripts\NBXWEB\dbo.OrderNumberTable.UserDefinedTableType.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.OverrideShipmentNote.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.OverrideShipmentNote.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.PODetail_Interface.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.PODetail_Interface.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.POHeader_Interface.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.POHeader_Interface.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.POReceiptDetail.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.POReceiptDetail.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.POReceiptDetail_LineItem.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.POReceiptDetail_LineItem.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.POReceiptHeader.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.POReceiptHeader.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.PurchaseOrderTable.UserDefinedTableType.sql = Middleware.Database.Scripts\NBXWEB\dbo.PurchaseOrderTable.UserDefinedTableType.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.ReturnReasonFromROWProcessing.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.ReturnReasonFromROWProcessing.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.ROW_Login.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.ROW_Login.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.ROW_Notes.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.ROW_Notes.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.ROW_Return.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.ROW_Return.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.ShipConfirmation_Detail.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.ShipConfirmation_Detail.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.ShipConfirmation_Detail_Archive.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.ShipConfirmation_Detail_Archive.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.ShipConfirmation_Detailtest.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.ShipConfirmation_Detailtest.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.ShipConfirmation_Header.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.ShipConfirmation_Header.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.ShipConfirmation_Header_Archive.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.ShipConfirmation_Header_Archive.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.ShipConfirmation_Headertest.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.ShipConfirmation_Headertest.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.ShippingNotificationTable.UserDefinedTableType.sql = Middleware.Database.Scripts\NBXWEB\dbo.ShippingNotificationTable.UserDefinedTableType.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.sp_GetAccessoryItemMaster.StoredProcedure.sql = Middleware.Database.Scripts\NBXWEB\dbo.sp_GetAccessoryItemMaster.StoredProcedure.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.sp_GetCompanyFromOrderNumber.StoredProcedure.sql = Middleware.Database.Scripts\NBXWEB\dbo.sp_GetCompanyFromOrderNumber.StoredProcedure.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.sp_GetNewOrders.StoredProcedure.sql = Middleware.Database.Scripts\NBXWEB\dbo.sp_GetNewOrders.StoredProcedure.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.sp_GetNewPurchaseOrders.StoredProcedure.sql = Middleware.Database.Scripts\NBXWEB\dbo.sp_GetNewPurchaseOrders.StoredProcedure.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.sp_GetNewReturns.StoredProcedure.sql = Middleware.Database.Scripts\NBXWEB\dbo.sp_GetNewReturns.StoredProcedure.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.sp_GetNewShippingNotifications.StoredProcedure.sql = Middleware.Database.Scripts\NBXWEB\dbo.sp_GetNewShippingNotifications.StoredProcedure.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.sp_GetReturnReasonsFromROW.StoredProcedure.sql = Middleware.Database.Scripts\NBXWEB\dbo.sp_GetReturnReasonsFromROW.StoredProcedure.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.sp_InsertReturnReasonFromROWProcessing.StoredProcedure.sql = Middleware.Database.Scripts\NBXWEB\dbo.sp_InsertReturnReasonFromROWProcessing.StoredProcedure.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.sp_PopulateAsnItems.StoredProcedure.sql = Middleware.Database.Scripts\NBXWEB\dbo.sp_PopulateAsnItems.StoredProcedure.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.sp_PopulatePoItems.StoredProcedure.sql = Middleware.Database.Scripts\NBXWEB\dbo.sp_PopulatePoItems.StoredProcedure.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.sp_RefreshCache.StoredProcedure.sql = Middleware.Database.Scripts\NBXWEB\dbo.sp_RefreshCache.StoredProcedure.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.sp_TestAsns.StoredProcedure.sql = Middleware.Database.Scripts\NBXWEB\dbo.sp_TestAsns.StoredProcedure.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.sp_TestOrders.StoredProcedure.sql = Middleware.Database.Scripts\NBXWEB\dbo.sp_TestOrders.StoredProcedure.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.sp_TestPOs.StoredProcedure.sql = Middleware.Database.Scripts\NBXWEB\dbo.sp_TestPOs.StoredProcedure.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.sp_UpdateOrderStatus.StoredProcedure.sql = Middleware.Database.Scripts\NBXWEB\dbo.sp_UpdateOrderStatus.StoredProcedure.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.sp_UpdatePurchaseOrderStatus.StoredProcedure.sql = Middleware.Database.Scripts\NBXWEB\dbo.sp_UpdatePurchaseOrderStatus.StoredProcedure.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.sp_UpdateShippingNotificationStatus.StoredProcedure.sql = Middleware.Database.Scripts\NBXWEB\dbo.sp_UpdateShippingNotificationStatus.StoredProcedure.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.TempMock_v_ReturnReasonsfromROW.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.TempMock_v_ReturnReasonsfromROW.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.tstPOP10100.Table.sql = Middleware.Database.Scripts\NBXWEB\dbo.tstPOP10100.Table.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.usp_GetBNCOrders.StoredProcedure.sql = Middleware.Database.Scripts\NBXWEB\dbo.usp_GetBNCOrders.StoredProcedure.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.usp_InsertShipmentConfirmation.StoredProcedure.sql = Middleware.Database.Scripts\NBXWEB\dbo.usp_InsertShipmentConfirmation.StoredProcedure.sql
+		Middleware.Database.Scripts\NBXWEB\dbo.v_ReturnReasonsfromROW.View.sql = Middleware.Database.Scripts\NBXWEB\dbo.v_ReturnReasonsfromROW.View.sql
 	EndProjectSection
 EndProject
 Global
@@ -534,13 +600,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{110F3F5C-83ED-4683-9C4E-97AEF4B5D522} = {A74B9459-51A0-4D56-8F5A-F17340F24F27}
-		{3397B97D-15E7-4FE0-A9D4-F31719FAD773} = {A74B9459-51A0-4D56-8F5A-F17340F24F27}
-		{A45F0745-0FA6-4A30-A824-B94D5348F596} = {A74B9459-51A0-4D56-8F5A-F17340F24F27}
-		{C940A561-5E39-404F-BCF7-F051BCA0B1A5} = {A74B9459-51A0-4D56-8F5A-F17340F24F27}
-		{8D898B3C-12A9-43E2-94E7-6485AB56DDC2} = {A74B9459-51A0-4D56-8F5A-F17340F24F27}
-		{1160473C-5A7C-435F-802E-532E5DC20007} = {C940A561-5E39-404F-BCF7-F051BCA0B1A5}
-		{B934365D-F67A-484D-846A-F0D1DD023BB4} = {C940A561-5E39-404F-BCF7-F051BCA0B1A5}
-		{573405B0-EA3B-4C82-9126-63897A60E03F} = {C940A561-5E39-404F-BCF7-F051BCA0B1A5}
+		{505F6D40-8F67-442F-B87C-6F321C542B6F} = {A74B9459-51A0-4D56-8F5A-F17340F24F27}
+		{ED27989D-27C6-47AD-A374-A2722C9B2EDC} = {A74B9459-51A0-4D56-8F5A-F17340F24F27}
+		{7E28CEE8-1482-49B6-B994-68CF94832193} = {A74B9459-51A0-4D56-8F5A-F17340F24F27}
 	EndGlobalSection
 EndGlobal

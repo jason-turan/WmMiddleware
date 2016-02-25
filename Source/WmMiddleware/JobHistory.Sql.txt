@@ -1,9 +1,0 @@
-create table JobHistory
-(
-JobHistoryId INT PRIMARY KEY IDENTITY (1,1),
-JobId INT FOREIGN KEY REFERENCES Job(JobId),
-RunDate DATETIME,
-RunStatus VARCHAR(100),
-Machine VARCHAR(100),
-UserName VARCHAR(100)
-)
