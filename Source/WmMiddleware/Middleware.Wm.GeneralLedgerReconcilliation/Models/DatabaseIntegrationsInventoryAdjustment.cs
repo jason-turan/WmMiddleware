@@ -8,7 +8,7 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Models
     [Table("Integrations_Inventory_Adjustment")]
     public class DatabaseIntegrationsInventoryAdjustment
     {
-        public DatabaseIntegrationsInventoryAdjustment(GeneralLedgerInventoryTransactionInterface glInterface)
+        public DatabaseIntegrationsInventoryAdjustment(IGeneralLedgerInventoryTransaction glInterface)
         {
             created_date = glInterface.BatchDate;
             batch_create_dt = glInterface.BatchDate;

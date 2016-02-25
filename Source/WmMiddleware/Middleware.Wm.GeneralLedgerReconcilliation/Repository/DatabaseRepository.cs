@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using Dapper;
@@ -58,6 +59,23 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
             {
                 connection.Open();
                 connection.Execute(insertInventorySyncProcessing, pixGeneralLedgerProcessing);
+            }
+        }
+
+        public void InsertManhattanShipmentBrickAndClickProcessing(ManhattanShipmentBrickAndClickProcessing manhattanShipmentBrickAndClickProcessing)
+        {
+            const string insertSql = @"INSERT INTO ManhattanShipmentBncGlProcessing(PickticketControlNumber, BatchControlNumber, ProcessedDate)
+                                       VALUES(@PickticketControlNumber, @BatchControlNumber, @ProcessedDate)";
+
+            var parameters = new DynamicParameters();
+
+            parameters.Add("@ProcessedDate", DateTime.Now, DbType.DateTime);
+            parameters.Add("@PickticketControlNumber", manhattanShipmentBrickAndClickProcessing.PickticketControlNumber, DbType.String);
+            parameters.Add("@BatchControlNumber", manhattanShipmentBrickAndClickProcessing.BatchControlNumber, DbType.String);
+
+            using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
+            {
+                connection.Execute(insertSql, parameters);
             }
         }
 

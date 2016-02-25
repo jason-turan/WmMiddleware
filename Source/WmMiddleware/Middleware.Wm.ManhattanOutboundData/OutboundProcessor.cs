@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Transactions;
 using Middleware.Jobs;
 using Middleware.Jobs.Models;
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using Middleware.Wm.Configuration;
+using Middleware.Wm.Configuration.Transaction;
 using Middleware.Wm.Manhattan.DataFiles;
 using Middleware.Wm.TransferControl.Control;
 using Middleware.Wm.TransferControl.Models;
@@ -46,7 +46,7 @@ namespace Middleware.Wm.Outbound
             {
                 try
                 {
-                    using (var transactionScope = new TransactionScope())
+                    using (var transactionScope = Scope.CreateTransactionScope())
                     {
                         ProcessFiles(transferControl.Files);
                         UpdateTransferControl(transferControl);

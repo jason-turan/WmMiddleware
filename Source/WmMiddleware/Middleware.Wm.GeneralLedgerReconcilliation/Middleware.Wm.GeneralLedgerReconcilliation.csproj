@@ -66,10 +66,14 @@
     <Compile Include="Models\DatabasePurchaseOrderReceiptDetail.cs" />
     <Compile Include="Models\DatabasePurchaseOrderReceiptDetailLineItem.cs" />
     <Compile Include="Models\DatabasePurchaseOrderReceiptHeader.cs" />
-    <Compile Include="Models\GeneralLedgerInventoryTransactionInterface.cs" />
+    <Compile Include="Models\GeneralLedgerInventoryTransaction.cs" />
+    <Compile Include="Models\PixGeneralLedgerInventoryTransaction.cs" />
     <Compile Include="Models\GeneralLedgerTransactionReasonCodeMap.cs" />
+    <Compile Include="Models\IGeneralLedgerInventoryTransaction.cs" />
+    <Compile Include="Models\ManhattanShipmentBrickAndClickProcessing.cs" />
     <Compile Include="Models\PixGeneralLedgerProcessing.cs" />
     <Compile Include="Models\PurchaseOrderGeneralLedger.cs" />
+    <Compile Include="Models\ShipmentGeneralLedgerInventoryTransaction.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\DatabaseRepository.cs" />

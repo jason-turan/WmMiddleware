@@ -6,12 +6,12 @@ using WmMiddleware.Pix.Models.Generated;
 
 namespace Middleware.Wm.GeneralLedgerReconcilliation.Models
 {
-    public class GeneralLedgerInventoryTransactionInterface
+    public class PixGeneralLedgerInventoryTransaction : GeneralLedgerInventoryTransaction, IGeneralLedgerInventoryTransaction
     {
         private readonly ManhattanPerpetualInventoryTransfer _pix;
         private readonly IList<GeneralLedgerTransactionReasonCodeMap> _generalLedgerTransactionReasonCodeMap;
 
-        public GeneralLedgerInventoryTransactionInterface(ManhattanPerpetualInventoryTransfer pix,
+        public PixGeneralLedgerInventoryTransaction(ManhattanPerpetualInventoryTransfer pix,
                                                           IList<GeneralLedgerTransactionReasonCodeMap> generalLedgerTransactionReasonCodeMap)
         {
             _pix = pix;
@@ -56,16 +56,6 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Models
             get { return (int) _pix.InventoryAdjustmentQuantity; }
         }
 
-        public string UnitOfMeasure
-        {
-            get { return "Each"; }
-        }
-
-        public string BatchSource
-        {
-            get { return "NBXWEB InventoryAdjustment_Interface"; }
-        }
-
         public string BatchIdentification
         {
             get { return "INVADJ-" + _pix.DateCreated; }
@@ -79,20 +69,6 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Models
         public DateTime InventoryDate
         {
             get { return MainframeExtensions.ParseDateTime(_pix.DateCreated,0); }
-        }
-
-        public DateTime BatchDate
-        {
-            get
-            {
-                var now = DateTime.Now;
-                return new DateTime(now.Year, now.Month, now.Day);
-            }
-        }
-
-        public string IntegrationStatus
-        {
-            get { return "NEW"; }
         }
     }
 }

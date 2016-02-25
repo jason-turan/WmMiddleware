@@ -2,6 +2,7 @@
 using System.Transactions;
 using Middleware.Jobs;
 using MiddleWare.Log;
+using Middleware.Wm.Configuration.Transaction;
 using Middleware.Wm.InventorySync.Models;
 using Middleware.Wm.InventorySync.Repository;
 using Middleware.Wm.Manhattan.Shipment;
@@ -55,7 +56,7 @@ namespace Middleware.Wm.StlInventorySync
 
             if (latestInventorySync.Count > 0)
             {
-                using (var transactionScope = new TransactionScope())
+                using (var transactionScope = Scope.CreateTransactionScope())
                 {
                      _stlInventoryRepository.InsertStlInventory(latestInventorySync);
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Middleware.Wm.Manhattan.Shipment;
 using WmMiddleware.Pix.Models.Generated;
 
 namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
@@ -10,5 +11,7 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
         void ProcessPurchaseReturns(IEnumerable<ManhattanPerpetualInventoryTransfer> unprocessed);
 
         void ProcessPurchaseOrders(IList<ManhattanPerpetualInventoryTransfer> unprocessed);
+
+        void ProcessBrickAndClickShipments(IEnumerable<ManhattanShipment> unprocessed);
     }
 }

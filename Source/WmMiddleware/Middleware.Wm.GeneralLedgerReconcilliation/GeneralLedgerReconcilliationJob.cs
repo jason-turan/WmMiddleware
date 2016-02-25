@@ -46,6 +46,15 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation
                 UnprocessedForAuroraShipment = false,
                 UnprocessedForAuroraShipmentGeneralLedger = true
             });
+
+            _log.Info(string.Format("{0} bnc shipments records found process...", unprocessed.Count()));
+
+            if (unprocessed.Count == 0)
+            {
+                return;
+            }
+
+            _generalLedgerReconcilliationRepository.ProcessBrickAndClickShipments(unprocessed);
         }
 
         private void ProcessReturns()

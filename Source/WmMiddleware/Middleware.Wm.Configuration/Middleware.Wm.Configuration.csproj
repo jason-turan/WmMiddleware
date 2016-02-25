@@ -42,6 +42,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,6 +54,7 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="ConfigurationKey.cs" />
+    <Compile Include="Transaction\Scope.cs" />
     <Compile Include="MiddlewareConfigurationManager.cs" />
     <Compile Include="IConfigurationManager.cs" />
     <Compile Include="Database\DatabaseConnectionFactory.cs" />

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Transactions;
 using MiddleWare.Log;
+using Middleware.Wm.Configuration.Transaction;
 using Middleware.Wm.Pix.Models;
 using Middleware.Wm.Pix.Repository;
 using Middleware.Wm.Shipment.Models;
@@ -49,7 +50,7 @@ namespace Middleware.Wm.StlInventoryUpdate
                                 Size = g.First().Size
                             }).ToList();
 
-            using (var transactionScope = new TransactionScope())
+            using (var transactionScope = Scope.CreateTransactionScope())
             {
                 //--apply the adjustments to our inventory
                 _stlInventoryUpdateRepository.UpdateStlInventory(stlInventoryItems);

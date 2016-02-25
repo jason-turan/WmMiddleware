@@ -4,7 +4,10 @@ using System.Globalization;
 using System.Linq;
 using System.Transactions;
 using MiddleWare.Log;
+using Middleware.Wm.Configuration.Database;
+using Middleware.Wm.Configuration.Transaction;
 using Middleware.Wm.GeneralLedgerReconcilliation.Models;
+using Middleware.Wm.Manhattan.Shipment;
 using Middleware.Wm.Pix.Models;
 using WmMiddleware.Pix.Models.Generated;
 
@@ -51,7 +54,7 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
                     if (pixReturn.ReturnToStock())
                     {
                         // no action - will be accounted for in return processing
-                        MarkAsProcessed(pix);
+                        MarkPixAsProcessed(pix);
                     }
                     else
                     {
@@ -71,47 +74,18 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
         {
             foreach (var purchaseOrderGrouping in unprocessed.GroupBy(g => g.Ponumber))
             {
-                using (var scope = new TransactionScope())
+                using (var scope = Scope.CreateTransactionScope())
                 {
                     try
                     {
                         var firstRecordInGrouping = new PurchaseOrderGeneralLedger(purchaseOrderGrouping.First());
 
-                        var header = new DatabasePurchaseOrderReceiptHeader
-                        {
-                            SenderID = PurchaseOrderInterfaceSenderId,
-                            RecipientID = PurchaseOrderInterfaceRecipientId,
-                            TransactionDate = firstRecordInGrouping.Shippeddatetimereference
-                        };
-
-                        var detail = new DatabasePurchaseOrderReceiptDetail
-                        {
-                            POReceiptHeaderID = _databaseRepository.InsertDatabasePoReceiptHeader(header),
-                            PONumber = purchaseOrderGrouping.Key,
-                            InvoiceNumber = firstRecordInGrouping.InvoiceNumber,
-                            NumberLineItems = purchaseOrderGrouping.Count().ToString(CultureInfo.InvariantCulture),
-                            shippeddatetimereference = firstRecordInGrouping.Shippeddatetimereference,
-                            IntegrationStatus = PurchaseOrderInterfaceIntegrationStatus,
-                            DateAdded = DateTime.Now
-                        };
-
-                        var detailId = _databaseRepository.InsertDatabasePurchaseOrderReceiptDetail(detail);
+                        var headerId = ProcessPurchaseOrderHeader(firstRecordInGrouping);
+                        var detailId = ProcessPurchaseOrdersDetail(headerId, purchaseOrderGrouping, firstRecordInGrouping);
 
                         foreach (var pix in purchaseOrderGrouping.OrderBy(o => o.SequenceNumber))
                         {
-                            var purchaseOrderGl = new PurchaseOrderGeneralLedger(pix);
-                            var databasePurchaseOrderReceiptDetailLineItem = new DatabasePurchaseOrderReceiptDetailLineItem
-                            {
-                                PoReceiptDetailId = detailId,
-                                LineNumber = purchaseOrderGl.LineItemNumber.ToString(CultureInfo.InvariantCulture),
-                                Upc = purchaseOrderGl.Sku,
-                                Uom = purchaseOrderGl.UnitOfMeasure,
-                                QuantityInvoiced = purchaseOrderGl.NumberUnitsShipped.ToString(CultureInfo.InvariantCulture),
-                                DateAdded = DateTime.Now
-                            };
-
-                            _databaseRepository.InsertDatabasePurchaseOrderReceiptDetailLineItem(databasePurchaseOrderReceiptDetailLineItem);
-                            MarkAsProcessed(pix);
+                            ProcessPurchaseOrderDetailLineItem(pix, detailId);
                         }
 
                         scope.Complete();
@@ -124,7 +98,82 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
             }
         }
 
-        private void MarkAsProcessed(ManhattanPerpetualInventoryTransfer manhattanPerpetualInventoryTransfer)
+        public void ProcessBrickAndClickShipments(IEnumerable<ManhattanShipment> unprocessed)
+        {
+            foreach (var manhattanShipment in unprocessed)
+            {
+                try
+                {
+                    foreach (var lineItem in manhattanShipment.LineItems)
+                    {
+                        var gl = new ShipmentGeneralLedgerInventoryTransaction(lineItem);
+                        _databaseRepository.InsertIntegrationInventoryAdjustment(new DatabaseIntegrationsInventoryAdjustment(gl));
+                    }
+
+                    MarkManhtattanShipmentBrickAndClickProcessed(manhattanShipment);
+                }
+                catch (Exception exception)
+                {
+                    _log.Exception("Fatal error processing shipment bnc pick ticket control number " + manhattanShipment.Header.PickticketControlNumber, exception);
+                }
+            }
+        }
+
+        private void MarkManhtattanShipmentBrickAndClickProcessed(ManhattanShipment manhattanShipment)
+        {
+            _databaseRepository.InsertManhattanShipmentBrickAndClickProcessing(new ManhattanShipmentBrickAndClickProcessing
+            {
+                BatchControlNumber = manhattanShipment.Header.BatchControlNumber,
+                PickticketControlNumber = manhattanShipment.Header.PickticketControlNumber
+            });
+        }
+
+        private int ProcessPurchaseOrderHeader(PurchaseOrderGeneralLedger firstRecordInGrouping)
+        {
+            var header = new DatabasePurchaseOrderReceiptHeader
+            {
+                SenderID = PurchaseOrderInterfaceSenderId,
+                RecipientID = PurchaseOrderInterfaceRecipientId,
+                TransactionDate = firstRecordInGrouping.Shippeddatetimereference
+            };
+
+            return _databaseRepository.InsertDatabasePoReceiptHeader(header);
+        }
+
+        private void ProcessPurchaseOrderDetailLineItem(ManhattanPerpetualInventoryTransfer pix, int detailId)
+        {
+            var purchaseOrderGl = new PurchaseOrderGeneralLedger(pix);
+            var databasePurchaseOrderReceiptDetailLineItem = new DatabasePurchaseOrderReceiptDetailLineItem
+            {
+                PoReceiptDetailId = detailId,
+                LineNumber = purchaseOrderGl.LineItemNumber.ToString(CultureInfo.InvariantCulture),
+                Upc = purchaseOrderGl.Sku,
+                Uom = purchaseOrderGl.UnitOfMeasure,
+                QuantityInvoiced = purchaseOrderGl.NumberUnitsShipped.ToString(CultureInfo.InvariantCulture),
+                DateAdded = DateTime.Now
+            };
+
+            _databaseRepository.InsertDatabasePurchaseOrderReceiptDetailLineItem(databasePurchaseOrderReceiptDetailLineItem);
+            MarkPixAsProcessed(pix);
+        }
+
+        private int ProcessPurchaseOrdersDetail(int headerId, IGrouping<string, ManhattanPerpetualInventoryTransfer> purchaseOrderGrouping, PurchaseOrderGeneralLedger firstRecordInGrouping)
+        {
+            var detail = new DatabasePurchaseOrderReceiptDetail
+            {
+                POReceiptHeaderID = headerId,
+                PONumber = purchaseOrderGrouping.Key,
+                InvoiceNumber = firstRecordInGrouping.InvoiceNumber,
+                NumberLineItems = purchaseOrderGrouping.Count().ToString(CultureInfo.InvariantCulture),
+                shippeddatetimereference = firstRecordInGrouping.Shippeddatetimereference,
+                IntegrationStatus = PurchaseOrderInterfaceIntegrationStatus,
+                DateAdded = DateTime.Now
+            };
+
+            return _databaseRepository.InsertDatabasePurchaseOrderReceiptDetail(detail);
+        }
+
+        private void MarkPixAsProcessed(ManhattanPerpetualInventoryTransfer manhattanPerpetualInventoryTransfer)
         {
             _databaseRepository.InsertPixGeneralLedgerProcessing(new PixGeneralLedgerProcessing
             {
@@ -136,7 +185,7 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
         private void WriteGeneralLedger(ManhattanPerpetualInventoryTransfer pix)
         {
             var glTransactionReasonMap = _databaseRepository.GetGeneralLedgerTransactionReasonCodeMap();
-            var glInterface = new GeneralLedgerInventoryTransactionInterface(pix, glTransactionReasonMap);
+            var glInterface = new PixGeneralLedgerInventoryTransaction(pix, glTransactionReasonMap);
 
             if (glInterface.GeneralLedgerAccount == null)
             {
@@ -147,7 +196,7 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
                 _databaseRepository.InsertIntegrationInventoryAdjustment(new DatabaseIntegrationsInventoryAdjustment(glInterface));
             }
 
-            MarkAsProcessed(pix);
+            MarkPixAsProcessed(pix);
         }
     }
 }

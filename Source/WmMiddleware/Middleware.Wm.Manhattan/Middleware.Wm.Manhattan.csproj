@@ -89,6 +89,7 @@
     <Compile Include="Shipment\ManhattanShipmentCartonDetail.g.cs" />
     <Compile Include="Shipment\ManhattanShipmentCartonHeader.g.cs" />
     <Compile Include="Shipment\ManhattanShipmentHeader.g.cs" />
+    <Compile Include="Shipment\ManhattanShipmentLineItem.cs" />
     <Compile Include="Shipment\ManhattanShipmentLineItem.g.cs" />
     <Compile Include="Shipment\ManhattanShipmentSearchCriteria.cs" />
     <Compile Include="Shipment\ShipmentRepository.cs" />

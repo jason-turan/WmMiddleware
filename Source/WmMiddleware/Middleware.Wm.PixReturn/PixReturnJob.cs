@@ -4,6 +4,7 @@ using System.Linq;
 using System.Transactions;
 using Middleware.Jobs;
 using MiddleWare.Log;
+using Middleware.Wm.Configuration.Transaction;
 using Middleware.Wm.Manhattan.Extensions;
 using Middleware.Wm.Pix.Repository;
 using Middleware.Wm.PixReturn.Models;
@@ -53,7 +54,7 @@ namespace Middleware.Wm.PixReturn
             {
                 try
                 {
-                    using (var transactionScope = new TransactionScope())
+                    using (var transactionScope = Scope.CreateTransactionScope())
                     {
                         var condition = unprocessedReturn.ReturnToStock() ? "INVENTORY" : "DEFECT";
 

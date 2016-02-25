@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Transactions;
 using Middleware.Jobs.Repositories;
+using Middleware.Wm.Configuration.Transaction;
 using Middleware.Wm.Manhattan.DataFiles;
 using MiddleWare.Log;
 using Middleware.Wm.TransferControl.Configuration;
@@ -49,7 +50,7 @@ namespace Middleware.Wm.TransferControl.Control
 
             var manhattanMasterControl = MapTransforControlFromManhattanFile(controlFile);
 
-            using (var transactionScope = new TransactionScope())
+            using (var transactionScope = Scope.CreateTransactionScope())
             {
                 // process each unique batch by grouping batch control number
                 foreach (var batch in manhattanMasterControl.Select(e => e.BatchControlNumber).Distinct().ToList())
