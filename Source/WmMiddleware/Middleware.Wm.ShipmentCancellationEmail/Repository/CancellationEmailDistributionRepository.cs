@@ -11,9 +11,7 @@ namespace Middleware.Wm.ShipmentCancellationEmail.Repository
     {
         public ShipmentCancellationEmailDistribution GetShipmentCancellationEmailDistribution(string company)
         {
-
             var parameters = new DynamicParameters();
-
             parameters.Add("@Company", company, DbType.String);
 
             using (var connection = DatabaseConnectionFactory.GetWarehouseManagementConnection())
@@ -27,6 +25,28 @@ namespace Middleware.Wm.ShipmentCancellationEmail.Repository
             using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
             {
                 return connection.Query<Models.ShipmentCancellationEmail>("sp_GetCancellationsForEmailNotification", commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public void SetAsProcessed(IEnumerable<Models.ShipmentCancellationEmail> emails)
+        {
+            using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
+            {
+                var orderNumberTable = new DataTable();
+                orderNumberTable.Columns.Add("IDInterfaceShipmentConfirmationHeader");
+                foreach (var email in emails)
+                {
+                    orderNumberTable.Rows.Add(email.OrderNumber);
+                }
+
+                var parameter = new
+                {
+                    OrderNumberTable = orderNumberTable.AsTableValuedParameter("[dbo].[OrderNumberTable]"),
+                    Status = "READ"
+                };
+
+                connection.Open();
+                connection.Execute("[sp_UpdateShipmentEmailStatus]", parameter, commandType: CommandType.StoredProcedure);
             }
         }
 

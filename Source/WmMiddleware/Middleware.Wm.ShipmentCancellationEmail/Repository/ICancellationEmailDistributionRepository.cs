@@ -6,9 +6,8 @@ namespace Middleware.Wm.ShipmentCancellationEmail.Repository
     public interface ICancellationEmailDistributionRepository
     {
         ShipmentCancellationEmailDistribution GetShipmentCancellationEmailDistribution(string company);
-
-        IEnumerable<Middleware.Wm.ShipmentCancellationEmail.Models.ShipmentCancellationEmail> GetShipmentEmailCancellations();
-
+        IEnumerable<Models.ShipmentCancellationEmail> GetShipmentEmailCancellations();
+        void SetAsProcessed(IEnumerable<Models.ShipmentCancellationEmail> emails);
         string GetCompanyFromOrderNumber(string orderNumber);
     }
 }

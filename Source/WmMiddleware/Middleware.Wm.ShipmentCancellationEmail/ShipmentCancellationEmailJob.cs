@@ -14,7 +14,7 @@ namespace Middleware.Wm.ShipmentCancellationEmail
         private readonly IConfigurationManager _configurationManager;
         private readonly ICancellationEmailDistributionRepository _cancellationEmailDistributionRepository;
 
-        public ShipmentCancellationEmailJob(ILog log, 
+        public ShipmentCancellationEmailJob(ILog log,
                                             IConfigurationManager configurationManager,
                                             ICancellationEmailDistributionRepository cancellationEmailDistributionRepository)
         {
@@ -33,45 +33,47 @@ namespace Middleware.Wm.ShipmentCancellationEmail
             }
             else
             {
-             _log.Info("Now processing " + cancellations.Count() + " line item shipment cancellations");   
-            }
+                _log.Info("Now processing " + cancellations.Count() + " line item shipment cancellations");
 
-            foreach (var cancellation in cancellations)
-            {
-                cancellation.Company = _cancellationEmailDistributionRepository.GetCompanyFromOrderNumber(cancellation.OrderNumber + "-" + cancellation.LineNumber);
-                if (cancellation.Company == null)
+                foreach (var cancellation in cancellations)
                 {
-                    _log.Warning("Cannot find company for cancelled order " + cancellation.OrderNumber + "-" + cancellation.LineNumber);
+                    cancellation.Company = _cancellationEmailDistributionRepository.GetCompanyFromOrderNumber(cancellation.OrderNumber + "-" + cancellation.LineNumber);
+                    if (cancellation.Company == null)
+                    {
+                        _log.Warning("Cannot find company for cancelled order " + cancellation.OrderNumber + "-" + cancellation.LineNumber);
+                    }
+                    else
+                    {
+                        var distribution = _cancellationEmailDistributionRepository.GetShipmentCancellationEmailDistribution(cancellation.Company);
+                        SendEmail(cancellation, distribution);
+                    }
                 }
-                else
-                {
-                    var distribution = _cancellationEmailDistributionRepository.GetShipmentCancellationEmailDistribution(cancellation.Company);
-                    SendEmail(cancellation, distribution);    
-                }
+
+                _cancellationEmailDistributionRepository.SetAsProcessed(cancellations);
             }
         }
 
         private void SendEmail(Models.ShipmentCancellationEmail cancellation, ShipmentCancellationEmailDistribution distribution)
-        {            
+        {
             var smptServer =
                 _configurationManager.GetKey<string>(ConfigurationKey.SmptServer);
-           
-            var orderNumber = string.Concat(cancellation.OrderNumber, 
-                                            "-", 
+
+            var orderNumber = string.Concat(cancellation.OrderNumber,
+                                            "-",
                                             cancellation.LineNumber);
 
             var message = new MailMessage
             {
-                From = new MailAddress("noreply@newbalance.com"), 
-                IsBodyHtml = true, 
+                From = new MailAddress("noreply@newbalance.com"),
+                IsBodyHtml = true,
                 Subject = string.Concat("Cancelled - ", orderNumber)
             };
 
             message.To.Add(new MailAddress(distribution.DistributionList));
-            
-            if (distribution.AdministrationSiteLink == string.Empty)    
+
+            if (distribution.AdministrationSiteLink == string.Empty)
             {
-                message.Body = "<p>Order Number " + orderNumber + " was cancelled.</p>Order Number: " + orderNumber + "<br />";    
+                message.Body = "<p>Order Number " + orderNumber + " was cancelled.</p>Order Number: " + orderNumber + "<br />";
             }
             else
             {
