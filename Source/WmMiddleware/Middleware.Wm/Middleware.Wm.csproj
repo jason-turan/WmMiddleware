@@ -71,9 +71,7 @@
     <Compile Include="Shipping\WmDatabaseCarrierRepository.cs" />
     <Compile Include="Shipping\ICarrierReadRepository.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Picking\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Middleware.Wm.Configuration\Middleware.Wm.Configuration.csproj">
       <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>

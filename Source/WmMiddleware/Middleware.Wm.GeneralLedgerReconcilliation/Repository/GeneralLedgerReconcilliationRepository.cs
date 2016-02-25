@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-
 using MiddleWare.Log;
+using Middleware.Wm.Configuration;
 using Middleware.Wm.Configuration.Transaction;
 using Middleware.Wm.GeneralLedgerReconcilliation.Models;
 using Middleware.Wm.Manhattan.Shipment;
@@ -20,11 +20,15 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
         private const string PurchaseOrderInterfaceIntegrationStatus = "NEW";
         private readonly ILog _log;
         private readonly IDatabaseRepository _databaseRepository;
+        private readonly IConfigurationManager _configurationManager;
 
-        public GeneralLedgerReconcilliationRepository(ILog log, IDatabaseRepository databaseRepository)
+        public GeneralLedgerReconcilliationRepository(ILog log, 
+                                                      IDatabaseRepository databaseRepository,
+                                                      IConfigurationManager configurationManager)
         {
             _log = log;
             _databaseRepository = databaseRepository;
+            _configurationManager = configurationManager;
         }
 
         public void ProcessInventoryAdjustments(IEnumerable<ManhattanPerpetualInventoryTransfer> unprocessed)
@@ -105,7 +109,7 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
                 {
                     foreach (var lineItem in manhattanShipment.LineItems)
                     {
-                        var gl = new ShipmentGeneralLedgerInventoryTransaction(lineItem);
+                        var gl = new ShipmentGeneralLedgerInventoryTransaction(lineItem, _configurationManager);
                         _databaseRepository.InsertIntegrationInventoryAdjustment(new DatabaseIntegrationsInventoryAdjustment(gl));
 
                         _log.Debug("Processed " + manhattanShipment.Header.PickticketControlNumber + " sku " + lineItem.PackageBarcode);
@@ -187,7 +191,7 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
         private void WriteGeneralLedger(ManhattanPerpetualInventoryTransfer pix)
         {
             var glTransactionReasonMap = _databaseRepository.GetGeneralLedgerTransactionReasonCodeMap();
-            var glInterface = new PixGeneralLedgerInventoryTransaction(pix, glTransactionReasonMap);
+            var glInterface = new PixGeneralLedgerInventoryTransaction(pix, glTransactionReasonMap, _configurationManager);
 
             if (glInterface.GeneralLedgerAccount == null)
             {

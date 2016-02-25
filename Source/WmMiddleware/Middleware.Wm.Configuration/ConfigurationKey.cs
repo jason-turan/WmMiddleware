@@ -39,5 +39,10 @@
         public const string OmsAuroraSftpPassword = "Oms_Sftp_Password";
         public const string OmsAuroraSftpDirectory = "Oms_Sftp_Directory";
         public const string OmsAuroraSftpHost = "Oms_Sftp_Host";
+
+        public const string GeneralLedgeBrickAndClickAccount = "GeneralLedger_BncAccount";
+        public const string GeneralLedgerVarianceAccountDefault = "GeneralLedger_VarianceAccount_Default";
+        public const string GeneralLedgerVarianceAccountFootwear = "GeneralLedger_VarianceAccount_Footwear";
+        public const string GeneralLedgerVarianceAccountAccessory = "GeneralLedger_VarianceAccount_Accessory";
     }
 }

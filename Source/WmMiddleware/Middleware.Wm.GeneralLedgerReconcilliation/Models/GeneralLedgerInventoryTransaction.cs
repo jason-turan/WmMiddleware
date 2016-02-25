@@ -1,9 +1,17 @@
 ﻿using System;
+using Middleware.Wm.Configuration;
 
 namespace Middleware.Wm.GeneralLedgerReconcilliation.Models
 {
     public abstract class GeneralLedgerInventoryTransaction
     {
+        private readonly IConfigurationManager _configurationManager;
+
+        protected GeneralLedgerInventoryTransaction(IConfigurationManager configurationManager)
+        {
+            _configurationManager = configurationManager;
+        }
+
         public DateTime BatchDate
         {
             get
@@ -26,6 +34,19 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Models
         public string BatchSource
         {
             get { return "NBXWEB InventoryAdjustment_Interface"; }
+        }
+
+        protected string GetVarianceAccountByProductClass(string productClass)
+        {
+            switch (productClass.ToUpper())
+            {
+                case "FOOTWEAR":
+                    return _configurationManager.GetKey<string>(ConfigurationKey.GeneralLedgerVarianceAccountFootwear);
+                case "ACCESSORY":
+                    return _configurationManager.GetKey<string>(ConfigurationKey.GeneralLedgerVarianceAccountAccessory);
+                default:
+                    return _configurationManager.GetKey<string>(ConfigurationKey.GeneralLedgerVarianceAccountDefault);
+            }
         }
     }
 }

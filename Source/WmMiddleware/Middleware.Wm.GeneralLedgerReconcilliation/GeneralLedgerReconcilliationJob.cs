@@ -11,7 +11,6 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation
     public class GeneralLedgerReconcilliationJob : IUnitOfWork
     {
         private readonly ILog _log;
-
         private readonly IPerpetualInventoryTransferRepository _perpetualInventoryTransferRepository;
         private readonly IGeneralLedgerReconcilliationRepository _generalLedgerReconcilliationRepository;
         private readonly IShipmentRepository _shipmentRepository;
@@ -30,11 +29,8 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation
         public void RunUnitOfWork(string jobKey)
         {
             ProcessPixInventoryAdjustments();
-
             ProcessPixPurchaseOrders();
-
             ProcessReturns();
-
             ProcessBncInventoryDecrements();
         }
 
@@ -115,6 +111,5 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation
 
             _generalLedgerReconcilliationRepository.ProcessPurchaseOrders(unprocessed);
         }
-
     }
 }

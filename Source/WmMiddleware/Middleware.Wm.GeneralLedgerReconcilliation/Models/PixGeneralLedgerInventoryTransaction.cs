@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Middleware.Wm.Configuration;
 using Middleware.Wm.Manhattan.Extensions;
 using WmMiddleware.Pix.Models.Generated;
 
@@ -12,7 +13,8 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Models
         private readonly IList<GeneralLedgerTransactionReasonCodeMap> _generalLedgerTransactionReasonCodeMap;
 
         public PixGeneralLedgerInventoryTransaction(ManhattanPerpetualInventoryTransfer pix,
-                                                          IList<GeneralLedgerTransactionReasonCodeMap> generalLedgerTransactionReasonCodeMap)
+                                                    IList<GeneralLedgerTransactionReasonCodeMap> generalLedgerTransactionReasonCodeMap,
+                                                    IConfigurationManager configurationManager) : base(configurationManager)
         {
             _pix = pix;
             _generalLedgerTransactionReasonCodeMap = generalLedgerTransactionReasonCodeMap;
@@ -29,18 +31,7 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Models
 
         public string VarianceAccount
         {
-            get
-            {
-                switch (_pix.ProductClass.ToUpper())
-                {
-                    case "FOOTWEAR":
-                        return "17100-01-0000";
-                    case "ACCESSORY":
-                        return "17000-01-0000";
-                    default:
-                        return "17200-01-0000";
-                }
-            }
+            get { return GetVarianceAccountByProductClass(_pix.ProductClass); }
         }
 
         public string Sku

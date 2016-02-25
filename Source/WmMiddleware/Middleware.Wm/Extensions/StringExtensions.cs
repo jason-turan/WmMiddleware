@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-
-namespace Middleware.Wm.Extensions
+﻿namespace Middleware.Wm.Extensions
 {
     public static class StringExtensions
     {
@@ -16,26 +13,6 @@ namespace Middleware.Wm.Extensions
         {
             if (string.IsNullOrEmpty(value)) return value;
             return value.Length <= maxLength ? value : value.Substring(0, maxLength);
-        }
-
-        public static string GetSeasonYear(this string style)
-        {
-            if (string.IsNullOrEmpty(style) || style.Length <= 2)
-            {
-                return style;
-            }
-
-            return style.Substring(0, 2);
-        }
-
-        public static string GetStyle(this string style)
-        {
-            if (string.IsNullOrEmpty(style) || style.Length <= 2)
-            {
-                return string.Empty;
-            }
-
-            return style.Substring(2);
         }
     }
 }

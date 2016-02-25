@@ -1,11 +1,9 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using log4net;
 using log4net.Appender;
 using log4net.Config;
-using log4net.Repository.Hierarchy;
 
 namespace MiddleWare.Log
 {
@@ -15,7 +13,6 @@ namespace MiddleWare.Log
 
         public Log4Net()
         {
-          
             XmlConfigurator.Configure();
             AlterLogPathToRootPath();
             _logger = LogManager.GetLogger(AppDomain.CurrentDomain.FriendlyName);

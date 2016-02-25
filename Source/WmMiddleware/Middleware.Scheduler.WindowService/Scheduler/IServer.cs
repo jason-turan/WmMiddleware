@@ -3,9 +3,7 @@
     public interface IServer
     {
         void StartJobs();
-
         void StopJobs();
-
         void PauseJobs();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Middleware.Wm.Configuration;
 using Middleware.Wm.Manhattan.Extensions;
 using Middleware.Wm.Manhattan.Shipment;
 
@@ -7,35 +8,25 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Models
     public class ShipmentGeneralLedgerInventoryTransaction : GeneralLedgerInventoryTransaction, IGeneralLedgerInventoryTransaction
     {
         private readonly ManhattanShipmentLineItem _shipmentLineItem;
+        private readonly IConfigurationManager _configurationManager;
 
-        public ShipmentGeneralLedgerInventoryTransaction(ManhattanShipmentLineItem manhattanShipmentLineItem)
+        public ShipmentGeneralLedgerInventoryTransaction(ManhattanShipmentLineItem manhattanShipmentLineItem,
+                                                         IConfigurationManager configurationManager) : base(configurationManager)
         {
             _shipmentLineItem = manhattanShipmentLineItem;
+            _configurationManager = configurationManager;
         }
 
         public string GeneralLedgerAccount
         {
-            get { return "37850-01-0000"; }
+            get { return _configurationManager.GetKey<string>(ConfigurationKey.GeneralLedgeBrickAndClickAccount); }
         }
 
         public string VarianceAccount
         {
             get
             {
-                if (_shipmentLineItem.ProductClass == null)
-                {
-                    return "17200-01-0000";
-                }
-
-                switch (_shipmentLineItem.ProductClass.ToUpper())
-                {
-                    case "FOOTWEAR":
-                        return "17100-01-0000";
-                    case "ACCESSORY":
-                        return "17000-01-0000";
-                    default:
-                        return "17200-01-0000";
-                }
+                return _shipmentLineItem.ProductClass == null ? _configurationManager.GetKey<string>(ConfigurationKey.GeneralLedgerVarianceAccountDefault) : GetVarianceAccountByProductClass(_shipmentLineItem.ProductClass);
             }
         }
 
