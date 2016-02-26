@@ -36,6 +36,7 @@ namespace Middleware.Wm.PickTicketConfirmation.DependencyInjection
             Bind<ITransferControlRepository>().To<TransferControlRepository>();
             Bind<IPickTicketProcessingRepository>().To<PickTicketOrderConfirmationProcessingRepository>();
             Bind<IAuroraPickTicketRepository>().To<AuroraPickTicketRepository>();
+            Bind<IOmsManhattanOrderMapRepository>().To<OmsManhattanOrderMapRepositiory>();
         }
     }
 }

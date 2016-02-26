@@ -82,6 +82,10 @@
       <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>
       <Name>Middleware.Wm.Configuration</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Middleware.Wm.Manhattan\Middleware.Wm.Manhattan.csproj">
+      <Project>{87ae9e18-b3dc-4605-be2a-fa7b6c50dad6}</Project>
+      <Name>Middleware.Wm.Manhattan</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -30,6 +30,7 @@ namespace Middleware.Wm.Picking.DependencyInjection
             Bind<ITransferControlManager>().To<TransferControlManager>();
             Bind<IConfigurationManager>().To<MiddlewareConfigurationManager>();
             Bind<ICarrierReadRepository>().To<WmDatabaseCarrierRepository>().WithConstructorArgument("useThirdPartyBilling", false);
+            Bind<IOmsManhattanOrderMapRepository>().To<OmsManhattanOrderMapRepositiory>();
 
         }
     }

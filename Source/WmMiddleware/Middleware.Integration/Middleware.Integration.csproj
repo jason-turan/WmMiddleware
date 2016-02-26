@@ -100,6 +100,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="SqlScripts\integration.sql.txt" />
     <Content Include="Resources\Xslt\customer_profile_v1.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

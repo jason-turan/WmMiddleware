@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Text;
 using Middleware.Jobs;
 using MiddleWare.Log;
 using Middleware.Wm.Inventory;
+using Middleware.Wm.Manhattan.Inventory;
 
 namespace Middleware.Wm.Picking
 {
@@ -12,11 +14,16 @@ namespace Middleware.Wm.Picking
 
         private IOrderReader SourceRepository { get; set; }
         private IOrderWriter DestinationRepository { get; set; }
+        private readonly IOmsManhattanOrderMapRepository _omsManhattanOrderMapRepository;
 
-        public PickJob(ILog logger, IOrderReader sourceRepository, IOrderWriter destinationRepository)
+        public PickJob(ILog logger, 
+                       IOrderReader sourceRepository, 
+                       IOrderWriter destinationRepository,
+                       IOmsManhattanOrderMapRepository omsManhattanOrderMapRepository)
         {
             _logger = logger;
             DestinationRepository = destinationRepository;
+            _omsManhattanOrderMapRepository = omsManhattanOrderMapRepository;
             SourceRepository = sourceRepository;
         }
 
@@ -31,7 +38,19 @@ namespace Middleware.Wm.Picking
 
                 foreach (var order in orders)
                 {
-                    logBuilder.AppendLine(string.Format("Order Number: {0} <SKUs: {1}>", order.OrderNumber, string.Join(",", order.Items.Select(i => i.ItemSku))));
+                    var map = new OmsManhattanOrderMap
+                    {
+                        Company = order.Company,
+                        Created = DateTime.Now,
+                        OmsOrderNumber = order.OrderNumber,
+                        WmOrderNumber = order.ControlNumber
+                    };
+
+                    _omsManhattanOrderMapRepository.InsertOmsManhattanOrderMapRepository(map);
+
+                    logBuilder.AppendLine(string.Format("Order Number: {0} <SKUs: {1}>", 
+                                          order.OrderNumber, 
+                                          string.Join(",", order.Items.Select(i => i.ItemSku))));
                 }
 
                 _logger.Debug(logBuilder.ToString());

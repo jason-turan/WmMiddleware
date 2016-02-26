@@ -2,6 +2,7 @@
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using Middleware.Wm.Configuration;
+using Middleware.Wm.Manhattan.Inventory;
 using Middleware.Wm.Pix.Repository;
 using Middleware.Wm.PixReturn.Repository;
 using Ninject.Modules;
@@ -20,6 +21,7 @@ namespace Middleware.Wm.PixReturn.DependencyInjection
             Bind<IManhattanConditionCodeRepository>().To<ManhattanConditionCodeRepository>();
             Bind<IPixReturnRepository>().To<PixReturnRepository>();
             Bind<IJobRepository>().To<JobRepository>();
+            Bind<IOmsManhattanOrderMapRepository>().To<OmsManhattanOrderMapRepositiory>();
         }
     }
 }

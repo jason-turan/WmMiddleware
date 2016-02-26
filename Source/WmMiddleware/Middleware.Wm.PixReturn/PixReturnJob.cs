@@ -6,6 +6,7 @@ using Middleware.Jobs;
 using MiddleWare.Log;
 using Middleware.Wm.Configuration.Transaction;
 using Middleware.Wm.Manhattan.Extensions;
+using Middleware.Wm.Manhattan.Inventory;
 using Middleware.Wm.Pix.Repository;
 using Middleware.Wm.PixReturn.Models;
 using Middleware.Wm.PixReturn.Repository;
@@ -19,18 +20,21 @@ namespace Middleware.Wm.PixReturn
         private readonly IPerpetualInventoryTransferRepository _perpetualInventoryTransferRepository;
         private readonly IDatabaseRowReturnRepository _databaseRowReturnRepository;
         private readonly IManhattanConditionCodeRepository _manhattanConditionCodeRepository;
+        private readonly IOmsManhattanOrderMapRepository _omsManhattanOrderMapRepository;
 
         public PixReturnJob(ILog log, 
                             IPixReturnRepository pixReturnRepository, 
                             IDatabaseRowReturnRepository databaseRowReturnRepository,
                             IPerpetualInventoryTransferRepository perpetualInventoryTransferRepository,
-                            IManhattanConditionCodeRepository manhattanConditionCodeRepository)
+                            IManhattanConditionCodeRepository manhattanConditionCodeRepository,
+                            IOmsManhattanOrderMapRepository omsManhattanOrderMapRepository)
         {
             _log = log;
             _pixReturnRepository = pixReturnRepository;
             _databaseRowReturnRepository = databaseRowReturnRepository;
             _perpetualInventoryTransferRepository = perpetualInventoryTransferRepository;
             _manhattanConditionCodeRepository = manhattanConditionCodeRepository;
+            _omsManhattanOrderMapRepository = omsManhattanOrderMapRepository;
         }
 
         public void RunUnitOfWork(string jobKey)
@@ -60,10 +64,15 @@ namespace Middleware.Wm.PixReturn
 
                         var reason = GetConditionCode(conditionCodes, unprocessedReturn);
 
+                        var lookup = _omsManhattanOrderMapRepository.GetOmsManhattanOrderMap(new OmsManhattanOrderMapFindCriteria
+                        {
+                            ManhattanOrderNumber = unprocessedReturn.OrderNumber
+                        });
+
                         // translate the manhattan file to a business object
                         var returnOnWeb = new ReturnOnWeb
                         {
-                            Company = "NBUS",
+                            Company = lookup.Company,
                             Condition = condition,
                             Reason = reason,
                             Style = unprocessedReturn.Style,

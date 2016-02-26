@@ -5,6 +5,7 @@ using Middleware.Jobs;
 using Middleware.Wm.Aurora.PickTickets.Repositories;
 using Middleware.Wm.Inventory;
 using MiddleWare.Log;
+using Middleware.Wm.Manhattan.Inventory;
 using Middleware.Wm.PickTicketConfirmation.Models;
 using Middleware.Wm.PickTicketConfirmation.Repositories;
 
@@ -18,18 +19,21 @@ namespace Middleware.Wm.PickTicketConfirmation
         private IOrderWriter DestinationRepository { get; set; }
         private readonly IPickTicketProcessingRepository _pickTicketProcessingRepository;
         private readonly IAuroraPickTicketRepository _auroraPickTicketRepository;
+        private readonly IOmsManhattanOrderMapRepository _omsManhattanOrderMapRepository;
 
         public PickTicketConfirmationJob(ILog logger, 
                                          IOrderReader sourceRepository, 
                                          IOrderWriter destinationRepository,
                                          IPickTicketProcessingRepository pickTicketProcessingRepository,
-                                         IAuroraPickTicketRepository auroraPickTicketRepository)
+                                         IAuroraPickTicketRepository auroraPickTicketRepository,
+                                         IOmsManhattanOrderMapRepository omsManhattanOrderMapRepository)
         {
             _logger = logger;
             SourceRepository = sourceRepository;
             DestinationRepository = destinationRepository;
             _pickTicketProcessingRepository = pickTicketProcessingRepository;
             _auroraPickTicketRepository = auroraPickTicketRepository;
+            _omsManhattanOrderMapRepository = omsManhattanOrderMapRepository;
         }
 
         public void RunUnitOfWork(string jobKey)
@@ -43,6 +47,16 @@ namespace Middleware.Wm.PickTicketConfirmation
 
                 foreach (var order in orders)
                 {
+                    var map = new OmsManhattanOrderMap
+                    {
+                        Company = order.Company,
+                        Created = DateTime.Now,
+                        OmsOrderNumber = order.OrderNumber,
+                        WmOrderNumber = order.ControlNumber
+                    };
+
+                    _omsManhattanOrderMapRepository.InsertOmsManhattanOrderMapRepository(map);
+
                     logBuilder.AppendLine(string.Format("Order Number: {0} <SKUs: {1}>", 
                                                         order.OrderNumber, 
                                                         string.Join(",", order.Items.Select(i => i.ItemSku))));

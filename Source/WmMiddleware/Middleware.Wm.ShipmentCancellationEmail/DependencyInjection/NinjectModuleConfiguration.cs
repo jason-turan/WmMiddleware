@@ -2,9 +2,9 @@
 using Middleware.Jobs.Repositories;
 using MiddleWare.Log;
 using Middleware.Wm.Configuration;
+using Middleware.Wm.Manhattan.Inventory;
 using Middleware.Wm.ShipmentCancellationEmail.Repository;
 using Ninject.Modules;
-using WmMiddleware.ShipmentCancellationEmail;
 
 namespace Middleware.Wm.ShipmentCancellationEmail.DependencyInjection
 {
@@ -17,6 +17,7 @@ namespace Middleware.Wm.ShipmentCancellationEmail.DependencyInjection
             Bind<IConfigurationManager>().To<MiddlewareConfigurationManager>();
             Bind<IUnitOfWork>().To<ShipmentCancellationEmailJob>();
             Bind<ICancellationEmailDistributionRepository>().To<CancellationEmailDistributionRepository>();
+            Bind<IOmsManhattanOrderMapRepository>().To<OmsManhattanOrderMapRepositiory>();
         }
     }
 }

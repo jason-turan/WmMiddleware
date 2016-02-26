@@ -73,6 +73,7 @@
     <Compile Include="Inventory\IAuroraPicketTicketRepository.cs" />
     <Compile Include="Inventory\IMainframeOrderConfiguration.cs" />
     <Compile Include="Inventory\IManhattanOrderRepository.cs" />
+    <Compile Include="Inventory\IOmsManhattanOrderMapRepository.cs" />
     <Compile Include="Inventory\IPickConfiguration.cs" />
     <Compile Include="Inventory\ManhattanOrderConfiguration.cs" />
     <Compile Include="Inventory\ManhattanOrderRepository.cs" />
@@ -82,6 +83,9 @@
     <Compile Include="Inventory\ManhattanPickTicketHeader.g.cs" />
     <Compile Include="Inventory\ManhattanPickTicketInstruction.cs" />
     <Compile Include="Inventory\ManhattanPickTicketInstruction.g.cs" />
+    <Compile Include="Inventory\OmsManhattanOrderMap.cs" />
+    <Compile Include="Inventory\OmsManhattanOrderMapFindCriteria.cs" />
+    <Compile Include="Inventory\OmsManhattanOrderMapRepositiory.cs" />
     <Compile Include="Inventory\PickConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shipment\IShipmentRepository.cs" />
