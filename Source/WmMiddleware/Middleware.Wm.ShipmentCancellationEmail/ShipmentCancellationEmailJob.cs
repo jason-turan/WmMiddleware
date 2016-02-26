@@ -42,10 +42,8 @@ namespace Middleware.Wm.ShipmentCancellationEmail
 
                 foreach (var cancellation in cancellations.GroupBy(g => g.OrderNumber))
                 {
-                    var orderMap = _omsManhattanOrderMapRepository.GetOmsManhattanOrderMap(new OmsManhattanOrderMapFindCriteria
-                    {
-                        ManhattanOrderNumber = cancellation.Key
-                    });
+
+                    var orderMap = _omsManhattanOrderMapRepository.GetOmsManhattanOrderMap(new OmsManhattanOrderMapFindCriteria{ ManhattanOrderNumber = cancellation.Key });
 
                     if (orderMap == null || orderMap.Company == null)
                     {

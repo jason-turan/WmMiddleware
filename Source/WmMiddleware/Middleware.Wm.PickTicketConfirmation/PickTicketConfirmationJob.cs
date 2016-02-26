@@ -51,7 +51,7 @@ namespace Middleware.Wm.PickTicketConfirmation
                     {
                         Company = order.Company,
                         Created = DateTime.Now,
-                        OmsOrderNumber = order.OrderNumber,
+                        OmsOrderNumber = order.ControlNumber,
                         WmOrderNumber = order.ControlNumber
                     };
 
