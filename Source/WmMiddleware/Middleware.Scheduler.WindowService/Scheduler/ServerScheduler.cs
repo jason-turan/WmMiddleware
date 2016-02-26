@@ -3,7 +3,7 @@ using Quartz;
 using Middleware.Jobs.Job;
 using Middleware.Jobs.Models;
 using Middleware.Jobs.Repositories;
-using MiddleWare.Log;
+using Middleware.Log;
 
 namespace Middleware.Scheduler.WindowService.Scheduler
 {

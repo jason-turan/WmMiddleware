@@ -5,7 +5,7 @@ using Quartz.Impl;
 using Quartz.Spi;
 using Middleware.Jobs.Job;
 using Middleware.Jobs.Repositories;
-using MiddleWare.Log;
+using Middleware.Log;
 using Middleware.Scheduler.WindowService.Scheduler;
 
 namespace Middleware.Scheduler.WindowService.DependencyInjection

@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using System.Text;
 using Middleware.Jobs;
-using MiddleWare.Log;
-using Middleware.Wm.ProductReceivingng.Repositories;
+using Middleware.Log;
+using Middleware.Wm.ProductReceiving.Repositories;
 
-namespace Middleware.Wm.ProductReceivingng
+namespace Middleware.Wm.ProductReceiving
 {
     public class ProductReceivingJob : IUnitOfWork
     {

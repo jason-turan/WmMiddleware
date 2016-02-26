@@ -57,7 +57,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\ManhattanOrderConfiguration.cs" />
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
     <Compile Include="Models\DatabasePickTicket.cs" />
     <Compile Include="Models\DatabasePickTicket.g.cs" />

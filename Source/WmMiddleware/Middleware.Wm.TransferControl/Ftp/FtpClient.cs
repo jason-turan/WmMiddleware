@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using MiddleWare.Log;
+using Middleware.Log;
 using Middleware.Wm.TransferControl.Models;
 
 namespace Middleware.Wm.TransferControl.Ftp

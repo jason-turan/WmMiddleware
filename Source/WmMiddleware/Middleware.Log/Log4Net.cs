@@ -5,7 +5,7 @@ using log4net;
 using log4net.Appender;
 using log4net.Config;
 
-namespace MiddleWare.Log
+namespace Middleware.Log
 {
     public class Log4Net : ILog
     {

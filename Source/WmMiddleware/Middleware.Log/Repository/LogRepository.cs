@@ -3,7 +3,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using Dapper;
 
-namespace MiddleWare.Log.Repository
+namespace Middleware.Log.Repository
 {
     public class LogRepository : ILogRepository
     {

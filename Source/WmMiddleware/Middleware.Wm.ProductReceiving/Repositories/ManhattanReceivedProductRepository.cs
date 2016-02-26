@@ -6,9 +6,9 @@ using Middleware.Wm.Configuration;
 using Middleware.Wm.Configuration.Mainframe;
 using Middleware.Wm.Manhattan.Control;
 using Middleware.Wm.Manhattan.DataFiles;
-using Middleware.Wm.ProductReceivingng.Models;
+using Middleware.Wm.ProductReceiving.Models;
 
-namespace Middleware.Wm.ProductReceivingng.Repositories
+namespace Middleware.Wm.ProductReceiving.Repositories
 {
     public class ManhattanReceivedProductRepository : IReceivedProductWriter
     {

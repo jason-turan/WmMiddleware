@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Transactions;
 using Middleware.Jobs;
-using MiddleWare.Log;
+using Middleware.Log;
 using Middleware.Wm.Configuration.Transaction;
 using Middleware.Wm.InventorySync.Models;
 using Middleware.Wm.InventorySync.Repository;

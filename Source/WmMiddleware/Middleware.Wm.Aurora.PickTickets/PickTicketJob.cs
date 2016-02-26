@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Middleware.Jobs.Repositories;
+using Middleware.Log;
+using Middleware.Log.Repository;
 using Middleware.Wm.Aurora.PickTickets.Repositories;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.Inventory;
 using Middleware.Wm.Manhattan.DataFiles;
 using Middleware.Wm.Manhattan.Inventory;
-using MiddleWare.Log;
 using Middleware.Wm.Outbound;
 using Middleware.Wm.TransferControl.Control;
 using Middleware.Wm.TransferControl.Models;
@@ -19,6 +21,7 @@ namespace Middleware.Wm.Aurora.PickTickets
         private readonly IOrderWriter _destinationRepository;
         private readonly IManhattanOrderRepository _manhattanOrderRepository;
         private readonly IAuroraPickTicketRepository _auroraPickTicketRepository;
+        private readonly IOrderHistoryRepository _orderHistoryRepository;
 
         public PickTicketJob(ILog logger, 
                              IOrderWriter destinationRepository, 
@@ -27,12 +30,14 @@ namespace Middleware.Wm.Aurora.PickTickets
                              IJobRepository jobRepository, 
                              ITransferControlRepository transferControlRepository, 
                              IManhattanOrderRepository manhattanOrderRepository,
-                             IAuroraPickTicketRepository auroraPickTicketRepository)
+                             IAuroraPickTicketRepository auroraPickTicketRepository,
+                             IOrderHistoryRepository orderHistoryRepository)
             : base(logger, configurationManager, fileIo, jobRepository, transferControlRepository)
         {
             _destinationRepository = destinationRepository;
             _manhattanOrderRepository = manhattanOrderRepository;
             _auroraPickTicketRepository = auroraPickTicketRepository;
+            _orderHistoryRepository = orderHistoryRepository;
         }
 
         protected override void ProcessFiles(ICollection<TransferControlFile> transferControlFiles)
@@ -73,6 +78,7 @@ namespace Middleware.Wm.Aurora.PickTickets
             var instructions = _manhattanOrderRepository.GetManhattanPickTicketInstructions(specialInstructionsFile.FileLocation);
 
             var orders = _manhattanOrderRepository.GetOrders(headers, details);
+            _orderHistoryRepository.Save(orders.SelectMany(o => o.CreateHistories("Item picked from Aurora", "Aurora Pick Ticket Job")));
 
             _auroraPickTicketRepository.InsertAuroraPickTicketHeader(headers);
             _auroraPickTicketRepository.InsertAuroraPickTicketDetail(details);

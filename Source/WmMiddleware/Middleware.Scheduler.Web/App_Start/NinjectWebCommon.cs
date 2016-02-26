@@ -4,7 +4,7 @@ using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
 using Middleware.Jobs.Repositories;
-using MiddleWare.Log;
+using Middleware.Log;
 using Middleware.Scheduler.Web;
 using Middleware.Scheduler.Web.Service;
 using Middleware.Scheduler.WindowService.Scheduler;

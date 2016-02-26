@@ -1,4 +1,4 @@
-﻿using MiddleWare.Log;
+﻿using Middleware.Log;
 using Middleware.Wm.TransferControl.Models;
 
 namespace Middleware.Wm.TransferControl.Ftp

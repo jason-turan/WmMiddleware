@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Net.Mail;
 using Middleware.Jobs;
-using MiddleWare.Log;
+using Middleware.Log;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.Manhattan.Inventory;
 using Middleware.Wm.ShipmentCancellationEmail.Models;

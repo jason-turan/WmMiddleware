@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
 using Middleware.Jobs;
-using MiddleWare.Log;
+using Middleware.Log;
+using Middleware.Log.Repository;
 using Middleware.Wm.Configuration.Transaction;
 using Middleware.Wm.Manhattan.Extensions;
 using Middleware.Wm.Manhattan.Inventory;
@@ -21,13 +22,15 @@ namespace Middleware.Wm.PixReturn
         private readonly IDatabaseRowReturnRepository _databaseRowReturnRepository;
         private readonly IManhattanConditionCodeRepository _manhattanConditionCodeRepository;
         private readonly IOmsManhattanOrderMapRepository _omsManhattanOrderMapRepository;
+        private readonly IOrderHistoryRepository _orderHistoryRepository;
 
         public PixReturnJob(ILog log, 
                             IPixReturnRepository pixReturnRepository, 
                             IDatabaseRowReturnRepository databaseRowReturnRepository,
                             IPerpetualInventoryTransferRepository perpetualInventoryTransferRepository,
                             IManhattanConditionCodeRepository manhattanConditionCodeRepository,
-                            IOmsManhattanOrderMapRepository omsManhattanOrderMapRepository)
+                            IOmsManhattanOrderMapRepository omsManhattanOrderMapRepository,
+                            IOrderHistoryRepository orderHistoryRepository)
         {
             _log = log;
             _pixReturnRepository = pixReturnRepository;
@@ -35,11 +38,11 @@ namespace Middleware.Wm.PixReturn
             _perpetualInventoryTransferRepository = perpetualInventoryTransferRepository;
             _manhattanConditionCodeRepository = manhattanConditionCodeRepository;
             _omsManhattanOrderMapRepository = omsManhattanOrderMapRepository;
+            _orderHistoryRepository = orderHistoryRepository;
         }
 
         public void RunUnitOfWork(string jobKey)
         {
-            // read pix
             var unprocessedReturns = _pixReturnRepository.GetUnprocessedReturns().ToList();
             
             if (unprocessedReturns.Any())
@@ -53,7 +56,7 @@ namespace Middleware.Wm.PixReturn
             }
 
             var conditionCodes = _manhattanConditionCodeRepository.GetConditionCodes().ToList();
-
+            _orderHistoryRepository.Save(unprocessedReturns.Select(r => new OrderHistory(r.OrderNumber, null, null, "Pix return", "Pix Return Job")));
             foreach (var unprocessedReturn in unprocessedReturns)
             {
                 try

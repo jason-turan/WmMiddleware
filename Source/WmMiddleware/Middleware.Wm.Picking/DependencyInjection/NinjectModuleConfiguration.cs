@@ -1,8 +1,8 @@
 ﻿using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
-using MiddleWare.Log;
+using Middleware.Log;
+using Middleware.Log.Repository;
 using Middleware.Wm.Configuration;
-using Middleware.Wm.Configuration.Mainframe;
 using Middleware.Wm.Inventory;
 using Middleware.Wm.Locations;
 using Middleware.Wm.Manhattan.Control;
@@ -32,6 +32,7 @@ namespace Middleware.Wm.Picking.DependencyInjection
             Bind<ICarrierReadRepository>().To<WmDatabaseCarrierRepository>().WithConstructorArgument("useThirdPartyBilling", false);
             Bind<IOmsManhattanOrderMapRepository>().To<OmsManhattanOrderMapRepositiory>();
 
+            Bind<IOrderHistoryRepository>().To<OrderHistoryRepository>();
         }
     }
 }

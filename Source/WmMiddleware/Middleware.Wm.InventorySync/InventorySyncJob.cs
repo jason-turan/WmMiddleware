@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Middleware.Jobs.Repositories;
-using MiddleWare.Log;
+using Middleware.Log;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.InventorySync.Models;
 using Middleware.Wm.InventorySync.Repository;

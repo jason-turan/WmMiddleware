@@ -1,6 +1,6 @@
 ﻿using Middleware.Wm.Manhattan.Extensions;
 
-namespace Middleware.Wm.ProductReceivingng.Models
+namespace Middleware.Wm.ProductReceiving.Models
 {
     public partial class DatabasePurchaseReturn 
     {
@@ -24,7 +24,7 @@ namespace Middleware.Wm.ProductReceivingng.Models
             {
                 Style = style_number.Substring(2,style_number.Length -2),
                 StyleYear = style_number.Substring(0,2),
-                ProductSize = prod_size.ConvertToManhattanSize(),
+                ProductSize = StringExtensions.ConvertToManhattanSize(prod_size),
                 ProductAttribute = attribute,
                 UnversalProductCode = UPC,
                 ExternalId = rowId

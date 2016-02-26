@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
-using MiddleWare.Log;
+using Middleware.Log;
 using Middleware.Wm.Configuration.Mainframe;
 
 namespace Middleware.Wm.ProductUpdating.Configuration

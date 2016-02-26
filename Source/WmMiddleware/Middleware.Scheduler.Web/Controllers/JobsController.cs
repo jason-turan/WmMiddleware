@@ -3,7 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using Middleware.Jobs.Models;
-using MiddleWare.Log;
+using Middleware.Log;
 using Middleware.Scheduler.Web.Service;
 
 namespace Middleware.Scheduler.Web.Controllers

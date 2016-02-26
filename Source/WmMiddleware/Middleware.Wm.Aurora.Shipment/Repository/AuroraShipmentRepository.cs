@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using Dapper;
 using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
-using MiddleWare.Log;
+using Middleware.Log;
 using Middleware.Wm.Aurora.Shipment.Models;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.Configuration.Database;

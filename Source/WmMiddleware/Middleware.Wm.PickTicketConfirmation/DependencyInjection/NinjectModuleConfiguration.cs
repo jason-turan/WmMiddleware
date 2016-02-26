@@ -1,5 +1,7 @@
 ﻿using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
+using Middleware.Log;
+using Middleware.Log.Repository;
 using Middleware.Wm.Aurora.PickTickets.Repositories;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.Inventory;
@@ -8,7 +10,6 @@ using Middleware.Wm.Manhattan.Control;
 using Middleware.Wm.Manhattan.Inventory;
 using Middleware.Wm.PickTicketConfirmation.Repositories;
 using Middleware.Wm.Shipping;
-using MiddleWare.Log;
 using Middleware.Wm.TransferControl.Control;
 using Middleware.Wm.TransferControl.Repositories;
 using Ninject.Modules;
@@ -37,6 +38,7 @@ namespace Middleware.Wm.PickTicketConfirmation.DependencyInjection
             Bind<IPickTicketProcessingRepository>().To<PickTicketOrderConfirmationProcessingRepository>();
             Bind<IAuroraPickTicketRepository>().To<AuroraPickTicketRepository>();
             Bind<IOmsManhattanOrderMapRepository>().To<OmsManhattanOrderMapRepositiory>();
+            Bind<IOrderHistoryRepository>().To<OrderHistoryRepository>();
         }
     }
 }

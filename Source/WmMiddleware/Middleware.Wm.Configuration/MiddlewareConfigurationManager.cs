@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Runtime.Caching;
 using Dapper;
-using MiddleWare.Log;
+using Middleware.Log;
 using Middleware.Wm.Configuration.Database;
 
 namespace Middleware.Wm.Configuration

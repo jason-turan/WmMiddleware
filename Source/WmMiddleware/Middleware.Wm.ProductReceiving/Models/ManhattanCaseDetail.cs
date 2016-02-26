@@ -3,7 +3,7 @@ using Middleware.Wm.Extensions;
 using Middleware.Wm.Manhattan.Extensions;
 using StringExtensions = Middleware.Wm.Manhattan.Extensions.StringExtensions;
 
-namespace Middleware.Wm.ProductReceivingng.Models
+namespace Middleware.Wm.ProductReceiving.Models
 {
     internal partial class ManhattanCaseDetail
     {

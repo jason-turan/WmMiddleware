@@ -1,7 +1,7 @@
 ﻿using Middleware.Jobs;
 using Middleware.Wm.ShipmentCancellationEmail.DependencyInjection;
 
-namespace WmMiddleware.ShipmentCancellationEmail
+namespace Middleware.Wm.ShipmentCancellationEmail
 {
     class Program
     {

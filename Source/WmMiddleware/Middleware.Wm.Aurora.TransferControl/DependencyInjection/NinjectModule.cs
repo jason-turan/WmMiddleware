@@ -1,7 +1,7 @@
 ﻿using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
+using Middleware.Log;
 using Middleware.WM.Aurora.TransferControl.Configuration;
-using MiddleWare.Log;
 using Middleware.Wm.Aurora.TransferControl.Ftp;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.Manhattan.Control;

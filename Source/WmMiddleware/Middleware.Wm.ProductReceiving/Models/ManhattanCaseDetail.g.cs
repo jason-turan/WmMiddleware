@@ -5,7 +5,7 @@ using FlatFile.FixedLength.Attributes;
 
 // ReSharper disable InconsistentNaming
 // ReSharper disable CheckNamespace
-namespace Middleware.Wm.ProductReceivingng.Models
+namespace Middleware.Wm.ProductReceiving.Models
 {
     // Generated with FlatFileClassGenerator
     [FixedLengthFile]

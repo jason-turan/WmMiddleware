@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MiddleWare.Log
+namespace Middleware.Log
 {
     public interface ILog
     {

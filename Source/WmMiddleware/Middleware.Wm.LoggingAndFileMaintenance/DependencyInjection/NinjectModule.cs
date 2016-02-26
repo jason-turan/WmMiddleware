@@ -1,7 +1,7 @@
 ﻿using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
-using MiddleWare.Log;
-using MiddleWare.Log.Repository;
+using Middleware.Log;
+using Middleware.Log.Repository;
 using Middleware.Wm.LoggingAndFileMaintenance.Repository;
 using Ninject.Modules;
 

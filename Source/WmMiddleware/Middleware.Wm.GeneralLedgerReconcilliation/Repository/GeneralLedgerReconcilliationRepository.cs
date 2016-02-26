@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using MiddleWare.Log;
+using Middleware.Log;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.Configuration.Transaction;
 using Middleware.Wm.GeneralLedgerReconcilliation.Models;

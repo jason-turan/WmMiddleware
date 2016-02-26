@@ -1,8 +1,7 @@
 ﻿using System;
-using Middleware.Wm.Extensions;
 using Middleware.Wm.Manhattan.Extensions;
 
-namespace Middleware.Wm.ProductReceivingng.Models
+namespace Middleware.Wm.ProductReceiving.Models
 {
     internal partial class ManhattanReceivedProductHeader
     {

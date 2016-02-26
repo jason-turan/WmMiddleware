@@ -1,6 +1,6 @@
 ﻿using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
-using MiddleWare.Log;
+using Middleware.Log;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.Configuration.Mainframe;
 using Middleware.Wm.Manhattan.Control;

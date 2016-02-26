@@ -1,4 +1,4 @@
-﻿using MiddleWare.Log;
+﻿using Middleware.Log;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.Configuration.Mainframe;
 using Middleware.Wm.Inventory;

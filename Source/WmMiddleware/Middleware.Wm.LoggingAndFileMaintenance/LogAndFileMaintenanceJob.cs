@@ -6,8 +6,8 @@ using System.IO.Compression;
 using System.Linq;
 using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
-using MiddleWare.Log;
-using MiddleWare.Log.Repository;
+using Middleware.Log;
+using Middleware.Log.Repository;
 using Middleware.Wm.LoggingAndFileMaintenance.Repository;
 
 namespace Middleware.Wm.LoggingAndFileMaintenance

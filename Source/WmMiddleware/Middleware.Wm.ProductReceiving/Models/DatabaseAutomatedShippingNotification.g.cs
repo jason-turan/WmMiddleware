@@ -2,7 +2,7 @@
 
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
-namespace Middleware.Wm.ProductReceivingng.Models
+namespace Middleware.Wm.ProductReceiving.Models
 {
     internal partial class DatabaseAutomatedShippingNotification
     {

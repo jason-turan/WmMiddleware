@@ -69,7 +69,7 @@ namespace Middleware.Wm.Manhattan.Extensions
                 case "10.5": return "105";
                 case "11.5": return "115";
                 case "12.5": return "125";
-                case "L/XL": return "055";
+                case "L/XL": return "LXL";
                 case "OSFA": return "OSZ";
                 case "2XS": return "XXS";
                 case "2XL": return "XXL";

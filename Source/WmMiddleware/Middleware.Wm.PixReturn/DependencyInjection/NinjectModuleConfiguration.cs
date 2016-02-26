@@ -1,6 +1,7 @@
 ﻿using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
-using MiddleWare.Log;
+using Middleware.Log;
+using Middleware.Log.Repository;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.Manhattan.Inventory;
 using Middleware.Wm.Pix.Repository;
@@ -22,6 +23,7 @@ namespace Middleware.Wm.PixReturn.DependencyInjection
             Bind<IPixReturnRepository>().To<PixReturnRepository>();
             Bind<IJobRepository>().To<JobRepository>();
             Bind<IOmsManhattanOrderMapRepository>().To<OmsManhattanOrderMapRepositiory>();
+            Bind<IOrderHistoryRepository>().To<OrderHistoryRepository>();
         }
     }
 }

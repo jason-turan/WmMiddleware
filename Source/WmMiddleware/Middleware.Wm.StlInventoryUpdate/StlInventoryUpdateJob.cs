@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 using System.Transactions;
-using MiddleWare.Log;
+using Middleware.Log;
 using Middleware.Wm.Configuration.Transaction;
 using Middleware.Wm.Pix.Models;
 using Middleware.Wm.Pix.Repository;

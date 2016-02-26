@@ -7,7 +7,7 @@ using System.Threading;
 using Middleware.Jobs;
 using Middleware.Jobs.Models;
 using Middleware.Jobs.Repositories;
-using MiddleWare.Log;
+using Middleware.Log;
 using Middleware.Wm.Configuration;
 
 namespace Middleware.Alerts

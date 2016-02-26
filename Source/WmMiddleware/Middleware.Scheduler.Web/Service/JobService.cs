@@ -6,7 +6,7 @@ using Middleware.Scheduler.WindowService.Quartz;
 using Middleware.Scheduler.WindowService.Scheduler;
 using Middleware.Jobs.Models;
 using Middleware.Jobs.Repositories;
-using MiddleWare.Log;
+using Middleware.Log;
 
 namespace Middleware.Scheduler.Web.Service
 {

@@ -1,6 +1,7 @@
 ﻿using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
-using MiddleWare.Log;
+using Middleware.Log;
+using Middleware.Log.Repository;
 using Middleware.Wm.Aurora.Shipment.Repository;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.Configuration.Mainframe;
@@ -27,7 +28,7 @@ namespace Middleware.Wm.Aurora.Shipment.DependencyInjection
             Bind<ITransferControlManager>().To<TransferControlManager>();
             Bind<IMainframeConfiguration>().To<MainframeConfiguration>();
             Bind<IShipmentRepository>().To<ShipmentRepository>();
-            // Bind<IFtpClientConfiguration>().To<AuroraFtpClientConfiguration>();
+            Bind<IOrderHistoryRepository>().To<OrderHistoryRepository>();
         }
     }
 }

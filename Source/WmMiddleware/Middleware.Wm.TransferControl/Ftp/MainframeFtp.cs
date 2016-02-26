@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using MiddleWare.Log;
+using Middleware.Log;
 using Middleware.Wm.Configuration;
 
 namespace Middleware.Wm.TransferControl.Ftp

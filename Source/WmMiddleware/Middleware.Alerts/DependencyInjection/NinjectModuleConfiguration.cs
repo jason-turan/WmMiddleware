@@ -2,7 +2,7 @@
 using Middleware.Wm.Configuration;
 using Ninject.Modules;
 using Middleware.Jobs.Repositories;
-using MiddleWare.Log;
+using Middleware.Log;
 
 namespace Middleware.Alerts.DependencyInjection
 {

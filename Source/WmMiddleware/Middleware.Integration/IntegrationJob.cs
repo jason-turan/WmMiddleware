@@ -6,7 +6,7 @@ using Middleware.Integration.Factories;
 using Middleware.Integration.Repositories;
 using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
-using MiddleWare.Log;
+using Middleware.Log;
 
 namespace Middleware.Integration
 {

@@ -5,7 +5,7 @@ using System.Linq;
 using Middleware.Jobs;
 using Middleware.Jobs.Models;
 using Middleware.Jobs.Repositories;
-using MiddleWare.Log;
+using Middleware.Log;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.Configuration.Transaction;
 using Middleware.Wm.Manhattan.DataFiles;

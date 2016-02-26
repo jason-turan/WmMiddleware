@@ -5,7 +5,7 @@ using Ninject;
 using Ninject.Modules;
 using Middleware.Jobs.Models;
 using Middleware.Jobs.Repositories;
-using MiddleWare.Log;
+using Middleware.Log;
 
 namespace Middleware.Jobs
 {

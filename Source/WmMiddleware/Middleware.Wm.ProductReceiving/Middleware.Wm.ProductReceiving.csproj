@@ -7,7 +7,7 @@
     <ProjectGuid>{81105C89-FD8E-44FC-84C1-B52FFFAE3508}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Middleware.Wm.ProductReceivingng</RootNamespace>
+    <RootNamespace>Middleware.Wm.ProductReceiving</RootNamespace>
     <AssemblyName>Middleware.Wm.ProductReceiving</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -96,13 +96,13 @@
     <Compile Include="Models\DatabaseAutomatedShippingNotification.cs" />
     <Compile Include="Models\DatabasePurchaseReturn.cs" />
     <Compile Include="Models\DatabasePurchaseOrder.cs" />
-    <Compile Include="Models\Generated\DatabaseAutomatedShippingNotification.cs" />
-    <Compile Include="Models\Generated\DatabasePurchaseOrders.cs" />
-    <Compile Include="Models\Generated\DatabasePurchaseReturn.cs" />
-    <Compile Include="Models\Generated\ManhattanSkuDetail.cs" />
+    <Compile Include="Models\DatabaseAutomatedShippingNotification.g.cs" />
+    <Compile Include="Models\DatabasePurchaseOrder.g.cs" />
+    <Compile Include="Models\DatabasePurchaseReturn.g.cs" />
+    <Compile Include="Models\ManhattanSkuDetail.g.cs" />
     <Compile Include="Models\LineItem.cs" />
-    <Compile Include="Models\Generated\ManhattanCaseDetail.cs" />
-    <Compile Include="Models\Generated\ManhattanReceivedProductHeader.cs" />
+    <Compile Include="Models\ManhattanCaseDetail.g.cs" />
+    <Compile Include="Models\ManhattanReceivedProductHeader.g.cs" />
     <Compile Include="Models\ManhattanCaseDetail.cs" />
     <Compile Include="Models\ManhattanReceivedProductHeader.cs" />
     <Compile Include="Models\ManhattanSkuDetail.cs" />
@@ -172,6 +172,9 @@
       <Link>databaseConnections.config</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\Generated\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

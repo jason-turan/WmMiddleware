@@ -3,9 +3,9 @@ using System.Data;
 using System.Linq;
 using Dapper;
 using Dapper.Contrib.Extensions;
-using MiddleWare.Log;
 using Middleware.Wm.Aurora.Shipment.Models;
 using System.Collections.Generic;
+using Middleware.Log;
 using Middleware.Wm.Configuration.Database;
 
 namespace Middleware.Wm.Aurora.Shipment.Repository

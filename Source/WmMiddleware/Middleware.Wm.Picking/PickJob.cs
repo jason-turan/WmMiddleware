@@ -2,7 +2,8 @@
 using System.Linq;
 using System.Text;
 using Middleware.Jobs;
-using MiddleWare.Log;
+using Middleware.Log;
+using Middleware.Log.Repository;
 using Middleware.Wm.Inventory;
 using Middleware.Wm.Manhattan.Inventory;
 
@@ -11,6 +12,7 @@ namespace Middleware.Wm.Picking
     public class PickJob : IUnitOfWork
     {
         private readonly ILog _logger;
+        private readonly IOrderHistoryRepository _orderHistoryRepository;
 
         private IOrderReader SourceRepository { get; set; }
         private IOrderWriter DestinationRepository { get; set; }
@@ -19,9 +21,11 @@ namespace Middleware.Wm.Picking
         public PickJob(ILog logger, 
                        IOrderReader sourceRepository, 
                        IOrderWriter destinationRepository,
-                       IOmsManhattanOrderMapRepository omsManhattanOrderMapRepository)
+                       IOmsManhattanOrderMapRepository omsManhattanOrderMapRepository,
+                       IOrderHistoryRepository orderHistoryRepository)
         {
             _logger = logger;
+            _orderHistoryRepository = orderHistoryRepository;
             DestinationRepository = destinationRepository;
             _omsManhattanOrderMapRepository = omsManhattanOrderMapRepository;
             SourceRepository = sourceRepository;
@@ -33,9 +37,8 @@ namespace Middleware.Wm.Picking
 
             if (orders.Any())
             {
-                var logBuilder = new StringBuilder();
-                logBuilder.AppendLine("Processing " + orders.Count + " orders.");
-
+                _logger.Debug("Processing " + orders.Count + " orders.");
+                _orderHistoryRepository.Save(orders.SelectMany(o => o.CreateHistories("Order picked.", "Pick Job")));
                 foreach (var order in orders)
                 {
                     var map = new OmsManhattanOrderMap
@@ -47,13 +50,7 @@ namespace Middleware.Wm.Picking
                     };
 
                     _omsManhattanOrderMapRepository.InsertOmsManhattanOrderMapRepository(map);
-
-                    logBuilder.AppendLine(string.Format("Order Number: {0} <SKUs: {1}>", 
-                                          order.OrderNumber, 
-                                          string.Join(",", order.Items.Select(i => i.ItemSku))));
                 }
-
-                _logger.Debug(logBuilder.ToString());
 
                 DestinationRepository.SaveOrders(orders);
                 SourceRepository.SetAsProcessed(orders);

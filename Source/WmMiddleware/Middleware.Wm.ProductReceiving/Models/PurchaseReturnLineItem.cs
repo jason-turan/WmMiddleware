@@ -1,4 +1,4 @@
-﻿namespace Middleware.Wm.ProductReceivingng.Models
+﻿namespace Middleware.Wm.ProductReceiving.Models
 {
     public class PurchaseReturnLineItem
     {

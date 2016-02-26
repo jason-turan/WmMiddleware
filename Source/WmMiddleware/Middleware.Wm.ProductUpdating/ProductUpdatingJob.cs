@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 using Middleware.Jobs;
-using MiddleWare.Log;
+using Middleware.Log;
 using Middleware.Wm.ProductUpdating.Configuration;
 using Middleware.Wm.ProductUpdating.Repositories;
 

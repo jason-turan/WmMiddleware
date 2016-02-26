@@ -1,15 +1,15 @@
 ﻿using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
-using MiddleWare.Log;
+using Middleware.Log;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.Configuration.Mainframe;
 using Middleware.Wm.Manhattan.Control;
-using Middleware.Wm.ProductReceivingng.Repositories;
+using Middleware.Wm.ProductReceiving.Repositories;
 using Middleware.Wm.TransferControl.Control;
 using Middleware.Wm.TransferControl.Repositories;
 using Ninject.Modules;
 
-namespace Middleware.Wm.ProductReceivingng.DependencyInjection
+namespace Middleware.Wm.ProductReceiving.DependencyInjection
 {
     public class NinjectModuleConfiguration : NinjectModule
     {

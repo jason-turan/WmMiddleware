@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Middleware.Jobs.Models;
-using MiddleWare.Log;
+using Middleware.Log;
 using Middleware.Wm.Manhattan.DataFiles;
 using Middleware.Wm.Manhattan.Extensions;
 using Middleware.Wm.TransferControl.Configuration;

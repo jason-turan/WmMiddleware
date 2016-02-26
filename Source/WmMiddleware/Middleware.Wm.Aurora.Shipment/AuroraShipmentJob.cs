@@ -1,5 +1,7 @@
-﻿using Middleware.Jobs;
-using MiddleWare.Log;
+﻿using System.Linq;
+using Middleware.Jobs;
+using Middleware.Log;
+using Middleware.Log.Repository;
 using Middleware.Wm.Aurora.Shipment.Models;
 using Middleware.Wm.Aurora.Shipment.Repository;
 using Middleware.Wm.Manhattan.Shipment;
@@ -10,14 +12,17 @@ namespace Middleware.Wm.Aurora.Shipment
     {
         private readonly IAuroraShipmentRepository _auroraShipmentRepository;
         private readonly IShipmentRepository _shipmentRepository;
+        private readonly IOrderHistoryRepository _orderHistoryRepository;
         private readonly ILog _log;
 
         public AuroraShipmentJob(ILog log,
                                  IAuroraShipmentRepository auroraShipmentRepository, 
-                                 IShipmentRepository shipmentRepository)
+                                 IShipmentRepository shipmentRepository,
+                                 IOrderHistoryRepository orderHistoryRepository)
         {
             _auroraShipmentRepository = auroraShipmentRepository;
             _shipmentRepository = shipmentRepository;
+            _orderHistoryRepository = orderHistoryRepository;
             _log = log;
         }
 
@@ -32,6 +37,7 @@ namespace Middleware.Wm.Aurora.Shipment
 
             if (shipments.Count > 0)
             {
+                _orderHistoryRepository.Save(shipments.SelectMany(s => s.LineItems.Select(i => new OrderHistory(s.Header.OrderNumber, s.Header.BatchControlNumber, i.PackageBarcode, "Shipment sent to Aurora.", "Aurora Shipment Job"))));
                 _auroraShipmentRepository.ProcessAuroraShipmentBnc(shipments);
 
                 foreach (var manhattanShipment in shipments)

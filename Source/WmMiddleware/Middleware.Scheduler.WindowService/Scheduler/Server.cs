@@ -2,7 +2,7 @@
 using Quartz;
 using Quartz.Spi;
 using Middleware.Jobs.Repositories;
-using MiddleWare.Log;
+using Middleware.Log;
 using Middleware.Scheduler.WindowService.DependencyInjection;
 
 namespace Middleware.Scheduler.WindowService.Scheduler

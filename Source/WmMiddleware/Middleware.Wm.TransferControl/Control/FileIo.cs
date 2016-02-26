@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using MiddleWare.Log;
+using Middleware.Log;
 
 namespace Middleware.Wm.TransferControl.Control
 {

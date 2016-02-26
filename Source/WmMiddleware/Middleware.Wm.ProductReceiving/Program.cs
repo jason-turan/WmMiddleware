@@ -1,7 +1,7 @@
 ﻿using Middleware.Jobs;
-using Middleware.Wm.ProductReceivingng.DependencyInjection;
+using Middleware.Wm.ProductReceiving.DependencyInjection;
 
-namespace Middleware.Wm.ProductReceivingng
+namespace Middleware.Wm.ProductReceiving
 {
     public class Program
     {

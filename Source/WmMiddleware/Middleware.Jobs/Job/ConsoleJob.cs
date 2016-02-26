@@ -3,7 +3,7 @@ using System.Diagnostics;
 using Quartz;
 using Middleware.Jobs.Models;
 using Middleware.Jobs.Repositories;
-using MiddleWare.Log;
+using Middleware.Log;
 
 namespace Middleware.Jobs.Job
 {

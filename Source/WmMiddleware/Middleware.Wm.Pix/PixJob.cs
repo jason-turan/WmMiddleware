@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Middleware.Jobs.Repositories;
-using MiddleWare.Log;
+using Middleware.Log;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.Manhattan.DataFiles;
 using Middleware.Wm.Outbound;
@@ -38,9 +38,10 @@ namespace Middleware.Wm.Pix
 
             var file = transferControlFiles.First();
             var pixRepository = new DataFileRepository<ManhattanPerpetualInventoryTransfer>();
-            var pix = pixRepository.Get(file.FileLocation).ToList();
-            _perpetualInventoryTransferRepository.InsertPerpetualInventoryTransfer(pix);
-            LogInsert(pix, file);
+            var pixList = pixRepository.Get(file.FileLocation).ToList();
+            
+            _perpetualInventoryTransferRepository.InsertPerpetualInventoryTransfer(pixList);
+            LogInsert(pixList, file);
         }
     }
 }

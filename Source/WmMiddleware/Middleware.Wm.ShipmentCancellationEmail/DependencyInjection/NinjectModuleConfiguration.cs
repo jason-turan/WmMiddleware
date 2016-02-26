@@ -1,6 +1,6 @@
 ﻿using Middleware.Jobs;
 using Middleware.Jobs.Repositories;
-using MiddleWare.Log;
+using Middleware.Log;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.Manhattan.Inventory;
 using Middleware.Wm.ShipmentCancellationEmail.Repository;
@@ -12,10 +12,10 @@ namespace Middleware.Wm.ShipmentCancellationEmail.DependencyInjection
     {
         public override void Load()
         {
-            Bind<IJobRepository>().To<JobRepository>();
-            Bind<ILog>().To<Log4Net>();
-            Bind<IConfigurationManager>().To<MiddlewareConfigurationManager>();
             Bind<IUnitOfWork>().To<ShipmentCancellationEmailJob>();
+            Bind<ILog>().To<Log4Net>();
+            Bind<IJobRepository>().To<JobRepository>();
+            Bind<IConfigurationManager>().To<MiddlewareConfigurationManager>();
             Bind<ICancellationEmailDistributionRepository>().To<CancellationEmailDistributionRepository>();
             Bind<IOmsManhattanOrderMapRepository>().To<OmsManhattanOrderMapRepositiory>();
         }

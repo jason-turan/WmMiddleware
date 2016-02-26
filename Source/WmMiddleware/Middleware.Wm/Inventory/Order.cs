@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
+using Middleware.Log;
 using Middleware.Wm.Extensions;
 
 namespace Middleware.Wm.Inventory
@@ -62,8 +64,17 @@ namespace Middleware.Wm.Inventory
             get
             {
                 var parts = OrderNumber.Split(new []{"-"}, StringSplitOptions.None);
+                if (parts.Length == 1)
+                {
+                    return OrderNumber;
+                }
                 return parts[0] + parts[1].ConvertIntegerToCharacter();
             }
+        }
+
+        public IEnumerable<OrderHistory> CreateHistories(string note, string jobKey)
+        {
+            return Items.Select(i => new OrderHistory(OrderNumber, ControlNumber, i.ItemSku, note, jobKey));
         }
     }
 }

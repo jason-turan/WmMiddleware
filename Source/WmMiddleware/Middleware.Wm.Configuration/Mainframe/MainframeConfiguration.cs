@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using Dapper;
-using MiddleWare.Log;
+using Middleware.Log;
 using Middleware.Wm.Configuration.Database;
 
 namespace Middleware.Wm.Configuration.Mainframe

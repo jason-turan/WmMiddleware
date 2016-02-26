@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MiddleWare.Log.Repository
+namespace Middleware.Log.Repository
 {
     public interface ILogRepository
     {
