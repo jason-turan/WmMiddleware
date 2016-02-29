@@ -21,6 +21,7 @@ namespace Middleware.Jobs.Repositories
                                                  ,NextRunDateTime
                                                  ,JobType
                                                  ,IsAlerted
+                                                 ,Description
                                          FROM [dbo].[Job]";
 
         public MiddlewareJob GetJob(string jobKey)

@@ -92,6 +92,7 @@ namespace Middleware.Wm.ShipmentCancellationEmail
             //loop through line items
             foreach (var cancel in cancellation)
             {
+                // TODO: remove cadre link
                 message.Body += "<tr><td>" + cancel.LineNumber +
                                 "</td><td><a href=\"http://cctools/Warehouse/InventoryLookup.aspx?style=" + cancel.Style + "\">" + cancel.Style + 
                                 "</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>" + cancel.StockKeepingUnit + 

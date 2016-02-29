@@ -39,7 +39,7 @@
         </tr>
     
         <tbody data-bind="foreach: $data.jobCollection">
-            <tr>
+            <tr data-bind="attr: { title: $data.Description } ">
                 <td data-bind="text: $data.JobKey"></td>
                 <td><a href="#"  data-bind="click: $parent.changeSchedule, text: $data.Schedule"></a></td>
                 <td data-bind="text: $data.LastRunStatus, style: { color: $data.LastRunStatus == 'FAILURE' ? 'red' : 'green' }"></td>

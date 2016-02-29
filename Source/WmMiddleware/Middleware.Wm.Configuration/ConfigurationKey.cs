@@ -42,7 +42,7 @@
 
         public const string GeneralLedgeBrickAndClickAccount = "GeneralLedger_BncAccount";
         public const string GeneralLedgerVarianceAccountDefault = "GeneralLedger_VarianceAccount_Default";
-        public const string GeneralLedgerVarianceAccountFootwear = "GeneralLedger_VarianceAccount_Footwear";
+        public const string GeneralLedgerVarianceAccountApparel = "GeneralLedger_VarianceAccount_Apparel";
         public const string GeneralLedgerVarianceAccountAccessory = "GeneralLedger_VarianceAccount_Accessory";
     }
 }

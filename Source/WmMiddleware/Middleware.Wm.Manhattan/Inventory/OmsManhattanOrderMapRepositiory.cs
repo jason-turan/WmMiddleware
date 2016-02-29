@@ -31,6 +31,7 @@ namespace Middleware.Wm.Manhattan.Inventory
 
         public OmsManhattanOrderMap GetOmsManhattanOrderMap(OmsManhattanOrderMapFindCriteria criteria)
         {
+            // TODO: make a proc or use dapper mapping
             const string findOmsManhattanOrder = @"SELECT [OMSOrderNumber]
                                                             ,[WmOrderNumber]
                                                             ,[Created]

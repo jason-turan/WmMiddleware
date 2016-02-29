@@ -40,8 +40,8 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Models
         {
             switch (productClass.ToUpper())
             {
-                case "FOOTWEAR":
-                    return _configurationManager.GetKey<string>(ConfigurationKey.GeneralLedgerVarianceAccountFootwear);
+                case "APPAREL":
+                    return _configurationManager.GetKey<string>(ConfigurationKey.GeneralLedgerVarianceAccountApparel);
                 case "ACCESSORY":
                     return _configurationManager.GetKey<string>(ConfigurationKey.GeneralLedgerVarianceAccountAccessory);
                 default:
