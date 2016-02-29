@@ -195,7 +195,7 @@ namespace Middleware.Wm.GeneralLedgerReconcilliation.Repository
 
             if (glInterface.GeneralLedgerAccount == null)
             {
-                _log.Warning("No GL mapping found for transaction " + pix.ManhattanPerpetualInventoryTransferId);
+                _log.Warning("No GL mapping found for pix id " + pix.ManhattanPerpetualInventoryTransferId + ".  Transaction marked as processed.");
             }
             else
             {
