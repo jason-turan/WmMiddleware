@@ -37,8 +37,6 @@ namespace Middleware.Wm.Manhattan.Extensions
                 case "LXL": retSize = "L/XL"; break;
                 case "1SZ": retSize = "OSFA"; break;
                 case "OSZ": retSize = "OSFA"; break;
-                case "XXS": retSize = "2XS"; break;
-                case "XXL": retSize = "2XL"; break;
                 case "32E": retSize = "32DD"; break;
                 case "34E": retSize = "34DD"; break;
                 case "36E": retSize = "36DD"; break;
@@ -71,8 +69,6 @@ namespace Middleware.Wm.Manhattan.Extensions
                 case "12.5": return "125";
                 case "L/XL": return "LXL";
                 case "OSFA": return "OSZ";
-                case "2XS": return "XXS";
-                case "2XL": return "XXL";
                 case "32DD": return "32E";
                 case "34DD": return "34E";
                 case "36DD": return "36E";
