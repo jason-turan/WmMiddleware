@@ -49,6 +49,8 @@ namespace Middleware.Wm.Manhattan.Extensions
             ecommSize = ecommSize.ToUpperInvariant().Trim();
             switch (ecommSize)
             {
+                case "XXS": return "2XS";
+                case "XXL": return "2XL";
                 case "L/XL": return "LXL";
                 case "OSFA": return "OSZ";
                 case "32DD": return "32E";
