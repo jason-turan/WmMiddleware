@@ -67,7 +67,7 @@ namespace Middleware.Wm.Picking.Models
                 Color = Color,
                 SeasonYear = SeasonYear,
                 Style = Style,
-                Size = Size.ConvertToManhattanSize()
+                Size = Size
             };
         }
     }

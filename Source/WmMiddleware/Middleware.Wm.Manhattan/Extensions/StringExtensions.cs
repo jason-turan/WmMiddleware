@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Middleware.Wm.Manhattan.Extensions
 {
@@ -12,28 +13,16 @@ namespace Middleware.Wm.Manhattan.Extensions
 
         public static string ConvertFromManhattanSize(this string size)
         {
-            //COPIED FROM SQL SERVER----------------
-
-            string retSize = size.ToUpperInvariant().Trim();
+            var retSize = ConvertFromManhattanDecimalSize(size);
+            if (retSize != null)
+            {
+                return retSize;
+            }
+            
+            retSize = size.ToUpperInvariant().Trim();
 
             switch (retSize)
             {
-                //--FOOTWEAR
-                case "05": retSize = "5"; break;
-                case "055": retSize = "5.5"; break;
-                case "06": retSize = "6"; break;
-                case "065": retSize = "6.5"; break;
-                case "07": retSize = "7"; break;
-                case "075": retSize = "7.5"; break;
-                case "08": retSize = "8"; break;
-                case "085": retSize = "8.5"; break;
-                case "09": retSize = "9"; break;
-                case "095": retSize = "9.5"; break;
-                case "105": retSize = "10.5"; break;
-                case "115": retSize = "11.5"; break;
-                case "125": retSize = "12.5"; break;
-
-                //--APPAREL
                 case "LXL": retSize = "L/XL"; break;
                 case "1SZ": retSize = "OSFA"; break;
                 case "OSZ": retSize = "OSFA"; break;
@@ -51,22 +40,15 @@ namespace Middleware.Wm.Manhattan.Extensions
 
         public static string ConvertToManhattanSize(this string ecommSize)
         {
+            var decimalSize = ConvertToManhattanDecimalSize(ecommSize);
+            if (decimalSize != null)
+            {
+                return decimalSize;
+            }
+
             ecommSize = ecommSize.ToUpperInvariant().Trim();
             switch (ecommSize)
             {
-                case "5": return "05";
-                case "5.5": return "055";
-                case "6": return "06";
-                case "6.5": return "065";
-                case "7": return "07";
-                case "7.5": return "075";
-                case "8": return "08";
-                case "8.5": return "085";
-                case "9": return "09";
-                case "9.5": return "095";
-                case "10.5": return "105";
-                case "11.5": return "115";
-                case "12.5": return "125";
                 case "L/XL": return "LXL";
                 case "OSFA": return "OSZ";
                 case "32DD": return "32E";
@@ -78,6 +60,34 @@ namespace Middleware.Wm.Manhattan.Extensions
                 case "44DD": return "44E";
                 default: return ecommSize;
             }
+        }
+
+        private static string ConvertFromManhattanDecimalSize(string size)
+        {
+            decimal decimalSize;
+            if (!decimal.TryParse(size, out decimalSize))
+            {
+                return null;
+            }
+
+            return decimal.Parse(size.Substring(0, 2) + "." + size.Substring(2)).ToString();
+        }
+
+        private static string ConvertToManhattanDecimalSize(string size)
+        {
+            int intSize;
+            if (int.TryParse(size, out intSize))
+            {
+                return intSize.ToString("D2") + " ";
+            }
+
+            decimal numberSize;
+            if (decimal.TryParse(size, out numberSize))
+            {
+                return ((int)(numberSize * 10)).ToString("D3", CultureInfo.InvariantCulture);
+            }
+
+            return null;
         }
     }
 }
