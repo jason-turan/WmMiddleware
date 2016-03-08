@@ -77,8 +77,6 @@ namespace Middleware.Wm.TransferControl.Ftp
                             count = responseStream.Read(buffer, 0, buffer.Length);
                         }
                     }
-                    Stream stream = response.GetResponseStream();
-                    if (stream != null) stream.Close();
                 }
             }
             return true;
