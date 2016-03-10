@@ -233,6 +233,7 @@
     </Content>
     <None Include="Properties\PublishProfiles\DeployToSTLMW01.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Images\redLogo.png" />
     <Content Include="Scripts\json2.js" />
     <Content Include="Scripts\json2.min.js" />
     <Content Include="Scripts\knockout.jobs.viewmodel.js" />
