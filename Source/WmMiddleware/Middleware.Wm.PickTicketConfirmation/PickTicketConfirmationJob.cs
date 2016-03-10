@@ -82,6 +82,7 @@ namespace Middleware.Wm.PickTicketConfirmation
             order.CustomerPurchaseOrderNumber = auroraPickTicket.Header.CustomerPurchaseOrderNumber;
             order.OrderType = OrderType.BrickAndClick;
             order.LineItems = auroraPickTicket.Details.ToDictionary(d => d.PackageBarcode, d => d.PickticketLineNumber);
+            order.ShippingMethod = auroraPickTicket.Header.ShipVia;
         }
     }
 }
