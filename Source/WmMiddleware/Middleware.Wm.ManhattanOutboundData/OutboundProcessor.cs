@@ -9,6 +9,7 @@ using Middleware.Log;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.Configuration.Transaction;
 using Middleware.Wm.Manhattan.DataFiles;
+using Middleware.Wm.TransferControl.Configuration;
 using Middleware.Wm.TransferControl.Control;
 using Middleware.Wm.TransferControl.Models;
 using Middleware.Wm.TransferControl.Repositories;
@@ -22,18 +23,20 @@ namespace Middleware.Wm.Outbound
         private readonly IFileIo _fileIo;
         private readonly IJobRepository _jobRepository;
         private readonly ITransferControlRepository _transferControlRepository;
-
+        private readonly ITransferControlConfigurationManager _transferControlConfigurationManager;
         protected OutboundProcessor(ILog log, 
                                  IConfigurationManager configurationManager, 
                                  IFileIo fileIo, 
                                  IJobRepository jobRepository,
-                                 ITransferControlRepository transferControlRepository)
+                                 ITransferControlRepository transferControlRepository,
+                                 ITransferControlConfigurationManager transferControlConfigurationManager)
         {
             _log = log;
             _configurationManager = configurationManager;
             _fileIo = fileIo;
             _jobRepository = jobRepository;
             _transferControlRepository = transferControlRepository;
+            _transferControlConfigurationManager = transferControlConfigurationManager;
         }
 
         protected abstract void ProcessFiles(ICollection<TransferControlFile> transferControlFiles);
@@ -98,8 +101,7 @@ namespace Middleware.Wm.Outbound
 
         private void MoveFilesToProcessed(IEnumerable<TransferControlFile> files)
         {
-            var processedPath =
-                _configurationManager.GetKey<string>(ConfigurationKey.TransferControlOutboundFileProcessedDirectory);
+            var processedPath = _transferControlConfigurationManager.GetOutboundFileProcessedDirectory();
 
             foreach (var transferControlFile in files)
             {

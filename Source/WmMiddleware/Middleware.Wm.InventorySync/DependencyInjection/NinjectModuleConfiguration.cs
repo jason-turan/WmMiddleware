@@ -3,6 +3,7 @@ using Middleware.Jobs.Repositories;
 using Middleware.Log;
 using Middleware.Wm.Configuration;
 using Middleware.Wm.InventorySync.Repository;
+using Middleware.Wm.TransferControl.Configuration;
 using Middleware.Wm.TransferControl.Control;
 using Middleware.Wm.TransferControl.Repositories;
 using Ninject.Modules;
@@ -21,6 +22,7 @@ namespace Middleware.Wm.InventorySync.DependencyInjection
             Bind<IConfigurationManager>().To<MiddlewareConfigurationManager>();
             Bind<IInventorySyncRepository>().To<InventorySyncRepository>();
             Bind<IFileIo>().To<FileIo>();
+            Bind<ITransferControlConfigurationManager>().To<TransferControlConfigurationManager>();
         }
     }
 }

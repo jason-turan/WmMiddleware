@@ -2,44 +2,29 @@
     ViewBag.Title = "Jobs";
 }
 
-<span id='title'>
-    <img src="../../Images/redLogo.png" width="43" height="21" style="position:relative;top:3px;" /> 
-    <label class="text-primary">WM Middleware Integration Job Management</label>    
-</span>
-
 <div class="container-fluid">
-
-    <table class="table table-hover">
-        <tr>
-            <th>
-                Job Key
-            </th>
-            <th>
-                Schedule
-            </th>
-            <th>
-                Last Run Status    
-            </th>
-            <th>
-                Job Executable
-            </th>
-            <th>
-                Active
-            </th>
-            <th>
-                Last Run Date
-            </th>
-            <th>
-                Last Execution Time
-            </th>
-            <th>
-                Next Run Time
-            </th>
-            <th>
-                Job Type
-            </th>
-        </tr>
     
+    <div>
+        <span id='title' class="title" >
+            <img src='@Url.Content("../../Images/redLogo.png")' width="43" height="21" style="position:relative;top:1px;" /> 
+            <label class='jobtitle'>WM Middleware Integration Job Management</label>
+        </span>
+    </div>
+
+    <table class="table table-condensed ">
+        <thead>
+            <tr>
+                <th>Job Key</th>
+                <th>Schedule</th>
+                <th>Last Run Status</th>
+                <th>Job Executable</th>
+                <th>Active</th>
+                <th>Last Run Date</th>
+                <th>Last Execution Time</th>
+                <th>Next Run Time</th>
+                <th>Job Type</th>
+            </tr>
+        </thead>
         <tbody data-bind="foreach: $data.jobCollection">
             <tr data-bind="attr: { title: $data.Description } ">
                 <td data-bind="text: $data.JobKey"></td>
@@ -63,4 +48,5 @@
     @Scripts.Render("~/bundles/moment")
     @Scripts.Render("~/bundles/json")
     @Styles.Render("~/Content/bootstrap.min.css")
+    @Styles.Render("~/Content/site.css")
 }

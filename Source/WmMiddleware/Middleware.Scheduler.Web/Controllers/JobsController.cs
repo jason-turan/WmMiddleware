@@ -23,7 +23,6 @@ namespace Middleware.Scheduler.Web.Controllers
         // GET: /Jobs/
         public ActionResult Index()
         {
-
             return View();
         }
 

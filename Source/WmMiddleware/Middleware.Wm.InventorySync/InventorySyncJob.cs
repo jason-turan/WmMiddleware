@@ -8,6 +8,7 @@ using Middleware.Wm.InventorySync.Models;
 using Middleware.Wm.InventorySync.Repository;
 using Middleware.Wm.Manhattan.DataFiles;
 using Middleware.Wm.Outbound;
+using Middleware.Wm.TransferControl.Configuration;
 using Middleware.Wm.TransferControl.Control;
 using Middleware.Wm.TransferControl.Models;
 using Middleware.Wm.TransferControl.Repositories;
@@ -19,13 +20,14 @@ namespace Middleware.Wm.InventorySync
     {
         private readonly IInventorySyncRepository _inventorySyncRepository;
 
-        public InventorySyncJob(ILog log, 
-                                IConfigurationManager configurationManager,
-                                IJobRepository jobRepository, 
-                                ITransferControlRepository transferControlRepository,
-                                IInventorySyncRepository inventorySyncRepository,
-                                IFileIo fileIo)
-            : base(log, configurationManager, fileIo, jobRepository, transferControlRepository)
+        public InventorySyncJob(ILog log,
+            IConfigurationManager configurationManager,
+            IJobRepository jobRepository,
+            ITransferControlRepository transferControlRepository,
+            IInventorySyncRepository inventorySyncRepository,
+            IFileIo fileIo,
+            ITransferControlConfigurationManager transferControlConfigurationManager)
+            : base(log, configurationManager, fileIo, jobRepository, transferControlRepository, transferControlConfigurationManager)
         {
             _inventorySyncRepository = inventorySyncRepository;
         }

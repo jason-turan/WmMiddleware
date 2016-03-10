@@ -10,6 +10,7 @@ using Middleware.Wm.Inventory;
 using Middleware.Wm.Manhattan.DataFiles;
 using Middleware.Wm.Manhattan.Inventory;
 using Middleware.Wm.Outbound;
+using Middleware.Wm.TransferControl.Configuration;
 using Middleware.Wm.TransferControl.Control;
 using Middleware.Wm.TransferControl.Models;
 using Middleware.Wm.TransferControl.Repositories;
@@ -31,8 +32,9 @@ namespace Middleware.Wm.Aurora.PickTickets
                              ITransferControlRepository transferControlRepository, 
                              IManhattanOrderRepository manhattanOrderRepository,
                              IAuroraPickTicketRepository auroraPickTicketRepository,
-                             IOrderHistoryRepository orderHistoryRepository)
-            : base(logger, configurationManager, fileIo, jobRepository, transferControlRepository)
+                             IOrderHistoryRepository orderHistoryRepository,
+                             ITransferControlConfigurationManager transferControlConfigurationManager)
+            : base(logger, configurationManager, fileIo, jobRepository, transferControlRepository, transferControlConfigurationManager)
         {
             _destinationRepository = destinationRepository;
             _manhattanOrderRepository = manhattanOrderRepository;
