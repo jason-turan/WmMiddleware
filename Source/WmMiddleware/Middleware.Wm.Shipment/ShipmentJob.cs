@@ -7,6 +7,7 @@ using Middleware.Wm.Configuration;
 using Middleware.Wm.Manhattan.DataFiles;
 using Middleware.Wm.Manhattan.Shipment;
 using Middleware.Wm.Outbound;
+using Middleware.Wm.TransferControl.Configuration;
 using Middleware.Wm.TransferControl.Control;
 using Middleware.Wm.TransferControl.Models;
 using Middleware.Wm.TransferControl.Repositories;
@@ -22,12 +23,14 @@ namespace Middleware.Wm.Shipment
             IJobRepository jobRepository,
             IShipmentRepository shipmentRepository,
             IFileIo fileIo,
-            IConfigurationManager configurationManager)
+            IConfigurationManager configurationManager,
+            ITransferControlConfigurationManager transferControlConfigurationManager)
             : base(log,
                 configurationManager,
                 fileIo,
                 jobRepository,
-                transferControlRepository)
+                transferControlRepository,
+                transferControlConfigurationManager)
         {
             _shipmentRepository = shipmentRepository;
         }
@@ -38,6 +41,8 @@ namespace Middleware.Wm.Shipment
             {
                 ProcessFile(file);
             }
+
+
         }
 
         private void ProcessFile(TransferControlFile file)
