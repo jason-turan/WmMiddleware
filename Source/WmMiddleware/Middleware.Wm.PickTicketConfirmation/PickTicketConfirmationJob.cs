@@ -8,6 +8,7 @@ using Middleware.Wm.Inventory;
 using Middleware.Wm.Manhattan.Inventory;
 using Middleware.Wm.PickTicketConfirmation.Models;
 using Middleware.Wm.PickTicketConfirmation.Repositories;
+using Middleware.Wm.Shipping;
 
 namespace Middleware.Wm.PickTicketConfirmation
 {
@@ -21,6 +22,7 @@ namespace Middleware.Wm.PickTicketConfirmation
         private readonly IAuroraPickTicketRepository _auroraPickTicketRepository;
         private readonly IOmsManhattanOrderMapRepository _omsManhattanOrderMapRepository;
         private readonly IOrderHistoryRepository _orderHistoryRepository;
+        private readonly ICarrierReadRepository _carrierReadRepository;
 
         public PickTicketConfirmationJob(ILog logger, 
                                          IOrderReader sourceRepository, 
@@ -28,7 +30,8 @@ namespace Middleware.Wm.PickTicketConfirmation
                                          IPickTicketProcessingRepository pickTicketProcessingRepository,
                                          IAuroraPickTicketRepository auroraPickTicketRepository,
                                          IOmsManhattanOrderMapRepository omsManhattanOrderMapRepository,
-                                         IOrderHistoryRepository orderHistoryRepository)
+                                         IOrderHistoryRepository orderHistoryRepository,
+                                         ICarrierReadRepository carrierReadRepository)
         {
             _logger = logger;
             SourceRepository = sourceRepository;
@@ -37,6 +40,7 @@ namespace Middleware.Wm.PickTicketConfirmation
             _auroraPickTicketRepository = auroraPickTicketRepository;
             _omsManhattanOrderMapRepository = omsManhattanOrderMapRepository;
             _orderHistoryRepository = orderHistoryRepository;
+            _carrierReadRepository = carrierReadRepository;
         }
 
         public void RunUnitOfWork(string jobKey)
@@ -82,7 +86,7 @@ namespace Middleware.Wm.PickTicketConfirmation
             order.CustomerPurchaseOrderNumber = auroraPickTicket.Header.CustomerPurchaseOrderNumber;
             order.OrderType = OrderType.BrickAndClick;
             order.LineItems = auroraPickTicket.Details.ToDictionary(d => d.PackageBarcode, d => d.PickticketLineNumber);
-            order.ShippingMethod = auroraPickTicket.Header.ShipVia;
+            order.ShippingMethod = _carrierReadRepository.GetOmsShipMethod(auroraPickTicket.Header.ShipVia);
         }
     }
 }
