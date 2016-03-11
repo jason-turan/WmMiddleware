@@ -90,7 +90,7 @@ namespace Middleware.Wm.ProductReceiving.Models
                 Style = Style,
                 Color = Color,
                 SeasonYear = SeasonYear,
-                Size = StringExtensions.ConvertToManhattanSize(Size),
+                Size = Size,
                 Sku = SKU,
                 Uom = UOM,
                 Upc = UPC,

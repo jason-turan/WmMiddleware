@@ -72,7 +72,7 @@ namespace Middleware.Wm.Manhattan.Extensions
                 return null;
             }
 
-            return decimal.Parse(size.Substring(0, 2) + "." + size.Substring(2)).ToString();
+            return decimal.Parse(size.Substring(0, 2) + "." + size.Substring(2)).ToString(CultureInfo.InvariantCulture);
         }
 
         private static string ConvertToManhattanDecimalSize(string size)
