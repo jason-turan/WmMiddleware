@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using Middleware.Jobs;
@@ -74,9 +75,9 @@ namespace Middleware.Wm.ShipmentCancellationEmail
                 Subject = string.Concat("Cancelled - ", orderMap.OmsOrderNumber)
             };
 
-            foreach (var toAddress in distribution.DistributionList.Split(';'))
+            foreach (var toAddress in distribution.DistributionList.Split(new []{';'}, StringSplitOptions.RemoveEmptyEntries))
             {
-                message.To.Add(new MailAddress(toAddress));
+                message.To.Add(new MailAddress(toAddress.Trim()));
             }
 
             if (distribution.AdministrationSiteLink == string.Empty)
