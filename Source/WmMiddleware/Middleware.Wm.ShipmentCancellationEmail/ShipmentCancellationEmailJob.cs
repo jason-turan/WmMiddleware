@@ -74,7 +74,10 @@ namespace Middleware.Wm.ShipmentCancellationEmail
                 Subject = string.Concat("Cancelled - ", orderMap.OmsOrderNumber)
             };
 
-            message.To.Add(new MailAddress(distribution.DistributionList));
+            foreach (var toAddress in distribution.DistributionList.Split(';'))
+            {
+                message.To.Add(new MailAddress(toAddress));
+            }
 
             if (distribution.AdministrationSiteLink == string.Empty)
             {
