@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using Dapper;
 using Middleware.Wm.Configuration.Database;
@@ -27,7 +28,8 @@ namespace Middleware.Wm.StlInventoryUpdate.Repository
 
                 var parameter = new
                 {
-                    StlInventoryUpdateTable = stlInventoryUpdateTable.AsTableValuedParameter("[dbo].[StlInventoryUpdateTable]")
+                    StlInventoryUpdateTable = stlInventoryUpdateTable.AsTableValuedParameter("[dbo].[StlInventoryUpdateTable]"),
+                    InventoryDate = DateTime.Now
                 };
 
                 connection.Open();
