@@ -9,7 +9,7 @@
     <div>
         <span id='title' class="title" >
             <img src='@Url.Content("../../Images/redLogo.png")' width="43" height="21" style="position:relative;top:1px;" /> 
-            <label class='jobtitle'>WM Middleware Integration Job Management, Version @Assembly.GetAssembly(typeof (JobsController)).GetName().Version.ToString()</label>
+            <label class='jobtitle'>WM Middleware Integration Job Management</label>
         </span>
     </div>
 
@@ -44,6 +44,7 @@
 </div>
 
 <h6>Last Update: <span data-bind="text: lastUpdated"> </span></h6>
+<h6>Warehouse Management Middleware Version: @Assembly.GetAssembly(typeof (JobsController)).GetName().Version.ToString()</h6>
 
 @section Scripts{
     @Scripts.Render("~/bundles/knockout")
