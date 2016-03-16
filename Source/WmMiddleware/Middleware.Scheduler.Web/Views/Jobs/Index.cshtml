@@ -1,4 +1,6 @@
-﻿@{
+﻿@using System.Reflection
+@using Middleware.Scheduler.Web.Controllers
+@{
     ViewBag.Title = "Jobs";
 }
 
@@ -7,7 +9,7 @@
     <div>
         <span id='title' class="title" >
             <img src='@Url.Content("../../Images/redLogo.png")' width="43" height="21" style="position:relative;top:1px;" /> 
-            <label class='jobtitle'>WM Middleware Integration Job Management</label>
+            <label class='jobtitle'>WM Middleware Integration Job Management, Version @Assembly.GetAssembly(typeof (JobsController)).GetName().Version.ToString()</label>
         </span>
     </div>
 
