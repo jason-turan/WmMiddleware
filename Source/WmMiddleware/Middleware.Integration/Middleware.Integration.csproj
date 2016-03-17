@@ -41,7 +41,7 @@
       <HintPath>..\..\..\Dependencies\Dapper\Dapper.dll</HintPath>
     </Reference>
     <Reference Include="NewBalance.GP">
-      <HintPath>..\..\..\..\..\Middleware\Development\20151221\Dependencies\New Balance\NewBalance.GP.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\NewBalance.GP.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\..\..\Dependencies\Ninject\Ninject.dll</HintPath>

@@ -18,7 +18,7 @@ namespace Middleware.Wm.StlInventorySync.DependencyInjection
         {
             Bind<ILog>().To<Log4Net>();
             Bind<IUnitOfWork>().To<StlInventorySyncJob>();
-            Bind<IStlInventoryRepository>().To<StlInventoryRepository>();
+            //Bind<IStlInventoryRepository>().To<StlInventoryRepository>();
             Bind<IInventorySyncRepository>().To<InventorySyncRepository>();
             Bind<IJobRepository>().To<JobRepository>();
             Bind<IConfigurationManager>().To<MiddlewareConfigurationManager>();

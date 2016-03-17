@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
     <Compile Include="Models\StlInventory.cs" />
+    <Compile Include="Models\StlInventorySyncAudit.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IStlInventoryRepository.cs" />

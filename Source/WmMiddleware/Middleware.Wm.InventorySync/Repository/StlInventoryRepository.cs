@@ -5,10 +5,9 @@ using System.Linq;
 using Dapper;
 using Dapper.Contrib.Extensions;
 using Middleware.Wm.Configuration.Database;
-using Middleware.Wm.InventorySync.Repository;
-using Middleware.Wm.StlInventorySync.Models;
+using Middleware.Wm.InventorySync.Models;
 
-namespace Middleware.Wm.StlInventorySync.Repository
+namespace Middleware.Wm.InventorySync.Repository
 {
     public class StlInventoryRepository : IStlInventoryRepository
     {
