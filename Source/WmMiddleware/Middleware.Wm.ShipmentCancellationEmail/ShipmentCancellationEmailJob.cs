@@ -72,7 +72,7 @@ namespace Middleware.Wm.ShipmentCancellationEmail
             {
                 From = new MailAddress("noreply@newbalance.com"),
                 IsBodyHtml = true,
-                Subject = string.Concat("Cancelled - ", orderMap.OmsOrderNumber)
+                Subject = string.Concat(@"Cancelled\Incomplete Shipment - Cancelled - ", orderMap.OmsOrderNumber)
             };
 
             foreach (var toAddress in distribution.DistributionList.Split(new []{';'}, StringSplitOptions.RemoveEmptyEntries))
@@ -82,23 +82,33 @@ namespace Middleware.Wm.ShipmentCancellationEmail
 
             if (distribution.AdministrationSiteLink == string.Empty)
             {
-                message.Body = "<p>Order Number " + orderMap.OmsOrderNumber + " was cancelled.</p>Order Number: " + orderMap.OmsOrderNumber + "<br />";
+                message.Body = "<p>Order Number " + orderMap.OmsOrderNumber + " was not shipped complete. The following items were cancelled and not shipped on the order:</p>Order Number: " + orderMap.OmsOrderNumber + "<br />";
             }
             else
             {
-                message.Body = "<p>Order Number <a href=\"" + distribution.AdministrationSiteLink + orderMap.OmsOrderNumber + "\">" + orderMap.OmsOrderNumber + "</a> was cancelled.</p>";
+                message.Body = "<p>Order Number <a href=\"" + distribution.AdministrationSiteLink + orderMap.OmsOrderNumber + "\">" + orderMap.OmsOrderNumber + "</a>  was not shipped complete. The following items were cancelled and not shipped on the order:</p>";
             }
 
             message.Body += "</table>";
 
-            message.Body += "<table><tr><td>Line</td><td>Item</td><td>SKU</td></tr>";
+            message.Body += @"<table style='border: 1px solid black;'>
+                                <tr>
+                                        <th style='border: 1px solid black;' bgcolor='#b3b3b3'>Line</th>
+                                        <th style='border: 1px solid black;' bgcolor='#b3b3b3'>Item</th>
+                                        <th style='border: 1px solid black;' bgcolor='#b3b3b3'>SKU</th>
+                                        <th style='border: 1px solid black;' bgcolor='#b3b3b3'>Pick Quantity</th>
+                                        <th style='border: 1px solid black;' bgcolor='#b3b3b3'>Shipped Quantity</th>
+                                </tr>";
 
             foreach (var cancel in cancellation)
             {
-                message.Body += "<tr><td>" + cancel.LineNumber +
-                                "</td><td>" + cancel.Style + 
-                                "</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>" + cancel.StockKeepingUnit + 
-                                "</td></tr>"; 
+                message.Body += "<tr style='border: 1px solid black;'><td style='border: 1px solid black;'>" + cancel.LineNumber +
+                                "</td><td style='border: 1px solid black;'>" + cancel.Style +
+                                "</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style='border: 1px solid black;'>" + cancel.StockKeepingUnit + 
+                                "</td>" +
+                                "<td style='border: 1px solid black;'>" + cancel.PickQuantity.Replace(".0000", string.Empty) + "</td>" +
+                                "<td style='border: 1px solid black;'>" + cancel.ShippedQuantity.Replace(".0000", string.Empty) + "</td>" +
+                                "</tr>"; 
             }
             
             message.Body += "</table>";

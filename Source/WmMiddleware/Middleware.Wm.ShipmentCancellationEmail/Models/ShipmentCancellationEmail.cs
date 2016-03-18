@@ -9,5 +9,7 @@
         public string LineStatus { get; set; }
         public string TrackingId { get; set; }
         public string Style { get; set; }
+        public string PickQuantity { get; set; }
+        public string ShippedQuantity { get; set; }
     }
 }
