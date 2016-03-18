@@ -13,5 +13,7 @@ namespace Middleware.Wm.InventorySync.Repository
         void SetAsReceived(InventorySyncProcessing inventorySyncProcessing);
 
         void SetAsProcessed(InventorySyncProcessing inventorySyncProcessing);
+
+        InventorySyncStatus GetInventorySyncStatus(int transactionNumber);
     }
 }

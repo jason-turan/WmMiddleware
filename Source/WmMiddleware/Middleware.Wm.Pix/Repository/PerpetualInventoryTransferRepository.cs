@@ -66,9 +66,12 @@ namespace Middleware.Wm.Pix.Repository
                 var inventoryPixProcessingTable = new DataTable();
 
                 inventoryPixProcessingTable.Columns.Add("ManhattanPerpetualInventoryTransferId");
+                inventoryPixProcessingTable.Columns.Add("ManhattanDateCreated");
+                inventoryPixProcessingTable.Columns.Add("ManhattanTimeCreated");
+
                 foreach (var adj in pixInventoryAdjustments)
                 {
-                    inventoryPixProcessingTable.Rows.Add(adj.ManhattanPerpetualInventoryTransferId);
+                    inventoryPixProcessingTable.Rows.Add(adj.ManhattanPerpetualInventoryTransferId, adj.ManhattanDateCreated, adj.ManhattanTimeCreated);
                 }
 
                 var parameter = new

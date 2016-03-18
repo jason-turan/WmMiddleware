@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Dapper;
 using Dapper.Contrib.Extensions;
 using Middleware.Wm.Configuration.Database;
@@ -28,19 +30,19 @@ namespace Middleware.Wm.InventorySync.Repository
 
         public void SetAsReceived(InventorySyncProcessing inventorySyncProcessing)
         {
-            const string insertInventorySyncProcessing = @"INSERT INTO [dbo].[InventorySyncProcessing]
-                                                            ([TransactionNumber]
-                                                            ,[ReceivedDate]
-                                                            ,[ProcessedDate])
-                                                            VALUES
-                                                            (@TransactionNumber
-                                                            ,@ReceivedDate
-                                                            ,@ProcessedDate)";
-
             using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
             {
+
+                var parameter = new
+                {
+                    inventorySyncProcessing.TransactionNumber,
+                    inventorySyncProcessing.ReceivedDate,
+                    inventorySyncProcessing.ManhattanDateCreated,
+                    inventorySyncProcessing.ManhattanTimeCreated
+                };
+
                 connection.Open();
-                connection.Execute(insertInventorySyncProcessing, inventorySyncProcessing);
+                connection.Execute("sp_InsertInventorySyncProcessing", parameter, commandType: CommandType.StoredProcedure);
             }
         }
 
@@ -56,5 +58,19 @@ namespace Middleware.Wm.InventorySync.Repository
                 connection.Execute(updateInventorySyncProcessing, inventorySyncProcessing);
             }
         }
+
+        public InventorySyncStatus GetInventorySyncStatus(int transactionNumber)
+        {
+            using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
+            {
+                var parameter = new
+                {
+                    TransactionNumber = transactionNumber
+                };
+
+                return connection.Query<InventorySyncStatus>("sp_GetInventorySyncStatus", parameter, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+        }
+    
     }
 }

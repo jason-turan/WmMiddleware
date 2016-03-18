@@ -55,5 +55,15 @@ namespace Middleware.Wm.Pix.Models
             get { return _perpetualInventoryTransfer.ManhattanPerpetualInventoryTransferId; }
         }
 
+        public int ManhattanDateCreated
+        {
+            get { return _perpetualInventoryTransfer.DateCreated; }
+        }
+
+        public int ManhattanTimeCreated
+        {
+            get { return _perpetualInventoryTransfer.TimeCreated; }
+        }
+
     }
 }

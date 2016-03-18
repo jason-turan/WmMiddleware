@@ -53,6 +53,10 @@ namespace Middleware.Wm.InventorySync.Models
             get { return _inventoryDateTime; }
         }
 
+        public DateTime ModifiedDate
+        {
+            get { return _inventoryDateTime; }
+        }
     }
 }
  

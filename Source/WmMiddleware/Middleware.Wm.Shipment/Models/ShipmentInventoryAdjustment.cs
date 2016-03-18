@@ -44,5 +44,15 @@ namespace Middleware.Wm.Shipment.Models
         {
             get { return _manhattanShipmentLineItem.ManhattanShipmentLineItemId; }
         }
+
+        public int ManhattanDateCreated
+        {
+            get { return _manhattanShipmentLineItem.DateCreated; }
+        }
+
+        public int ManhattanTimeCreated
+        {
+            get { return _manhattanShipmentLineItem.TimeCreated; }
+        }
     }
 }

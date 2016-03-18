@@ -32,9 +32,12 @@ namespace Middleware.Wm.Shipment.Repository
                var inventoryShipmentProcessingTable = new DataTable();
 
                inventoryShipmentProcessingTable.Columns.Add("ManhattanShipmentLineItemId");
+               inventoryShipmentProcessingTable.Columns.Add("ManhattanDateCreated");
+               inventoryShipmentProcessingTable.Columns.Add("ManhattanTimeCreated");
+
                foreach (var adj in shipmentInventoryAdjustments)
                {
-                   inventoryShipmentProcessingTable.Rows.Add(adj.ManhattanShipmentLineItemId);
+                   inventoryShipmentProcessingTable.Rows.Add(adj.ManhattanShipmentLineItemId, adj.ManhattanDateCreated, adj.ManhattanTimeCreated);
                }
 
                var parameter = new

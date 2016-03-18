@@ -11,5 +11,9 @@ namespace Middleware.Wm.InventorySync.Models
         public DateTime ReceivedDate { get; set; }
 
         public DateTime? ProcessedDate { get; set; }
+
+        public int ManhattanDateCreated { get; set; }
+
+        public int ManhattanTimeCreated { get; set; }
     }
 }

@@ -76,6 +76,7 @@
     <Compile Include="InventorySyncJob.cs" />
     <Compile Include="Models\Generated\ManhattanInventorySync.cs" />
     <Compile Include="Models\InventorySyncProcessing.cs" />
+    <Compile Include="Models\InventorySyncStatus.cs" />
     <Compile Include="Models\StlInventory.cs" />
     <Compile Include="Models\StlInventorySyncAudit.cs" />
     <Compile Include="Repository\IStlInventoryRepository.cs" />
