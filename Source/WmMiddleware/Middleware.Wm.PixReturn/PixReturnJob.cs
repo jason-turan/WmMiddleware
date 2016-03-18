@@ -67,15 +67,10 @@ namespace Middleware.Wm.PixReturn
 
                         var reason = GetConditionCode(conditionCodes, unprocessedReturn);
 
-                        var lookup = _omsManhattanOrderMapRepository.GetOmsManhattanOrderMap(new OmsManhattanOrderMapFindCriteria
-                        {
-                            ManhattanOrderNumber = unprocessedReturn.OrderNumber
-                        });
-
                         // translate the manhattan file to a business object
                         var returnOnWeb = new ReturnOnWeb
                         {
-                            Company = lookup.Company,
+                            Company = GetCompany(unprocessedReturn.OrderNumber),
                             Condition = condition,
                             Reason = reason,
                             Style = unprocessedReturn.Style,
@@ -102,6 +97,39 @@ namespace Middleware.Wm.PixReturn
                     _log.Exception("Error processing Manhattan PIX with id of " + unprocessedReturn.ManhattanPerpetualInventoryTransferId(), 
                                    exception);
                 }
+            }
+        }
+
+        private string GetCompany(string orderNumber)
+        {
+            var lookup = _omsManhattanOrderMapRepository.GetOmsManhattanOrderMap(new OmsManhattanOrderMapFindCriteria
+            {
+                ManhattanOrderNumber = orderNumber
+            });
+
+            if (lookup != null) return lookup.Company;
+
+            if (orderNumber.Length < 2)
+            {
+                return "UNKNOWN";
+            }
+
+            var prefix = orderNumber.Substring(0, 2);
+
+            switch (prefix)
+            {
+                case "NA":
+                    return "NBAU";
+                case "WS":
+                    return "WAR";
+                case "NS":
+                    return "NBUS";
+                case "PS":
+                    return "PF";
+                case "DS":
+                    return "DRY";
+                default:
+                    return char.IsDigit(orderNumber[0]) ? "JBNO" : "UNKNOWN";
             }
         }
 
