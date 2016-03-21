@@ -39,10 +39,10 @@
   <ItemGroup>
     <Reference Include="Dapper, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Development\MiddlewareIntegration\Dependencies\Dapper\Dapper.dll</HintPath>
+      <HintPath>..\..\..\Dependencies\Dapper\Dapper.dll</HintPath>
     </Reference>
     <Reference Include="Dapper.Contrib">
-      <HintPath>..\..\..\..\Development\MiddlewareIntegration\Dependencies\Dapper\Dapper.Contrib.dll</HintPath>
+      <HintPath>..\..\..\Dependencies\Dapper\Dapper.Contrib.dll</HintPath>
     </Reference>
     <Reference Include="FlatFile.Core">
       <HintPath>..\..\..\Dependencies\FlatFile\FlatFile.Core.dll</HintPath>
