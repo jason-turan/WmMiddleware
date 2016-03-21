@@ -57,7 +57,7 @@ namespace Middleware.Wm.PickTicketConfirmation
                         Company = order.Company,
                         Created = DateTime.Now,
                         OmsOrderNumber = order.ControlNumber,
-                        WmOrderNumber = order.ControlNumber
+                        WmOrderNumber = order.OrderNumber
                     };
 
                     _omsManhattanOrderMapRepository.InsertOmsManhattanOrderMapRepository(map);
