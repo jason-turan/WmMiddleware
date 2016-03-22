@@ -224,10 +224,6 @@
       <Project>{b4c7e72d-cdb6-4fea-abdf-3564a588a762}</Project>
       <Name>Middleware.Wm.Shipment</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Middleware.Wm.StlInventorySync\Middleware.Wm.StlInventorySync.csproj">
-      <Project>{5dc50c59-aa52-4abe-8ddb-9993d4833f2f}</Project>
-      <Name>Middleware.Wm.StlInventorySync</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Middleware.Wm.StlInventoryUpdate\Middleware.Wm.StlInventoryUpdate.csproj">
       <Project>{0fac9c07-f2eb-4118-bed1-d2c7e786be20}</Project>
       <Name>Middleware.Wm.StlInventoryUpdate</Name>

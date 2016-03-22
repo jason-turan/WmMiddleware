@@ -58,8 +58,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Shipment", "M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.ShipmentCancellationEmail", "Middleware.Wm.ShipmentCancellationEmail\Middleware.Wm.ShipmentCancellationEmail.csproj", "{FED3ABD9-CB01-426A-B4DE-F9A59B296841}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.StlInventorySync", "Middleware.Wm.StlInventorySync\Middleware.Wm.StlInventorySync.csproj", "{5DC50C59-AA52-4ABE-8DDB-9993D4833F2F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.StlInventoryUpdate", "Middleware.Wm.StlInventoryUpdate\Middleware.Wm.StlInventoryUpdate.csproj", "{0FAC9C07-F2EB-4118-BED1-D2C7E786BE20}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.TransferControl", "Middleware.Wm.TransferControl\Middleware.Wm.TransferControl.csproj", "{F788DD6F-2DF7-45BA-950A-EC5CBC5731D8}"
@@ -205,7 +203,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NBXWeb", "NBXWeb", "{7E28CE
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 30
+		SccNumberOfProjects = 29
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://10.1.0.80:8080/tfs/business%20applications
 		SccLocalPath0 = .
@@ -284,18 +282,15 @@ Global
 		SccProjectUniqueName25 = Middleware.Wm.ShipmentCancellationEmail\\Middleware.Wm.ShipmentCancellationEmail.csproj
 		SccProjectName25 = Middleware.Wm.ShipmentCancellationEmail
 		SccLocalPath25 = Middleware.Wm.ShipmentCancellationEmail
-		SccProjectUniqueName26 = Middleware.Wm.StlInventorySync\\Middleware.Wm.StlInventorySync.csproj
-		SccProjectName26 = Middleware.Wm.StlInventorySync
-		SccLocalPath26 = Middleware.Wm.StlInventorySync
-		SccProjectUniqueName27 = Middleware.Wm.StlInventoryUpdate\\Middleware.Wm.StlInventoryUpdate.csproj
-		SccProjectName27 = Middleware.Wm.StlInventoryUpdate
-		SccLocalPath27 = Middleware.Wm.StlInventoryUpdate
-		SccProjectUniqueName28 = Middleware.Wm.TransferControl\\Middleware.Wm.TransferControl.csproj
-		SccProjectName28 = Middleware.Wm.TransferControl
-		SccLocalPath28 = Middleware.Wm.TransferControl
-		SccProjectUniqueName29 = Middleware.Wm.TransferControl.Tests\\Middleware.Wm.TransferControl.Tests.csproj
-		SccProjectName29 = Middleware.Wm.TransferControl.Tests
-		SccLocalPath29 = Middleware.Wm.TransferControl.Tests
+		SccProjectUniqueName26 = Middleware.Wm.StlInventoryUpdate\\Middleware.Wm.StlInventoryUpdate.csproj
+		SccProjectName26 = Middleware.Wm.StlInventoryUpdate
+		SccLocalPath26 = Middleware.Wm.StlInventoryUpdate
+		SccProjectUniqueName27 = Middleware.Wm.TransferControl\\Middleware.Wm.TransferControl.csproj
+		SccProjectName27 = Middleware.Wm.TransferControl
+		SccLocalPath27 = Middleware.Wm.TransferControl
+		SccProjectUniqueName28 = Middleware.Wm.TransferControl.Tests\\Middleware.Wm.TransferControl.Tests.csproj
+		SccProjectName28 = Middleware.Wm.TransferControl.Tests
+		SccLocalPath28 = Middleware.Wm.TransferControl.Tests
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -555,16 +550,6 @@ Global
 		{FED3ABD9-CB01-426A-B4DE-F9A59B296841}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FED3ABD9-CB01-426A-B4DE-F9A59B296841}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{FED3ABD9-CB01-426A-B4DE-F9A59B296841}.SingleImage|Any CPU.Build.0 = Release|Any CPU
-		{5DC50C59-AA52-4ABE-8DDB-9993D4833F2F}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
-		{5DC50C59-AA52-4ABE-8DDB-9993D4833F2F}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
-		{5DC50C59-AA52-4ABE-8DDB-9993D4833F2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5DC50C59-AA52-4ABE-8DDB-9993D4833F2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5DC50C59-AA52-4ABE-8DDB-9993D4833F2F}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
-		{5DC50C59-AA52-4ABE-8DDB-9993D4833F2F}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
-		{5DC50C59-AA52-4ABE-8DDB-9993D4833F2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5DC50C59-AA52-4ABE-8DDB-9993D4833F2F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5DC50C59-AA52-4ABE-8DDB-9993D4833F2F}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
-		{5DC50C59-AA52-4ABE-8DDB-9993D4833F2F}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 		{0FAC9C07-F2EB-4118-BED1-D2C7E786BE20}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
 		{0FAC9C07-F2EB-4118-BED1-D2C7E786BE20}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
 		{0FAC9C07-F2EB-4118-BED1-D2C7E786BE20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
