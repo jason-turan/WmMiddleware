@@ -19,6 +19,7 @@ using Middleware.Wm.TransferControl.Control;
 using Middleware.Wm.TransferControl.Models;
 using Middleware.Wm.TransferControl.Repositories;
 using WmMiddleware.InventorySync.Models.Generated;
+using System.Net.Mail;
 
 namespace Middleware.Wm.InventorySync
 {
@@ -32,6 +33,7 @@ namespace Middleware.Wm.InventorySync
         private readonly IShipmentInventoryAdjustmentRepository _shipmentInventoryAdjustmentRepository;
         private readonly IPixInventoryAdjustmentRepository _pixInventoryAdjustmentRepository;
         private readonly IPerpetualInventoryTransferRepository _perpetualInventoryTransferRepository;
+        private readonly IConfigurationManager _configurationManager;
 
         public InventorySyncJob(ILog log,
             IConfigurationManager configurationManager,
@@ -54,6 +56,7 @@ namespace Middleware.Wm.InventorySync
             _perpetualInventoryTransferRepository = perpetualInventoryTransferRepository;
             _pixInventoryAdjustmentRepository = pixInventoryAdjustmentRepository;
             _log = log;
+            _configurationManager = configurationManager;
         }
 
         protected override void ProcessFiles(ICollection<TransferControlFile> transferControlFiles)
@@ -97,6 +100,7 @@ namespace Middleware.Wm.InventorySync
             if (!inventorySyncStatus.IsValid)
             {
                 _log.Debug(string.Format("Inventory Sync {0} is Stale - {1}", inventorySync.First().TransactionNumber, inventorySyncStatus.Message));
+                EmailAuditSummary(null, inventorySync.First().TransactionNumber);
             }
             else
             {
@@ -138,6 +142,8 @@ namespace Middleware.Wm.InventorySync
                         logBuilder.AppendLine("SYNC MATCHES CURRENT INVENTORY");
                     }
                     _log.Debug(logBuilder.ToString());
+
+                    EmailAuditSummary(auditEntries, latestManhattanInventorySync.First().ManhattanInventorySyncTransactionNumber);
                 }
                 else
                 {
@@ -145,7 +151,53 @@ namespace Middleware.Wm.InventorySync
                 }
             }
 
-
         }
+
+        private void EmailAuditSummary(List<StlInventorySyncAudit> auditEntries, int transationNumber)
+        {
+            var sbEmail = new StringBuilder();
+            const string htmlHead = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=us-ascii\"><style> table,th,td { border: solid 1px black; padding: 3px; margin:0px } table{padding:0px} th { font-weight: bold; background-color: black; color: white; } th,td,p { font-family:Calibri;font-size:x-small; } b{ font-family:Calibri;} table.invtable { width: 300px; } table.inttable { width: 500px; } .alertTxt { background-color: #FF0000;  } .passTxt { background-color: #82FA58;  } td{ background-color: white;} </style>";
+
+            sbEmail.AppendLine(htmlHead);
+            sbEmail.AppendLine(string.Format("<u><b>Inventory Sync Transaction Number: {0}</b></u><br/><br/>", transationNumber));
+            if (auditEntries == null)
+            {
+                sbEmail.AppendLine("Inventroy sync has been labeled STALE and will not be loaded. Please review Wm Middleware logs for more details.");
+            }
+            else if (auditEntries.Count == 0)
+            {
+                sbEmail.AppendLine("<b>Sync matches existing inventory set!</b>");
+            }
+            else if (auditEntries.Count > 0)
+            {
+                sbEmail.AppendLine(string.Format("<li>New SKUs: <b>{0}</b></li>", auditEntries.Count(x => x.Status == "NEW")));
+                sbEmail.AppendLine(string.Format("<li>Deleted SKUs: <b>{0}</b></li>", auditEntries.Count(x => x.Status == "DELETED")));
+                sbEmail.AppendLine(string.Format("<li>SKUs with Quantity Discrepancies: <b>{0}</b></li>", auditEntries.Count(x => x.Status == "ADJ")));
+                if (auditEntries.Count(x => x.Status == "ADJ") > 0)
+                    sbEmail.AppendLine(string.Format("<li>Total Discrepancy Quantity: <b>{0}</b></li>", auditEntries.Where(x => x.Status == "ADJ").ToList().Sum(q => q.Quantity)));
+            }
+
+            var smptServer = _configurationManager.GetKey<string>(ConfigurationKey.SmptServer);
+
+            var message = new MailMessage
+            {
+                From = new MailAddress("noreply@newbalance.com"),
+                IsBodyHtml = true,
+                Subject = "WmMiddleware - Inventory Sync Audit",
+                Body = sbEmail.ToString()
+            };
+
+            var distributionList = _configurationManager.GetKey<string>(ConfigurationKey.InventorySyncAuditDistributionList).Split(';');
+            foreach (var toAddress in distributionList)
+            {
+                message.To.Add(new MailAddress(toAddress.Trim()));
+            }
+
+            using (var client = new SmtpClient(smptServer))
+            {
+                client.Send(message);
+            }
+        }
+
     }
 }

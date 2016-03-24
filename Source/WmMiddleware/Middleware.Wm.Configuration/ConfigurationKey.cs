@@ -44,5 +44,7 @@
         public const string GeneralLedgerVarianceAccountDefault = "GeneralLedger_VarianceAccount_Default";
         public const string GeneralLedgerVarianceAccountApparel = "GeneralLedger_VarianceAccount_Apparel";
         public const string GeneralLedgerVarianceAccountAccessory = "GeneralLedger_VarianceAccount_Accessory";
+
+        public const string InventorySyncAuditDistributionList = "InventorySyncAudit_DistributionList";
     }
 }
