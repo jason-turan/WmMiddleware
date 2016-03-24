@@ -13,6 +13,9 @@ namespace Middleware.Wm.Manhattan.Extensions
 
         public static string ConvertFromManhattanSize(this string size)
         {
+            if (string.IsNullOrEmpty(size))
+                return null;
+
             var retSize = ConvertFromManhattanDecimalSize(size);
             if (retSize != null)
             {
