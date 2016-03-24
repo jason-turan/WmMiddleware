@@ -166,7 +166,7 @@ namespace Middleware.Wm.InventorySync
             }
             else if (auditEntries.Count == 0)
             {
-                sbEmail.AppendLine("<b>Sync matches existing inventory set!</b>");
+                sbEmail.AppendLine("Sync matches existing inventory set!");
             }
             else if (auditEntries.Count > 0)
             {
@@ -179,19 +179,12 @@ namespace Middleware.Wm.InventorySync
 
             var smptServer = _configurationManager.GetKey<string>(ConfigurationKey.SmptServer);
 
-            var message = new MailMessage
+            var message = new MailMessage("noreply@newbalance.com", _configurationManager.GetKey<string>(ConfigurationKey.InventorySyncAuditDistributionList))
             {
-                From = new MailAddress("noreply@newbalance.com"),
                 IsBodyHtml = true,
                 Subject = "WmMiddleware - Inventory Sync Audit",
                 Body = sbEmail.ToString()
             };
-
-            var distributionList = _configurationManager.GetKey<string>(ConfigurationKey.InventorySyncAuditDistributionList).Split(';');
-            foreach (var toAddress in distributionList)
-            {
-                message.To.Add(new MailAddress(toAddress.Trim()));
-            }
 
             using (var client = new SmtpClient(smptServer))
             {
