@@ -40,7 +40,10 @@ namespace Middleware.Wm.Pix.Repository
 
             using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
             {
-                return connection.Query<ManhattanPerpetualInventoryTransfer>("sp_FindManhattanPerpetualInventoryTransfers", searchArguments, commandType: CommandType.StoredProcedure);
+                return connection.Query<ManhattanPerpetualInventoryTransfer>("sp_FindManhattanPerpetualInventoryTransfers", 
+                                                                             searchArguments, 
+                                                                             commandType: CommandType.StoredProcedure,
+                                                                             commandTimeout: 120);
             }
         }
 
