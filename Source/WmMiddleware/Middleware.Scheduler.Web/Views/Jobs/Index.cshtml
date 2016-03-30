@@ -43,8 +43,15 @@
     </table>
 </div>
 
+@{
+        var version = Environment.MachineName == "STLMW01" ? Assembly.LoadFrom(@"D:\WmMiddleware\Scheduler\Middleware.Jobs.dll").GetName().Version.ToString() : "Dev";        
+}
+
 <h6>Last Update: <span data-bind="text: lastUpdated"> </span></h6>
-<h6>Warehouse Management Middleware Version: @Assembly.GetAssembly(typeof (JobsController)).GetName().Version.ToString()</h6>
+<h6>Warehouse Management Middleware Version: @version
+   
+
+</h6>
 
 @section Scripts{
     @Scripts.Render("~/bundles/knockout")
