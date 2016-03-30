@@ -46,7 +46,7 @@ namespace Middleware.Wm.PickTicketConfirmation
         public void RunUnitOfWork(string jobKey)
         {
             var orders = SourceRepository.GetOrders().ToList();
-
+                                                                                                                                                                                                                                                                                 
             if (orders.Any())
             {
                 _logger.Debug("Processing " + orders.Count + " orders.");
@@ -68,7 +68,6 @@ namespace Middleware.Wm.PickTicketConfirmation
                 }
 
                 DestinationRepository.SaveOrders(orders);
-              //  SourceRepository.SetAsProcessed(orders);
 
                 var processed = orders.Select(s => new PickTicketConfirmationOrderProcessing { ControlNumber = s.ControlNumber, OrderNumber = s.OrderNumber, ProcessedDate = DateTime.Now }).ToList();
                 _pickTicketProcessingRepository.InsertPickTicketProcessing(processed);
@@ -82,11 +81,19 @@ namespace Middleware.Wm.PickTicketConfirmation
         private void SetAuroraPickTicketInformation(Order order)
         {
             var auroraPickTicket = _auroraPickTicketRepository.GetAuroraPickTicket(order.OrderNumber);
-            order.ArAccountNumber = auroraPickTicket.Header.ArAccountNumber;
-            order.CustomerPurchaseOrderNumber = auroraPickTicket.Header.CustomerPurchaseOrderNumber;
-            order.OrderType = OrderType.BrickAndClick;
-            order.LineItems = auroraPickTicket.Details.ToDictionary(d => d.PackageBarcode, d => d.PickticketLineNumber);
-            order.ShippingMethod = _carrierReadRepository.GetOmsShipMethod(auroraPickTicket.Header.ShipVia);
+            
+            if (auroraPickTicket.Header == null)
+            {
+                _logger.Warning("Cannot find aurora pick ticket for order number " + order.OrderNumber);    
+            }
+            else
+            {
+                order.ArAccountNumber = auroraPickTicket.Header.ArAccountNumber;
+                order.CustomerPurchaseOrderNumber = auroraPickTicket.Header.CustomerPurchaseOrderNumber;
+                order.OrderType = OrderType.BrickAndClick;
+                order.LineItems = auroraPickTicket.Details.ToDictionary(d => d.PackageBarcode, d => d.PickticketLineNumber);
+                order.ShippingMethod = _carrierReadRepository.GetOmsShipMethod(auroraPickTicket.Header.ShipVia);    
+            }
         }
     }
 }

@@ -55,7 +55,7 @@ namespace Middleware.Wm.ProductReceiving.Repositories
                     parameters.Add("@rowId", lineItem.ExternalId);
                     parameters.Add("@ProcessedDate", DateTime.Now);
 
-                    using (var connection = DatabaseConnectionFactory.GetNbxWebConnection())
+                    using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
                     {
                         connection.Execute("sp_InsertReturnReasonFromROWProcessing", 
                                             parameters, 
