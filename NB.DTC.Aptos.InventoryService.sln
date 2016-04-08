@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NB.DTC.Aptos.InventoryService", "NB.DTC.Aptos.InventoryService\NB.DTC.Aptos.InventoryService.csproj", "{1D71F0CE-31DE-4893-9172-E03864C90299}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NB.DTC.Aptos.InventoryService.Tests", "NB.DTC.Aptos.InventoryService.Tests\NB.DTC.Aptos.InventoryService.Tests.csproj", "{ADFED5AF-A153-4203-A406-3405C5B65DBB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D71F0CE-31DE-4893-9172-E03864C90299}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D71F0CE-31DE-4893-9172-E03864C90299}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D71F0CE-31DE-4893-9172-E03864C90299}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D71F0CE-31DE-4893-9172-E03864C90299}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADFED5AF-A153-4203-A406-3405C5B65DBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADFED5AF-A153-4203-A406-3405C5B65DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADFED5AF-A153-4203-A406-3405C5B65DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADFED5AF-A153-4203-A406-3405C5B65DBB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
