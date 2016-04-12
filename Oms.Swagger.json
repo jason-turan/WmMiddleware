@@ -1,0 +1,222 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "Oms",
+    "title": "Oms"
+  },
+  "host": "localhost:8080",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/api/Oms/Search/AvailableToSell": {
+      "post": {
+        "tags": [
+          "Oms"
+        ],
+        "operationId": "Oms_Search/AvailableToSell",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/InventorySearchFilter"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/InventoryQuantity"
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/Oms/UpdateAvailableToSellInventory": {
+      "post": {
+        "tags": [
+          "Oms"
+        ],
+        "operationId": "Oms_UpdateAvailableToSellInventory",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateInventoryRequest"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "definitions": {
+    "InventorySearchFilter": {
+      "type": "object",
+      "properties": {
+        "StoreIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "LocationIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Styles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Sizes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Widths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "UPCs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "InventoryQuantity": {
+      "required": [
+        "StoreId",
+        "LocationId",
+        "Product",
+        "QuantityOnHand",
+        "QuantityAvailableToSell"
+      ],
+      "type": "object",
+      "properties": {
+        "StoreId": {
+          "type": "string"
+        },
+        "LocationId": {
+          "type": "string"
+        },
+        "Product": {
+          "$ref": "#/definitions/Product"
+        },
+        "QuantityOnHand": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "QuantityAvailableToSell": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Product": {
+      "required": [
+        "UPC",
+        "Style",
+        "Size",
+        "Width"
+      ],
+      "type": "object",
+      "properties": {
+        "UPC": {
+          "type": "string"
+        },
+        "Style": {
+          "type": "string"
+        },
+        "Size": {
+          "type": "string"
+        },
+        "Width": {
+          "type": "string"
+        }
+      }
+    },
+    "UpdateInventoryRequest": {
+      "type": "object",
+      "properties": {
+        "Quantity": {
+          "$ref": "#/definitions/ProductQuantity"
+        },
+        "SiteId": {
+          "type": "string"
+        }
+      }
+    },
+    "ProductQuantity": {
+      "required": [
+        "Quantity",
+        "UPC",
+        "Style",
+        "Size",
+        "Width"
+      ],
+      "type": "object",
+      "properties": {
+        "Quantity": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "UPC": {
+          "type": "string"
+        },
+        "Style": {
+          "type": "string"
+        },
+        "Size": {
+          "type": "string"
+        },
+        "Width": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

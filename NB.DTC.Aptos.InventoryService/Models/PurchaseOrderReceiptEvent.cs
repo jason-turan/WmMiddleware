@@ -14,13 +14,22 @@ namespace NB.DTC.Aptos.InventoryService.Models
     /// </summary>
     public class PurchaseOrderReceiptEvent 
     {
-        public string PONumber { get; set; }        
+        public string PurchaseOrderUniqueIdentifier { get; set; }        
+        public DateTime PurchaseOrderDate { get; set; }
+        public string Sku { get; set; }
+        public string Upc { get; set; }
+        public string Class { get; set; }
+        public int Quantity { get; set; }
+        public string Style { get; set; }
+        public string Color { get; set; }
+        public string Size { get; set; }
+
         public List<ProductQuantity> ReceiptList { get; set; }
 
         public PurchaseOrderReceiptEvent(string ponumber,  
                                          List<ProductQuantity> productReceipts)
         {
-            this.PONumber = ponumber; 
+            this.PurchaseOrderUniqueIdentifier = ponumber; 
             this.ReceiptList = productReceipts;            
         }
     }

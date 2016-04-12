@@ -1,0 +1,86 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "Riba",
+    "title": "Riba"
+  },
+  "host": "localhost:8080",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/api/Riba/UpdateInventoryRequest": {
+      "post": {
+        "tags": [
+          "Riba"
+        ],
+        "operationId": "Riba_UpdateInventoryRequest",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateInventoryRequest"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "definitions": {
+    "UpdateInventoryRequest": {
+      "type": "object",
+      "properties": {
+        "Quantity": {
+          "$ref": "#/definitions/ProductQuantity"
+        },
+        "SiteId": {
+          "type": "string"
+        }
+      }
+    },
+    "ProductQuantity": {
+      "required": [
+        "Quantity",
+        "UPC",
+        "Style",
+        "Size",
+        "Width"
+      ],
+      "type": "object",
+      "properties": {
+        "Quantity": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "UPC": {
+          "type": "string"
+        },
+        "Style": {
+          "type": "string"
+        },
+        "Size": {
+          "type": "string"
+        },
+        "Width": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -21,6 +21,7 @@ namespace NB.DTC.Aptos.InventoryService
                     })
                 .EnableSwaggerUi(c =>{});
         }
+
         protected static string GetXmlCommentsPath()
         {
             return System.String.Format(@"{0}\bin\{1}.xml", 

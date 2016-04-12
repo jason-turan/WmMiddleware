@@ -7,6 +7,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NB.DTC.Aptos.InventoryServi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NB.DTC.Aptos.InventoryService.Tests", "NB.DTC.Aptos.InventoryService.Tests\NB.DTC.Aptos.InventoryService.Tests.csproj", "{ADFED5AF-A153-4203-A406-3405C5B65DBB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{48AE1EA5-0215-4407-BAB1-27BA55FF7000}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{BEB9D572-B8C5-477C-AD31-F32A0B6AED6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NB.DTC.Aptose.Build.Documentation", "NB.DTC.Aptose.Build.Documentation\NB.DTC.Aptose.Build.Documentation.csproj", "{7DDF1804-A1E6-45DF-BB95-8A85C333358F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Swagger", "Swagger", "{A32E6AE8-6325-43AF-91EC-2A3C2E4EC016}"
+	ProjectSection(SolutionItems) = preProject
+		InventoryService.json = InventoryService.json
+		Oms.Riba.json = Oms.Riba.json
+		Oms.Swagger.json = Oms.Swagger.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +34,17 @@ Global
 		{ADFED5AF-A153-4203-A406-3405C5B65DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADFED5AF-A153-4203-A406-3405C5B65DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADFED5AF-A153-4203-A406-3405C5B65DBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DDF1804-A1E6-45DF-BB95-8A85C333358F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DDF1804-A1E6-45DF-BB95-8A85C333358F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DDF1804-A1E6-45DF-BB95-8A85C333358F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DDF1804-A1E6-45DF-BB95-8A85C333358F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{ADFED5AF-A153-4203-A406-3405C5B65DBB} = {48AE1EA5-0215-4407-BAB1-27BA55FF7000}
+		{7DDF1804-A1E6-45DF-BB95-8A85C333358F} = {BEB9D572-B8C5-477C-AD31-F32A0B6AED6B}
+		{A32E6AE8-6325-43AF-91EC-2A3C2E4EC016} = {BEB9D572-B8C5-477C-AD31-F32A0B6AED6B}
 	EndGlobalSection
 EndGlobal

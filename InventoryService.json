@@ -1,0 +1,472 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v1",
+    "title": "NB.DTC.Aptos.InventoryService"
+  },
+  "host": "localhost:52520",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/Adjustment/PhysicalInventoryChange": {
+      "post": {
+        "tags": [
+          "Inventory"
+        ],
+        "summary": "API used to send inventory quantity changes originating within the Warehouse Management layer to the downstream order and merch systems.",
+        "description": "This service is used to handle the following scenarios. <br />1) Untracked sale <br />2) Cycle count <br />3) Gifted <br />4) Destroyed <br /><br />**Action Items** <br />1) BNC orders need to have the export to OMS turned off in order to not double dip into site inventory - Dependent upon OMS order update logic <br />2) **Steve/Jason/Kyle** - Determine fields currently associated with WM inventory changes",
+        "operationId": "Inventory_PhysicalInventoryChange",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "adjustment",
+            "in": "body",
+            "description": "The adjustment",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PhysicalAdjustment"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/Search/AvailableToSell": {
+      "post": {
+        "tags": [
+          "Inventory"
+        ],
+        "summary": "Inventory search by site and warehouse.",
+        "description": "API used to search for Available To Sell inventory.  \r\n             This service is used to confirm availability prior to processing orders or transfers that are sensitive to availability.  \r\n             It also is used to identify the difference between what is Sellable and what is on-hand from a sales channel \r\n             perspective.",
+        "operationId": "Inventory_SearchAvailableToSell",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/InventorySearchFilter"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/InventoryQuantity"
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/Order/CreateTransfer": {
+      "post": {
+        "tags": [
+          "Inventory"
+        ],
+        "summary": "Execute a PO or Transfer against a specific site/store and location.",
+        "description": "Any scenario that requires either an inventory ownership change or a location change \r\n            should create a transfer to execute that change with the Warehouse.  \r\n            Transfers should be used to handle all of the move scenarios currently requested below. \r\n            -Site PO \r\n            -RTV \r\n            -Site to site transfers \r\n            Site to store transfers",
+        "operationId": "Inventory_CreateTransfer",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TransferRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TransferResponse"
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/Order/LocationReceived": {
+      "post": {
+        "tags": [
+          "Inventory"
+        ],
+        "summary": "Execute workflow associated with the receipt of an Order into the Warehouse.",
+        "description": "This flow is responsible for notification of a receipt of inventory into the warehouse.  \r\n            It is responsible for updating merch with the change in inventory ownership and OMS with the change \r\n            of available inventory.",
+        "operationId": "Inventory_LocationReceived",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "purchaseOrderReceiptEvent",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PurchaseOrderReceiptEvent"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/Order/InventoryStocked": {
+      "post": {
+        "tags": [
+          "Inventory"
+        ],
+        "summary": "Execute workflow associated with the update of sellable inventory.",
+        "description": "",
+        "operationId": "Inventory_InventoryStocked",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "stockedQuantities",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ProductQuantity"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "definitions": {
+    "PhysicalAdjustment": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "ProductQuantities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProductQuantity"
+          }
+        },
+        "AdjustmentType": {
+          "enum": [
+            "UntrackedSale",
+            "CycleCount",
+            "Gifted",
+            "Destroyed"
+          ],
+          "type": "string"
+        }
+      }
+    },
+    "ProductQuantity": {
+      "required": [
+        "Quantity",
+        "UPC",
+        "Style",
+        "Size",
+        "Width"
+      ],
+      "type": "object",
+      "properties": {
+        "Quantity": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "UPC": {
+          "type": "string"
+        },
+        "Style": {
+          "type": "string"
+        },
+        "Size": {
+          "type": "string"
+        },
+        "Width": {
+          "type": "string"
+        }
+      }
+    },
+    "InventorySearchFilter": {
+      "description": "List of values to use as query parameters for inventory. Use \\\"*\\\" to represent all possible values or an array of values to include multiple values.",
+      "type": "object",
+      "properties": {
+        "StoreIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "LocationIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Styles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Sizes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Widths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "UPCs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "InventoryQuantity": {
+      "description": "Object referencing a specific product, the quantities related to it, the location it is currently in, and the site that owns it.",
+      "required": [
+        "StoreId",
+        "LocationId",
+        "Product",
+        "QuantityOnHand",
+        "QuantityAvailableToSell"
+      ],
+      "type": "object",
+      "properties": {
+        "StoreId": {
+          "type": "string"
+        },
+        "LocationId": {
+          "type": "string"
+        },
+        "Product": {
+          "$ref": "#/definitions/Product"
+        },
+        "QuantityOnHand": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "QuantityAvailableToSell": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Product": {
+      "description": "Unique definition of a sellable product.",
+      "required": [
+        "UPC",
+        "Style",
+        "Size",
+        "Width"
+      ],
+      "type": "object",
+      "properties": {
+        "UPC": {
+          "type": "string"
+        },
+        "Style": {
+          "type": "string"
+        },
+        "Size": {
+          "type": "string"
+        },
+        "Width": {
+          "type": "string"
+        }
+      }
+    },
+    "TransferRequest": {
+      "description": "Action Item - additional detail needed, source and dest detail for a PO Kyle to find out the PO data structure",
+      "required": [
+        "TransferType",
+        "ProductsToTransfer"
+      ],
+      "type": "object",
+      "properties": {
+        "TransferType": {
+          "description": "The type of transfer being executed, these types have potential impact on the integration or workflow executed.",
+          "enum": [
+            "PurchaseOrder",
+            "ReturnToVendor"
+          ],
+          "type": "string"
+        },
+        "ProductsToTransfer": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProductQuantity"
+          }
+        },
+        "FromStore": {
+          "$ref": "#/definitions/Store"
+        },
+        "ToStore": {
+          "$ref": "#/definitions/Store"
+        },
+        "FromLocation": {
+          "$ref": "#/definitions/Location"
+        },
+        "ToLocation": {
+          "$ref": "#/definitions/Location"
+        }
+      }
+    },
+    "Store": {
+      "type": "object",
+      "properties": {
+        "StoreId": {
+          "type": "string"
+        },
+        "AltId": {
+          "type": "string"
+        },
+        "StoreType": {
+          "enum": [
+            "Web",
+            "Physical"
+          ],
+          "type": "string"
+        }
+      }
+    },
+    "Location": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "LocationId": {
+          "type": "string"
+        },
+        "LocationName": {
+          "type": "string"
+        },
+        "Address": {
+          "type": "string"
+        }
+      }
+    },
+    "TransferResponse": {
+      "required": [
+        "QuantitiesTransferred"
+      ],
+      "type": "object",
+      "properties": {
+        "QuantitiesTransferred": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProductQuantity"
+          }
+        }
+      }
+    },
+    "PurchaseOrderReceiptEvent": {
+      "description": "Follow up with Steve to identify the put-away logic",
+      "type": "object",
+      "properties": {
+        "PurchaseOrderUniqueIdentifier": {
+          "type": "string"
+        },
+        "PurchaseOrderDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "Sku": {
+          "type": "string"
+        },
+        "Upc": {
+          "type": "string"
+        },
+        "Class": {
+          "type": "string"
+        },
+        "Quantity": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Style": {
+          "type": "string"
+        },
+        "Color": {
+          "type": "string"
+        },
+        "Size": {
+          "type": "string"
+        },
+        "ReceiptList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProductQuantity"
+          }
+        }
+      }
+    }
+  }
+}

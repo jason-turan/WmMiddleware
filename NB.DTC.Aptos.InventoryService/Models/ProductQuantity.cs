@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -18,6 +19,7 @@ namespace NB.DTC.Aptos.InventoryService.Models
         public ProductQuantity(ProductQuantity pq) : this(pq.UPC, pq.Style, pq.Size, pq.Width, pq.Quantity) { }        
         public ProductQuantity(ProductQuantity pq, int newQuantity) :this(pq.UPC, pq.Style, pq.Size, pq.Width,newQuantity){}
 
+        [Required]
         public int Quantity { get; set; }
     }
 }
