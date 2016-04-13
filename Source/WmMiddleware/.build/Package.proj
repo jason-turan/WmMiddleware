@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildCommunityTasksPath>$(MSBuildProjectDirectory)</MSBuildCommunityTasksPath>
+    
+    <MajorVersion>0</MajorVersion>
+    <MinorVersion>0</MinorVersion>
+    <BuildNumber>0</BuildNumber>
+    <Revision>0</Revision>
+
+    <Version>$(MajorVersion).$(MinorVersion).$(BuildNumber).0</Version>
+    <FileVersion>$(MajorVersion).$(MinorVersion).$(BuildNumber).0</FileVersion>
+    <InformationalVersion>$(MajorVersion).$(MinorVersion).$(BuildNumber).$(Revision)</InformationalVersion>
+
+  </PropertyGroup>
+
+  <Import 
+    Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.targets"/> 
+  <PropertyGroup Condition=" '$(BuildConfiguration)' == '' ">
+    <BuildConfiguration>Release</BuildConfiguration>
+  </PropertyGroup>
+
+  <Target Name="Clean">
+    <DeleteTree Directories="..\**\obj\**;..\**\bin\**" />
+  </Target>
+
+  <Target Name="Version">
+    <Time>
+      <Output TaskParameter="Year" PropertyName="Year" />
+    </Time>
+
+    <Message Text="Version: $(Version)"/>
+
+    <Attrib Files="$(MSBuildProjectDirectory)\GlobalAssemblyInfo.cs" ReadOnly="False" />
+
+    <AssemblyInfo CodeLanguage="CS"
+                  OutputFile="$(MSBuildProjectDirectory)\..\GlobalAssemblyInfo.cs"
+                  GenerateClass="true"
+                  AssemblyCopyright="Copyright � $(Year). All rights reserved."
+                  AssemblyConfiguration="$(BuildConfiguration)"
+                  AssemblyVersion="$(Version)"
+                  AssemblyFileVersion="$(FileVersion)"
+                  AssemblyInformationalVersion="$(InformationalVersion)" />
+  </Target>
+ 
+  <Target Name="Build" DependsOnTargets="Clean;Version">
+    <MSBuild Projects="../WmMiddleware.sln" Properties="Configuration=$(BuildConfiguration)" />
+    <ItemGroup>
+      <WindowsServiceFiles 
+        Include="../Middleware.Scheduler.WindowService/bin/$(BuildConfiguration)/*.*">
+        
+      </WindowsServiceFiles>
+    </ItemGroup>
+    <Message Text="@(WindowsServiceFiles)"/>
+    <Zip 
+      ZipFileName="../Packages/WmMiddleware.Services.zip"
+      WorkingDirectory="../Middleware.Scheduler.WindowService/bin/$(BuildConfiguration)/"
+      Files="@(WindowsServiceFiles)" />
+  </Target>
+
+</Project>
