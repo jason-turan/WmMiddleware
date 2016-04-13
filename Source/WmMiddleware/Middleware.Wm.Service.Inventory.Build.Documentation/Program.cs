@@ -18,7 +18,7 @@ namespace NB.DTC.Aptose.Build.Documentation
     {
         public static void Main(string[] args)
         {
-            var config = new HttpSelfHostConfiguration("http://localhost:8080");
+            var config = new HttpSelfHostConfiguration("http://localhost:8081");
                         
             config.Routes.MapHttpRoute("API Default",
                            "api/{controller}/{action}/{id}",
@@ -40,8 +40,8 @@ namespace NB.DTC.Aptose.Build.Documentation
             using (HttpSelfHostServer server = new HttpSelfHostServer(config))
             {
                 server.OpenAsync().Wait();             
-                WriteSwaggerToFile("../../../Oms.Swagger.json", "http://localhost:8080/swagger/docs/Oms" );
-                WriteSwaggerToFile("../../../Oms.Riba.json", "http://localhost:8080/swagger/docs/Riba");
+                WriteSwaggerToFile("../../../Oms.Swagger.json", "http://localhost:8081/swagger/docs/Oms" );
+                WriteSwaggerToFile("../../../Oms.Riba.json", "http://localhost:8081/swagger/docs/Riba");
                 WriteSwaggerToFile("../../../InventoryService.json", "http://localhost:52520/swagger/docs/v1");
                 Console.ReadLine();
             }

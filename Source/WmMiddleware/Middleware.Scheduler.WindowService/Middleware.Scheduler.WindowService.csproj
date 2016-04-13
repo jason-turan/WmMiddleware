@@ -261,8 +261,7 @@
   </Target>
   -->
   <Target Name="AfterBuild">
-    <Copy SourceFiles="..\Middleware.Wm.Picking\bin\$(Configuration)\Middleware.Wm.Picking.exe.config" DestinationFolder="$(TargetDir)" />
-    <Copy SourceFiles="..\Middleware.Wm.StlInventorySync\bin\$(Configuration)\Middleware.Wm.StlInventorySync.exe.config" DestinationFolder="$(TargetDir)" />
+    <Copy SourceFiles="..\Middleware.Wm.Picking\bin\$(Configuration)\Middleware.Wm.Picking.exe.config" DestinationFolder="$(TargetDir)" />    
     <Copy SourceFiles="..\Middleware.Wm.StlInventoryUpdate\bin\$(Configuration)\Middleware.Wm.StlInventoryUpdate.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\Middleware.Wm.ShipmentCancellationEmail\bin\$(Configuration)\Middleware.Wm.ShipmentCancellationEmail.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\Middleware.Wm.TransferControl\bin\$(Configuration)\Middleware.Wm.TransferControl.exe.config" DestinationFolder="$(TargetDir)" />
