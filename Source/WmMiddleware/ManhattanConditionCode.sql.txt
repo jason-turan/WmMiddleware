@@ -1,0 +1,38 @@
+CREATE TABLE ManhattanConditionCode
+(
+	Code VARCHAR(3) ,
+	Reason VARCHAR(100)
+)
+
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'AA','REFUSED');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'AC','CANCELED');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'AD','UNAUTHORIZED');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'AE','POOR SELL THRU/OVERINVENTORIED');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'AG','DUPLICATE ORDER NB');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'AJ','STOCK BALANCE');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'AK','QUALITY PROBLEM');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'AL','SPECIAL ORDERS 1-6 UNITS');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'AM','SPECIAL ORDER 7 PLUS UNITS');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'AP','PICKING/PACKING ERRORS');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'AQ','ORDER ENTRY ERROR NB');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'AR','ORDER ENTRY ERROR CUSTOMER');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'AS','CREDIT REASONS');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'AU','ORDER ENTRY ERROR AGNCY/SLSREP');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'AX','SAMPLES');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'B2','DEFECTIVE MERCHANDISE');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'B2A','MATERIAL FAILURE, COLOR RUN');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'B2B','LIN MATL/INSERT FAILURE');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'B2C','COSMETIC');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'B2F','STITCHING FAILURE');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'B2K','EYELET/HARDWARE FAILURE');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'B2L','CUSTOMER SERVICE REASONS');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'B2M','SOLE SEPARATION FROM UPPER');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'B2N','TOE/TAB SEP. OR WATERPROOF FL');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'B2P','POOR CONSTRUCTION, VISIBLE DIS');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'B2Q','SQUEAKS');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'B2R','OTHER');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'B2S','NON-VISIBLE DISCOMFORT');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'B2T','MISMATCH');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'B2W','SOLE FAILURE');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'B2X','DEFECTIVE SAMPLES');
+INSERT INTO ManhattanConditionCode (Code,Reason) VALUES( 'B29','WEAR/FIT GUARANTEE');

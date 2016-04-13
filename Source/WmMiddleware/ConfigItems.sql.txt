@@ -1,0 +1,131 @@
+delete from ConfigurationItem
+
+-- DEV
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('CompanyNumber', '25', 1);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('WarehouseNumber', '45', 1);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('TransferControl_InboundFtpLocation', 'CAABATE', 1);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('TransferControl_InboundMasterFileFtpLocation', 'CAABATE', 1);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('TransferControl_InboundMasterControlFileName', 'XBCTRL00', 1);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('TransferControl_Ftp_Enable', 'false', 1);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('TransferControl_Ftp_ManhattanServer', 'LDCDVW1', 1);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('TransferControl_Ftp_UserName', 'JBAFTP', 1);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('TransferControl_Ftp_Password', 'cosmo', 1);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('TransferControl_InboundFileDirectory', 'C:\InboundFiles\', 1);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('TransferControl_InboundFileProcessedDirectory', 'C:\InboundFiles\Processed\', 1);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('TransferControl_OutboundFileDirectory', 'C:\OutboundFiles\', 1);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('TransferControl_OutboundFileProcessedDirectory', 'C:\OutboundFiles\Processed\', 1);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('TransferControl_OutboundMasterControlFileName', 'XBCTRL00', 1);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('WarehouseAddress_Line1', '1537 Fencorp Dr', 1);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('WarehouseAddress_City', 'Fenton', 1);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('WarehouseAddress_State', 'MO', 1);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('WarehouseAddress_ZipCode', '63026', 1);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('WarehouseAddress_Country', 'US', 1);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('SMPTServer', 'relay.newbalance.com', 1);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('Alert_DistributionList', 'brad.schoen@newbalance.com, brad.schoen@daugherty.com', 1);
+
+-- QA
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('CompanyNumber', '25', 2);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('WarehouseNumber', '45', 2);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('TransferControl_InboundFtpLocation', 'CAABATE', 2);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('TransferControl_InboundMasterFileFtpLocation', 'CAABATE', 2);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('TransferControl_InboundMasterControlFileName', 'XBCTRL00', 2);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('TransferControl_Ftp_Enable', 'true', 2);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('TransferControl_Ftp_ManhattanServer', 'LDCDVW1', 2);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('TransferControl_Ftp_UserName', 'JBAFTP', 2);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('TransferControl_Ftp_Password', 'cosmo', 2);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('TransferControl_InboundFileDirectory', 'D:\FTP_Manhattan\to_manhattan\', 2);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('', 'D:\FTP_Manhattan\to_manhattan\Processed\', 2);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('TransferControl_OutboundFileDirectory', 'D:\FTP_Manhattan\from_manhattan\', 2);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('TransferControl_OutboundFileProcessedDirectory', 'D:\FTP_Manhattan\from_manhattan\Processed\', 2);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('TransferControl_OutboundMasterControlFileName', 'XBCTRL00', 2);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('WarehouseAddress_Line1', '1537 Fencorp Dr', 2);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('WarehouseAddress_City', 'Fenton', 2);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('WarehouseAddress_State', 'MO', 2);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('WarehouseAddress_ZipCode', '63026', 2);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('WarehouseAddress_Country', 'US', 2);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('SMPTServer', 'relay.newbalance.com', 2);
+
+INSERT INTO ConfigurationItem([Key], Value, EnvironmentId) 
+VALUES ('Alert_DistributionList', 'brad.schoen@newbalance.com, brad.schoen@daugherty.com', 2);
+
+select * from ConfigurationItem order by [key];

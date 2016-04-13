@@ -1,0 +1,6 @@
+create table [ManhattanShipmentLineItemCancellationProcessing]
+(
+	ProcessingId INT PRIMARY KEY IDENTITY(1,1),
+	ManhattanShipmentLineItemId INT FOREIGN KEY  REFERENCES ManhattanShipmentLineItem(ManhattanShipmentLineItemId),
+	ProcessedDate DATETIME NOT NULL
+)

@@ -1,0 +1,17 @@
+﻿*{font-family:inherit;}
+
+th {
+    font-size: 13px;
+} 
+
+.jobtitle {
+    font-size: 18px;
+    color: white;
+}
+
+.title {
+    height: 30px;
+    width: 100%;
+    display: inline-block;
+    background-color: lightgrey;
+}

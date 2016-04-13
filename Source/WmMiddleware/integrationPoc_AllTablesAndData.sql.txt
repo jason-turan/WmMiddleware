@@ -1,0 +1,160 @@
+﻿GO
+/****** Object:  Table [dbo].[IntegrationTask]    Script Date: 2/18/2016 8:25:47 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[IntegrationTask](
+	[IntegrationTaskId] [int] IDENTITY(1,1) NOT NULL,
+	[JobId] [int] NOT NULL,
+	[Sequence] [int] NOT NULL,
+	[SourceTypeId] [int] NOT NULL,
+	[DestinationTypeId] [int] NOT NULL,
+	[XsltTransformName] [nvarchar](50) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IntegrationTaskId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[IntegrationTaskEndpoint]    Script Date: 2/18/2016 8:25:47 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[IntegrationTaskEndpoint](
+	[IntegrationTaskEndpointId] [int] IDENTITY(1,1) NOT NULL,
+	[IntegrationTaskEndpointTypeId] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IntegrationTaskEndpointId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[IntegrationTaskEndpointConfiguration]    Script Date: 2/18/2016 8:25:47 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[IntegrationTaskEndpointConfiguration](
+	[IntegrationTaskEndpointConfigurationId] [int] IDENTITY(1,1) NOT NULL,
+	[IntegrationTaskEndpointConfigurationTypeId] [int] NOT NULL,
+	[IntegrationTaskEndpointId] [int] NOT NULL,
+	[ConfigurationValue] [varchar](max) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IntegrationTaskEndpointConfigurationId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[IntegrationTaskEndpointConfigurationType]    Script Date: 2/18/2016 8:25:47 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[IntegrationTaskEndpointConfigurationType](
+	[IntegrationTaskEndpointConfigurationTypeId] [int] IDENTITY(1,1) NOT NULL,
+	[IntegrationTaskEndpointTypeId] [int] NOT NULL,
+	[IntegrationTaskEndpointConfigurationType] [varchar](200) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IntegrationTaskEndpointConfigurationTypeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[IntegrationTaskEndpointType]    Script Date: 2/18/2016 8:25:47 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[IntegrationTaskEndpointType](
+	[IntegrationTaskEndpointTypeId] [int] IDENTITY(1,1) NOT NULL,
+	[IntegrationTaskEndpointTypeName] [varchar](100) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IntegrationTaskEndpointTypeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+SET IDENTITY_INSERT [dbo].[IntegrationTask] ON 
+
+INSERT [dbo].[IntegrationTask] ([IntegrationTaskId], [JobId], [Sequence], [SourceTypeId], [DestinationTypeId], [XsltTransformName]) VALUES (1, 28, 0, 2, 3, N'nb_us_inventory_full.xsl')
+INSERT [dbo].[IntegrationTask] ([IntegrationTaskId], [JobId], [Sequence], [SourceTypeId], [DestinationTypeId], [XsltTransformName]) VALUES (2, 29, 0, 4, 5, N'warrior_retail_pricebook.xsl')
+SET IDENTITY_INSERT [dbo].[IntegrationTask] OFF
+SET IDENTITY_INSERT [dbo].[IntegrationTaskEndpoint] ON 
+
+INSERT [dbo].[IntegrationTaskEndpoint] ([IntegrationTaskEndpointId], [IntegrationTaskEndpointTypeId]) VALUES (0, 0)
+INSERT [dbo].[IntegrationTaskEndpoint] ([IntegrationTaskEndpointId], [IntegrationTaskEndpointTypeId]) VALUES (1, 3)
+INSERT [dbo].[IntegrationTaskEndpoint] ([IntegrationTaskEndpointId], [IntegrationTaskEndpointTypeId]) VALUES (2, 0)
+INSERT [dbo].[IntegrationTaskEndpoint] ([IntegrationTaskEndpointId], [IntegrationTaskEndpointTypeId]) VALUES (3, 2)
+INSERT [dbo].[IntegrationTaskEndpoint] ([IntegrationTaskEndpointId], [IntegrationTaskEndpointTypeId]) VALUES (4, 1)
+INSERT [dbo].[IntegrationTaskEndpoint] ([IntegrationTaskEndpointId], [IntegrationTaskEndpointTypeId]) VALUES (5, 2)
+SET IDENTITY_INSERT [dbo].[IntegrationTaskEndpoint] OFF
+SET IDENTITY_INSERT [dbo].[IntegrationTaskEndpointConfiguration] ON 
+
+INSERT [dbo].[IntegrationTaskEndpointConfiguration] ([IntegrationTaskEndpointConfigurationId], [IntegrationTaskEndpointConfigurationTypeId], [IntegrationTaskEndpointId], [ConfigurationValue]) VALUES (0, 0, 0, N'exec Integrations_GetPurchaseOrders')
+INSERT [dbo].[IntegrationTaskEndpointConfiguration] ([IntegrationTaskEndpointConfigurationId], [IntegrationTaskEndpointConfigurationTypeId], [IntegrationTaskEndpointId], [ConfigurationValue]) VALUES (1, 1, 0, N'GP')
+INSERT [dbo].[IntegrationTaskEndpointConfiguration] ([IntegrationTaskEndpointConfigurationId], [IntegrationTaskEndpointConfigurationTypeId], [IntegrationTaskEndpointId], [ConfigurationValue]) VALUES (2, 0, 2, N'select upc_number as SKU, qty_avail as Quantity from [172.16.0.13].deckis_nbus.dbo.vGetAvailableInventory')
+INSERT [dbo].[IntegrationTaskEndpointConfiguration] ([IntegrationTaskEndpointConfigurationId], [IntegrationTaskEndpointConfigurationTypeId], [IntegrationTaskEndpointId], [ConfigurationValue]) VALUES (3, 1, 2, N'GP')
+INSERT [dbo].[IntegrationTaskEndpointConfiguration] ([IntegrationTaskEndpointConfigurationId], [IntegrationTaskEndpointConfigurationTypeId], [IntegrationTaskEndpointId], [ConfigurationValue]) VALUES (4, 3, 3, N'C:\Middleware\Integration')
+INSERT [dbo].[IntegrationTaskEndpointConfiguration] ([IntegrationTaskEndpointConfigurationId], [IntegrationTaskEndpointConfigurationTypeId], [IntegrationTaskEndpointId], [ConfigurationValue]) VALUES (5, 4, 3, N'inventory_full_nb_us_staging.xml')
+INSERT [dbo].[IntegrationTaskEndpointConfiguration] ([IntegrationTaskEndpointConfigurationId], [IntegrationTaskEndpointConfigurationTypeId], [IntegrationTaskEndpointId], [ConfigurationValue]) VALUES (6, 2, 4, N'http://dwarefeeds.deckisadmin.com/Warrior/PriceBookFeed.svc/GetRetailPriceBook')
+INSERT [dbo].[IntegrationTaskEndpointConfiguration] ([IntegrationTaskEndpointConfigurationId], [IntegrationTaskEndpointConfigurationTypeId], [IntegrationTaskEndpointId], [ConfigurationValue]) VALUES (7, 3, 5, N'C:\Middleware\Integration')
+INSERT [dbo].[IntegrationTaskEndpointConfiguration] ([IntegrationTaskEndpointConfigurationId], [IntegrationTaskEndpointConfigurationTypeId], [IntegrationTaskEndpointId], [ConfigurationValue]) VALUES (8, 4, 5, N'pricebook_retail_warrior_us.xml')
+SET IDENTITY_INSERT [dbo].[IntegrationTaskEndpointConfiguration] OFF
+SET IDENTITY_INSERT [dbo].[IntegrationTaskEndpointConfigurationType] ON 
+
+INSERT [dbo].[IntegrationTaskEndpointConfigurationType] ([IntegrationTaskEndpointConfigurationTypeId], [IntegrationTaskEndpointTypeId], [IntegrationTaskEndpointConfigurationType]) VALUES (0, 0, N'CommandText')
+INSERT [dbo].[IntegrationTaskEndpointConfigurationType] ([IntegrationTaskEndpointConfigurationTypeId], [IntegrationTaskEndpointTypeId], [IntegrationTaskEndpointConfigurationType]) VALUES (1, 0, N'Connection')
+INSERT [dbo].[IntegrationTaskEndpointConfigurationType] ([IntegrationTaskEndpointConfigurationTypeId], [IntegrationTaskEndpointTypeId], [IntegrationTaskEndpointConfigurationType]) VALUES (2, 1, N'Url')
+INSERT [dbo].[IntegrationTaskEndpointConfigurationType] ([IntegrationTaskEndpointConfigurationTypeId], [IntegrationTaskEndpointTypeId], [IntegrationTaskEndpointConfigurationType]) VALUES (3, 2, N'Directory')
+INSERT [dbo].[IntegrationTaskEndpointConfigurationType] ([IntegrationTaskEndpointConfigurationTypeId], [IntegrationTaskEndpointTypeId], [IntegrationTaskEndpointConfigurationType]) VALUES (4, 2, N'Filename')
+INSERT [dbo].[IntegrationTaskEndpointConfigurationType] ([IntegrationTaskEndpointConfigurationTypeId], [IntegrationTaskEndpointTypeId], [IntegrationTaskEndpointConfigurationType]) VALUES (5, 3, N'Connection')
+SET IDENTITY_INSERT [dbo].[IntegrationTaskEndpointConfigurationType] OFF
+SET IDENTITY_INSERT [dbo].[IntegrationTaskEndpointType] ON 
+
+INSERT [dbo].[IntegrationTaskEndpointType] ([IntegrationTaskEndpointTypeId], [IntegrationTaskEndpointTypeName]) VALUES (0, N'Database')
+INSERT [dbo].[IntegrationTaskEndpointType] ([IntegrationTaskEndpointTypeId], [IntegrationTaskEndpointTypeName]) VALUES (1, N'WebService')
+INSERT [dbo].[IntegrationTaskEndpointType] ([IntegrationTaskEndpointTypeId], [IntegrationTaskEndpointTypeName]) VALUES (2, N'File')
+INSERT [dbo].[IntegrationTaskEndpointType] ([IntegrationTaskEndpointTypeId], [IntegrationTaskEndpointTypeName]) VALUES (3, N'GreatPlains')
+SET IDENTITY_INSERT [dbo].[IntegrationTaskEndpointType] OFF
+ALTER TABLE [dbo].[IntegrationTask]  WITH CHECK ADD FOREIGN KEY([DestinationTypeId])
+REFERENCES [dbo].[IntegrationTaskEndpoint] ([IntegrationTaskEndpointId])
+GO
+ALTER TABLE [dbo].[IntegrationTask]  WITH CHECK ADD  CONSTRAINT [FK__Integrati__JobId__0504B816] FOREIGN KEY([JobId])
+REFERENCES [dbo].[Job] ([JobId])
+GO
+ALTER TABLE [dbo].[IntegrationTask] CHECK CONSTRAINT [FK__Integrati__JobId__0504B816]
+GO
+ALTER TABLE [dbo].[IntegrationTask]  WITH CHECK ADD FOREIGN KEY([SourceTypeId])
+REFERENCES [dbo].[IntegrationTaskEndpoint] ([IntegrationTaskEndpointId])
+GO
+ALTER TABLE [dbo].[IntegrationTaskEndpoint]  WITH CHECK ADD FOREIGN KEY([IntegrationTaskEndpointTypeId])
+REFERENCES [dbo].[IntegrationTaskEndpointType] ([IntegrationTaskEndpointTypeId])
+GO
+ALTER TABLE [dbo].[IntegrationTaskEndpointConfiguration]  WITH CHECK ADD FOREIGN KEY([IntegrationTaskEndpointConfigurationTypeId])
+REFERENCES [dbo].[IntegrationTaskEndpointConfigurationType] ([IntegrationTaskEndpointConfigurationTypeId])
+GO
+ALTER TABLE [dbo].[IntegrationTaskEndpointConfiguration]  WITH CHECK ADD FOREIGN KEY([IntegrationTaskEndpointId])
+REFERENCES [dbo].[IntegrationTaskEndpoint] ([IntegrationTaskEndpointId])
+GO
+ALTER TABLE [dbo].[IntegrationTaskEndpointConfigurationType]  WITH CHECK ADD FOREIGN KEY([IntegrationTaskEndpointTypeId])
+REFERENCES [dbo].[IntegrationTaskEndpointType] ([IntegrationTaskEndpointTypeId])
+GO

@@ -1,0 +1,41 @@
+
+INSERT INTO TransferControlFileType(FilePrefix, FileDescription, JobId)
+VALUES ('O1', 'Shipment Header', (SELECT JobId FROM JOB WHERE JobKey = 'Shipment Job'));
+
+INSERT INTO TransferControlFileType(FilePrefix, FileDescription, JobId)
+VALUES ('O2', 'Shipment Detail', (SELECT JobId FROM JOB WHERE JobKey = 'Shipment Job'));
+
+INSERT INTO TransferControlFileType(FilePrefix, FileDescription, JobId)
+VALUES ('O3', 'Carton Header', (SELECT JobId FROM JOB WHERE JobKey = 'Shipment Job'));
+
+INSERT INTO TransferControlFileType(FilePrefix, FileDescription, JobId)
+VALUES ('O4', 'Carton Detail', (SELECT JobId FROM JOB WHERE JobKey = 'Shipment Job'));
+
+INSERT INTO TransferControlFileType(FilePrefix, FileDescription, JobId)
+VALUES ('I1', 'Pick Header', (SELECT JobId FROM JOB WHERE JobKey = 'Pick Job'));
+
+INSERT INTO TransferControlFileType(FilePrefix, FileDescription, JobId)
+VALUES ('I2', 'Pick Detail', (SELECT JobId FROM JOB WHERE JobKey = 'Pick Job'));
+
+INSERT INTO TransferControlFileType(FilePrefix, FileDescription, JobId)
+VALUES ('I3', 'Pick Special Instructions', (SELECT JobId FROM JOB WHERE JobKey = 'Pick Job'));
+
+INSERT INTO TransferControlFileType(FilePrefix, FileDescription, JobId)
+VALUES ('I8', 'ProductReceivingHeader', (SELECT JobId FROM JOB WHERE JobKey = 'Product Receiving Job'));
+
+INSERT INTO TransferControlFileType(FilePrefix, FileDescription, JobId)
+VALUES ('I9', 'ProductReceivingPoDetail', (SELECT JobId FROM JOB WHERE JobKey = 'Product Receiving Job'));
+
+INSERT INTO TransferControlFileType(FilePrefix, FileDescription, JobId)
+VALUES ('IB', 'ProductReceivingAsnDetail', (SELECT JobId FROM JOB WHERE JobKey = 'Product Receiving Job'));
+
+INSERT INTO TransferControlFileType(FilePrefix, FileDescription, JobId)
+VALUES ('I5', 'Product Updating Product Path', (SELECT JobId FROM JOB WHERE JobKey = 'Product Update'));
+
+INSERT INTO TransferControlFileType(FilePrefix, FileDescription, JobId)
+VALUES ('PX', 'Perpetual Inventory Transfer', (SELECT JobId FROM JOB WHERE JobKey = 'Pix'));
+
+INSERT INTO TransferControlFileType(FilePrefix, FileDescription, JobId)
+VALUES ('IS', 'Inventory Sync', (SELECT JobId FROM JOB WHERE JobKey = 'Inventory Sync'));
+
+select * from TransferControlFileType

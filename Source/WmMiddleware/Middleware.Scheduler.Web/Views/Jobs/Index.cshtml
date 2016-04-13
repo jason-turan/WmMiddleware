@@ -1,0 +1,62 @@
+﻿@using System.Reflection
+@using Middleware.Scheduler.Web.Controllers
+@{
+    ViewBag.Title = "Jobs";
+}
+
+<div class="container-fluid">
+    
+    <div>
+        <span id='title' class="title" >
+            <img src='@Url.Content("../../Images/redLogo.png")' width="43" height="21" style="position:relative;top:1px;" /> 
+            <label class='jobtitle'>WM Middleware Integration Job Management</label>
+        </span>
+    </div>
+
+    <table class="table table-condensed ">
+        <thead>
+            <tr>
+                <th>Job Key</th>
+                <th>Schedule</th>
+                <th>Last Run Status</th>
+                <th>Job Executable</th>
+                <th>Active</th>
+                <th>Last Run Date</th>
+                <th>Last Execution Time</th>
+                <th>Next Run Time</th>
+                <th>Job Type</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: $data.jobCollection">
+            <tr data-bind="attr: { title: $data.Description } ">
+                <td data-bind="text: $data.JobKey"></td>
+                <td><a href="#"  data-bind="click: $parent.changeSchedule, text: $data.Schedule"></a></td>
+                <td data-bind="text: $data.LastRunStatus, style: { color: $data.LastRunStatus == 'FAILURE' ? 'red' : 'green' }"></td>
+                <td><a href="#"  data-bind="click: $parent.executeJob, text: $data.JobExecutable"></a></td>          
+                <td><a href="#"  data-bind="click: $parent.toggleActive, text: $data.IsActive"></a></td>
+                <td data-bind="text: $data.LastRunDateTime != null ? moment($data.LastRunDateTime).format('YYYY-MM-DD HH:mm') : 'N/A'"></td>
+                <td data-bind="text: $data.LastRunExecutionTime != null ? $data.LastRunExecutionTime : 'N/A'"></td>
+                <td data-bind="text: $data.NextRunDateTime != null ? moment($data.NextRunDateTime).format('YYYY-MM-DD HH:mm') : 'N/A' "></td>
+                <td data-bind="text: $data.JobType"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+@{
+        var version = Environment.MachineName == "STLMW01" ? Assembly.LoadFrom(@"D:\WmMiddleware\Scheduler\Middleware.Jobs.dll").GetName().Version.ToString() : "Dev";        
+}
+
+<h6>Last Update: <span data-bind="text: lastUpdated"> </span></h6>
+<h6>Warehouse Management Middleware Version: @version
+   
+
+</h6>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/moment")
+    @Scripts.Render("~/bundles/json")
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Styles.Render("~/Content/site.css")
+}

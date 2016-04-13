@@ -1,0 +1,143 @@
+
+delete from job;
+
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Pick Job')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('Pick Job', 
+		   '1H', 
+		   'WmMiddleware.Picking.Exe', 
+		    1,
+			'Inbound')
+END
+
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Product Receiving Job')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('Product Receiving Job', '5M', 
+	'WmMiddleware.ProductReceiving.exe', 0,
+			'Inbound')
+END
+
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Transfer Control Job')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('Transfer Control Job', 
+		   '1M', 
+		   'WmMiddleware.TransferControl.exe', 
+		    1,
+			'Inbound')
+END
+
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Shipment Job')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('Shipment Job', 
+		   '5M', 
+		   'WmMiddleware.Shipment.exe', 
+		    0,
+			'Outbound')
+END
+
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Product Updating Job')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('Product Update', 
+		   '5M', 
+		   'WmMiddleware.ProductUpdating.exe', 
+		    0,
+			'Inbound')
+END
+
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Pix')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('Pix', 
+		   '5M', 
+		   'WmMiddleware.Pix.exe', 
+		    0,
+			'Outbound')
+END
+
+
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Inventory Sync')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('Inventory Sync', 
+		   '5M', 
+		   'WmMiddleware.InventorySync.exe', 
+		    0,
+			'Outbound')
+END
+
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Alerts')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('Alerts', 
+		   '1M', 
+		   'Middleware.Alerts.exe', 
+		    0,
+			'Admin')
+END
+
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Pix Return Job')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('Pix Return Job', 
+		   '15M', 
+		   'WmMiddleware.PixReturn.exe', 
+		    0,
+			'Processing')
+END
+
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Shipment Cancellation Email Job')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('Shipment Cancellation Email Job', 
+		   '15M', 
+		   'WmMiddleware.ShipmentCancellationEmail.exe', 
+		    0,
+			'Processing')
+END
+
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Stl Inventory Update')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('Stl Inventory Update', 
+		   '1H', 
+		   'WmMiddleware.StlInventoryUpdate.exe', 
+		    0,
+			'Processing')
+END
+
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'General Ledger Reconcilliation')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('General Ledger Reconcilliation', 
+		   '15M', 
+		   'WmMiddleware.GeneralLedgerReconcilliation.exe', 
+		    0,
+			'Processing')
+END
+
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Aurora Shipment Job')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('Aurora Shipment Job', 
+		   '15M', 
+		   'Middleware.Wm.Aurora.Shipment.exe', 
+		    0,
+			'Inbound')
+END
+
+IF NOT EXISTS (SELECT * FROM Job WHERE JobKey = 'Log and File Maintenance Job')
+BEGIN
+	INSERT INTO Job(JobKey, Schedule, JobExecutable, IsActive, JobType)
+	VALUES('Log and File Maintenance Job', 
+		   '15M', 
+		   'Middleware.Wm.LoggingAndFileMaintenance.exe', 
+		    0,
+			'Maintenance')
+END
+
+select * from job

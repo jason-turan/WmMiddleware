@@ -1,0 +1,12 @@
+CREATE PROCEDURE sp_GetIntegrationTask
+@JobId int
+AS
+SELECT  it.DestinationTypeId, 
+		it.IntegrationTaskId, 
+		it.JobId, it.Sequence, 
+		it.SourceTypeId, 
+		it.XsltTransformName
+FROM Job j
+INNER JOIN IntegrationTask it
+	ON j.JobId = it.JobId 
+WHERE j.JobId = @JobId

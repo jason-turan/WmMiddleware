@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{81105C89-FD8E-44FC-84C1-B52FFFAE3508}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Middleware.Wm.ProductReceiving</RootNamespace>
+    <AssemblyName>Middleware.Wm.ProductReceiving</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Dependencies\Dapper\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="FlatFile.Core">
+      <HintPath>..\..\..\Dependencies\FlatFile\FlatFile.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FlatFile.Core.Attributes">
+      <HintPath>..\..\..\Dependencies\FlatFile\FlatFile.Core.Attributes.dll</HintPath>
+    </Reference>
+    <Reference Include="FlatFile.FixedLength">
+      <HintPath>..\..\..\Dependencies\FlatFile\FlatFile.FixedLength.dll</HintPath>
+    </Reference>
+    <Reference Include="FlatFile.FixedLength.Attributes">
+      <HintPath>..\..\..\Dependencies\FlatFile\FlatFile.FixedLength.Attributes.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\..\Dependencies\log4net\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\..\..\Dependencies\Ninject\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Quartz">
+      <HintPath>..\..\..\Dependencies\Ninject\Ninject.Extensions.Quartz.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="DependencyInjection\NinjectModuleConfiguration.cs" />
+    <Compile Include="Models\AutomatedShippingNotification.cs" />
+    <Compile Include="Models\AutomatedShippingNotificationItem.cs" />
+    <Compile Include="Models\AutomatedShippingNotificationType.cs" />
+    <Compile Include="Models\DatabaseAutomatedShippingNotification.cs" />
+    <Compile Include="Models\DatabasePurchaseReturn.cs" />
+    <Compile Include="Models\DatabasePurchaseOrder.cs" />
+    <Compile Include="Models\DatabaseAutomatedShippingNotification.g.cs" />
+    <Compile Include="Models\DatabasePurchaseOrder.g.cs" />
+    <Compile Include="Models\DatabasePurchaseReturn.g.cs" />
+    <Compile Include="Models\ManhattanSkuDetail.g.cs" />
+    <Compile Include="Models\LineItem.cs" />
+    <Compile Include="Models\ManhattanCaseDetail.g.cs" />
+    <Compile Include="Models\ManhattanReceivedProductHeader.g.cs" />
+    <Compile Include="Models\ManhattanCaseDetail.cs" />
+    <Compile Include="Models\ManhattanReceivedProductHeader.cs" />
+    <Compile Include="Models\ManhattanSkuDetail.cs" />
+    <Compile Include="Models\PurchaseOrder.cs" />
+    <Compile Include="Models\IReceivedProduct.cs" />
+    <Compile Include="Models\PurchaseReturn.cs" />
+    <Compile Include="Models\PurchaseReturnLineItem.cs" />
+    <Compile Include="ProductReceivingJob.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\DatabaseReceivedProductRepository.cs" />
+    <Compile Include="Repositories\IReceivedProductReader.cs" />
+    <Compile Include="Repositories\IReceivedProductWriter.cs" />
+    <Compile Include="Repositories\ManhattanReceivedProductRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Middleware.Jobs\Middleware.Jobs.csproj">
+      <Project>{C728CADC-8056-46C9-B2BB-A70C4119F96E}</Project>
+      <Name>Middleware.Jobs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MiddleWare.Log\Middleware.Log.csproj">
+      <Project>{AEEDD741-C346-45BA-A867-3F54B66477A4}</Project>
+      <Name>Middleware.Log</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Middleware.Wm.Manhattan\Middleware.Wm.Manhattan.csproj">
+      <Project>{87AE9E18-B3DC-4605-BE2A-FA7B6C50DAD6}</Project>
+      <Name>Middleware.Wm.Manhattan</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Middleware.Wm.TransferControl\Middleware.Wm.TransferControl.csproj">
+      <Project>{F788DD6F-2DF7-45BA-950A-EC5CBC5731D8}</Project>
+      <Name>Middleware.Wm.TransferControl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Middleware.Wm\Middleware.Wm.csproj">
+      <Project>{763AB0EE-41AE-45DA-8C2C-43547E64C5FC}</Project>
+      <Name>Middleware.Wm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Middleware.Wm.Configuration\Middleware.Wm.Configuration.csproj">
+      <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>
+      <Name>Middleware.Wm.Configuration</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Middleware.Wm.Configuration\databaseConnections.config">
+      <Link>databaseConnections.config</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\Generated\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

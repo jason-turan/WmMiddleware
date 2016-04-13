@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{87AE9E18-B3DC-4605-BE2A-FA7B6C50DAD6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Middleware.Wm.Manhattan</RootNamespace>
+    <AssemblyName>Middleware.Wm.Manhattan</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper">
+      <HintPath>..\..\..\Dependencies\Dapper\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper.Contrib">
+      <HintPath>..\..\..\Dependencies\Dapper\Dapper.Contrib.dll</HintPath>
+    </Reference>
+    <Reference Include="FlatFile.Core">
+      <HintPath>..\..\..\Dependencies\FlatFile\FlatFile.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FlatFile.Core.Attributes">
+      <HintPath>..\..\..\Dependencies\FlatFile\FlatFile.Core.Attributes.dll</HintPath>
+    </Reference>
+    <Reference Include="FlatFile.FixedLength">
+      <HintPath>..\..\..\Dependencies\FlatFile\FlatFile.FixedLength.dll</HintPath>
+    </Reference>
+    <Reference Include="FlatFile.FixedLength.Attributes">
+      <HintPath>..\..\..\Dependencies\FlatFile\FlatFile.FixedLength.Attributes.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Control\ITransferControlManager.cs" />
+    <Compile Include="DataFiles\DataFileRepository.cs" />
+    <Compile Include="DataFiles\IGeneratedFlatFile.cs" />
+    <Compile Include="DataFiles\ManhattanDataFileType.cs" />
+    <Compile Include="Extensions\MainframeExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Inventory\AuroraPickTicketRepository.cs" />
+    <Compile Include="Inventory\IAuroraPicketTicketRepository.cs" />
+    <Compile Include="Inventory\IMainframeOrderConfiguration.cs" />
+    <Compile Include="Inventory\IManhattanOrderRepository.cs" />
+    <Compile Include="Inventory\IOmsManhattanOrderMapRepository.cs" />
+    <Compile Include="Inventory\IPickConfiguration.cs" />
+    <Compile Include="Inventory\ManhattanOrderConfiguration.cs" />
+    <Compile Include="Inventory\ManhattanOrderRepository.cs" />
+    <Compile Include="Inventory\ManhattanPickTicketDetail.cs" />
+    <Compile Include="Inventory\ManhattanPickTicketDetail.g.cs" />
+    <Compile Include="Inventory\ManhattanPickTicketHeader.cs" />
+    <Compile Include="Inventory\ManhattanPickTicketHeader.g.cs" />
+    <Compile Include="Inventory\ManhattanPickTicketInstruction.cs" />
+    <Compile Include="Inventory\ManhattanPickTicketInstruction.g.cs" />
+    <Compile Include="Inventory\OmsManhattanOrderMap.cs" />
+    <Compile Include="Inventory\OmsManhattanOrderMapFindCriteria.cs" />
+    <Compile Include="Inventory\OmsManhattanOrderMapRepositiory.cs" />
+    <Compile Include="Inventory\PickConfiguration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shipment\IShipmentRepository.cs" />
+    <Compile Include="Shipment\ManhattanShipment.cs" />
+    <Compile Include="Shipment\ManhattanShipmentCartonDetail.g.cs" />
+    <Compile Include="Shipment\ManhattanShipmentCartonHeader.g.cs" />
+    <Compile Include="Shipment\ManhattanShipmentHeader.g.cs" />
+    <Compile Include="Shipment\ManhattanShipmentLineItem.cs" />
+    <Compile Include="Shipment\ManhattanShipmentLineItem.g.cs" />
+    <Compile Include="Shipment\ManhattanShipmentSearchCriteria.cs" />
+    <Compile Include="Shipment\ShipmentRepository.cs" />
+    <Compile Include="Text\StringExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Middleware.Jobs\Middleware.Jobs.csproj">
+      <Project>{C728CADC-8056-46C9-B2BB-A70C4119F96E}</Project>
+      <Name>Middleware.Jobs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MiddleWare.Log\Middleware.Log.csproj">
+      <Project>{AEEDD741-C346-45BA-A867-3F54B66477A4}</Project>
+      <Name>Middleware.Log</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Middleware.Wm.Configuration\Middleware.Wm.Configuration.csproj">
+      <Project>{150356A5-306B-4DA5-8D0C-504DA59F0E02}</Project>
+      <Name>Middleware.Wm.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Middleware.Wm\Middleware.Wm.csproj">
+      <Project>{763AB0EE-41AE-45DA-8C2C-43547E64C5FC}</Project>
+      <Name>Middleware.Wm</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Shipment\Generated\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
