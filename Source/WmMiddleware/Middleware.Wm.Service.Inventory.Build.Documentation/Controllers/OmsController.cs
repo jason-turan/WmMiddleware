@@ -1,9 +1,5 @@
 ﻿using NB.DTC.Aptos.InventoryService.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace NB.DTC.Aptos.InventoryService.Tests.Controllers
@@ -27,7 +23,10 @@ namespace NB.DTC.Aptos.InventoryService.Tests.Controllers
         [ActionName("Search/AvailableToSell")]
         public List<InventoryQuantity> SearchAvailableToSell(InventorySearchFilter filter)
         {
-            throw new NotImplementedException();
+            return new List<InventoryQuantity>
+            {
+                new InventoryQuantity("1", "1", new Product("12345", "Style", "M", "E"), 1, 1)
+            };
         }
 
         [HttpPost]
@@ -35,7 +34,7 @@ namespace NB.DTC.Aptos.InventoryService.Tests.Controllers
         [ActionName("UpdateAvailableToSellInventory")]
         public void UpdateAvailableToSellInventory(UpdateInventoryRequest request)
         {
-            throw new NotImplementedException();
+            
         } 
 
     }
