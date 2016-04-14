@@ -12,7 +12,7 @@
     <FileVersion>$(MajorVersion).$(MinorVersion).$(BuildNumber).0</FileVersion>
     <InformationalVersion>$(MajorVersion).$(MinorVersion).$(BuildNumber).$(Revision)</InformationalVersion>
     <BuildFolder>../../../Build/</BuildFolder>
-    <PackageFolder>../../../Packages/$(InformationalVersion)</PackageFolder>
+    <PackageFolder>../../../Packages/$(InformationalVersion)/</PackageFolder>
   </PropertyGroup>
 
   <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.targets"/>
@@ -51,23 +51,27 @@
         Include="../Middleware.Scheduler.WindowService/bin/$(BuildConfiguration)/**/*.*">
       </WindowsServiceFiles>
       <ScriptFiles 
-        Include="../Middleware.Scheduler.WindowService/*.bat">        
+        Include="../Middleware.Scheduler.WindowService/Publish.bat">        
       </ScriptFiles>
     </ItemGroup> 
     <MakeDir Directories="$(BuildFolder);$(PackageFolder)"
              />
-    <Copy SourceFiles="@(ScriptFiles)" DestinationFolder="$(BuildFolder)\$(InformationalVersion)"/>
+    <Copy SourceFiles="@(ScriptFiles)" 
+          DestinationFolder="$(BuildFolder)Middleware.Scheduler.WindowService"/>
+    <Copy SourceFiles="@(WindowsServiceFiles)" 
+          DestinationFiles="@(WindowsServiceFiles->'$(BuildFolder)Middleware.Scheduler.WindowService\Middleware.Scheduler.WindowService\%(RecursiveDir)%(Filename)%(Extension)')"/>
     
+    <ItemGroup>
+      <PackageContents
+        Include="$(BuildFolder)Middleware.Scheduler.WindowService\**\*.*">
+      </PackageContents> 
+    </ItemGroup> 
     
     <MSBuild.ExtensionPack.Compression.Zip
-    TaskAction="Create"
-    CompressFiles="@(WindowsServiceFiles)"
-    RemoveRoot="../Middleware.Scheduler.WindowService/bin/$(BuildConfiguration)/"
-    ZipFileName="$(PackageFolder)WmMiddleware.Services.zip"/>
-    <!--<Zip  
-      ZipFileName="$(PackageFolder)WmMiddleware.Services.zip"
-      WorkingDirectory="../Middleware.Scheduler.WindowService/bin/$(BuildConfiguration)/"
-      Files="@(WindowsServiceFiles)" /> -->
+      TaskAction="Create"
+      CompressFiles="@(PackageContents)"
+      RemoveRoot="$(BuildFolder)\$(InformationalVersion)\"
+      ZipFileName="$(PackageFolder)WmMiddleware.Services.zip"/> 
 
   </Target>
 
