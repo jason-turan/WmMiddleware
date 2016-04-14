@@ -50,7 +50,7 @@
     <MSBuild Projects="../WmMiddleware.sln" Properties="Configuration=$(BuildConfiguration)" />
     <MSBuild
       Projects="../Middleware.Scheduler.Web/Middleware.Scheduler.Web.csproj" 
-      Properties="DeployOnBuild=true;DesktopBuildPackageLocation=$(PackageFolder)Middleware.Scheduler.Web\Middleware.Scheduler.Web.zip;PublishProfile=$(Configuration)"
+      Properties="Configuration=$(BuildConfiguration);DeployOnBuild=true;DesktopBuildPackageLocation=$(PackageFolder)Middleware.Scheduler.Web\Middleware.Scheduler.Web.zip;PublishProfile=$(Configuration)"
       >
       
     </MSBuild>

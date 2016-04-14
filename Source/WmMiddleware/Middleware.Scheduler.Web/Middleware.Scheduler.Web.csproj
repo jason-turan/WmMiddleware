@@ -35,8 +35,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PublishDatabases>false</PublishDatabases>
-    <IncludeIisSettings>false</IncludeIisSettings>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <IncludeIisSettings>false</IncludeIisSettings>    
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
