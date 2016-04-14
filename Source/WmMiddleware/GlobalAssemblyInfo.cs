@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Reflection.AssemblyCopyright("Copyright � 2016. All rights reserved.")]
-[assembly: System.Reflection.AssemblyConfiguration("Dev")]
+[assembly: System.Reflection.AssemblyConfiguration("Release")]
 [assembly: System.Reflection.AssemblyVersion("0.0.0.0")]
 [assembly: System.Reflection.AssemblyFileVersion("0.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersion("0.0.0.0")]
@@ -20,7 +20,7 @@ internal sealed partial class ThisAssembly {
     
     internal const string AssemblyCopyright = "Copyright � 2016. All rights reserved.";
     
-    internal const string AssemblyConfiguration = "Dev";
+    internal const string AssemblyConfiguration = "Release";
     
     internal const string AssemblyVersion = "0.0.0.0";
     

@@ -14,7 +14,7 @@
     <DatabaseRelease>r1</DatabaseRelease>
     <BuildFolder>../../../Build/</BuildFolder>
     <PackageFolder>../../../Packages/$(InformationalVersion)/</PackageFolder>
-    <BuildConfiguration>Dev</BuildConfiguration>
+    <BuildConfiguration>Release</BuildConfiguration>
   </PropertyGroup>
 
   <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.targets"/>
