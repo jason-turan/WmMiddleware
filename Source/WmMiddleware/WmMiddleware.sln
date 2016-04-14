@@ -208,8 +208,28 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F06B1E30
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{CC04F3F8-C848-442F-AD28-C55B34DF1A77}"
 	ProjectSection(SolutionItems) = preProject
+		.build\Interop.COMAdmin.dll = .build\Interop.COMAdmin.dll
+		.build\Interop.IWshRuntimeLibrary.dll = .build\Interop.IWshRuntimeLibrary.dll
+		.build\Ionic.Zip.dll = .build\Ionic.Zip.dll
 		.build\MSBuild.Community.Tasks.dll = .build\MSBuild.Community.Tasks.dll
 		.build\MSBuild.Community.Tasks.targets = .build\MSBuild.Community.Tasks.targets
+		.build\MSBuild.Extension.Pack.targets = .build\MSBuild.Extension.Pack.targets
+		.build\MSBuild.ExtensionPack.BizTalk.dll = .build\MSBuild.ExtensionPack.BizTalk.dll
+		.build\MSBuild.ExtensionPack.Crm.dll = .build\MSBuild.ExtensionPack.Crm.dll
+		.build\MSBuild.ExtensionPack.dll = .build\MSBuild.ExtensionPack.dll
+		.build\MSBuild.ExtensionPack.dll.config = .build\MSBuild.ExtensionPack.dll.config
+		.build\MSBuild.ExtensionPack.Git.dll = .build\MSBuild.ExtensionPack.Git.dll
+		.build\MSBuild.ExtensionPack.Iis7.dll = .build\MSBuild.ExtensionPack.Iis7.dll
+		.build\MSBuild.ExtensionPack.Loggers.dll = .build\MSBuild.ExtensionPack.Loggers.dll
+		.build\MSBuild.ExtensionPack.Sql2008.dll = .build\MSBuild.ExtensionPack.Sql2008.dll
+		.build\MSBuild.ExtensionPack.Sql2012.dll = .build\MSBuild.ExtensionPack.Sql2012.dll
+		.build\MSBuild.ExtensionPack.Sql2014.dll = .build\MSBuild.ExtensionPack.Sql2014.dll
+		.build\MSBuild.ExtensionPack.StyleCop.dll = .build\MSBuild.ExtensionPack.StyleCop.dll
+		.build\MSBuild.ExtensionPack.TaskFactory.Dlr.dll = .build\MSBuild.ExtensionPack.TaskFactory.Dlr.dll
+		.build\MSBuild.ExtensionPack.TaskFactory.PowerShell.dll = .build\MSBuild.ExtensionPack.TaskFactory.PowerShell.dll
+		.build\MSBuild.ExtensionPack.Tfs2012.dll = .build\MSBuild.ExtensionPack.Tfs2012.dll
+		.build\MSBuild.ExtensionPack.Tfs2013.dll = .build\MSBuild.ExtensionPack.Tfs2013.dll
+		.build\MSBuild.ExtensionPack.VersionNumber.targets = .build\MSBuild.ExtensionPack.VersionNumber.targets
 		.build\Package.proj = .build\Package.proj
 	EndProjectSection
 EndProject
