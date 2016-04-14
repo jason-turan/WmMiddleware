@@ -6,7 +6,7 @@
     <MajorVersion>0</MajorVersion>
     <MinorVersion>0</MinorVersion>
     <BuildNumber>0</BuildNumber>
-    <Revision>0</Revision>
+    <Revision>dev</Revision>
 
     <Version>$(MajorVersion).$(MinorVersion).$(BuildNumber).0</Version>
     <FileVersion>$(MajorVersion).$(MinorVersion).$(BuildNumber).0</FileVersion>
@@ -14,6 +14,7 @@
     <DatabaseRelease>r1</DatabaseRelease>
     <BuildFolder>../../../Build/</BuildFolder>
     <PackageFolder>../../../Packages/$(InformationalVersion)/</PackageFolder>
+    <BuildConfiguration>Dev</BuildConfiguration>
   </PropertyGroup>
 
   <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.targets"/>
@@ -60,6 +61,10 @@
       <ScriptFiles 
         Include="../Middleware.Scheduler.WindowService/Publish.bat">        
       </ScriptFiles>
+      <DatabaseConfigurationFile
+        Include="../Middleware.Wm.Configuration/databaseConnections.$(BuildConfiguration).config"
+        >        
+      </DatabaseConfigurationFile>
     </ItemGroup> 
     <MakeDir Directories="$(BuildFolder);$(PackageFolder)"
              />
@@ -67,6 +72,9 @@
           DestinationFolder="$(BuildFolder)Middleware.Scheduler.WindowService"/>
     <Copy SourceFiles="@(WindowsServiceFiles)" 
           DestinationFiles="@(WindowsServiceFiles->'$(BuildFolder)Middleware.Scheduler.WindowService\Middleware.Scheduler.WindowService\%(RecursiveDir)%(Filename)%(Extension)')"/>
+    <!-- Override database configuration file with environment specific version -->
+    <Copy SourceFiles="@(DatabaseConfigurationFile)"
+          DestinationFiles="$(BuildFolder)Middleware.Scheduler.WindowService\Middleware.Scheduler.WindowService\databaseConnections.config"/>
     
     <ItemGroup>
       <PackageContents

@@ -34,6 +34,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dev|AnyCPU'">
+    <OutputPath>bin\Dev\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Dapper">
       <HintPath>..\..\..\Dependencies\Dapper\Dapper.dll</HintPath>
@@ -70,6 +79,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="databaseConnections.Debug.config" />
+    <None Include="databaseConnections.Dev.config" />
+    <None Include="databaseConnections.Release.config" />
     <None Include="databaseConnections.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -80,4 +92,9 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <UsingTask TaskName="TransformXml" AssemblyFile="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Web\Microsoft.Web.Publishing.Tasks.dll" />
+  <Target Name="AfterBuild" Condition="Exists('databaseConnections.$(Configuration).config')">
+    <!--Generate transformed config in the output directory-->
+    <TransformXml Source="databaseConnections.config" Destination="$(OutputPath)databaseConnections.config" Transform="databaseConnections.$(Configuration).config" />
+  </Target>
 </Project>
