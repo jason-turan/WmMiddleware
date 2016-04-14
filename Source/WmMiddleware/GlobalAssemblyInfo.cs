@@ -12,7 +12,7 @@
 [assembly: System.Reflection.AssemblyConfiguration("Dev")]
 [assembly: System.Reflection.AssemblyVersion("0.0.0.0")]
 [assembly: System.Reflection.AssemblyFileVersion("0.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersion("0.0.0.dev")]
+[assembly: System.Reflection.AssemblyInformationalVersion("0.0.0.0")]
 
 
 
@@ -26,7 +26,7 @@ internal sealed partial class ThisAssembly {
     
     internal const string AssemblyFileVersion = "0.0.0.0";
     
-    internal const string AssemblyInformationalVersion = "0.0.0.dev";
+    internal const string AssemblyInformationalVersion = "0.0.0.0";
     
     private ThisAssembly() {
     }

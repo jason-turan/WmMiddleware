@@ -6,7 +6,7 @@
     <MajorVersion>0</MajorVersion>
     <MinorVersion>0</MinorVersion>
     <BuildNumber>0</BuildNumber>
-    <Revision>dev</Revision>
+    <Revision>0</Revision>
 
     <Version>$(MajorVersion).$(MinorVersion).$(BuildNumber).0</Version>
     <FileVersion>$(MajorVersion).$(MinorVersion).$(BuildNumber).0</FileVersion>
