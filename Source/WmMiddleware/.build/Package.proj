@@ -11,6 +11,7 @@
     <Version>$(MajorVersion).$(MinorVersion).$(BuildNumber).0</Version>
     <FileVersion>$(MajorVersion).$(MinorVersion).$(BuildNumber).0</FileVersion>
     <InformationalVersion>$(MajorVersion).$(MinorVersion).$(BuildNumber).$(Revision)</InformationalVersion>
+    <DatabaseRelease>r1</DatabaseRelease>
     <BuildFolder>../../../Build/</BuildFolder>
     <PackageFolder>../../../Packages/$(InformationalVersion)/</PackageFolder>
   </PropertyGroup>
@@ -64,13 +65,35 @@
     <ItemGroup>
       <PackageContents
         Include="$(BuildFolder)Middleware.Scheduler.WindowService\**\*.*">
-      </PackageContents> 
+      </PackageContents>
+      <NBXWebContents
+        Include="../Middleware.Database.Scripts\NBXWEB\$(DatabaseRelease)\*.sql"
+        ></NBXWebContents>
+      <WarehouseManagementContents
+        Include="../Middleware.Database.Scripts\WarehouseManagement\$(DatabaseRelease)\*.sql"
+        ></WarehouseManagementContents>
+      <WMTransactionsContents
+        Include="../Middleware.Database.Scripts\WMTransactions\$(DatabaseRelease)\*.sql"
+        ></WMTransactionsContents>
     </ItemGroup> 
     
+    <Zip 
+      ZipFileName="$(PackageFolder)NBXWeb.Scripts.zip" 
+      Flatten="True"
+      Files="@(NBXWebContents)" />
+    <Zip
+      ZipFileName="$(PackageFolder)WarehouseManagement.Scripts.zip"
+      Flatten="True"
+      Files="@(WarehouseManagementContents)" />
+    <Zip
+      ZipFileName="$(PackageFolder)WMTransactions.Scripts.zip"
+      Flatten="True"
+      Files="@(WMTransactionsContents)" />
+
     <MSBuild.ExtensionPack.Compression.Zip
       TaskAction="Create"
       CompressFiles="@(PackageContents)"
-      RemoveRoot="$(BuildFolder)\$(InformationalVersion)\"
+      RemoveRoot="$(BuildFolder)Middleware.Scheduler.WindowService\"
       ZipFileName="$(PackageFolder)WmMiddleware.Services.zip"/> 
 
   </Target>
