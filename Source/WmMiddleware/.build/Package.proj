@@ -23,7 +23,7 @@
   </PropertyGroup>
 
   <Target Name="Clean">
-    <DeleteTree Directories="..\**\obj\**;..\**\bin\**;$(BuildFolder)" />
+    <DeleteTree ContinueOnError="true" Directories="..\**\obj\**;..\**\bin\**;$(BuildFolder)" />
   </Target>
 
   <Target Name="Version">
@@ -31,7 +31,7 @@
       <Output TaskParameter="Year" PropertyName="Year" />
     </Time>
 
-    <Message Text="Version: $(Version)"/>
+    <Message  Text="Version: $(Version)" />
 
     <Attrib Files="$(MSBuildProjectDirectory)\GlobalAssemblyInfo.cs" ReadOnly="False" />
 
@@ -47,6 +47,12 @@
 
   <Target Name="Build" DependsOnTargets="Clean;Version">
     <MSBuild Projects="../WmMiddleware.sln" Properties="Configuration=$(BuildConfiguration)" />
+    <MSBuild
+      Projects="../Middleware.Scheduler.Web/Middleware.Scheduler.Web.csproj" 
+      Properties="DeployOnBuild=true;DesktopBuildPackageLocation=$(PackageFolder)Middleware.Scheduler.Web\Middleware.Scheduler.Web.zip;PublishProfile=$(Configuration)"
+      >
+      
+    </MSBuild>
     <ItemGroup>
       <WindowsServiceFiles
         Include="../Middleware.Scheduler.WindowService/bin/$(BuildConfiguration)/**/*.*">
@@ -57,7 +63,7 @@
     </ItemGroup> 
     <MakeDir Directories="$(BuildFolder);$(PackageFolder)"
              />
-    <Copy SourceFiles="@(ScriptFiles)" 
+    <Copy  SourceFiles="@(ScriptFiles)" 
           DestinationFolder="$(BuildFolder)Middleware.Scheduler.WindowService"/>
     <Copy SourceFiles="@(WindowsServiceFiles)" 
           DestinationFiles="@(WindowsServiceFiles->'$(BuildFolder)Middleware.Scheduler.WindowService\Middleware.Scheduler.WindowService\%(RecursiveDir)%(Filename)%(Extension)')"/>
