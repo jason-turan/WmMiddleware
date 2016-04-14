@@ -1,11 +1,3 @@
-using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Runtime.Serialization; 
 using System.ComponentModel.DataAnnotations;
 
 namespace NB.DTC.Aptos.InventoryService.Models
@@ -29,15 +21,10 @@ namespace NB.DTC.Aptos.InventoryService.Models
 
         public Product(string upc, string style, string size, string width )
         {
-            this.UPC = upc;
-            this.Style = style;
-            this.Size = size;
-            this.Width = width;            
+            UPC = upc;
+            Style = style;
+            Size = size;
+            Width = width;            
         }
-
-
-        
-
-         
     }
 }
