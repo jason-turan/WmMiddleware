@@ -2,6 +2,7 @@
 <Project DefaultTargets="Deploy" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <BuildConfiguration>Dev</BuildConfiguration>
+    <WebDeploymentScriptLocation>C:\Projects\WmMiddleware\Packages\Middleware.Scheduler.Web\Middleware.Scheduler.Web.deploy.cmd</WebDeploymentScriptLocation>
     <WebPackageLocation>C:\Projects\WmMiddleware\Packages\Middleware.Scheduler.Web\Middleware.Scheduler.Web.zip</WebPackageLocation>
     <ServicePackageLocation>C:\Projects\WmMiddleware\Packages\WmMiddleware.Services.zip</ServicePackageLocation>
     <JobHost>StlmwDev</JobHost>
@@ -9,15 +10,17 @@
     <WebHost>StlmwDev</WebHost>
     <ServiceExecutableFolder>\\$(JobHost)\Scheduler\</ServiceExecutableFolder>
     <StageFolder>$(MSBuildProjectDirectory)\Stage</StageFolder>
+    <UserName>stlmwdev\WDeployAdmin</UserName>
+    <Password>DeployAdmin!</Password>
   </PropertyGroup>
   <Import Project="MSBuild.Community.Tasks.targets"/>
   <Import Project="MSBuild.Extension.Pack.targets"/>
   <Target Name="Deploy">
     <!-- Services -->
-    <!--<ServiceController 
+    <ServiceController 
       MachineName="$(JobHost)" 
       ServiceName="$(JobHostName)" 
-      Action="Stop" />-->
+      Action="Stop" />
     <MSBuild.ExtensionPack.Framework.Thread TaskAction="Sleep" Timeout="10000"/>
     <MakeDir Directories="$(StageFolder)" />
     <MSBuild.ExtensionPack.FileSystem.Folder TaskAction="RemoveContent" Path="$(StageFolder)"/>
@@ -34,12 +37,13 @@
     </ItemGroup>
     <Copy SourceFiles="@(WindowsServiceFiles)"
           DestinationFiles="@(WindowsServiceFiles->'$(ServiceExecutableFolder)%(RecursiveDir)%(Filename)%(Extension)')"/>
-    <!--<ServiceController
+    <ServiceController
       MachineName="$(JobHost)"
       ServiceName="$(JobHostName)"
-      Action="Start" />-->
+      Action="Start" />
 
     <!-- Web site -->
+    <Exec Command="$(WebDeploymentScriptLocation) /y /m:https://$(WebHost):8172/MSdeploy.axd -allowUntrusted /u:$(UserName) /p:$(Password) /A:basic"/>
     
     
     

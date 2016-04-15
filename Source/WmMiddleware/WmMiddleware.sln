@@ -76,7 +76,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F06B1E30
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{CC04F3F8-C848-442F-AD28-C55B34DF1A77}"
 	ProjectSection(SolutionItems) = preProject
-		.build\Deploy.proj = .build\Deploy.proj
+		.build\Deploy.Dev.proj = .build\Deploy.Dev.proj
 		.build\Interop.COMAdmin.dll = .build\Interop.COMAdmin.dll
 		.build\Interop.IWshRuntimeLibrary.dll = .build\Interop.IWshRuntimeLibrary.dll
 		.build\Ionic.Zip.dll = .build\Ionic.Zip.dll

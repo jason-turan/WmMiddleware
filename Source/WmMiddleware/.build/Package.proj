@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup> 
-    <MajorVersion>0</MajorVersion>
-    <MinorVersion>0</MinorVersion>
+    <MajorVersion>1</MajorVersion>
+    <MinorVersion>1</MinorVersion>
     <BuildNumber>0</BuildNumber>
     <Revision>0</Revision>
 
@@ -12,16 +12,16 @@
     <DatabaseRelease>r2</DatabaseRelease>
     <BuildFolder>../../../Build/</BuildFolder>
     <PackageFolder>../../../Packages/</PackageFolder>
-    <BuildConfiguration>Dev</BuildConfiguration>
+    <BuildConfiguration>Release</BuildConfiguration>
   </PropertyGroup>
 
   <Import Project="MSBuild.Community.Tasks.targets"/>
   <Import Project="MSBuild.Extension.Pack.targets"/>
   
   <Target Name="Clean">
-    <DeleteTree ContinueOnError="true" Directories="..\**\obj\**;..\**\bin\**;$(BuildFolder)" />
+    <DeleteTree ContinueOnError="true" Directories="..\**\obj\**;..\**\bin\**" />
   </Target>
-
+  
   <Target Name="Version">
     <Time>
       <Output TaskParameter="Year" PropertyName="Year" />
@@ -42,12 +42,14 @@
   </Target>
 
   <Target Name="Build" DependsOnTargets="Clean;Version">
-    <MSBuild Projects="../WmMiddleware.sln" Properties="Configuration=$(BuildConfiguration)" />
+    <MSBuild.ExtensionPack.FileSystem.Folder TaskAction="RemoveContent" Path="$(BuildFolder)"/>
+    <MSBuild.ExtensionPack.FileSystem.Folder TaskAction="RemoveContent" Path="$(PackageFolder)"/>
+
+    <!--<MSBuild Projects="../WmMiddleware.sln" Properties="Configuration=$(BuildConfiguration)" />-->
     <MSBuild
       Projects="../Middleware.Scheduler.Web/Middleware.Scheduler.Web.csproj" 
-      Properties="Configuration=$(BuildConfiguration);DeployOnBuild=true;DesktopBuildPackageLocation=$(PackageFolder)Middleware.Scheduler.Web\Middleware.Scheduler.Web.zip;PublishProfile=$(Configuration)"
-      >
-      
+      Properties="Configuration=$(BuildConfiguration);DeployOnBuild=true;DesktopBuildPackageLocation=$(PackageFolder)Middleware.Scheduler.Web\Middleware.Scheduler.Web.zip;PublishProfile=$(Configuration);DeployIisAppPath=Default Web Site\Jobs"
+      > 
     </MSBuild>
     <ItemGroup>
       <WindowsServiceFiles
