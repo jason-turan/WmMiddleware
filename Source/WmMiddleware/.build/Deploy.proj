@@ -14,10 +14,10 @@
   <Import Project="MSBuild.Extension.Pack.targets"/>
   <Target Name="Deploy">
     <!-- Services -->
-    <ServiceController 
+    <!--<ServiceController 
       MachineName="$(JobHost)" 
       ServiceName="$(JobHostName)" 
-      Action="Stop" />
+      Action="Stop" />-->
     <MSBuild.ExtensionPack.Framework.Thread TaskAction="Sleep" Timeout="10000"/>
     <MSBuild.ExtensionPack.FileSystem.Folder TaskAction="RemoveContent" Path="$(StageFolder)"/>
     <MSBuild.ExtensionPack.FileSystem.Folder TaskAction="RemoveContent" Path="$(ServiceExecutableFolder)"/>
@@ -32,10 +32,10 @@
     </ItemGroup>
     <Copy SourceFiles="@(WindowsServiceFiles)"
           DestinationFiles="@(WindowsServiceFiles->'$(ServiceExecutableFolder)%(RecursiveDir)%(Filename)%(Extension)')"/>
-    <ServiceController
+    <!--<ServiceController
       MachineName="$(JobHost)"
       ServiceName="$(JobHostName)"
-      Action="Start" />
+      Action="Start" />-->
 
     <!-- Web site -->
     
