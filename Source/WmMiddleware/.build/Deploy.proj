@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Deploy" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <BuildConfiguration>Dev</BuildConfiguration>
+    <WebPackageLocation>C:\Projects\WmMiddleware\Packages\Middleware.Scheduler.Web\Middleware.Scheduler.Web.zip</WebPackageLocation>
+    <ServicePackageLocation>C:\Projects\WmMiddleware\Packages\WmMiddleware.Services.zip</ServicePackageLocation>
+    <JobHost>StlmwDev</JobHost>
+    <JobHostName>New Balance Warehouse Management Middleware</JobHostName>
+    <WebHost>StlmwDev</WebHost>
+    <ServiceExecutableFolder>\\$(JobHost)\d$\WmMiddleware\Scheduler\</ServiceExecutableFolder>
+    <StageFolder>Stage</StageFolder>
+  </PropertyGroup>
+  <Import Project="MSBuild.Community.Tasks.targets"/>
+  <Import Project="MSBuild.Extension.Pack.targets"/>
+  <Target Name="Deploy">
+    <!-- Services -->
+    <ServiceController 
+      MachineName="$(JobHost)" 
+      ServiceName="$(JobHostName)" 
+      Action="Stop" />
+    <MSBuild.ExtensionPack.Framework.Thread TaskAction="Sleep" Timeout="10000"/>
+    <MSBuild.ExtensionPack.FileSystem.Folder TaskAction="RemoveContent" Path="$(StageFolder)"/>
+    <MSBuild.ExtensionPack.FileSystem.Folder TaskAction="RemoveContent" Path="$(ServiceExecutableFolder)"/>
+    <Unzip
+      ZipFileName="$(ServicePackageLocation)"
+      TargetDirectory="$(StageFolder)" 
+      ></Unzip>
+    <ItemGroup>
+      <WindowsServiceFiles
+        Include="$(StageFolder)/Middleware.Scheduler.WindowService/**/*.*">
+      </WindowsServiceFiles>
+    </ItemGroup>
+    <Copy SourceFiles="@(WindowsServiceFiles)"
+          DestinationFiles="@(WindowsServiceFiles->'$(ServiceExecutableFolder)%(RecursiveDir)%(Filename)%(Extension)')"/>
+    <ServiceController
+      MachineName="$(JobHost)"
+      ServiceName="$(JobHostName)"
+      Action="Start" />
+
+    <!-- Web site -->
+    
+    
+    
+  </Target>
+</Project>
