@@ -44,7 +44,7 @@
 </div>
 
 @{
-        var version = Environment.MachineName == "STLMW01" ? Assembly.LoadFrom(@"D:\WmMiddleware\Scheduler\Middleware.Jobs.dll").GetName().Version.ToString() : "Dev";        
+    var version = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(JobsController).Assembly.Location).ProductVersion;
 }
 
 <h6>Last Update: <span data-bind="text: lastUpdated"> </span></h6>
