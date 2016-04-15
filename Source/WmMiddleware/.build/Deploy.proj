@@ -7,7 +7,7 @@
     <JobHost>StlmwDev</JobHost>
     <JobHostName>New Balance Warehouse Management Middleware</JobHostName>
     <WebHost>StlmwDev</WebHost>
-    <ServiceExecutableFolder>\\$(JobHost)\d$\WmMiddleware\Scheduler\</ServiceExecutableFolder>
+    <ServiceExecutableFolder>\\$(JobHost)\Scheduler\</ServiceExecutableFolder>
     <StageFolder>$(MSBuildProjectDirectory)\Stage</StageFolder>
   </PropertyGroup>
   <Import Project="MSBuild.Community.Tasks.targets"/>
