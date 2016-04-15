@@ -21,6 +21,7 @@
     <MSBuild.ExtensionPack.Framework.Thread TaskAction="Sleep" Timeout="10000"/>
     <MSBuild.ExtensionPack.FileSystem.Folder TaskAction="RemoveContent" Path="$(StageFolder)"/>
     <MSBuild.ExtensionPack.FileSystem.Folder TaskAction="RemoveContent" Path="$(ServiceExecutableFolder)"/>
+    <MakeDir Directories="$(StageFolder)" />
     <Unzip
       ZipFileName="$(ServicePackageLocation)"
       TargetDirectory="$(StageFolder)" 
