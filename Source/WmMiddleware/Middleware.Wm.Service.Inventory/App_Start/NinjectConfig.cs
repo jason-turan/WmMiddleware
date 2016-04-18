@@ -1,5 +1,5 @@
-﻿using Middleware.Wm.Service.Inventory.OrderManagementSystem;
-using NB.DTC.Aptos.InventoryService.Domain.OrderManagementSystem;
+﻿using Middleware.Wm.Service.Inventory.Domain.OrderManagementSystem;
+using Middleware.Wm.Service.Inventory.OrderManagementSystem;
 using Ninject;
 using Ninject.Syntax;
 using System;

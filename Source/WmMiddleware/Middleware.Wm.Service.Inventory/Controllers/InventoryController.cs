@@ -1,5 +1,5 @@
-﻿using NB.DTC.Aptos.InventoryService.Domain.OrderManagementSystem;
-using NB.DTC.Aptos.InventoryService.Models;
+﻿using Middleware.Wm.Service.Inventory.Domain.OrderManagementSystem;
+using Middleware.Wm.Service.Inventory.Models;
 using System.Collections.Generic;
 using System.Web.Http;
 
