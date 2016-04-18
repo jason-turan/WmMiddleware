@@ -11,10 +11,10 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using NB.DTC.Aptos.InventoryService.Areas.HelpPage.ModelDescriptions;
-using NB.DTC.Aptos.InventoryService.Areas.HelpPage.Models;
+using Middleware.Wm.Service.Inventory.Areas.HelpPage.ModelDescriptions;
+using Middleware.Wm.Service.Inventory.Areas.HelpPage.Models;
 
-namespace NB.DTC.Aptos.InventoryService.Areas.HelpPage
+namespace Middleware.Wm.Service.Inventory.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {

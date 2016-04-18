@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 using System.Runtime.Serialization; 
 using System.ComponentModel.DataAnnotations;
 
-namespace NB.DTC.Aptos.InventoryService.Models
+namespace Middleware.Wm.Service.Inventory.Models
 { 
     /// <summary>
     /// Action Item - additional detail needed, source and dest detail for a PO Kyle to find out the PO data structure

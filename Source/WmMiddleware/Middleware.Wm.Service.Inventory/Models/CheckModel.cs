@@ -1,4 +1,4 @@
-﻿namespace NB.DTC.Aptos.InventoryService.Models
+﻿namespace Middleware.Wm.Service.Inventory.Models
 {
     public class ComponentCheckModel
     {
@@ -9,7 +9,7 @@
     }
 }
 
-namespace NB.DTC.Aptos.InventoryService.Models
+namespace Middleware.Wm.Service.Inventory.Models
 {
     public enum ComponentStatus
     {

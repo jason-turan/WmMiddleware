@@ -1,6 +1,6 @@
 using System;
 
-namespace NB.DTC.Aptos.InventoryService.Areas.HelpPage
+namespace Middleware.Wm.Service.Inventory.Areas.HelpPage
 {
     /// <summary>
     /// This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.

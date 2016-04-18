@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace NB.DTC.Aptos.InventoryService.Models
+namespace Middleware.Wm.Service.Inventory.Models
 {
     /// <summary>
     /// Unique definition of a sellable product.

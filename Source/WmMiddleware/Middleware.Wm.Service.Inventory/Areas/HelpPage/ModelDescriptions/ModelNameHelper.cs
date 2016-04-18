@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
-namespace NB.DTC.Aptos.InventoryService.Areas.HelpPage.ModelDescriptions
+namespace Middleware.Wm.Service.Inventory.Areas.HelpPage.ModelDescriptions
 {
     internal static class ModelNameHelper
     {

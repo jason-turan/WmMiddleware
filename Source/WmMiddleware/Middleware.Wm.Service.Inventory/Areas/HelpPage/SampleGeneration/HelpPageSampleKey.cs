@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Net.Http.Headers;
 
-namespace NB.DTC.Aptos.InventoryService.Areas.HelpPage
+namespace Middleware.Wm.Service.Inventory.Areas.HelpPage
 {
     /// <summary>
     /// This is used to identify the place where the sample should be applied.

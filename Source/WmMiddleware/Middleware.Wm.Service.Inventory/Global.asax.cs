@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace NB.DTC.Aptos.InventoryService
+namespace Middleware.Wm.Service.Inventory
 {
     public class WebApiApplication : System.Web.HttpApplication
     {

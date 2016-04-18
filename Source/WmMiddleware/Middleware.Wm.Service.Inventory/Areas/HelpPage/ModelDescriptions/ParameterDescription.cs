@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace NB.DTC.Aptos.InventoryService.Areas.HelpPage.ModelDescriptions
+namespace Middleware.Wm.Service.Inventory.Areas.HelpPage.ModelDescriptions
 {
     public class ParameterDescription
     {

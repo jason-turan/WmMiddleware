@@ -1,6 +1,4 @@
-﻿using NB.DTC.Aptos.InventoryService.Models;
-
-namespace NB.DTC.Aptos.InventoryService.Tests.Controllers
+﻿namespace Middleware.Wm.Service.Inventory.Models.Controllers
 {
     public class UpdateInventoryRequest
     {

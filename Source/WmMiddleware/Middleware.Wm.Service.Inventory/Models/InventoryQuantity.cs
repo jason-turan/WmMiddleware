@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using System.ComponentModel.DataAnnotations;
 
-namespace NB.DTC.Aptos.InventoryService.Models
+namespace Middleware.Wm.Service.Inventory.Models
 {
     /// <summary>
     /// Object referencing a specific product, the quantities related to it, the location it is currently in, and the site that owns it.

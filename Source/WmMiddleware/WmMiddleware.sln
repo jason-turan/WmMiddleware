@@ -258,6 +258,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "r1", "r1", "{83FCF242-B3CD-
 		Middleware.Database.Scripts\WmTransactions\r1\dbo.StlInventoryUpdateTable.UserDefinedTableType.sql = Middleware.Database.Scripts\WmTransactions\r1\dbo.StlInventoryUpdateTable.UserDefinedTableType.sql
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "r2", "r2", "{1D060350-DD77-4F09-A033-B5217B50F85D}"
+	ProjectSection(SolutionItems) = preProject
+		Middleware.Database.Scripts\WmTransactions\r2\dbo.ManhattanPerpetualInventoryTransferNotificationProcessing.Table.sql = Middleware.Database.Scripts\WmTransactions\r2\dbo.ManhattanPerpetualInventoryTransferNotificationProcessing.Table.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -484,5 +489,6 @@ Global
 		{4703AF0C-6196-4C05-83C8-0A1F88A07094} = {7E28CEE8-1482-49B6-B994-68CF94832193}
 		{99B1DC9D-35BC-4B00-A2FE-87B9DC0FE560} = {505F6D40-8F67-442F-B87C-6F321C542B6F}
 		{83FCF242-B3CD-40D6-BE3F-070880DCCBC4} = {ED27989D-27C6-47AD-A374-A2722C9B2EDC}
+		{1D060350-DD77-4F09-A033-B5217B50F85D} = {ED27989D-27C6-47AD-A374-A2722C9B2EDC}
 	EndGlobalSection
 EndGlobal

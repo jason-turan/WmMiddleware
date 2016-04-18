@@ -1,4 +1,4 @@
-namespace NB.DTC.Aptos.InventoryService.Areas.HelpPage
+namespace Middleware.Wm.Service.Inventory.Areas.HelpPage
 {
     /// <summary>
     /// Indicates whether the sample is used for request or response

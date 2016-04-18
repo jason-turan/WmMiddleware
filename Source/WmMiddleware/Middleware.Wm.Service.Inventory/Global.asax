@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="NB.DTC.Aptos.InventoryService.WebApiApplication" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Middleware.Wm.Service.Inventory.WebApiApplication" Language="C#" %>

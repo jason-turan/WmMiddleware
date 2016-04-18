@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NB.DTC.Aptos.InventoryService.Domain
+namespace Middleware.Wm.Service.Inventory.Domain
 {
     public interface IUnitOfWork<T>
     {

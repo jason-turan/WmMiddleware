@@ -1,6 +1,6 @@
 using System;
 
-namespace NB.DTC.Aptos.InventoryService.Areas.HelpPage.ModelDescriptions
+namespace Middleware.Wm.Service.Inventory.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Use this attribute to change the name of the <see cref="ModelDescription"/> generated for a type.

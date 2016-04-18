@@ -11,7 +11,7 @@ using System.Web.Http.Description;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 
-namespace NB.DTC.Aptos.InventoryService.Areas.HelpPage.ModelDescriptions
+namespace Middleware.Wm.Service.Inventory.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Generates model descriptions for given types.

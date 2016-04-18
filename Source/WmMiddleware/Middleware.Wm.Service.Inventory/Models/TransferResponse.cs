@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace NB.DTC.Aptos.InventoryService.Models
+namespace Middleware.Wm.Service.Inventory.Models
 {
     public class TransferResponse
     {

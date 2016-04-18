@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using Middleware.Wm.Service.Inventory.Domain.OrderManagementSystem.Models;
+using System.Web.Http;
 
 namespace NB.DTC.Aptos.InventoryService.Tests.Controllers
 {
@@ -6,6 +7,7 @@ namespace NB.DTC.Aptos.InventoryService.Tests.Controllers
     {
         public void UpdateInventoryRequest(UpdateInventoryRequest request)
         {
+
         } 
     }
 }

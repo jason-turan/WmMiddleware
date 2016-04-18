@@ -1,11 +1,11 @@
-﻿using NB.DTC.Aptos.InventoryService.Domain.OrderManagementSystem;
-using NB.DTC.Aptos.InventoryService.Domain.OrderManagementSystem.Models;
-using NB.DTC.Aptos.InventoryService.Models;
+﻿using Middleware.Wm.Service.Inventory.Domain.OrderManagementSystem;
+using Middleware.Wm.Service.Inventory.Domain.OrderManagementSystem.Models;
+using Middleware.Wm.Service.Inventory.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NB.DTC.Aptos.InventoryService.Domain
+namespace Middleware.Wm.Service.Inventory.Domain
 {
     public class TransferUnitOfWork : IUnitOfWork<TransferRequest, TransferResponse>
     {

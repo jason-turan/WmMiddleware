@@ -3,7 +3,7 @@
   <PropertyGroup>
     <MajorVersion>1</MajorVersion>
     <MinorVersion>1</MinorVersion>
-    <BuildNumber>23</BuildNumber>
+    <BuildNumber>0</BuildNumber>
     <Revision>0</Revision>
 
     <Version>$(MajorVersion).$(MinorVersion).$(BuildNumber).0</Version>
@@ -34,7 +34,7 @@
     <AssemblyInfo CodeLanguage="CS"
                   OutputFile="$(MSBuildProjectDirectory)\..\GlobalAssemblyInfo.cs"
                   GenerateClass="true"
-                  AssemblyCopyright="Copyright � $(Year). All rights reserved."
+                  AssemblyCopyright="© $(Year) New Balance. All rights reserved."
                   AssemblyConfiguration="$(BuildConfiguration)"
                   AssemblyVersion="$(Version)"
                   AssemblyFileVersion="$(FileVersion)"

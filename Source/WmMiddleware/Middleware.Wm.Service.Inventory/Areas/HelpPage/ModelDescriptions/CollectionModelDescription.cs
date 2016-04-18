@@ -1,4 +1,4 @@
-namespace NB.DTC.Aptos.InventoryService.Areas.HelpPage.ModelDescriptions
+namespace Middleware.Wm.Service.Inventory.Areas.HelpPage.ModelDescriptions
 {
     public class CollectionModelDescription : ModelDescription
     {

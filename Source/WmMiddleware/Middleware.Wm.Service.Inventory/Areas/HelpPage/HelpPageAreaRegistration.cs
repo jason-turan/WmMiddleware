@@ -1,7 +1,7 @@
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace NB.DTC.Aptos.InventoryService.Areas.HelpPage
+namespace Middleware.Wm.Service.Inventory.Areas.HelpPage
 {
     public class HelpPageAreaRegistration : AreaRegistration
     {

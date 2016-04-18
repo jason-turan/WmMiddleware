@@ -1,8 +1,9 @@
-﻿using NB.DTC.Aptos.InventoryService.Models;
+﻿using Middleware.Wm.Service.Inventory.Domain.OrderManagementSystem.Models;
+using Middleware.Wm.Service.Inventory.Models;
 using System.Collections.Generic;
 using System.Web.Http;
 
-namespace NB.DTC.Aptos.InventoryService.Tests.Controllers
+namespace Middleware.Wm.Service.Inventory.Tests.Controllers
 { 
     public class OmsController : ApiController
     {

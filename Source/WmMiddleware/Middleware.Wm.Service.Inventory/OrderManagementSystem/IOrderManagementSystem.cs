@@ -1,12 +1,12 @@
-﻿using NB.DTC.Aptos.InventoryService.Domain.OrderManagementSystem.Models;
-using NB.DTC.Aptos.InventoryService.Models;
+﻿using Middleware.Wm.Service.Inventory.Domain.OrderManagementSystem.Models;
+using Middleware.Wm.Service.Inventory.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NB.DTC.Aptos.InventoryService.Domain.OrderManagementSystem
+namespace Middleware.Wm.Service.Inventory.Domain.OrderManagementSystem
 {
     public interface IOrderManagementSystemService
     {

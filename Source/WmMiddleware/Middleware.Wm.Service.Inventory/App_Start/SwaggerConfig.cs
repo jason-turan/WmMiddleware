@@ -1,9 +1,9 @@
 using System.Web.Http;
 using WebActivatorEx;
-using NB.DTC.Aptos.InventoryService;
+using Middleware.Wm.Service.Inventory;
 using Swashbuckle.Application;
 using System;
-namespace NB.DTC.Aptos.InventoryService
+namespace Middleware.Wm.Service.Inventory
 {
     public class SwaggerConfig
     { 

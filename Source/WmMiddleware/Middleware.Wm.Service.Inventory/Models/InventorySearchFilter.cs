@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization; 
 
-namespace NB.DTC.Aptos.InventoryService.Models
+namespace Middleware.Wm.Service.Inventory.Models
 {
     /// <summary>
     /// List of values to use as query parameters for inventory. Use \&quot;*\&quot; to represent all possible values or an array of values to include multiple values.

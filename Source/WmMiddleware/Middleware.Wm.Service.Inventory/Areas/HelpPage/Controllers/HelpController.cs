@@ -1,10 +1,10 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using NB.DTC.Aptos.InventoryService.Areas.HelpPage.ModelDescriptions;
-using NB.DTC.Aptos.InventoryService.Areas.HelpPage.Models;
+using Middleware.Wm.Service.Inventory.Areas.HelpPage.ModelDescriptions;
+using Middleware.Wm.Service.Inventory.Areas.HelpPage.Models;
 
-namespace NB.DTC.Aptos.InventoryService.Areas.HelpPage.Controllers
+namespace Middleware.Wm.Service.Inventory.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.

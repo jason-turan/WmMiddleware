@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace NB.DTC.Aptos.InventoryService
+namespace Middleware.Wm.Service.Inventory
 {
     public class FilterConfig
     {
