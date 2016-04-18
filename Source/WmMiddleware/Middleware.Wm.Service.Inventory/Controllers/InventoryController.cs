@@ -1,4 +1,5 @@
-﻿using Middleware.Wm.Service.Inventory.Domain.OrderManagementSystem;
+﻿using Middleware.Wm.Service.Inventory.Domain;
+using Middleware.Wm.Service.Inventory.Domain.OrderManagementSystem;
 using Middleware.Wm.Service.Inventory.Models;
 using System.Collections.Generic;
 using System.Web.Http;
@@ -8,6 +9,7 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
     public class InventoryController : ApiController
     {
         private IOrderManagementSystem _orderManagementSystem;
+        private IPurchaseOrderEventHandler _poEventHandler;
 
         public InventoryController(IOrderManagementSystem oms)
         {
@@ -72,10 +74,10 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         /// of available inventory. 
         /// </remarks>
         [HttpPost]
-        [Route("Order/LocationReceived")]
-        public void LocationReceived(PurchaseOrderReceiptEvent purchaseOrderReceiptEvent)
+        [Route("Order/ReceivedOnLocation")]
+        public void ReceivedOnLocation(PurchaseOrderReceiptEvent purchaseOrderReceiptEvent)
         {
-
+            _poEventHandler.ReceivedOnLocation(purchaseOrderReceiptEvent);
         }
 
         /// <summary>
@@ -88,7 +90,7 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         [Route("Order/InventoryStocked")]
         public void InventoryStocked(List<ProductQuantity> stockedQuantities)
         {
-
+            _poEventHandler.InventoryStocked(stockedQuantities);
         }
 
         [HttpGet]

@@ -17,14 +17,18 @@ namespace Middleware.Wm.Service.Inventory.Models
         public string Size { get; set; }
         
         [Required]
-        public string Width { get; set; } 
+        public string Width { get; set; }
 
-        public Product(string upc, string style, string size, string width )
+        [Required]
+        public string SeasonYear { get; set; }
+
+        public Product(string upc, string style, string size, string width , string seasonYear)
         {
             UPC = upc;
             Style = style;
             Size = size;
-            Width = width;            
+            Width = width;
+            SeasonYear = seasonYear;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Middleware.Wm.Service.Inventory.Models
 {
     public class PurchaseOrderReceiptEvent 
     {
-        public string PurchaseOrderUniqueIdentifier { get; set; }        
+        public string PurchaseOrderNumber { get; set; }        
         public DateTime ReceiptDateTime { get; set; }
         public List<ProductQuantity> ReceiptList { get; set; }
 
@@ -19,7 +19,7 @@ namespace Middleware.Wm.Service.Inventory.Models
                                          DateTime receiptDateTime, 
                                          List<ProductQuantity> productReceipts)
         {
-            PurchaseOrderUniqueIdentifier = ponumber; 
+            PurchaseOrderNumber = ponumber; 
             ReceiptList = productReceipts;
             ReceiptDateTime = receiptDateTime;
         }
