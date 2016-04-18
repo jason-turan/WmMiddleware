@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup> 
+    <MajorVersion>1</MajorVersion>
+    <MinorVersion>1</MinorVersion>
+    <BuildNumber>0</BuildNumber>
+    <Revision>0</Revision>
+
+    <Version>$(MajorVersion).$(MinorVersion).$(BuildNumber).0</Version>
+    <FileVersion>$(MajorVersion).$(MinorVersion).$(BuildNumber).0</FileVersion>
+    <InformationalVersion>$(MajorVersion).$(MinorVersion).$(BuildNumber).$(Revision)</InformationalVersion>
+    <DatabaseRelease>r2</DatabaseRelease>
+    <BuildFolder>../../../Build/</BuildFolder>
+    <PackageFolder>../../../Packages/</PackageFolder>
+    <BuildConfiguration>Release</BuildConfiguration>
+    <UserName>$dev-middleware-inventory</UserName>
+    <Password>Gno5XCkWuTEENfdZJoaoZ3XskGsN9v4xo2pa5Smy3CzsEdeQoiH8yrZeNDxd</Password>
+    
+  </PropertyGroup>
+
+  <Import Project="MSBuild.Community.Tasks.targets"/>
+  <Import Project="MSBuild.Extension.Pack.targets"/> 
+  
+  <Target Name="Build">
+    <MSBuild Projects="../Middleware.Wm.Service.Inventory\Middleware.Wm.Service.Inventory.csproj"
+            Targets="Package"
+            Properties="Configuration=Debug;PackageLocation=$(PackageFolder)\Middleware.Wm.Service.Inventory\Middleware.Wm.Service.Inventory.zip;DeployIisAppPath=dev-middleware-inventory" />
+    
+    <Exec Command="C:\Projects\WmMiddleware\Packages\Middleware.Wm.Service.Inventory\Middleware.Wm.Service.Inventory.deploy.cmd /y &quot;/m:https://dev-middleware-inventory.scm.azurewebsites.net:443/MSdeploy.axd?Site=dev-middleware-inventory&quot; -allowUntrusted /u:$(UserName) /p:$(Password) /A:basic"/>
+
+
+  </Target>
+
+</Project>

@@ -99,6 +99,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{CC04F3
 		.build\MSBuild.ExtensionPack.Tfs2012.dll = .build\MSBuild.ExtensionPack.Tfs2012.dll
 		.build\MSBuild.ExtensionPack.Tfs2013.dll = .build\MSBuild.ExtensionPack.Tfs2013.dll
 		.build\MSBuild.ExtensionPack.VersionNumber.targets = .build\MSBuild.ExtensionPack.VersionNumber.targets
+		.build\Package.InventoryService.proj = .build\Package.InventoryService.proj
 		.build\Package.proj = .build\Package.proj
 	EndProjectSection
 EndProject

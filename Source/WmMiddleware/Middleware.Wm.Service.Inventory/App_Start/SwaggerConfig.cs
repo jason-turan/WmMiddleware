@@ -2,9 +2,7 @@ using System.Web.Http;
 using WebActivatorEx;
 using NB.DTC.Aptos.InventoryService;
 using Swashbuckle.Application;
-
-[assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
-
+using System;
 namespace NB.DTC.Aptos.InventoryService
 {
     public class SwaggerConfig
@@ -15,7 +13,7 @@ namespace NB.DTC.Aptos.InventoryService
             GlobalConfiguration.Configuration
                 .EnableSwagger(c =>
                     {
-                        c.SingleApiVersion("v1", "NB.DTC.Aptos.InventoryService");
+                        c.SingleApiVersion("v1", "Middleware.Inventory");
                         c.IncludeXmlComments(GetXmlCommentsPath());
                         c.DescribeAllEnumsAsStrings();                        
                     })
@@ -24,8 +22,8 @@ namespace NB.DTC.Aptos.InventoryService
 
         protected static string GetXmlCommentsPath()
         {
-            return System.String.Format(@"{0}\bin\{1}.xml", 
-                System.AppDomain.CurrentDomain.BaseDirectory,
+            return string.Format(@"{0}\bin\{1}.xml", 
+                AppDomain.CurrentDomain.BaseDirectory,
                 typeof(SwaggerConfig).Assembly.GetName().Name);
         }
     }

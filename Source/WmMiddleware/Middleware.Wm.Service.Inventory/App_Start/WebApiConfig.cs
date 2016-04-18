@@ -18,7 +18,7 @@ namespace NB.DTC.Aptos.InventoryService
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
-            );
+            );  
         }
     }
 }

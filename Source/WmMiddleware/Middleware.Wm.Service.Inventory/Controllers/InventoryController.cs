@@ -16,7 +16,7 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         [HttpPost]
         [Route("Adjustment/PhysicalInventoryChange")]
         public void PhysicalInventoryChange(PhysicalAdjustment adjustment)
-        { 
+        {
         }
         ///<summary>
         /// Inventory search by site and warehouse.
@@ -53,7 +53,7 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         public TransferResponse CreateTransfer(TransferRequest request)
         {
             return new TransferResponse();
-        } 
+        }
 
         /// <summary>
         /// Execute workflow associated with the receipt of an Order into the Warehouse.
@@ -79,8 +79,27 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         [HttpPost]
         [Route("Order/InventoryStocked")]
         public void InventoryStocked(List<ProductQuantity> stockedQuantities)
-        { 
+        {
 
+        }
+
+        [HttpGet]
+        [Route("HealthCheck")]
+        public HealthCheckModel HealthCheck()
+        {
+            return new HealthCheckModel()
+            {
+                Running = true,
+                Components = new List<ComponentCheckModel>()
+                {
+                    new ComponentCheckModel()
+                    {
+                        ComponentName= "TEST",
+                        Status= ComponentStatus.Running,
+                        Message = ""
+                    }
+                }
+            };
         }
     }
 }
