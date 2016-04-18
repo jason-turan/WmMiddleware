@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Middleware.Wm.Service.Inventory.Domain.OrderManagementSystem
 {
-    public interface IOrderManagementSystemService
+    public interface IOrderManagementSystem
     {
         List<InventoryQuantity> GetAvailableToSellInventory(InventorySearchFilter filter);
         void UpdateAvailableInventory(UpdateInventoryRequest request);

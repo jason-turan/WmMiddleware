@@ -9,10 +9,10 @@ namespace Middleware.Wm.Service.Inventory.Domain
 {
     public class TransferUnitOfWork : IUnitOfWork<TransferRequest, TransferResponse>
     {
-        private IOrderManagementSystemService _omsService;
+        private IOrderManagementSystem _omsService;
         private IStoreIdTranslator _translator;
 
-        public TransferUnitOfWork(IOrderManagementSystemService omsService, IStoreIdTranslator translator)
+        public TransferUnitOfWork(IOrderManagementSystem omsService, IStoreIdTranslator translator)
         {
             _omsService = omsService;
             _translator = translator;

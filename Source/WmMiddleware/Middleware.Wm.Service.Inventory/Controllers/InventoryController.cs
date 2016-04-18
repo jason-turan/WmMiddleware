@@ -1,13 +1,18 @@
-﻿using Middleware.Wm.Service.Inventory.Models;
+﻿using NB.DTC.Aptos.InventoryService.Domain.OrderManagementSystem;
+using NB.DTC.Aptos.InventoryService.Models;
 using System.Collections.Generic;
 using System.Web.Http;
 
-namespace Middleware.Wm.Service.Inventory.Controllers
+namespace NB.DTC.Aptos.InventoryService.Controllers
 {
     public class InventoryController : ApiController
     {
-        private IPurchaseOrderEventHandler _purchaseOrderEventHandler;
+        private IOrderManagementSystem _orderManagementSystem;
 
+        public InventoryController(IOrderManagementSystem oms)
+        {
+            _orderManagementSystem = oms;
+        }
         /// <summary>
         /// API used to send inventory quantity changes originating within the Warehouse Management layer to the downstream order and merch systems.
         /// </summary>
@@ -54,6 +59,7 @@ namespace Middleware.Wm.Service.Inventory.Controllers
         [Route("Order/CreateTransfer")]
         public TransferResponse CreateTransfer(TransferRequest request)
         {
+            _orderManagementSystem.GetAvailableToSellInventory(null);
             return new TransferResponse();
         }
 
@@ -66,8 +72,8 @@ namespace Middleware.Wm.Service.Inventory.Controllers
         /// of available inventory. 
         /// </remarks>
         [HttpPost]
-        [Route("Order/ReceivedOnLocation")]
-        public void ReceivedOnLocation(PurchaseOrderReceiptEvent purchaseOrderReceiptEvent)
+        [Route("Order/LocationReceived")]
+        public void LocationReceived(PurchaseOrderReceiptEvent purchaseOrderReceiptEvent)
         {
 
         }
