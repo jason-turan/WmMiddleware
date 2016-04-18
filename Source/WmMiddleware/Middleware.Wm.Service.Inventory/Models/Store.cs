@@ -15,10 +15,10 @@ namespace NB.DTC.Aptos.InventoryService.Models
         public string AltId { get; set; }
         public StoreType StoreType { get; set; }
 
-        public Store(string StoreId, string AltId, StoreType storeType)
+        public Store(string storeId, string altId, StoreType storeType)
         {
-            StoreId = StoreId;
-            AltId = AltId;
+            StoreId = storeId;
+            AltId = altId;
             StoreType = storeType;
         } 
     }

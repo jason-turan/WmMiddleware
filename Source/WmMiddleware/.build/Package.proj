@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup> 
+  <PropertyGroup>
     <MajorVersion>1</MajorVersion>
     <MinorVersion>1</MinorVersion>
-    <BuildNumber>0</BuildNumber>
+    <BuildNumber>23</BuildNumber>
     <Revision>0</Revision>
 
     <Version>$(MajorVersion).$(MinorVersion).$(BuildNumber).0</Version>
@@ -17,11 +17,11 @@
 
   <Import Project="MSBuild.Community.Tasks.targets"/>
   <Import Project="MSBuild.Extension.Pack.targets"/>
-  
+
   <Target Name="Clean">
     <DeleteTree ContinueOnError="true" Directories="..\**\obj\**;..\**\bin\**" />
   </Target>
-  
+
   <Target Name="Version">
     <Time>
       <Output TaskParameter="Year" PropertyName="Year" />
@@ -47,32 +47,35 @@
 
     <!--<MSBuild Projects="../WmMiddleware.sln" Properties="Configuration=$(BuildConfiguration)" />-->
     <MSBuild
-      Projects="../Middleware.Scheduler.Web/Middleware.Scheduler.Web.csproj" 
+      Projects="../Middleware.Scheduler.Web/Middleware.Scheduler.Web.csproj"
       Properties="Configuration=$(BuildConfiguration);DeployOnBuild=true;DesktopBuildPackageLocation=$(PackageFolder)Middleware.Scheduler.Web\Middleware.Scheduler.Web.zip;PublishProfile=$(Configuration);DeployIisAppPath=Default Web Site\Jobs"
-      > 
+      >
     </MSBuild>
+    <MSBuild Projects="../Middleware.Wm.Service.Inventory\Middleware.Wm.Service.Inventory.csproj"
+            Targets="Package"
+            Properties="Configuration=$(BuildConfiguration);PackageLocation=$(PackageFolder)\Middleware.Wm.Service.Inventory\Middleware.Wm.Service.Inventory.zip;DeployIisAppPath=dev-middleware-inventory" />
     <ItemGroup>
       <WindowsServiceFiles
         Include="../Middleware.Scheduler.WindowService/bin/$(BuildConfiguration)/**/*.*">
       </WindowsServiceFiles>
-      <ScriptFiles 
-        Include="../Middleware.Scheduler.WindowService/Publish.bat">        
+      <ScriptFiles
+        Include="../Middleware.Scheduler.WindowService/Publish.bat">
       </ScriptFiles>
       <DatabaseConfigurationFile
         Include="../Middleware.Wm.Configuration/databaseConnections.$(BuildConfiguration).config"
-        >        
+        >
       </DatabaseConfigurationFile>
-    </ItemGroup> 
+    </ItemGroup>
     <MakeDir Directories="$(BuildFolder);$(PackageFolder)"
              />
-    <Copy  SourceFiles="@(ScriptFiles)" 
+    <Copy  SourceFiles="@(ScriptFiles)"
           DestinationFolder="$(BuildFolder)Middleware.Scheduler.WindowService"/>
-    <Copy SourceFiles="@(WindowsServiceFiles)" 
+    <Copy SourceFiles="@(WindowsServiceFiles)"
           DestinationFiles="@(WindowsServiceFiles->'$(BuildFolder)Middleware.Scheduler.WindowService\Middleware.Scheduler.WindowService\%(RecursiveDir)%(Filename)%(Extension)')"/>
     <!-- Override database configuration file with environment specific version -->
     <Copy SourceFiles="@(DatabaseConfigurationFile)"
           DestinationFiles="$(BuildFolder)Middleware.Scheduler.WindowService\Middleware.Scheduler.WindowService\databaseConnections.config"/>
-    
+
     <ItemGroup>
       <PackageContents
         Include="$(BuildFolder)Middleware.Scheduler.WindowService\**\*.*">
@@ -86,10 +89,10 @@
       <WMTransactionsContents
         Include="../Middleware.Database.Scripts\WMTransactions\$(DatabaseRelease)\*.sql"
         ></WMTransactionsContents>
-    </ItemGroup> 
-    
-    <Zip 
-      ZipFileName="$(PackageFolder)NBXWeb.Scripts.zip" 
+    </ItemGroup>
+
+    <Zip
+      ZipFileName="$(PackageFolder)NBXWeb.Scripts.zip"
       Flatten="True"
       Files="@(NBXWebContents)" />
     <Zip
@@ -105,7 +108,7 @@
       TaskAction="Create"
       CompressFiles="@(PackageContents)"
       RemoveRoot="$(BuildFolder)Middleware.Scheduler.WindowService\"
-      ZipFileName="$(PackageFolder)WmMiddleware.Services.zip"/> 
+      ZipFileName="$(PackageFolder)WmMiddleware.Services.zip"/>
 
   </Target>
 
