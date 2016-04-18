@@ -21,6 +21,7 @@ namespace NB.DTC.Aptos.InventoryService.Models
         /// Initializes a new instance of the <see cref="PhysicalAdjustment" /> class.
         /// </summary>
         /// <param name="type">The type of adjustment being made. (default to &quot;cycle&quot;).</param>       
+        /// <param name="productQuantities">The type of adjustment being made. (default to &quot;cycle&quot;).</param>       
         public PhysicalAdjustment(AdjustmentType type, List<ProductQuantity> productQuantities)
         {
             // use default value if no "AdjustmentType" provided

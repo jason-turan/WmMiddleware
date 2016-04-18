@@ -13,8 +13,6 @@
     <BuildFolder>../../../Build/</BuildFolder>
     <PackageFolder>../../../Packages/</PackageFolder>
     <BuildConfiguration>Release</BuildConfiguration>
-    <UserName>$dev-middleware-inventory</UserName>
-    <Password>Gno5XCkWuTEENfdZJoaoZ3XskGsN9v4xo2pa5Smy3CzsEdeQoiH8yrZeNDxd</Password>
     
   </PropertyGroup>
 
@@ -22,12 +20,8 @@
   <Import Project="MSBuild.Extension.Pack.targets"/> 
   
   <Target Name="Build">
-    <MSBuild Projects="../Middleware.Wm.Service.Inventory\Middleware.Wm.Service.Inventory.csproj"
-            Targets="Package"
-            Properties="Configuration=Debug;PackageLocation=$(PackageFolder)\Middleware.Wm.Service.Inventory\Middleware.Wm.Service.Inventory.zip;DeployIisAppPath=dev-middleware-inventory" />
+        
     
-    <Exec Command="C:\Projects\WmMiddleware\Packages\Middleware.Wm.Service.Inventory\Middleware.Wm.Service.Inventory.deploy.cmd /y &quot;/m:https://dev-middleware-inventory.scm.azurewebsites.net:443/MSdeploy.axd?Site=dev-middleware-inventory&quot; -allowUntrusted /u:$(UserName) /p:$(Password) /A:basic"/>
-
 
   </Target>
 

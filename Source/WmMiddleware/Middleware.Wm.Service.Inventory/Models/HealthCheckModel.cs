@@ -9,5 +9,6 @@ namespace NB.DTC.Aptos.InventoryService.Models
     {        
         public List<ComponentCheckModel> Components { get; set; }
         public bool Running { get; set; }
+        public string Version { get; set; }
     }
 }

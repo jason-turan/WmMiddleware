@@ -89,7 +89,8 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         {
             return new HealthCheckModel()
             {
-                Running = true,
+            Version= System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(InventoryController).Assembly.Location).ProductVersion,
+            Running = true,
                 Components = new List<ComponentCheckModel>()
                 {
                     new ComponentCheckModel()

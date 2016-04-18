@@ -2,7 +2,9 @@
 <Project DefaultTargets="Deploy" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <BuildConfiguration>Dev</BuildConfiguration>
+    <!-- TODO Update hard coded package locations to relative locations -->
     <WebDeploymentScriptLocation>C:\Projects\WmMiddleware\Packages\Middleware.Scheduler.Web\Middleware.Scheduler.Web.deploy.cmd</WebDeploymentScriptLocation>
+    <WebServiceDeploymentScriptLocation>C:\Projects\WmMiddleware\Packages\Middleware.Wm.Service.Inventory\Middleware.Wm.Service.Inventory.deploy.cmd</WebServiceDeploymentScriptLocation>
     <WebPackageLocation>C:\Projects\WmMiddleware\Packages\Middleware.Scheduler.Web\Middleware.Scheduler.Web.zip</WebPackageLocation>
     <ServicePackageLocation>C:\Projects\WmMiddleware\Packages\WmMiddleware.Services.zip</ServicePackageLocation>
     <JobHost>StlmwDev</JobHost>
@@ -12,23 +14,26 @@
     <StageFolder>$(MSBuildProjectDirectory)\Stage</StageFolder>
     <UserName>stlmwdev\WDeployAdmin</UserName>
     <Password>DeployAdmin!</Password>
+
+    <AzureUserName>$dev-middleware-inventory</AzureUserName>
+    <AzurePassword>Gno5XCkWuTEENfdZJoaoZ3XskGsN9v4xo2pa5Smy3CzsEdeQoiH8yrZeNDxd</AzurePassword>
   </PropertyGroup>
   <Import Project="MSBuild.Community.Tasks.targets"/>
   <Import Project="MSBuild.Extension.Pack.targets"/>
   <Target Name="Deploy">
     <!-- Services -->
-    <ServiceController 
-      MachineName="$(JobHost)" 
-      ServiceName="$(JobHostName)" 
+    <ServiceController
+      MachineName="$(JobHost)"
+      ServiceName="$(JobHostName)"
       Action="Stop" />
     <MSBuild.ExtensionPack.Framework.Thread TaskAction="Sleep" Timeout="10000"/>
     <MakeDir Directories="$(StageFolder)" />
     <MSBuild.ExtensionPack.FileSystem.Folder TaskAction="RemoveContent" Path="$(StageFolder)"/>
     <MSBuild.ExtensionPack.FileSystem.Folder TaskAction="RemoveContent" Path="$(ServiceExecutableFolder)"/>
-    
+
     <Unzip
       ZipFileName="$(ServicePackageLocation)"
-      TargetDirectory="$(StageFolder)" 
+      TargetDirectory="$(StageFolder)"
       ></Unzip>
     <ItemGroup>
       <WindowsServiceFiles
@@ -44,8 +49,10 @@
 
     <!-- Web site -->
     <Exec Command="$(WebDeploymentScriptLocation) /y /m:https://$(WebHost):8172/MSdeploy.axd -allowUntrusted /u:$(UserName) /p:$(Password) /A:basic"/>
-    
-    
-    
+
+    <!-- Web Service -->
+    <Exec Command="$(WebServiceDeploymentScriptLocation) /y &quot;/m:https://dev-middleware-inventory.scm.azurewebsites.net:443/MSdeploy.axd?Site=dev-middleware-inventory&quot; -allowUntrusted /u:$(AzureUserName) /p:$(AzurePassword) /A:basic"/>
+
+
   </Target>
 </Project>
