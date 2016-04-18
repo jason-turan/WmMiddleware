@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NB.DTC.Aptos.InventoryService.Domain.OrderManagementSystem
 {
-    public interface IOrderManagementSystemService
+    public interface IOrderManagementSystem
     {
         List<InventoryQuantity> GetAvailableToSellInventory(InventorySearchFilter filter);
         void UpdateAvailableInventory(UpdateInventoryRequest request);

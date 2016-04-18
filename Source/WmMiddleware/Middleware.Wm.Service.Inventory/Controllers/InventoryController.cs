@@ -1,4 +1,5 @@
-﻿using NB.DTC.Aptos.InventoryService.Models;
+﻿using NB.DTC.Aptos.InventoryService.Domain.OrderManagementSystem;
+using NB.DTC.Aptos.InventoryService.Models;
 using System.Collections.Generic;
 using System.Web.Http;
 
@@ -6,6 +7,12 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
 {
     public class InventoryController : ApiController
     {
+        private IOrderManagementSystem _orderManagementSystem;
+
+        public InventoryController(IOrderManagementSystem oms)
+        {
+            _orderManagementSystem = oms;
+        }
         /// <summary>
         /// API used to send inventory quantity changes originating within the Warehouse Management layer to the downstream order and merch systems.
         /// </summary>
@@ -52,6 +59,7 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         [Route("Order/CreateTransfer")]
         public TransferResponse CreateTransfer(TransferRequest request)
         {
+            _orderManagementSystem.GetAvailableToSellInventory(null);
             return new TransferResponse();
         }
 
