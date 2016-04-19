@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Middleware.Wm.Service.Inventory.Domain.OrderManagementSystem
 {
+    [Obsolete("Use IWebsiteRepository")]
     public interface IStoreIdTranslator
     {
         string TranslateStoreIdToSiteId(string storeId);

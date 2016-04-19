@@ -1,5 +1,4 @@
-﻿using Middleware.Wm.Service.Inventory.Domain.OrderManagementSystem;
-using Middleware.Wm.Service.Inventory.OrderManagementSystem;
+﻿using Middleware.Wm.Service.Inventory.OrderManagement;
 using Middleware.Wm.Service.Inventory.Repository;
 using Ninject;
 using Ninject.Syntax;
@@ -23,8 +22,9 @@ namespace Middleware.Wm.Service.Inventory.App_Start
 
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IOrderManagementSystem>().To<OrderManagementSystemService>();
+            kernel.Bind<IWebsiteInventoryRepository>().To<DeckOmsWebsiteInventoryRepository>();
             kernel.Bind<IWebsiteRepository>().To<DatabaseWebsiteRepository>();
+            kernel.Bind<IOrderManagementProcessor>().To<OrderManagementProcessor>();
         }
     }
 

@@ -1,6 +1,6 @@
 ﻿using Middleware.Wm.Service.Inventory.Domain.OrderManagementSystem;
-using Middleware.Wm.Service.Inventory.Domain.OrderManagementSystem.Models;
 using Middleware.Wm.Service.Inventory.Models;
+using Middleware.Wm.Service.Inventory.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +9,10 @@ namespace Middleware.Wm.Service.Inventory.Domain
 {
     public class TransferUnitOfWork : IUnitOfWork<TransferRequest, TransferResponse>
     {
-        private IOrderManagementSystem _omsService;
+        private IWebsiteInventoryRepository _omsService;
         private IStoreIdTranslator _translator;
 
-        public TransferUnitOfWork(IOrderManagementSystem omsService, IStoreIdTranslator translator)
+        public TransferUnitOfWork(IWebsiteInventoryRepository omsService, IStoreIdTranslator translator)
         {
             _omsService = omsService;
             _translator = translator;
@@ -20,8 +20,8 @@ namespace Middleware.Wm.Service.Inventory.Domain
 
         public TransferResponse Execute(TransferRequest model)
         {
-            var toSiteId = _translator.TranslateStoreIdToSiteId(model.ToStore.StoreId);
-            var fromSiteId = _translator.TranslateStoreIdToSiteId(model.FromStore.StoreId);
+            var toSiteId = _translator.TranslateStoreIdToSiteId(null);// model.ToStore.StoreId);
+            var fromSiteId = _translator.TranslateStoreIdToSiteId(null);// model.FromStore.StoreId);
              
             List<InventoryQuantity> availableToSell = _omsService.GetAvailableToSellInventory(new InventorySearchFilter()
             {
@@ -47,10 +47,10 @@ namespace Middleware.Wm.Service.Inventory.Domain
             switch (model.TransferType)
             {
                 case TransferType.PurchaseOrder: 
-                    if(model.FromLocation.LocationId != model.ToLocation.LocationId)
-                    {
-                        //Create PO in warehouse
-                    } 
+                    //if(model.FromLocation.LocationId != model.ToLocation.LocationId)
+                    //{
+                    //    //Create PO in warehouse
+                    //} 
                     break;
                 case TransferType.ReturnToVendor:
                     //Create RTV in warehouse

@@ -22,6 +22,8 @@ namespace Middleware.Wm.Service.Inventory.Models
         [Required]
         public string SeasonYear { get; set; }
 
+        public Product() { }
+
         public Product(string upc, string style, string size, string width , string seasonYear)
         {
             UPC = upc;

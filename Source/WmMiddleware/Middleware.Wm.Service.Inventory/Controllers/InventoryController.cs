@@ -2,6 +2,7 @@
 using Middleware.Wm.Service.Inventory.Domain.OrderManagementSystem;
 using Middleware.Wm.Service.Inventory.Filters;
 using Middleware.Wm.Service.Inventory.Models;
+using Middleware.Wm.Service.Inventory.OrderManagement;
 using Middleware.Wm.Service.Inventory.Repository;
 using System.Collections.Generic;
 using System.Net;
@@ -12,15 +13,14 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
 {
     public class InventoryController : ApiController
     {
-        private IOrderManagementSystem _orderManagementSystem;
-        private IWebsiteRepository _websiteRepository;
+        private IOrderManagementProcessor _orderManagementProcessor;
         private IPurchaseOrderEventHandler _poEventHandler;
 
-        public InventoryController(IOrderManagementSystem oms, IWebsiteRepository websiteRepository)
+        public InventoryController(IOrderManagementProcessor orderManagementProcessor)
         {
-            _orderManagementSystem = oms;
-            _websiteRepository = websiteRepository;
+            _orderManagementProcessor = orderManagementProcessor;
         }
+
         /// <summary>
         /// API used to send inventory quantity changes originating within the Warehouse Management layer to the downstream order and merch systems.
         /// </summary>
@@ -67,7 +67,11 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         [Route("Order/CreateTransfer")]
         public TransferResponse CreateTransfer(TransferRequest request)
         {
-            _orderManagementSystem.GetAvailableToSellInventory(null);
+            var response = _orderManagementProcessor.CreateTransfer(request.TransferType, request.ProductsToTransfer, request.FromLocation, request.ToLocation);
+
+            //var originationWebsite = _websiteRepository.GetByStore(request.FromStore);
+            //var destinationWebsite = 
+            //_orderManagementSystem.GetAvailableToSellInventory(null);
             return new TransferResponse();
         }
 

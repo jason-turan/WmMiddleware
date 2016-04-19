@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Middleware.Wm.Service.Inventory.Models
 {
@@ -16,6 +12,8 @@ namespace Middleware.Wm.Service.Inventory.Models
         {
             this.Quantity = quantity;
         }
+
+        public ProductQuantity() { }
         public ProductQuantity(ProductQuantity pq) : this(pq.UPC, pq.Style, pq.Size, pq.Width, pq.SeasonYear, pq.Quantity) { }
         public ProductQuantity(ProductQuantity pq, int newQuantity) : this(pq.UPC, pq.Style, pq.Size, pq.Width, pq.SeasonYear, newQuantity) { }
 

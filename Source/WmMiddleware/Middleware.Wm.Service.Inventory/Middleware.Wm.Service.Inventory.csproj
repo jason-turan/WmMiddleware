@@ -209,9 +209,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Address.cs" />
     <Compile Include="Models\AdjustmentType.cs" />
     <Compile Include="Models\CheckModel.cs" />
     <Compile Include="Models\HealthCheckModel.cs" />
+    <Compile Include="Models\ILocation.cs" />
     <Compile Include="Models\InventoryQuantity.cs" />
     <Compile Include="Models\InventorySearchFilter.cs" />
     <Compile Include="Models\Location.cs" />
@@ -226,13 +228,16 @@
     <Compile Include="Models\TransferResponse.cs" />
     <Compile Include="Models\TransferType.cs" />
     <Compile Include="Models\Website.cs" />
-    <Compile Include="OrderManagementSystem\IOrderManagementSystem.cs" />
     <Compile Include="OrderManagementSystem\IStoreTranslator.cs" />
-    <Compile Include="OrderManagementSystem\Models\UpdateInventoryRequest.cs" />
-    <Compile Include="OrderManagementSystem\OrderManagementSystemService.cs" />
+    <Compile Include="OrderManagement\IOrderManagementProcessor.cs" />
+    <Compile Include="OrderManagement\OrderManagementProcessor.cs" />
+    <Compile Include="Repository\UpdateInventoryRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\DatabaseWebsiteRepository.cs" />
+    <Compile Include="Repository\DeckOmsWebsiteInventoryRepository.cs" />
+    <Compile Include="Repository\ILocationInventoryRepository.cs" />
     <Compile Include="Repository\IPurchaseOrderRepository.cs" />
+    <Compile Include="Repository\IWebsiteInventoryRepository.cs" />
     <Compile Include="Repository\IWebsiteRepository.cs" />
     <Compile Include="Repository\PurchaseOrderRepository.cs" />
     <Compile Include="RibaSystem\IRibaSystem.cs" />

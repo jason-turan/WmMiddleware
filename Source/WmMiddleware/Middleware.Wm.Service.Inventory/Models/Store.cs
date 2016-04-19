@@ -1,15 +1,6 @@
-using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Runtime.Serialization; 
-
 namespace Middleware.Wm.Service.Inventory.Models
 {
-    public partial class Store 
+    public partial class Store : ILocation
     {
         public string StoreId { get; set; }
         public string AltId { get; set; }

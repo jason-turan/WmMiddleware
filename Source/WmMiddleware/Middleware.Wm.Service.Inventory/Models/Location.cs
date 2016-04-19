@@ -1,31 +1,19 @@
-using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Runtime.Serialization; 
-
 namespace Middleware.Wm.Service.Inventory.Models
 {
     /// <summary>
     /// 
     /// </summary>
-    public partial class Location
+    public partial class Location : ILocation
     {
-        public string LocationId { get; set; }
         public string LocationName { get; set; }
-        public string Address { get; set; }
+        public Address Address { get; set; }
 
         public Location(
-            string locationId, 
             string locationName, 
-            string address)
+            Address address)
         {
-            this.LocationId = locationId;
-            this.LocationName = locationName;
-            this.Address = address; 
+            LocationName = locationName;
+            Address = address; 
         } 
 
     }
