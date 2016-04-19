@@ -30,7 +30,6 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         /// <param name="adjustment">The adjustment</param> 
         [HttpPost]
         [Route("Adjustment/PhysicalInventoryChange")]
-        [ValidateModel]
         public void PhysicalInventoryChange(PhysicalAdjustment adjustment)
         {
         }
@@ -47,7 +46,6 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         /// <returns>Inventory levels for the given parameters</returns>
         [HttpPost]
         [Route("Search/AvailableToSell")]
-        [ValidateModel]
         public List<InventoryQuantity> SearchAvailableToSell(InventorySearchFilter filter)
         {
             return new List<InventoryQuantity>();
@@ -67,7 +65,6 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         /// </remarks>
         [HttpPost]
         [Route("Order/CreateTransfer")]
-        [ValidateModel]
         public TransferResponse CreateTransfer(TransferRequest request)
         {
             _orderManagementSystem.GetAvailableToSellInventory(null);
@@ -84,7 +81,6 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         /// </remarks>
         [HttpPost]
         [Route("Order/ReceivedOnLocation")]
-        [ValidateModel]
         public void ReceivedOnLocation(PurchaseOrderReceiptEvent purchaseOrderReceiptEvent)
         {
             _poEventHandler.ReceivedOnLocation(purchaseOrderReceiptEvent);
@@ -98,7 +94,6 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         /// <param name="stockedQuantities"></param>
         [HttpPost]
         [Route("Order/InventoryStocked")]
-        [ValidateModel]
         public void InventoryStocked(List<ProductQuantity> stockedQuantities)
         {
             _poEventHandler.InventoryStocked(stockedQuantities);
