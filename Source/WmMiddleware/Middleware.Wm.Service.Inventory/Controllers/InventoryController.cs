@@ -1,7 +1,11 @@
 ﻿using Middleware.Wm.Service.Inventory.Domain;
 using Middleware.Wm.Service.Inventory.Domain.OrderManagementSystem;
+using Middleware.Wm.Service.Inventory.Filters;
 using Middleware.Wm.Service.Inventory.Models;
+using Middleware.Wm.Service.Inventory.Repository;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 
 namespace NB.DTC.Aptos.InventoryService.Controllers
@@ -9,11 +13,13 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
     public class InventoryController : ApiController
     {
         private IOrderManagementSystem _orderManagementSystem;
+        private IWebsiteRepository _websiteRepository;
         private IPurchaseOrderEventHandler _poEventHandler;
 
-        public InventoryController(IOrderManagementSystem oms)
+        public InventoryController(IOrderManagementSystem oms, IWebsiteRepository websiteRepository)
         {
             _orderManagementSystem = oms;
+            _websiteRepository = websiteRepository;
         }
         /// <summary>
         /// API used to send inventory quantity changes originating within the Warehouse Management layer to the downstream order and merch systems.
@@ -24,6 +30,7 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         /// <param name="adjustment">The adjustment</param> 
         [HttpPost]
         [Route("Adjustment/PhysicalInventoryChange")]
+        [ValidateModel]
         public void PhysicalInventoryChange(PhysicalAdjustment adjustment)
         {
         }
@@ -40,6 +47,7 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         /// <returns>Inventory levels for the given parameters</returns>
         [HttpPost]
         [Route("Search/AvailableToSell")]
+        [ValidateModel]
         public List<InventoryQuantity> SearchAvailableToSell(InventorySearchFilter filter)
         {
             return new List<InventoryQuantity>();
@@ -59,6 +67,7 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         /// </remarks>
         [HttpPost]
         [Route("Order/CreateTransfer")]
+        [ValidateModel]
         public TransferResponse CreateTransfer(TransferRequest request)
         {
             _orderManagementSystem.GetAvailableToSellInventory(null);
@@ -75,6 +84,7 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         /// </remarks>
         [HttpPost]
         [Route("Order/ReceivedOnLocation")]
+        [ValidateModel]
         public void ReceivedOnLocation(PurchaseOrderReceiptEvent purchaseOrderReceiptEvent)
         {
             _poEventHandler.ReceivedOnLocation(purchaseOrderReceiptEvent);
@@ -88,6 +98,7 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         /// <param name="stockedQuantities"></param>
         [HttpPost]
         [Route("Order/InventoryStocked")]
+        [ValidateModel]
         public void InventoryStocked(List<ProductQuantity> stockedQuantities)
         {
             _poEventHandler.InventoryStocked(stockedQuantities);
