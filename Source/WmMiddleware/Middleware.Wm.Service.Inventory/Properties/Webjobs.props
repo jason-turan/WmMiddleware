@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- Full Article on setting up web jobs for automated deployments 
+https://azure.microsoft.com/en-us/blog/enabling-command-line-or-continuous-delivery-of-azure-webjobs/
+-->
+<Project DefaultTargets="Deploy" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  
+  <Target Name="AfterSetScheduleProperties" AfterTargets="SetScheduleProperties">
+    <PropertyGroup>
+      <PublishSettingsPath>$(MSBuildProjectDirectory)dev-middleware-inventory.azurewebsites.net.PublishSettings</PublishSettingsPath>
+      <SubscriptionId>873b6d59-7f3c-43ef-8922-01a7b70e2999</SubscriptionId>
+      
+    </PropertyGroup>
+  </Target>
+</Project>
+  

@@ -1,7 +1,11 @@
-﻿using Middleware.Wm.Service.Inventory.Domain;
+﻿using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Queue;
+using Middleware.Wm.Service.Inventory.Domain;
 using Middleware.Wm.Service.Inventory.Domain.OrderManagementSystem;
 using Middleware.Wm.Service.Inventory.Models;
+using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Web.Http;
 
 namespace NB.DTC.Aptos.InventoryService.Controllers
@@ -97,10 +101,13 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         [Route("HealthCheck")]
         public HealthCheckModel HealthCheck()
         {
-            return new HealthCheckModel()
+            var storageAccount = CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["AzureWebJobsStorage"].ToString());
+            CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
+            var queue = queueClient.GetQueueReference("queue");
+            var hcm = new HealthCheckModel()
             {
-            Version= System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(InventoryController).Assembly.Location).ProductVersion,
-            Running = true,
+                Version = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(InventoryController).Assembly.Location).ProductVersion,
+                Running = true,
                 Components = new List<ComponentCheckModel>()
                 {
                     new ComponentCheckModel()
@@ -111,6 +118,9 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
                     }
                 }
             };
+            var queueMessage = new CloudQueueMessage(JsonConvert.SerializeObject(hcm));
+            queue.AddMessage(queueMessage);
+            return hcm;           
         }
     }
 }

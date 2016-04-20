@@ -1,0 +1,9 @@
+﻿{
+  "$schema": "http://schemastore.org/schemas/json/webjobs-list.json",
+  "WebJobs": [
+    {
+      "filePath": "../Middleware.Wm.Service.Inventory.WebJob/Middleware.Wm.Service.Inventory.WebJob.csproj",
+      
+    }
+  ]
+}

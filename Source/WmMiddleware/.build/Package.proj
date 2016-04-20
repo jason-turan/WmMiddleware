@@ -3,7 +3,7 @@
   <PropertyGroup>
     <MajorVersion>1</MajorVersion>
     <MinorVersion>1</MinorVersion>
-    <BuildNumber>0</BuildNumber>
+    <BuildNumber>2</BuildNumber>
     <Revision>0</Revision>
 
     <Version>$(MajorVersion).$(MinorVersion).$(BuildNumber).0</Version>
@@ -12,7 +12,7 @@
     <DatabaseRelease>r2</DatabaseRelease>
     <BuildFolder>../../../Build/</BuildFolder>
     <PackageFolder>../../../Packages/</PackageFolder>
-    <BuildConfiguration>Release</BuildConfiguration>
+    <BuildConfiguration>Dev</BuildConfiguration>
   </PropertyGroup>
 
   <Import Project="MSBuild.Community.Tasks.targets"/>
@@ -45,7 +45,7 @@
     <MSBuild.ExtensionPack.FileSystem.Folder TaskAction="RemoveContent" Path="$(BuildFolder)"/>
     <MSBuild.ExtensionPack.FileSystem.Folder TaskAction="RemoveContent" Path="$(PackageFolder)"/>
 
-    <!--<MSBuild Projects="../WmMiddleware.sln" Properties="Configuration=$(BuildConfiguration)" />-->
+    <MSBuild Projects="../WmMiddleware.sln" Properties="Configuration=$(BuildConfiguration)" />
     <MSBuild
       Projects="../Middleware.Scheduler.Web/Middleware.Scheduler.Web.csproj"
       Properties="Configuration=$(BuildConfiguration);DeployOnBuild=true;DesktopBuildPackageLocation=$(PackageFolder)Middleware.Scheduler.Web\Middleware.Scheduler.Web.zip;PublishProfile=$(Configuration);DeployIisAppPath=Default Web Site\Jobs"
@@ -53,7 +53,7 @@
     </MSBuild>
     <MSBuild Projects="../Middleware.Wm.Service.Inventory\Middleware.Wm.Service.Inventory.csproj"
             Targets="Package"
-            Properties="Configuration=$(BuildConfiguration);PackageLocation=$(PackageFolder)\Middleware.Wm.Service.Inventory\Middleware.Wm.Service.Inventory.zip;DeployIisAppPath=dev-middleware-inventory" />
+            Properties="Configuration=$(BuildConfiguration);PackageLocation=$(PackageFolder)\Middleware.Wm.Service.Inventory\Middleware.Wm.Service.Inventory.zip;DeployIisAppPath=dev-middleware-inventory;TargetFrameworkVersion=v4.5" />
     <ItemGroup>
       <WindowsServiceFiles
         Include="../Middleware.Scheduler.WindowService/bin/$(BuildConfiguration)/**/*.*">

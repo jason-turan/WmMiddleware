@@ -13,6 +13,7 @@ namespace Middleware.Wm.Service.Inventory.Domain
         IPurchaseOrderRepository _purchaseOrderRepository;
         IRibaSystem _ribaSystem;
 
+
         public void InventoryStocked(List<ProductQuantity> stockedQuantities)
         {
             throw new NotImplementedException();

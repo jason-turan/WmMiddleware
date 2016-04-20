@@ -21,13 +21,13 @@ namespace Middleware.Wm.Service.Inventory.Models
         /// <value>The type of transfer being executed, these types have potential impact on the integration or workflow executed.</value>        
         [Required]
         public TransferType TransferType { get; set; }
-
+        
         [Required]
         public List<ProductQuantity> ProductsToTransfer { get; set; }
 
         public Store FromStore { get; set; }
         public Store ToStore { get; set; }
-
+                
         public Location FromLocation { get; set; }
         public Location ToLocation { get; set; }
 
