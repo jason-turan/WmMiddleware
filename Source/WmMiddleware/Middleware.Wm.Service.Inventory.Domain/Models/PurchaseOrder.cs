@@ -7,13 +7,13 @@ namespace Middleware.Wm.Service.Inventory.Models
 {
     public class PurchaseOrder
     {
-        String PurchaseOrderId { get; set; }
-        DateTime PurchaseOrderDateTime { get; set; }
-        String Upc { get; set; }        
-        String StoreId { get; set; }
-        int Quantity { get; set; }
-        int UnstockedQuantity { get; set; }
-        PurchaseOrderStatus Status { get; set; }
+        public String PurchaseOrderId { get; set; }
+        public DateTime PurchaseOrderDateTime { get; set; }
+        public String Upc { get; set; }
+        public String StoreId { get; set; }
+        public int Quantity { get; set; }
+        public int UnstockedQuantity { get; set; }
+        public PurchaseOrderStatus Status { get; set; }
     }
 }
 

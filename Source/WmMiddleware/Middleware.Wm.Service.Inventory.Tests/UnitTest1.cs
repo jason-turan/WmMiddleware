@@ -15,13 +15,13 @@ namespace NB.DTC.Aptos.InventoryService.Tests
         [TestInitialize]
         public void TestInitilize()
         { 
-            _eventHandlerToTest = new PurchaseOrderEventHandler();
-            _testReceivedEvent = new PurchaseOrderReceiptEvent(
-                "TEST",
-                DateTime.Now,
-                new List<ProductQuantity>(){
-                    CreateTestProduct("FOO",10)
-                });
+            //_eventHandlerToTest = new PurchaseOrderEventHandler();
+            //_testReceivedEvent = new PurchaseOrderReceiptEvent(
+            //    "TEST",
+            //    DateTime.Now,
+            //    new List<ProductQuantity>(){
+            //        CreateTestProduct("FOO",10)
+            //    });
         }
 
         [TestMethod]

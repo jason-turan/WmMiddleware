@@ -20,9 +20,12 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         private IOrderManagementProcessor _orderManagementProcessor;
         private IPurchaseOrderEventHandler _poEventHandler;
 
-        public InventoryController(IOrderManagementProcessor orderManagementProcessor)
+        public InventoryController(
+            IOrderManagementProcessor orderManagementProcessor,
+            IPurchaseOrderEventHandler purchaseOrderEventHandler)
         {
             _orderManagementProcessor = orderManagementProcessor;
+            _poEventHandler = purchaseOrderEventHandler;
         }
 
         /// <summary>

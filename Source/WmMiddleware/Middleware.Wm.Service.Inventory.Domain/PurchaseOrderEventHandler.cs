@@ -12,6 +12,13 @@ namespace Middleware.Wm.Service.Inventory.Domain
         private IPurchaseOrderRepository _purchaseOrderRepository;
         private IQueue _queue;
 
+        public PurchaseOrderEventHandler(IQueue queue, IPurchaseOrderRepository repository)
+        {
+            _queue = queue;
+            _purchaseOrderRepository = repository;
+        }
+
+
         public void InventoryStocked(List<ProductQuantity> stockedQuantities)
         {
             throw new NotImplementedException();

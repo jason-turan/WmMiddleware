@@ -13,14 +13,24 @@ using Middleware.Wm.Service.Inventory.Domain.QueueProcessors;
 
 namespace Middleware.Wm.Service.Inventory.WebJob
 {
-    public class Functions
+    public class QueueHandlers
     {
-        public static void ReceivedOnLocation_NotifyRiba(
-            [QueueTrigger(QueueNames.ReceivedOnLocationNotifyRiba)] PurchaseOrder message,
-            IKernel kernel)
+        private IKernel _kernel;
+
+        public QueueHandlers(IKernel kernel)
         {
-            var qp = kernel.Get<ReceivedOnLocationNotifyRibaQueueProcessor>();
-            qp.Execute(message);
+            _kernel = kernel;
+        }
+
+
+        public Task ReceivedOnLocation_NotifyRiba(
+            [QueueTrigger(QueueNames.ReceivedOnLocationNotifyRiba)] PurchaseOrder message)
+        {
+            return Task.Run(() =>
+            {
+                var qp = _kernel.Get<ReceivedOnLocationNotifyRibaQueueProcessor>();
+                qp.Execute(message);
+            });
         }
     }
 }
