@@ -117,6 +117,14 @@
     <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Middleware.Wm.Service.Inventory.Domain\Middleware.Wm.Service.Inventory.Domain.csproj">
+      <Project>{a4d39c14-d5e4-49ba-a1d7-a71c438811f5}</Project>
+      <Name>Middleware.Wm.Service.Inventory.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Middleware.Wm.Service.Inventory.WebJob\Middleware.Wm.Service.Inventory.WebJob.csproj">
+      <Project>{b750c7f1-0d59-4813-9634-95d8758efc4c}</Project>
+      <Name>Middleware.Wm.Service.Inventory.WebJob</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Middleware.Wm.Service.Inventory\Middleware.Wm.Service.Inventory.csproj">
       <Project>{1D71F0CE-31DE-4893-9172-E03864C90299}</Project>
       <Name>Middleware.Wm.Service.Inventory</Name>

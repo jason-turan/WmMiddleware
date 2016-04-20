@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Middleware.Wm.Service.Inventory.Domain
+namespace Middleware.Wm.Service.Inventory.Repository
 {
-    public class Class1
+    interface ILocationInventoryRepository
     {
     }
 }

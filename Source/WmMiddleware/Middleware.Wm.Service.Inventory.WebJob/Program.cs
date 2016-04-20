@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
+using Ninject;
 
 namespace Middleware.Wm.Service.Inventory.WebJob
 {
@@ -11,8 +12,17 @@ namespace Middleware.Wm.Service.Inventory.WebJob
     {
         static void Main()
         {
-            var host = new JobHost();
+            var kernel = new StandardKernel();
+            RegisterServices(kernel);            
+            var hostConfiguration = new JobHostConfiguration() {
+                JobActivator = new NinjectJobActivator(kernel)
+            };
+            var host = new JobHost(hostConfiguration);
             host.RunAndBlock();
+        }
+
+        private static void RegisterServices(StandardKernel kernel)
+        {                        
         }
     }
 }

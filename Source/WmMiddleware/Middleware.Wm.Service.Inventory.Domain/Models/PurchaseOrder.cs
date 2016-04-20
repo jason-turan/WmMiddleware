@@ -9,10 +9,7 @@ namespace Middleware.Wm.Service.Inventory.Models
     {
         String PurchaseOrderId { get; set; }
         DateTime PurchaseOrderDateTime { get; set; }
-        String Style { get; set; }
-        String Width { get; set; }
-        String Size { get; set; }
-        String SeasonYear { get; set; }
+        String Upc { get; set; }        
         String StoreId { get; set; }
         int Quantity { get; set; }
         int UnstockedQuantity { get; set; }

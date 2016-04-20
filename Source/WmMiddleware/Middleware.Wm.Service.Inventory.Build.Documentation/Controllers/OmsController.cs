@@ -1,5 +1,5 @@
-﻿using Middleware.Wm.Service.Inventory.Domain.OrderManagementSystem.Models;
-using Middleware.Wm.Service.Inventory.Models;
+﻿using Middleware.Wm.Service.Inventory.Models;
+using Middleware.Wm.Service.Inventory.Models.Controllers;
 using System.Collections.Generic;
 using System.Web.Http;
 

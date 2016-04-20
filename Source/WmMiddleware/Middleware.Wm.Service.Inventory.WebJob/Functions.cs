@@ -6,19 +6,21 @@ using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.WindowsAzure.Storage.Queue;
 using System;
+using Ninject;
+using Middleware.Wm.Service.Inventory.Domain;
+using Middleware.Wm.Service.Inventory.Models;
+using Middleware.Wm.Service.Inventory.Domain.QueueProcessors;
 
 namespace Middleware.Wm.Service.Inventory.WebJob
 {
     public class Functions
     {
-        public static void HandleQueue([QueueTrigger("queue")] string message)
+        public static void ReceivedOnLocation_NotifyRiba(
+            [QueueTrigger(QueueNames.ReceivedOnLocationNotifyRiba)] PurchaseOrder message,
+            IKernel kernel)
         {
-            var actual = new Random().Next(0, 100);
-            if (actual < 80)
-            {
-                throw new InvalidOperationException(String.Format("To bad try again. Actual {0} needed 50.", actual));
-            }
+            var qp = kernel.Get<ReceivedOnLocationNotifyRibaQueueProcessor>();
+            qp.Execute(message);
         }
-
     }
 }

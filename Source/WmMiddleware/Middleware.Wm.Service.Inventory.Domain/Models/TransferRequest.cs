@@ -1,11 +1,4 @@
-using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Runtime.Serialization; 
 using System.ComponentModel.DataAnnotations;
 
 namespace Middleware.Wm.Service.Inventory.Models
@@ -21,26 +14,21 @@ namespace Middleware.Wm.Service.Inventory.Models
         /// <value>The type of transfer being executed, these types have potential impact on the integration or workflow executed.</value>        
         [Required]
         public TransferType TransferType { get; set; }
-        
+
         [Required]
         public List<ProductQuantity> ProductsToTransfer { get; set; }
 
-        public Store FromStore { get; set; }
-        public Store ToStore { get; set; }
-                
-        public Location FromLocation { get; set; }
-        public Location ToLocation { get; set; }
+        public ILocation FromLocation { get; set; }
+        public ILocation ToLocation { get; set; }
 
         public TransferRequest(TransferType type,
                                List<ProductQuantity> productsToTransfer,
-                               Store fromStore, Location fromLocation,
-                               Store toStore, Location toLocation)
+                               ILocation fromLocation,
+                               ILocation toLocation)
         {
             TransferType = type;
             ProductsToTransfer = productsToTransfer;
-            FromStore = fromStore;
             FromLocation = fromLocation;
-            ToStore = toStore;
             ToLocation = toLocation;
         }
     }

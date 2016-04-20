@@ -2,9 +2,14 @@
 using Microsoft.WindowsAzure.Storage.Queue;
 using Middleware.Wm.Service.Inventory.Domain;
 using Middleware.Wm.Service.Inventory.Domain.OrderManagementSystem;
+using Middleware.Wm.Service.Inventory.Filters;
 using Middleware.Wm.Service.Inventory.Models;
 using Newtonsoft.Json;
+using Middleware.Wm.Service.Inventory.OrderManagement;
+using Middleware.Wm.Service.Inventory.Repository;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 using System.Configuration;
 using System.Web.Http;
 
@@ -12,13 +17,14 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
 {
     public class InventoryController : ApiController
     {
-        private IOrderManagementSystem _orderManagementSystem;
+        private IOrderManagementProcessor _orderManagementProcessor;
         private IPurchaseOrderEventHandler _poEventHandler;
 
-        public InventoryController(IOrderManagementSystem oms)
+        public InventoryController(IOrderManagementProcessor orderManagementProcessor)
         {
-            _orderManagementSystem = oms;
+            _orderManagementProcessor = orderManagementProcessor;
         }
+
         /// <summary>
         /// API used to send inventory quantity changes originating within the Warehouse Management layer to the downstream order and merch systems.
         /// </summary>
@@ -65,7 +71,11 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         [Route("Order/CreateTransfer")]
         public TransferResponse CreateTransfer(TransferRequest request)
         {
-            _orderManagementSystem.GetAvailableToSellInventory(null);
+            var response = _orderManagementProcessor.CreateTransfer(request.TransferType, request.ProductsToTransfer, request.FromLocation, request.ToLocation);
+
+            //var originationWebsite = _websiteRepository.GetByStore(request.FromStore);
+            //var destinationWebsite = 
+            //_orderManagementSystem.GetAvailableToSellInventory(null);
             return new TransferResponse();
         }
 
@@ -107,7 +117,7 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
             var hcm = new HealthCheckModel()
             {
                 Version = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(InventoryController).Assembly.Location).ProductVersion,
-                Running = true,
+            Running = true,
                 Components = new List<ComponentCheckModel>()
                 {
                     new ComponentCheckModel()

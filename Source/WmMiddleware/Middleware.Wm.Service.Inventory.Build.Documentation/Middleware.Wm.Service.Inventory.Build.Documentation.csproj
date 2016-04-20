@@ -83,6 +83,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Middleware.Wm.Service.Inventory.Domain\Middleware.Wm.Service.Inventory.Domain.csproj">
+      <Project>{a4d39c14-d5e4-49ba-a1d7-a71c438811f5}</Project>
+      <Name>Middleware.Wm.Service.Inventory.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Middleware.Wm.Service.Inventory\Middleware.Wm.Service.Inventory.csproj">
       <Project>{1d71f0ce-31de-4893-9172-e03864c90299}</Project>
       <Name>Middleware.Wm.Service.Inventory</Name>

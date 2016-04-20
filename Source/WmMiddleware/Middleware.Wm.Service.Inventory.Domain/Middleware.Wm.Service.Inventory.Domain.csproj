@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>a4d39c14-d5e4-49ba-a1d7-a71c438811f5</ProjectGuid>
+    <ProjectGuid>{A4D39C14-D5E4-49BA-A1D7-A71C438811F5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Middleware.Wm.Service.Inventory.Domain</RootNamespace>
@@ -30,25 +30,49 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="IPurchaseOrderEventHandler.cs" />
+    <Compile Include="IQueue.cs" />
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\AdjustmentType.cs" />
+    <Compile Include="Models\CheckModel.cs" />
+    <Compile Include="Models\HealthCheckModel.cs" />
+    <Compile Include="Models\ILocation.cs" />
+    <Compile Include="Models\InventoryQuantity.cs" />
+    <Compile Include="Models\InventorySearchFilter.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\PhysicalAdjustment.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductQuantity.cs" />
+    <Compile Include="Models\PurchaseOrder.cs" />
+    <Compile Include="Models\PurchaseOrderReceiptEvent.cs" />
+    <Compile Include="Models\Store.cs" />
+    <Compile Include="Models\StoreType.cs" />
+    <Compile Include="Models\TransferRequest.cs" />
+    <Compile Include="Models\TransferResponse.cs" />
+    <Compile Include="Models\TransferType.cs" />
+    <Compile Include="Models\Website.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchaseOrderEventHandler.cs" />
+    <Compile Include="QueueNames.cs" />
+    <Compile Include="QueueProcessors\IQueueProcessor.cs" />
+    <Compile Include="QueueProcessors\ReceivedOnLocationNotifyRibaQueueProcessor.cs" />
+    <Compile Include="Repository\IPurchaseOrderRepository.cs" />
+    <Compile Include="Repository\PurchaseOrderRepository.cs" />
+    <Compile Include="RibaSystem\IRibaSystem.cs" />
+    <Compile Include="RibaSystem\RibaSystemService.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -57,5 +81,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-
- </Project>
+</Project>
