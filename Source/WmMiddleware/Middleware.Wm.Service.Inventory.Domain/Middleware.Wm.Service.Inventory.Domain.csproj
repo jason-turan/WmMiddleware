@@ -59,6 +59,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IPurchaseOrderEventHandler.cs" />
+    <Compile Include="Logging\ILogger.cs" />
+    <Compile Include="Logging\Logger.cs" />
     <Compile Include="Queues\IQueue.cs" />
     <Compile Include="Queues\IQueueFactory.cs" />
     <Compile Include="Models\Address.cs" />

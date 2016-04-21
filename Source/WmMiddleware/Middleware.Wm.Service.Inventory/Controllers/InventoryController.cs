@@ -12,6 +12,7 @@ using System.Net;
 using System.Net.Http;
 using System.Configuration;
 using System.Web.Http;
+using System.Diagnostics;
 
 namespace NB.DTC.Aptos.InventoryService.Controllers
 {
@@ -94,6 +95,10 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         [Route("Order/ReceivedOnLocation")]
         public void ReceivedOnLocation(PurchaseOrderReceiptEvent purchaseOrderReceiptEvent)
         {
+            Trace.TraceInformation("SERVICE INFORMATION");
+            Trace.TraceWarning("SERVICE WARNING");
+            Trace.TraceError("SERVICE ERROR");
+
             _poEventHandler.ReceivedOnLocation(purchaseOrderReceiptEvent);
         }
 
