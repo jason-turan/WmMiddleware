@@ -5,5 +5,6 @@ namespace Middleware.Wm.Service.Inventory.Repository
     public interface IPurchaseOrderRepository
     {
         PurchaseOrder GetPurchaseOrder(string purchaseOrderId);
+        void AddPurchaseOrder(PurchaseOrder newPurchaseOrder);
     }
 }

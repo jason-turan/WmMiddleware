@@ -58,9 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="IPurchaseOrderEventHandler.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\Logger.cs" />
+    <Compile Include="Logging\ObjectDumper.cs" />
+    <Compile Include="Models\ProductStockedQuantity.cs" />
     <Compile Include="Queues\IQueue.cs" />
     <Compile Include="Queues\IQueueFactory.cs" />
     <Compile Include="Models\Address.cs" />
@@ -90,7 +93,11 @@
     <Compile Include="Repository\IPurchaseOrderRepository.cs" />
     <Compile Include="Repository\PurchaseOrderRepository.cs" />
     <Compile Include="RibaSystem\IRibaSystem.cs" />
+    <Compile Include="RibaSystem\Models\PurchaseOrderReceipt.cs" />
+    <Compile Include="RibaSystem\Models\Sku.cs" />
+    <Compile Include="RibaSystem\Models\TransferType.cs" />
     <Compile Include="RibaSystem\RibaSystemService.cs" />
+    <Compile Include="RibaSystem\StubbedRibaSystem.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -94,11 +94,7 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         [HttpPost]
         [Route("Order/ReceivedOnLocation")]
         public void ReceivedOnLocation(PurchaseOrderReceiptEvent purchaseOrderReceiptEvent)
-        {
-            Trace.TraceInformation("SERVICE INFORMATION");
-            Trace.TraceWarning("SERVICE WARNING");
-            Trace.TraceError("SERVICE ERROR");
-
+        {            
             _poEventHandler.ReceivedOnLocation(purchaseOrderReceiptEvent);
         }
 

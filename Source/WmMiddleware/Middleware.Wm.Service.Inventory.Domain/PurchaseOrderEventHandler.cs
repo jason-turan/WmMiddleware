@@ -4,18 +4,25 @@ using System.Linq;
 using System.Web;
 using Middleware.Wm.Service.Inventory.Models;
 using Middleware.Wm.Service.Inventory.Repository;
+using Middleware.Wm.Service.Inventory.Domain.Logging;
+using Middleware.Wm.Service.Inventory.Domain.Models;
 
 namespace Middleware.Wm.Service.Inventory.Domain
 {
     public class PurchaseOrderEventHandler : IPurchaseOrderEventHandler
     {
+        private ILogger _logger;
         private IPurchaseOrderRepository _purchaseOrderRepository;
         private IQueue _queue;
 
-        public PurchaseOrderEventHandler(IQueue queue, IPurchaseOrderRepository repository)
+        public PurchaseOrderEventHandler(
+            IQueue queue, 
+            IPurchaseOrderRepository repository,
+            ILogger logger)
         {
             _queue = queue;
             _purchaseOrderRepository = repository;
+            _logger = logger;
         }
 
 
@@ -26,26 +33,25 @@ namespace Middleware.Wm.Service.Inventory.Domain
         
         public void ReceivedOnLocation(PurchaseOrderReceiptEvent purchaseOrderReceiptEvent)
         {
+            _logger.DumpInfo<PurchaseOrderEventHandler>(purchaseOrderReceiptEvent);
             var po = _purchaseOrderRepository.GetPurchaseOrder(purchaseOrderReceiptEvent.PurchaseOrderNumber);
             if(po != null)
-            {
-                _queue.QueueWorkItem(QueueNames.ReceivedOnLocationNotifyRiba, po);
+            { 
+                _queue.QueueWorkItem(QueueNames.ReceivedOnLocationNotifyRiba, purchaseOrderReceiptEvent);
             }
             else
-            {
-                throw new InvalidOperationException();
-            }
-             
-            //Get purchase order from repository. It should have been created when the transfer request was made.
-            //If purchase order was found. 
-            //Send Po Receipt to Riba
-            //Else
-            //Log warning
-            //Probably invalid case. PO received at warehouse without a prior ASN
-            //Insert PO into database 
-            //var po = _purchaseOrderRepository.GetPurchaseOrder(purchaseOrderReceiptEvent.PurchaseOrderNumber);
-            ////TODO make this a reliable call
-            //_ribaSystem.ReceivedOnLocation(po);
+            {                          
+                var newPurchaseOrder = new PurchaseOrder() {
+                    ProductsStocked = purchaseOrderReceiptEvent.ReceiptList.Select(r => new ProductStockedQuantity() {
+                        Quantity = r.Quantity,
+                        UnstockedQuantity = r.Quantity,
+                        Upc = r.UPC
+                    }).ToList(),
+                    PurchaseOrderDateTime = null,
+                    StoreId = null                    
+                };
+                _purchaseOrderRepository.AddPurchaseOrder(newPurchaseOrder);                
+            } 
         }
     }
 }
