@@ -101,7 +101,7 @@
   <ItemGroup>
     <Compile Include="NinjectJobActivator.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Functions.cs" />
+    <Compile Include="QueueHandlers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
