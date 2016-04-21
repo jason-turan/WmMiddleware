@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Middleware.Wm.Service.Inventory.Models
-{
+{ 
     /// <summary>
     /// Action Item - additional detail needed, source and dest detail for a PO Kyle to find out the PO data structure
     /// </summary>
@@ -17,7 +17,6 @@ namespace Middleware.Wm.Service.Inventory.Models
 
         [Required]
         public List<ProductQuantity> ProductsToTransfer { get; set; }
-
         [Required]
         public Store FromStore { get; set; }
         [Required]

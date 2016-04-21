@@ -8,25 +8,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Reflection.AssemblyCopyright("Copyright � 2016. All rights reserved.")]
-[assembly: System.Reflection.AssemblyConfiguration("Release")]
-[assembly: System.Reflection.AssemblyVersion("1.1.23.0")]
-[assembly: System.Reflection.AssemblyFileVersion("1.1.23.0")]
-[assembly: System.Reflection.AssemblyInformationalVersion("1.1.23.0")]
+[assembly: System.Reflection.AssemblyCopyright("© 2016 New Balance. All rights reserved.")]
+[assembly: System.Reflection.AssemblyConfiguration("Dev")]
+[assembly: System.Reflection.AssemblyVersion("1.1.2.0")]
+[assembly: System.Reflection.AssemblyFileVersion("1.1.2.0")]
+[assembly: System.Reflection.AssemblyInformationalVersion("1.1.2.0")]
 
 
 
 internal sealed partial class ThisAssembly {
     
-    internal const string AssemblyCopyright = "Copyright � 2016. All rights reserved.";
+    internal const string AssemblyCopyright = "© 2016 New Balance. All rights reserved.";
     
-    internal const string AssemblyConfiguration = "Release";
+    internal const string AssemblyConfiguration = "Dev";
     
-    internal const string AssemblyVersion = "1.1.23.0";
+    internal const string AssemblyVersion = "1.1.2.0";
     
-    internal const string AssemblyFileVersion = "1.1.23.0";
+    internal const string AssemblyFileVersion = "1.1.2.0";
     
-    internal const string AssemblyInformationalVersion = "1.1.23.0";
+    internal const string AssemblyInformationalVersion = "1.1.2.0";
     
     private ThisAssembly() {
     }

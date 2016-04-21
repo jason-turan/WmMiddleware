@@ -10,7 +10,10 @@ namespace Middleware.Wm.Service.Inventory.Repository
     {
         public PurchaseOrder GetPurchaseOrder(string purchaseOrderId)
         {
-            throw new NotImplementedException();
+            return new PurchaseOrder()
+            {
+                PurchaseOrderId = "Foo"
+            };
         }
     }
 }

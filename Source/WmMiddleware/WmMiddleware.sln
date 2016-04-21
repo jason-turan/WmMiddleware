@@ -258,6 +258,39 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "r1", "r1", "{83FCF242-B3CD-
 		Middleware.Database.Scripts\WmTransactions\r1\dbo.StlInventoryUpdateTable.UserDefinedTableType.sql = Middleware.Database.Scripts\WmTransactions\r1\dbo.StlInventoryUpdateTable.UserDefinedTableType.sql
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "r2", "r2", "{1D060350-DD77-4F09-A033-B5217B50F85D}"
+	ProjectSection(SolutionItems) = preProject
+		Middleware.Database.Scripts\WmTransactions\r2\dbo.ManhattanPerpetualInventoryTransferNotificationProcessing.Table.sql = Middleware.Database.Scripts\WmTransactions\r2\dbo.ManhattanPerpetualInventoryTransferNotificationProcessing.Table.sql
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Service.Inventory.WebJob", "Middleware.Wm.Service.Inventory.WebJob\Middleware.Wm.Service.Inventory.WebJob.csproj", "{B750C7F1-0D59-4813-9634-95D8758EFC4C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microsoft.Web.WebJobs.Publish.1.0.11", "Microsoft.Web.WebJobs.Publish.1.0.11", "{46475A31-7C50-4435-94AE-A9B65754D70C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{F3DAEC53-1041-4171-9DCA-C13CA07667A8}"
+	ProjectSection(SolutionItems) = preProject
+		.build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\install.ps1 = .build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\install.ps1
+		.build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\Microsoft.IdentityModel.Clients.ActiveDirectory.dll = .build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\Microsoft.IdentityModel.Clients.ActiveDirectory.dll
+		.build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll = .build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll
+		.build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\Microsoft.Threading.Tasks.dll = .build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\Microsoft.Threading.Tasks.dll
+		.build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\Microsoft.Threading.Tasks.Extensions.dll = .build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\Microsoft.Threading.Tasks.Extensions.dll
+		.build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\Microsoft.Web.WebJobs.Publish.Tasks.dll = .build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\Microsoft.Web.WebJobs.Publish.Tasks.dll
+		.build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\Microsoft.WindowsAzure.Common.dll = .build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\Microsoft.WindowsAzure.Common.dll
+		.build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\Microsoft.WindowsAzure.Common.NetFramework.dll = .build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\Microsoft.WindowsAzure.Common.NetFramework.dll
+		.build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\Microsoft.WindowsAzure.Management.dll = .build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\Microsoft.WindowsAzure.Management.dll
+		.build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\Microsoft.WindowsAzure.Management.Scheduler.dll = .build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\Microsoft.WindowsAzure.Management.Scheduler.dll
+		.build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\Microsoft.WindowsAzure.Management.WebSites.dll = .build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\Microsoft.WindowsAzure.Management.WebSites.dll
+		.build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\Newtonsoft.Json.dll = .build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\Newtonsoft.Json.dll
+		.build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\System.Net.Http.Extensions.dll = .build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\System.Net.Http.Extensions.dll
+		.build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\System.Net.Http.Primitives.dll = .build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\System.Net.Http.Primitives.dll
+		.build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\uninstall.ps1 = .build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\uninstall.ps1
+		.build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\webjobs.console.targets = .build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\webjobs.console.targets
+		.build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\webjobs.targets = .build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\webjobs.targets
+		.build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\webjobs.wap.targets = .build\Microsoft.Web.WebJobs.Publish.1.0.11\tools\webjobs.wap.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Service.Inventory.Domain", "Middleware.Wm.Service.Inventory.Domain\Middleware.Wm.Service.Inventory.Domain.csproj", "{A4D39C14-D5E4-49BA-A1D7-A71C438811F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -376,6 +409,7 @@ Global
 		{5D3D0478-40A1-45F9-9BF0-12E6AAD7B321}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5D3D0478-40A1-45F9-9BF0-12E6AAD7B321}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D3D0478-40A1-45F9-9BF0-12E6AAD7B321}.Dev|Any CPU.ActiveCfg = Dev|Any CPU
+		{5D3D0478-40A1-45F9-9BF0-12E6AAD7B321}.Dev|Any CPU.Build.0 = Dev|Any CPU
 		{5D3D0478-40A1-45F9-9BF0-12E6AAD7B321}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21ADFF87-BB23-46BA-AE47-07B8EDA135BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{21ADFF87-BB23-46BA-AE47-07B8EDA135BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
@@ -428,19 +462,35 @@ Global
 		{F1D97E59-C5C6-4C9F-B83D-30800B159890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F1D97E59-C5C6-4C9F-B83D-30800B159890}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1D97E59-C5C6-4C9F-B83D-30800B159890}.Dev|Any CPU.ActiveCfg = Dev|Any CPU
+		{F1D97E59-C5C6-4C9F-B83D-30800B159890}.Dev|Any CPU.Build.0 = Dev|Any CPU
 		{F1D97E59-C5C6-4C9F-B83D-30800B159890}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D71F0CE-31DE-4893-9172-E03864C90299}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1D71F0CE-31DE-4893-9172-E03864C90299}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D71F0CE-31DE-4893-9172-E03864C90299}.Dev|Any CPU.ActiveCfg = Dev|Any CPU
+		{1D71F0CE-31DE-4893-9172-E03864C90299}.Dev|Any CPU.Build.0 = Dev|Any CPU
 		{1D71F0CE-31DE-4893-9172-E03864C90299}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADFED5AF-A153-4203-A406-3405C5B65DBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ADFED5AF-A153-4203-A406-3405C5B65DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADFED5AF-A153-4203-A406-3405C5B65DBB}.Dev|Any CPU.ActiveCfg = Dev|Any CPU
+		{ADFED5AF-A153-4203-A406-3405C5B65DBB}.Dev|Any CPU.Build.0 = Dev|Any CPU
 		{ADFED5AF-A153-4203-A406-3405C5B65DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DDF1804-A1E6-45DF-BB95-8A85C333358F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7DDF1804-A1E6-45DF-BB95-8A85C333358F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DDF1804-A1E6-45DF-BB95-8A85C333358F}.Dev|Any CPU.ActiveCfg = Dev|Any CPU
+		{7DDF1804-A1E6-45DF-BB95-8A85C333358F}.Dev|Any CPU.Build.0 = Dev|Any CPU
 		{7DDF1804-A1E6-45DF-BB95-8A85C333358F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B750C7F1-0D59-4813-9634-95D8758EFC4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B750C7F1-0D59-4813-9634-95D8758EFC4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B750C7F1-0D59-4813-9634-95D8758EFC4C}.Dev|Any CPU.ActiveCfg = Dev|Any CPU
+		{B750C7F1-0D59-4813-9634-95D8758EFC4C}.Dev|Any CPU.Build.0 = Dev|Any CPU
+		{B750C7F1-0D59-4813-9634-95D8758EFC4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B750C7F1-0D59-4813-9634-95D8758EFC4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4D39C14-D5E4-49BA-A1D7-A71C438811F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4D39C14-D5E4-49BA-A1D7-A71C438811F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4D39C14-D5E4-49BA-A1D7-A71C438811F5}.Dev|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4D39C14-D5E4-49BA-A1D7-A71C438811F5}.Dev|Any CPU.Build.0 = Debug|Any CPU
+		{A4D39C14-D5E4-49BA-A1D7-A71C438811F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4D39C14-D5E4-49BA-A1D7-A71C438811F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -484,5 +534,10 @@ Global
 		{4703AF0C-6196-4C05-83C8-0A1F88A07094} = {7E28CEE8-1482-49B6-B994-68CF94832193}
 		{99B1DC9D-35BC-4B00-A2FE-87B9DC0FE560} = {505F6D40-8F67-442F-B87C-6F321C542B6F}
 		{83FCF242-B3CD-40D6-BE3F-070880DCCBC4} = {ED27989D-27C6-47AD-A374-A2722C9B2EDC}
+		{1D060350-DD77-4F09-A033-B5217B50F85D} = {ED27989D-27C6-47AD-A374-A2722C9B2EDC}
+		{B750C7F1-0D59-4813-9634-95D8758EFC4C} = {127F7E21-F802-4AAF-9889-00F56FDEC251}
+		{46475A31-7C50-4435-94AE-A9B65754D70C} = {CC04F3F8-C848-442F-AD28-C55B34DF1A77}
+		{F3DAEC53-1041-4171-9DCA-C13CA07667A8} = {46475A31-7C50-4435-94AE-A9B65754D70C}
+		{A4D39C14-D5E4-49BA-A1D7-A71C438811F5} = {127F7E21-F802-4AAF-9889-00F56FDEC251}
 	EndGlobalSection
 EndGlobal
