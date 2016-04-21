@@ -75,7 +75,7 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         [Route("Order/CreateTransfer")]
         public TransferResponse CreateTransfer(TransferRequest request)
         {
-            var response = _orderManagementProcessor.CreateTransfer(request.TransferType, request.ProductsToTransfer, request.FromLocation, request.ToLocation);
+            var response = _orderManagementProcessor.CreateTransfer(request.TransferType, request.ProductsToTransfer, request.FromStoreId, request.ToStoreId, request.FromLocation, request.ToLocation);
 
             //var originationWebsite = _websiteRepository.GetByStore(request.FromStore);
             //var destinationWebsite = 
