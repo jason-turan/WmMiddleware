@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Ninject;
+using Middleware.Wm.Service.Inventory.Domain.Logging;
 
 namespace Middleware.Wm.Service.Inventory.WebJob
 {
@@ -22,7 +23,8 @@ namespace Middleware.Wm.Service.Inventory.WebJob
         }
 
         private static void RegisterServices(StandardKernel kernel)
-        {                        
+        {
+            kernel.Bind<ILogger>().To<Logger>();              
         }
     }
 }
