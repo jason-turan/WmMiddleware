@@ -1,4 +1,5 @@
 ﻿using Middleware.Wm.Service.Inventory.Domain;
+using Middleware.Wm.Service.Inventory.Domain.Logging;
 using Middleware.Wm.Service.Inventory.Factories;
 using Middleware.Wm.Service.Inventory.OrderManagement;
 using Middleware.Wm.Service.Inventory.Repository;
@@ -31,6 +32,7 @@ namespace Middleware.Wm.Service.Inventory.App_Start
             kernel.Bind<IPurchaseOrderRepository>().To<PurchaseOrderRepository>();
             kernel.Bind<IQueueFactory>().To<QueueFactory>();
             kernel.Bind<IQueue>().To<Queue>();
+            kernel.Bind<ILogger>().To<Logger>();
         }
     }
 
