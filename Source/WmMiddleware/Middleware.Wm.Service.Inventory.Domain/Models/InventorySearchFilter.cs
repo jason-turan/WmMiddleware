@@ -1,11 +1,4 @@
-using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Runtime.Serialization; 
 
 namespace Middleware.Wm.Service.Inventory.Models
 {
@@ -14,12 +7,12 @@ namespace Middleware.Wm.Service.Inventory.Models
     /// </summary>
     public class InventorySearchFilter 
     {                 
-        public List<string> StoreIds { get; set; }
-        public List<string> LocationIds { get; set; }
-        public List<string> Styles { get; set; }
-        public List<string> Sizes { get; set; }
-        public List<string> Widths { get; set; }
-        public List<string> UPCs { get; set; }
+        public IEnumerable<string> SiteIds { get; set; }
+        public IEnumerable<string> LocationIds { get; set; }
+        public IEnumerable<string> Styles { get; set; }
+        public IEnumerable<string> Sizes { get; set; }
+        public IEnumerable<string> Widths { get; set; }
+        public IEnumerable<string> UPCs { get; set; }
                 
     }
 }

@@ -16,11 +16,11 @@ namespace Middleware.Wm.Service.Inventory.Models
         public TransferType TransferType { get; set; }
 
         [Required]
-        public List<ProductQuantity> ProductsToTransfer { get; set; }
+        public List<ProductQuantity> ProductsToTransfer { get; set; } = new List<ProductQuantity>();
         [Required]
-        public Store FromStore { get; set; }
+        public string FromStoreId { get; set; }
         [Required]
-        public Store ToStore { get; set; }
+        public string ToStoreId { get; set; }
 
         [Required]
         public Location FromLocation { get; set; }
@@ -29,14 +29,14 @@ namespace Middleware.Wm.Service.Inventory.Models
 
         public TransferRequest(TransferType type,
                                List<ProductQuantity> productsToTransfer,
-                               Store fromStore, Location fromLocation,
-                               Store toStore, Location toLocation)
+                               string fromStoreId, Location fromLocation,
+                               string toStoreId, Location toLocation)
         {
             TransferType = type;
             ProductsToTransfer = productsToTransfer;
-            FromStore = fromStore;
+            FromStoreId = fromStoreId;
             FromLocation = fromLocation;
-            ToStore = toStore;
+            ToStoreId = toStoreId;
             ToLocation = toLocation;
         }
     }

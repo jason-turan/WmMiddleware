@@ -1,13 +1,24 @@
 ﻿using Middleware.Wm.Service.Inventory.Models;
-using System;
 
 namespace Middleware.Wm.Service.Inventory.Repository
 {
     public class DatabaseWebsiteRepository : IWebsiteRepository
     {
-        public Website GetByStore(Store store)
+        public Website GetByStoreId(string storeId)
         {
-            throw new NotImplementedException();
+            switch(storeId)
+            {
+                case "2100":
+                    return new Website { SiteId = "JNBO" };
+                case "2000":
+                    return new Website { SiteId = "NBUS" };
+                case "2200":
+                    return new Website { SiteId = "PF" };
+                case "3500":
+                    return new Website { SiteId = "NBCA" };
+                default:
+                    return null;
+            }
         }
     }
 }

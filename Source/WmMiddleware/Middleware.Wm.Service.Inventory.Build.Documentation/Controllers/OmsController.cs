@@ -33,9 +33,12 @@ namespace Middleware.Wm.Service.Inventory.Tests.Controllers
         [HttpPost]
         [Route("UpdateAvailableToSellInventory")]
         [ActionName("UpdateAvailableToSellInventory")]
-        public void UpdateAvailableToSellInventory(UpdateInventoryRequest request)
+        public List<InventoryQuantity> UpdateAvailableToSellInventory(UpdateInventoryRequest request)
         {
-            
+            return new List<InventoryQuantity>
+            {
+                new InventoryQuantity("1", "1", new Product("12345", "Style", "M", "E", "1994"), 1, 1)
+            };
         } 
 
     }

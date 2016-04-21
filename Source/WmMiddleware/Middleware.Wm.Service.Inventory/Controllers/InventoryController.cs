@@ -1,17 +1,14 @@
 ﻿using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
 using Middleware.Wm.Service.Inventory.Domain;
-using Middleware.Wm.Service.Inventory.Domain.OrderManagementSystem;
-using Middleware.Wm.Service.Inventory.Filters;
 using Middleware.Wm.Service.Inventory.Models;
 using Newtonsoft.Json;
 using Middleware.Wm.Service.Inventory.OrderManagement;
-using Middleware.Wm.Service.Inventory.Repository;
 using System.Collections.Generic;
 using System.Net;
-using System.Net.Http;
 using System.Configuration;
 using System.Web.Http;
+using System.Linq;
 
 namespace NB.DTC.Aptos.InventoryService.Controllers
 {
@@ -74,12 +71,13 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         [Route("Order/CreateTransfer")]
         public TransferResponse CreateTransfer(TransferRequest request)
         {
-            var response = _orderManagementProcessor.CreateTransfer(request.TransferType, request.ProductsToTransfer, request.FromLocation, request.ToLocation);
+            if (request.ProductsToTransfer.Any(p => p.Quantity <= 0))
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
 
-            //var originationWebsite = _websiteRepository.GetByStore(request.FromStore);
-            //var destinationWebsite = 
-            //_orderManagementSystem.GetAvailableToSellInventory(null);
-            return new TransferResponse();
+            var response = _orderManagementProcessor.CreateTransfer(request.TransferType, request.ProductsToTransfer, request.FromStoreId, request.ToStoreId, request.FromLocation, request.ToLocation);
+            return new TransferResponse { QuantitiesTransferred = response.ToList() };
         }
 
         /// <summary>

@@ -10,12 +10,12 @@ namespace Middleware.Wm.Service.Inventory.Models
         public ProductQuantity(string upc, string style, string size, string width, string seasonYear, int quantity)
             : base(upc, style, size, width, seasonYear)
         {
-            this.Quantity = quantity;
+            Quantity = quantity;
         }
 
         public ProductQuantity() { }
         public ProductQuantity(ProductQuantity pq) : this(pq.UPC, pq.Style, pq.Size, pq.Width, pq.SeasonYear, pq.Quantity) { }
-        public ProductQuantity(ProductQuantity pq, int newQuantity) : this(pq.UPC, pq.Style, pq.Size, pq.Width, pq.SeasonYear, newQuantity) { }
+        public ProductQuantity(ProductQuantity pq, int quantity) : this(pq.UPC, pq.Style, pq.Size, pq.Width, pq.SeasonYear, quantity) { }
 
         [Required]
         public int Quantity { get; set; }

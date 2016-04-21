@@ -1,8 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Middleware.Wm.Service.Inventory.Domain;
 using Middleware.Wm.Service.Inventory.Models;
-using System.Collections.Generic;
 
 namespace NB.DTC.Aptos.InventoryService.Tests
 {
