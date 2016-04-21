@@ -16,7 +16,7 @@ namespace Middleware.Wm.Service.Inventory.OrderManagement
             _websiteInventoryRepository = websiteInventoryRepository;
         }
 
-        public ICollection<ProductQuantity> CreateTransfer(TransferType transferType, IEnumerable<ProductQuantity> productsToTransfer, ILocation fromLocation, ILocation toLocation)
+        public ICollection<ProductQuantity> CreateTransfer(TransferType transferType, IEnumerable<ProductQuantity> productsToTransfer, Location fromLocation, Location toLocation)
         {
             throw new NotImplementedException();
         }

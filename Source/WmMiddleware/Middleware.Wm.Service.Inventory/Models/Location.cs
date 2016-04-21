@@ -3,7 +3,7 @@ namespace Middleware.Wm.Service.Inventory.Models
     /// <summary>
     /// 
     /// </summary>
-    public partial class Location : ILocation
+    public partial class Location
     {
         public string LocationName { get; set; }
         public Address Address { get; set; }

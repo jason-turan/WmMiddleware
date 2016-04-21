@@ -213,7 +213,6 @@
     <Compile Include="Models\AdjustmentType.cs" />
     <Compile Include="Models\CheckModel.cs" />
     <Compile Include="Models\HealthCheckModel.cs" />
-    <Compile Include="Models\ILocation.cs" />
     <Compile Include="Models\InventoryQuantity.cs" />
     <Compile Include="Models\InventorySearchFilter.cs" />
     <Compile Include="Models\Location.cs" />
