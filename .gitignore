@@ -210,5 +210,3 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
-/Source/WmMiddleware/.build/Stage
-/Source/WmMiddleware/Middleware.Wm.Service.Inventory/Package

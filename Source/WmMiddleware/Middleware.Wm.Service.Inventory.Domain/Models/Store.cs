@@ -1,6 +1,6 @@
 namespace Middleware.Wm.Service.Inventory.Models
 {
-    public partial class Store : ILocation
+    public partial class Store
     {
         public string StoreId { get; set; }
         public string AltId { get; set; }
