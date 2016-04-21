@@ -3,6 +3,6 @@ namespace Middleware.Wm.Service.Inventory.Repository
 {
     public interface IWebsiteRepository
     {
-        Website GetByStore(Store store);
+        Website GetByStoreId(string storeId);
     }
 }

@@ -5,6 +5,6 @@ namespace Middleware.Wm.Service.Inventory.OrderManagement
 {
     public interface IOrderManagementProcessor
     {
-        ICollection<ProductQuantity> CreateTransfer(TransferType transferType, IEnumerable<ProductQuantity> productsToTransfer, Location fromLocation, Location toLocation);
+        ICollection<ProductQuantity> CreateTransfer(TransferType transferType, ICollection<ProductQuantity> productsToTransfer, string losingStoreId, string gainingStoreId, Location fromLocation, Location toLocation);
     }
 }

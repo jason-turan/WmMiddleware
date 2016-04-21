@@ -1,11 +1,3 @@
-using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Runtime.Serialization;
 using System.ComponentModel.DataAnnotations;
 
 namespace Middleware.Wm.Service.Inventory.Models
@@ -34,11 +26,11 @@ namespace Middleware.Wm.Service.Inventory.Models
                                  Product product, int qtyOnHand, 
                                  int qtyAvailableToSell)
         {
-            this.StoreId = storeId;
-            this.LocationId = locationId;
-            this.Product = product;
-            this.QuantityOnHand = qtyOnHand;
-            this.QuantityAvailableToSell = qtyAvailableToSell;
+            StoreId = storeId;
+            LocationId = locationId;
+            Product = product;
+            QuantityOnHand = qtyOnHand;
+            QuantityAvailableToSell = qtyAvailableToSell;
         } 
     }
 }

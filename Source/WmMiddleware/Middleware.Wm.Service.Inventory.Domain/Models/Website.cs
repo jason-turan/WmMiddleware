@@ -2,5 +2,6 @@
 {
     public class Website
     {
+        public string SiteId { get; set; }
     }
 }
