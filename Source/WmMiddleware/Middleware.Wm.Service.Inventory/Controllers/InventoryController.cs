@@ -1,15 +1,10 @@
 ﻿using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
 using Middleware.Wm.Service.Inventory.Domain;
-using Middleware.Wm.Service.Inventory.Domain.OrderManagementSystem;
-using Middleware.Wm.Service.Inventory.Filters;
 using Middleware.Wm.Service.Inventory.Models;
 using Newtonsoft.Json;
 using Middleware.Wm.Service.Inventory.OrderManagement;
-using Middleware.Wm.Service.Inventory.Repository;
 using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
 using System.Configuration;
 using System.Web.Http;
 using System.Diagnostics;

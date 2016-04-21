@@ -240,7 +240,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="OrderManagementSystem\IStoreTranslator.cs" />
     <Compile Include="OrderManagement\IOrderManagementProcessor.cs" />
     <Compile Include="OrderManagement\OrderManagementProcessor.cs" />
     <Compile Include="Repository\UpdateInventoryRequest.cs" />
