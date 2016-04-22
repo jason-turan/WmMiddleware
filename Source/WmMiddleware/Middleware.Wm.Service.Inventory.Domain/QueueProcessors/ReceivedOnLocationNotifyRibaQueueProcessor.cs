@@ -16,7 +16,7 @@ namespace Middleware.Wm.Service.Inventory.Domain.QueueProcessors
         private ILogger _logger;
 
         public ReceivedOnLocationNotifyRibaQueueProcessor(
-            IRibaSystem system, 
+            IRibaSystem system,
             IPurchaseOrderRepository repository,
             ILogger logger)
         {
@@ -27,7 +27,7 @@ namespace Middleware.Wm.Service.Inventory.Domain.QueueProcessors
 
         public void Execute(PurchaseOrderReceiptEvent model)
         {
-            if(model == null)
+            if (model == null)
             {
                 throw new ArgumentNullException("model");
             }
@@ -36,30 +36,33 @@ namespace Middleware.Wm.Service.Inventory.Domain.QueueProcessors
                 throw new InvalidOperationException("Cannot process event with empty purchase order number");
             }
             var po = _repository.GetPurchaseOrder(model.PurchaseOrderNumber);
-            if(po == null)
+            if (po == null)
             {
-                throw new InvalidOperationException(String.Format("Purchase Order Number {0} not found", model.PurchaseOrderNumber));
+                throw new InvalidOperationException("Purchase Order Number {0} not found".FormatWith(model.PurchaseOrderNumber));
             }
 
-            var skus = model.ReceiptList.Select(receipt => {
+            var skus = model.ReceiptList.Select(receipt =>
+            {
                 var matchingItemInPo = po.ProductsStocked.FirstOrDefault(ps => ps.Upc.EqualsIgnoreCase(receipt.UPC));
-                
-                if(matchingItemInPo == null)
+
+                if (matchingItemInPo == null)
                 {
                     var warningMessage = String.Format("Received receipt for product that is not in PO. PO Number:{0} UPC:{1}", model.PurchaseOrderNumber, receipt.UPC);
-                    _logger.DumpWarning<ReceivedOnLocationNotifyRibaQueueProcessor>(warningMessage, new object[] { model, po});
+                    _logger.DumpWarning<ReceivedOnLocationNotifyRibaQueueProcessor>(warningMessage, new object[] { model, po });
                 }
 
-                return new Sku() {
-                    Upc = receipt.UPC,
-                    UnitsReceived =receipt.Quantity
+                return new Sku()
+                {
+                    UPCNo = receipt.UPC,
+                    UnitsReceived = matchingItemInPo.Quantity
                 };
             }).ToList();
-            var poReceipt = new PurchaseOrderReceipt() {
-                PurchaseOrderNumber = model.PurchaseOrderNumber,
-                ReceivedDate = model.ReceiptDateTime,
+            var poReceipt = new PurchaseOrderReceipt()
+            {
+                PONo = model.PurchaseOrderNumber,
+                ReceiveDate = model.ReceiptDateTime,
                 Skus = skus,
-                StoreId = po.StoreId,
+                LocationCode = po.StoreId,
                 TransactionType = TransactionType.PurchaseOrderReceipt
             };
             _ribaSystem.SendPurchaseOrderReceipt(poReceipt);

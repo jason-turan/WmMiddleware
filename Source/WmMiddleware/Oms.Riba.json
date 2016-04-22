@@ -9,6 +9,38 @@
     "http"
   ],
   "paths": {
+    "/api/Riba/SendPurchaseOrderReceipt": {
+      "post": {
+        "tags": [
+          "Riba"
+        ],
+        "operationId": "Riba_SendPurchaseOrderReceipt",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "po",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PurchaseOrderReceipt"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "deprecated": false
+      }
+    },
     "/api/Riba/UpdateInventoryRequest": {
       "post": {
         "tags": [
@@ -43,6 +75,46 @@
     }
   },
   "definitions": {
+    "PurchaseOrderReceipt": {
+      "type": "object",
+      "properties": {
+        "TransactionType": {
+          "format": "int32",
+          "enum": [
+            0
+          ],
+          "type": "integer"
+        },
+        "ReceiveDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "LocationCode": {
+          "type": "string"
+        },
+        "PONo": {
+          "type": "string"
+        },
+        "Skus": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Sku"
+          }
+        }
+      }
+    },
+    "Sku": {
+      "type": "object",
+      "properties": {
+        "UPCNo": {
+          "type": "string"
+        },
+        "UnitsReceived": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
     "UpdateInventoryRequest": {
       "type": "object",
       "properties": {
@@ -60,7 +132,8 @@
         "UPC",
         "Style",
         "Size",
-        "Width"
+        "Width",
+        "SeasonYear"
       ],
       "type": "object",
       "properties": {
@@ -78,6 +151,9 @@
           "type": "string"
         },
         "Width": {
+          "type": "string"
+        },
+        "SeasonYear": {
           "type": "string"
         }
       }

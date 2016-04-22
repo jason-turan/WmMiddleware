@@ -9,7 +9,7 @@ namespace Middleware.Wm.Service.Inventory.Domain.Logging
 {
     //Adding logger interface in case we want to switch out logging to a framework later.
     //Currently we are simply logging using the System.Diagnostics namespace. The Azure site is 
-    //configured to write to a table storage
+    //configured to write to table storage
     public interface ILogger
     {
         void DumpInfo<TCaller>(object obj, string callerName = "");

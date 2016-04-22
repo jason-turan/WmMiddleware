@@ -62,6 +62,21 @@ namespace Middleware.Wm.Pix.Repository
             }
         }
 
+        public void InsertManhattanPerpetualInventoryNotificationProcessing(int manhattanPerpetualInventoryProcessingId)
+        {
+            const string insertSql = @"INSERT INTO ManhattanPerpetualInventoryTransferNotificationProcessing(ManhattanPerpetualInventoryTransferId, ProcessedDate)
+                                           VALUES(@ManhattanPerpetualInventoryTransferId, @ProcessedDate)";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@ManhattanPerpetualInventoryTransferId", manhattanPerpetualInventoryProcessingId, DbType.Int32);
+            parameters.Add("@ProcessedDate", DateTime.Now, DbType.DateTime);
+            using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
+            {
+                connection.Execute(insertSql, parameters);
+            }
+        }
+
+
         public void InsertPixInventoryAdjustmentProcessing(IList<PixInventoryAdjustment> pixInventoryAdjustments)
         {
             using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())

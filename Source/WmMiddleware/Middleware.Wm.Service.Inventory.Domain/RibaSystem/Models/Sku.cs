@@ -2,7 +2,7 @@
 {
     public class Sku
     {
-        public string Upc { get; set; }
+        public string UPCNo { get; set; }
         public int UnitsReceived { get; set; }
     }
 }

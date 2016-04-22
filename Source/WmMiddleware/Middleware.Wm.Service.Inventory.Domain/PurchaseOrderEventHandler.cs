@@ -6,6 +6,7 @@ using Middleware.Wm.Service.Inventory.Models;
 using Middleware.Wm.Service.Inventory.Repository;
 using Middleware.Wm.Service.Inventory.Domain.Logging;
 using Middleware.Wm.Service.Inventory.Domain.Models;
+using Middleware.Wm.Service.Inventory.Domain.Extensions;
 
 namespace Middleware.Wm.Service.Inventory.Domain
 {
@@ -16,7 +17,7 @@ namespace Middleware.Wm.Service.Inventory.Domain
         private IQueue _queue;
 
         public PurchaseOrderEventHandler(
-            IQueue queue, 
+            IQueue queue,
             IPurchaseOrderRepository repository,
             ILogger logger)
         {
@@ -30,28 +31,19 @@ namespace Middleware.Wm.Service.Inventory.Domain
         {
             throw new NotImplementedException();
         }
-        
+
         public void ReceivedOnLocation(PurchaseOrderReceiptEvent purchaseOrderReceiptEvent)
         {
             _logger.DumpInfo<PurchaseOrderEventHandler>(purchaseOrderReceiptEvent);
             var po = _purchaseOrderRepository.GetPurchaseOrder(purchaseOrderReceiptEvent.PurchaseOrderNumber);
-            if(po != null)
-            { 
+            if (po != null)
+            {
                 _queue.QueueWorkItem(QueueNames.ReceivedOnLocationNotifyRiba, purchaseOrderReceiptEvent);
             }
             else
-            {                          
-                var newPurchaseOrder = new PurchaseOrder() {
-                    ProductsStocked = purchaseOrderReceiptEvent.ReceiptList.Select(r => new ProductStockedQuantity() {
-                        Quantity = r.Quantity,
-                        UnstockedQuantity = r.Quantity,
-                        Upc = r.UPC
-                    }).ToList(),
-                    PurchaseOrderDateTime = null,
-                    StoreId = null                    
-                };
-                _purchaseOrderRepository.AddPurchaseOrder(newPurchaseOrder);                
-            } 
+            {
+                throw new InvalidOperationException("Po number {0} not found".FormatWith(purchaseOrderReceiptEvent.PurchaseOrderNumber));
+            }
         }
     }
 }

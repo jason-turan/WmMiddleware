@@ -9,9 +9,9 @@ namespace Middleware.Wm.Service.Inventory.Domain.RibaSystem.Models
     public class PurchaseOrderReceipt
     {
         public TransactionType TransactionType { get; set; } 
-        public DateTime ReceivedDate { get; set; }
-        public String StoreId { get; set; }
-        public String PurchaseOrderNumber { get; set; }
+        public DateTime ReceiveDate { get; set; }
+        public String LocationCode { get; set; }
+        public String PONo { get; set; }
 
         public List<Sku> Skus { get; set; }
 

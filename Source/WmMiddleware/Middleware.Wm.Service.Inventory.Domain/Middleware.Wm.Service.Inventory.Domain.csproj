@@ -50,6 +50,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,7 +64,6 @@
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Logging\ObjectDumper.cs" />
-    <Compile Include="Models\ProductStockedQuantity.cs" />
     <Compile Include="Queues\IQueue.cs" />
     <Compile Include="Queues\IQueueFactory.cs" />
     <Compile Include="Models\Address.cs" />
@@ -74,10 +74,7 @@
     <Compile Include="Models\InventorySearchFilter.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\PhysicalAdjustment.cs" />
-    <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\ProductQuantity.cs" />
     <Compile Include="Models\PurchaseOrder.cs" />
-    <Compile Include="Models\PurchaseOrderReceiptEvent.cs" />
     <Compile Include="Models\Store.cs" />
     <Compile Include="Models\StoreType.cs" />
     <Compile Include="Models\TransferRequest.cs" />
@@ -99,7 +96,12 @@
     <Compile Include="RibaSystem\RibaSystemService.cs" />
     <Compile Include="RibaSystem\StubbedRibaSystem.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Middleware.Wm.Service.Contracts\Middleware.Wm.Service.Contracts.csproj">
+      <Project>{33b06394-e3df-4134-bc4c-52a82849e33a}</Project>
+      <Name>Middleware.Wm.Service.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

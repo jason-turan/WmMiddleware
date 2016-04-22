@@ -65,7 +65,12 @@
           "text/xml",
           "application/x-www-form-urlencoded"
         ],
-        "produces": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
         "parameters": [
           {
             "name": "request",
@@ -77,8 +82,14 @@
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/InventoryQuantity"
+              }
+            }
           }
         },
         "deprecated": false
@@ -89,7 +100,7 @@
     "InventorySearchFilter": {
       "type": "object",
       "properties": {
-        "StoreIds": {
+        "SiteIds": {
           "type": "array",
           "items": {
             "type": "string"
@@ -161,7 +172,8 @@
         "UPC",
         "Style",
         "Size",
-        "Width"
+        "Width",
+        "SeasonYear"
       ],
       "type": "object",
       "properties": {
@@ -175,6 +187,9 @@
           "type": "string"
         },
         "Width": {
+          "type": "string"
+        },
+        "SeasonYear": {
           "type": "string"
         }
       }
@@ -196,7 +211,8 @@
         "UPC",
         "Style",
         "Size",
-        "Width"
+        "Width",
+        "SeasonYear"
       ],
       "type": "object",
       "properties": {
@@ -214,6 +230,9 @@
           "type": "string"
         },
         "Width": {
+          "type": "string"
+        },
+        "SeasonYear": {
           "type": "string"
         }
       }

@@ -115,9 +115,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Service.Inven
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SwaggerDocuments", "SwaggerDocuments", "{F51C9E20-8B88-41E6-B995-67F2F8E771F7}"
 	ProjectSection(SolutionItems) = preProject
-		InventoryService.json = InventoryService.json
-		Oms.Riba.json = Oms.Riba.json
+		InventoryService.Swagger.json = InventoryService.Swagger.json
 		Oms.Swagger.json = Oms.Swagger.json
+		Riba.Swagger.json = Riba.Swagger.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "r1", "r1", "{4703AF0C-6196-4C05-83C8-0A1F88A07094}"
@@ -260,7 +260,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "r1", "r1", "{83FCF242-B3CD-
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "r2", "r2", "{1D060350-DD77-4F09-A033-B5217B50F85D}"
 	ProjectSection(SolutionItems) = preProject
-		Middleware.Database.Scripts\WmTransactions\r2\dbo.ManhattanPerpetualInventoryTransferNotificationProcessing.Table.sql = Middleware.Database.Scripts\WmTransactions\r2\dbo.ManhattanPerpetualInventoryTransferNotificationProcessing.Table.sql
+		Middleware.Database.Scripts\WmTransactions\r2\1_DDL_dbo.ManhattanPerpetualInventoryTransferNotificationProcessing.Table.sql = Middleware.Database.Scripts\WmTransactions\r2\1_DDL_dbo.ManhattanPerpetualInventoryTransferNotificationProcessing.Table.sql
+		Middleware.Database.Scripts\WmTransactions\r2\2_DDL_dbo.sp_FindManhattanPerpetualInventoryTransfers.sql = Middleware.Database.Scripts\WmTransactions\r2\2_DDL_dbo.sp_FindManhattanPerpetualInventoryTransfers.sql
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Service.Inventory.WebJob", "Middleware.Wm.Service.Inventory.WebJob\Middleware.Wm.Service.Inventory.WebJob.csproj", "{B750C7F1-0D59-4813-9634-95D8758EFC4C}"
@@ -290,6 +291,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{F3DAEC53
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Service.Inventory.Domain", "Middleware.Wm.Service.Inventory.Domain\Middleware.Wm.Service.Inventory.Domain.csproj", "{A4D39C14-D5E4-49BA-A1D7-A71C438811F5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "r2", "r2", "{60F9415F-B0DE-4030-8B88-1CC703D44E65}"
+	ProjectSection(SolutionItems) = preProject
+		Middleware.Database.Scripts\WarehouseManagement\r2\1_DML_CreatePixNotification.sql = Middleware.Database.Scripts\WarehouseManagement\r2\1_DML_CreatePixNotification.sql
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.PixNotification", "Middleware.Wm.PixNotification\Middleware.Wm.PixNotification.csproj", "{8046FA2D-A3E5-4C33-A65A-DAE4E1877E17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Service.Contracts", "Middleware.Wm.Service.Contracts\Middleware.Wm.Service.Contracts.csproj", "{33B06394-E3DF-4134-BC4C-52A82849E33A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -491,6 +501,18 @@ Global
 		{A4D39C14-D5E4-49BA-A1D7-A71C438811F5}.Dev|Any CPU.Build.0 = Dev|Any CPU
 		{A4D39C14-D5E4-49BA-A1D7-A71C438811F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4D39C14-D5E4-49BA-A1D7-A71C438811F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8046FA2D-A3E5-4C33-A65A-DAE4E1877E17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8046FA2D-A3E5-4C33-A65A-DAE4E1877E17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8046FA2D-A3E5-4C33-A65A-DAE4E1877E17}.Dev|Any CPU.ActiveCfg = Debug|Any CPU
+		{8046FA2D-A3E5-4C33-A65A-DAE4E1877E17}.Dev|Any CPU.Build.0 = Debug|Any CPU
+		{8046FA2D-A3E5-4C33-A65A-DAE4E1877E17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8046FA2D-A3E5-4C33-A65A-DAE4E1877E17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33B06394-E3DF-4134-BC4C-52A82849E33A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33B06394-E3DF-4134-BC4C-52A82849E33A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33B06394-E3DF-4134-BC4C-52A82849E33A}.Dev|Any CPU.ActiveCfg = Debug|Any CPU
+		{33B06394-E3DF-4134-BC4C-52A82849E33A}.Dev|Any CPU.Build.0 = Debug|Any CPU
+		{33B06394-E3DF-4134-BC4C-52A82849E33A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33B06394-E3DF-4134-BC4C-52A82849E33A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -539,5 +561,8 @@ Global
 		{46475A31-7C50-4435-94AE-A9B65754D70C} = {CC04F3F8-C848-442F-AD28-C55B34DF1A77}
 		{F3DAEC53-1041-4171-9DCA-C13CA07667A8} = {46475A31-7C50-4435-94AE-A9B65754D70C}
 		{A4D39C14-D5E4-49BA-A1D7-A71C438811F5} = {127F7E21-F802-4AAF-9889-00F56FDEC251}
+		{60F9415F-B0DE-4030-8B88-1CC703D44E65} = {505F6D40-8F67-442F-B87C-6F321C542B6F}
+		{8046FA2D-A3E5-4C33-A65A-DAE4E1877E17} = {3BF9FB2B-6BF1-443D-93CD-6B2983FA379D}
+		{33B06394-E3DF-4134-BC4C-52A82849E33A} = {127F7E21-F802-4AAF-9889-00F56FDEC251}
 	EndGlobalSection
 EndGlobal

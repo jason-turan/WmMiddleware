@@ -8,12 +8,16 @@ namespace Middleware.Wm.Service.Inventory.Domain.Extensions
 {
     public static class StringExtensions
     {
-        
+
         public static bool EqualsIgnoreCase(this string thisString, string thatString)
         {
             return String.Equals(thisString, thatString, StringComparison.CurrentCultureIgnoreCase);
-}
+        }
 
+        public static string FormatWith(this string theString, params object[] args)
+        {
+            return String.Format(theString, args);
+        }
 
     }
 }
