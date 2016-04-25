@@ -30,7 +30,7 @@ namespace NB.DTC.Aptos.InventoryService.Tests
 
         private ProductQuantity CreateTestProduct(string name, int quantity)
         {
-            return new ProductQuantity(name, "s1", "10", "12", "1984",quantity);
+            return new ProductQuantity(new Product(name, "s1", "10", "12", "1984"),quantity);
         }
     }
 }

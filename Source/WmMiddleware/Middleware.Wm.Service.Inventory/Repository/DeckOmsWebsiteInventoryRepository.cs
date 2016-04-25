@@ -11,7 +11,7 @@ namespace Middleware.Wm.Service.Inventory.Repository
             throw new NotImplementedException();
         }
 
-        public List<ProductQuantity> UpdateAvailableInventory(UpdateInventoryRequest request)
+        public void UpdateAvailableInventory(UpdateInventoryRequest request)
         {
             throw new NotImplementedException();
         }

@@ -36,15 +36,21 @@ namespace Middleware.Wm.Service.Inventory.OrderManagement
                     throw new ArgumentException("Could not find websites.");
                 }
 
-                //var availableToSell = _websiteInventoryRepository.GetAvailableToSellInventory(new InventorySearchFilter { SiteIds = new[] { losingWebsite.SiteId } });
+                var availableToSell = _websiteInventoryRepository.GetAvailableToSellInventory(new InventorySearchFilter { SiteIds = new[] { losingWebsite.SiteId } });
 
-                updatedInventory = _websiteInventoryRepository.UpdateAvailableInventory(new UpdateInventoryRequest { ProductUpdateQuantities = productsToTransfer, SiteId = losingWebsite.SiteId });
-                foreach(var product in updatedInventory)
+                var removedProducts = availableToSell.Select(q => new ProductQuantity { Quantity = -q.QuantityAvailableToSell, Product = q.Product }).ToList();
+                var addedProducts = availableToSell.Select(q => new ProductQuantity { Quantity = q.QuantityAvailableToSell, Product = q.Product }).ToList();
+                updatedInventory = addedProducts;
+
+                _websiteInventoryRepository.UpdateAvailableInventory(new UpdateInventoryRequest { ProductUpdateQuantities = removedProducts, SiteId = losingWebsite.SiteId });
+                try
                 {
-                    product.Quantity = -product.Quantity;
+                    _websiteInventoryRepository.UpdateAvailableInventory(new UpdateInventoryRequest { ProductUpdateQuantities = addedProducts, SiteId = gainingWebsite.SiteId });
                 }
+                catch(Exception ex)
+                {
 
-                _websiteInventoryRepository.UpdateAvailableInventory(new UpdateInventoryRequest { ProductUpdateQuantities = updatedInventory, SiteId = gainingWebsite.SiteId });
+                }
             }
 
             if(fromLocation != toLocation)
