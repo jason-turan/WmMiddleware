@@ -301,6 +301,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.PixNotificati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Service.Contracts", "Middleware.Wm.Service.Contracts\Middleware.Wm.Service.Contracts.csproj", "{33B06394-E3DF-4134-BC4C-52A82849E33A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Jobs.Tests", "Middleware.Wm.Jobs.Tests\Middleware.Wm.Jobs.Tests.csproj", "{F3742BA2-9A68-485B-9F9F-057F384ADB4E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -513,6 +515,12 @@ Global
 		{33B06394-E3DF-4134-BC4C-52A82849E33A}.Dev|Any CPU.Build.0 = Debug|Any CPU
 		{33B06394-E3DF-4134-BC4C-52A82849E33A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33B06394-E3DF-4134-BC4C-52A82849E33A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3742BA2-9A68-485B-9F9F-057F384ADB4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3742BA2-9A68-485B-9F9F-057F384ADB4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3742BA2-9A68-485B-9F9F-057F384ADB4E}.Dev|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3742BA2-9A68-485B-9F9F-057F384ADB4E}.Dev|Any CPU.Build.0 = Debug|Any CPU
+		{F3742BA2-9A68-485B-9F9F-057F384ADB4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3742BA2-9A68-485B-9F9F-057F384ADB4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -564,5 +572,6 @@ Global
 		{60F9415F-B0DE-4030-8B88-1CC703D44E65} = {505F6D40-8F67-442F-B87C-6F321C542B6F}
 		{8046FA2D-A3E5-4C33-A65A-DAE4E1877E17} = {3BF9FB2B-6BF1-443D-93CD-6B2983FA379D}
 		{33B06394-E3DF-4134-BC4C-52A82849E33A} = {127F7E21-F802-4AAF-9889-00F56FDEC251}
+		{F3742BA2-9A68-485B-9F9F-057F384ADB4E} = {F06B1E30-1E95-4DDD-8190-2138AF6E7ACE}
 	EndGlobalSection
 EndGlobal
