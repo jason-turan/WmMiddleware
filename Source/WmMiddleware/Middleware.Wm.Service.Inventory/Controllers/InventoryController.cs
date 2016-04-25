@@ -6,12 +6,12 @@ using Newtonsoft.Json;
 using Middleware.Wm.Service.Inventory.OrderManagement;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Web.Http;
-using System.Diagnostics;
+using System.Web.Http; 
+using Middleware.Wm.Service.Contracts;
 
 namespace NB.DTC.Aptos.InventoryService.Controllers
 {
-    public class InventoryController : ApiController
+    public class InventoryController : ApiController, IIventoryServiceApi
     {
         private IOrderManagementProcessor _orderManagementProcessor;
         private IPurchaseOrderEventHandler _poEventHandler;
@@ -89,11 +89,7 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         [HttpPost]
         [Route("Order/ReceivedOnLocation")]
         public void ReceivedOnLocation(PurchaseOrderReceiptEvent purchaseOrderReceiptEvent)
-        {
-            Trace.TraceInformation("SERVICE INFORMATION");
-            Trace.TraceWarning("SERVICE WARNING");
-            Trace.TraceError("SERVICE ERROR");
-
+        {            
             _poEventHandler.ReceivedOnLocation(purchaseOrderReceiptEvent);
         }
 

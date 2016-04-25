@@ -34,6 +34,7 @@ namespace NB.DTC.Aptose.Build.Documentation
                        vc.Version("Oms", "Oms");
                        vc.Version("Riba", "Riba");
                    });
+                c.DescribeAllEnumsAsStrings();
             }).EnableSwaggerUi(c => {
                 c.EnableDiscoveryUrlSelector();
             });
@@ -42,9 +43,9 @@ namespace NB.DTC.Aptose.Build.Documentation
             {
                 server.OpenAsync().Wait();             
                 WriteSwaggerToFile("../../../Oms.Swagger.json", "http://localhost:8081/swagger/docs/Oms" );
-                WriteSwaggerToFile("../../../Oms.Riba.json", "http://localhost:8081/swagger/docs/Riba");
-                WriteSwaggerToFile("../../../InventoryService.json", "http://localhost:52520/swagger/docs/v1");
-                Console.ReadLine();
+                WriteSwaggerToFile("../../../Riba.Swagger.json", "http://localhost:8081/swagger/docs/Riba");
+                WriteSwaggerToFile("../../../InventoryService.Swagger.json", "http://localhost:52520/swagger/docs/v1");
+                Console.ReadLine(); 
             }
         }
 
@@ -55,6 +56,7 @@ namespace NB.DTC.Aptose.Build.Documentation
                 string jsonString = client.DownloadString(url);
                 var jsonObject =JsonConvert.DeserializeObject(jsonString);
                 var formattedJson = JsonConvert.SerializeObject(jsonObject, Formatting.Indented);
+
                 File.WriteAllText(filePath, formattedJson);
                 Console.WriteLine(String.Format("Wrote {0}", filePath));
             }

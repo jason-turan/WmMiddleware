@@ -20,7 +20,7 @@ PRIMARY KEY CLUSTERED
 
 GO
 
-ALTER TABLE [dbo].[ManhattanPerpetualInventoryTransferGeneralLedgerProcessing]  WITH CHECK ADD FOREIGN KEY([ManhattanPerpetualInventoryTransferId])
+ALTER TABLE [dbo].[ManhattanPerpetualInventoryTransferNotificationProcessing]  WITH CHECK ADD FOREIGN KEY([ManhattanPerpetualInventoryTransferId])
 REFERENCES [dbo].[ManhattanPerpetualInventoryTransfer] ([ManhattanPerpetualInventoryTransferId])
 GO
 

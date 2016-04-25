@@ -13,11 +13,11 @@ namespace Middleware.Wm.Service.Inventory.Models
     {
         public string PurchaseOrderNumber { get; set; }        
         public DateTime ReceiptDateTime { get; set; }
-        public List<ProductQuantity> ReceiptList { get; set; }
+        public List<Product> ReceiptList { get; set; }
 
         public PurchaseOrderReceiptEvent(string ponumber, 
                                          DateTime receiptDateTime, 
-                                         List<ProductQuantity> productReceipts)
+                                         List<Product> productReceipts)
         {
             PurchaseOrderNumber = ponumber; 
             ReceiptList = productReceipts;

@@ -24,7 +24,7 @@ namespace Middleware.Wm.Service.Inventory.WebJob
 
 
         public Task ReceivedOnLocation_NotifyRiba(
-            [QueueTrigger(QueueNames.ReceivedOnLocationNotifyRiba)] PurchaseOrder message)
+            [QueueTrigger(QueueNames.ReceivedOnLocationNotifyRiba)] PurchaseOrderReceiptEvent message)
         {
             return Task.Run(() =>
             {

@@ -1,0 +1,86 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "Riba",
+    "title": "Riba"
+  },
+  "host": "localhost:8081",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/api/Riba/SendPurchaseOrderReceipt": {
+      "post": {
+        "tags": [
+          "Riba"
+        ],
+        "operationId": "Riba_SendPurchaseOrderReceipt",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "po",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PurchaseOrderReceipt"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "definitions": {
+    "PurchaseOrderReceipt": {
+      "type": "object",
+      "properties": {
+        "TransactionType": {
+          "enum": [
+            "PORcpt"
+          ],
+          "type": "string"
+        },
+        "ReceiveDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "LocationCode": {
+          "type": "string"
+        },
+        "PONo": {
+          "type": "string"
+        },
+        "Skus": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Sku"
+          }
+        }
+      }
+    },
+    "Sku": {
+      "type": "object",
+      "properties": {
+        "UPCNo": {
+          "type": "string"
+        },
+        "UnitsReceived": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

@@ -122,6 +122,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Middleware.Wm.Service.Contracts\Middleware.Wm.Service.Contracts.csproj">
+      <Project>{33b06394-e3df-4134-bc4c-52a82849e33a}</Project>
+      <Name>Middleware.Wm.Service.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Middleware.Wm.Service.Inventory.Domain\Middleware.Wm.Service.Inventory.Domain.csproj">
       <Project>{a4d39c14-d5e4-49ba-a1d7-a71c438811f5}</Project>
       <Name>Middleware.Wm.Service.Inventory.Domain</Name>

@@ -324,6 +324,10 @@
     <Content Include="Scripts\jquery-2.2.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Middleware.Wm.Service.Contracts\Middleware.Wm.Service.Contracts.csproj">
+      <Project>{33b06394-e3df-4134-bc4c-52a82849e33a}</Project>
+      <Name>Middleware.Wm.Service.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Middleware.Wm.Service.Inventory.Domain\Middleware.Wm.Service.Inventory.Domain.csproj">
       <Project>{a4d39c14-d5e4-49ba-a1d7-a71c438811f5}</Project>
       <Name>Middleware.Wm.Service.Inventory.Domain</Name>
@@ -342,6 +346,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <NoWarn>1591,1572,1571,1573,1587,1570</NoWarn>
+    <DocumentationFile>bin\Middleware.Wm.Service.Inventory.XML</DocumentationFile>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
