@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Middleware.Wm.Service.Inventory.Domain.Logging;
+using Middleware.Wm.Service.Inventory.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
 
 namespace Middleware.Wm.Service.Inventory
 {
@@ -13,6 +16,9 @@ namespace Middleware.Wm.Service.Inventory
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+            config.Services.Replace(
+                typeof(IExceptionHandler), 
+                new LogExceptionHander(new Logger()));
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

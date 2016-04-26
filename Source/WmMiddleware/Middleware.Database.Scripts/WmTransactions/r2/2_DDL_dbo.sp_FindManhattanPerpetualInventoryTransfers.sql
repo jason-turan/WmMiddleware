@@ -20,8 +20,9 @@ ALTER PROCEDURE [dbo].[sp_FindManhattanPerpetualInventoryTransfers]
 
 @UnprocessedOnly bit = 0,
 
-@ProcessType NVARCHAR(50) = NULL
+@ProcessType NVARCHAR(50) = NULL,
 
+@PoNumber NVARCHAR(20) = NULL
 
 
 AS
@@ -165,6 +166,7 @@ ELSE IF (@ProcessType = 'PixNotification')
 		WHERE prc.ProcessedDate IS NULL
 		AND TransactionType = @TransactionType
 		AND TransactionCode = @TransactionCode  OR @TransactionCode IS NULL
+		AND Ponumber = @PoNumber OR @PoNumber IS NULL
 	END
 GO
 

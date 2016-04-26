@@ -7,6 +7,7 @@ using Middleware.Wm.Service.Inventory.Repository;
 using Middleware.Wm.Service.Inventory.Domain.Logging;
 using Middleware.Wm.Service.Inventory.Domain.Models;
 using Middleware.Wm.Service.Inventory.Domain.Extensions;
+using Middleware.Wm.Service.Contracts.Models;
 
 namespace Middleware.Wm.Service.Inventory.Domain
 {
@@ -26,24 +27,16 @@ namespace Middleware.Wm.Service.Inventory.Domain
             _logger = logger;
         }
 
-
-        public void InventoryStocked(List<ProductQuantity> stockedQuantities)
+        public void PurchaseOrderStocked(PurchaseOrderStockedEvent purchaseOrderStocked)
         {
-            throw new NotImplementedException();
+            _logger.DumpInfo<PurchaseOrderEventHandler>(purchaseOrderStocked);
+            _queue.QueueWorkItem(QueueNames.StockedAdjustInventory, purchaseOrderStocked);
         }
 
-        public void ReceivedOnLocation(PurchaseOrderReceiptEvent purchaseOrderReceiptEvent)
+        public void PurchaseOrderReceived(PurchaseOrderReceiptEvent purchaseOrderReceiptEvent)
         {
             _logger.DumpInfo<PurchaseOrderEventHandler>(purchaseOrderReceiptEvent);
-            var po = _purchaseOrderRepository.GetPurchaseOrder(purchaseOrderReceiptEvent.PurchaseOrderNumber);
-            if (po != null)
-            {
-                _queue.QueueWorkItem(QueueNames.ReceivedOnLocationNotifyRiba, purchaseOrderReceiptEvent);
-            }
-            else
-            {
-                throw new InvalidOperationException("Po number {0} not found".FormatWith(purchaseOrderReceiptEvent.PurchaseOrderNumber));
-            }
+            _queue.QueueWorkItem(QueueNames.ReceivedOnLocationNotifyRiba, purchaseOrderReceiptEvent);             
         }
     }
 }

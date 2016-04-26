@@ -25,7 +25,7 @@ namespace NB.DTC.Aptos.InventoryService.Tests
         [TestMethod]
         public void OnReceivedShouldNotifySomeone()
         {
-            _eventHandlerToTest.ReceivedOnLocation(_testReceivedEvent);
+            _eventHandlerToTest.PurchaseOrderReceived(_testReceivedEvent);
         }
 
         private ProductQuantity CreateTestProduct(string name, int quantity)

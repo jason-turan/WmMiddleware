@@ -5,22 +5,23 @@ using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Runtime.Serialization; 
+using System.Runtime.Serialization;
+using System.ComponentModel.DataAnnotations;
 
 namespace Middleware.Wm.Service.Inventory.Models
 {
     public class PurchaseOrderReceiptEvent 
     {
-        public string PurchaseOrderNumber { get; set; }        
-        public DateTime ReceiptDateTime { get; set; }
-        public List<ProductQuantity> ReceiptList { get; set; }
+        [Required]
+        public string PurchaseOrderNumber { get; set; }
 
+        [Required]
+        public DateTime ReceiptDateTime { get; set; }
+               
         public PurchaseOrderReceiptEvent(string ponumber, 
-                                         DateTime receiptDateTime, 
-                                         List<ProductQuantity> productReceipts)
+                                         DateTime receiptDateTime)
         {
-            PurchaseOrderNumber = ponumber; 
-            ReceiptList = productReceipts;
+            PurchaseOrderNumber = ponumber;  
             ReceiptDateTime = receiptDateTime;
         }
     }

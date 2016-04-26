@@ -169,27 +169,11 @@
     },
     "Product": {
       "required": [
-        "UPC",
-        "Style",
-        "Size",
-        "Width",
-        "SeasonYear"
+        "UPC"
       ],
       "type": "object",
       "properties": {
         "UPC": {
-          "type": "string"
-        },
-        "Style": {
-          "type": "string"
-        },
-        "Size": {
-          "type": "string"
-        },
-        "Width": {
-          "type": "string"
-        },
-        "SeasonYear": {
           "type": "string"
         }
       }
@@ -208,11 +192,7 @@
     "ProductQuantity": {
       "required": [
         "Quantity",
-        "UPC",
-        "Style",
-        "Size",
-        "Width",
-        "SeasonYear"
+        "UPC"
       ],
       "type": "object",
       "properties": {
@@ -221,18 +201,6 @@
           "type": "integer"
         },
         "UPC": {
-          "type": "string"
-        },
-        "Style": {
-          "type": "string"
-        },
-        "Size": {
-          "type": "string"
-        },
-        "Width": {
-          "type": "string"
-        },
-        "SeasonYear": {
           "type": "string"
         }
       }

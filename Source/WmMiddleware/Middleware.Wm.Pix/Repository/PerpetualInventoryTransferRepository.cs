@@ -6,6 +6,7 @@ using Dapper.Contrib.Extensions;
 using Middleware.Wm.Configuration.Database;
 using Middleware.Wm.Pix.Models;
 using WmMiddleware.Pix.Models.Generated;
+using System.Text;
 
 namespace Middleware.Wm.Pix.Repository
 {
@@ -38,17 +39,21 @@ namespace Middleware.Wm.Pix.Repository
                 searchArguments.Add("@ProcessType", criteria.ProcessType, DbType.String);
             }
 
+            if (!string.IsNullOrEmpty(criteria.PurchaseOrderNumber))
+            {
+                searchArguments.Add("@Ponumber", criteria.PurchaseOrderNumber, DbType.String);
+            }
             using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
             {
-                return connection.Query<ManhattanPerpetualInventoryTransfer>("sp_FindManhattanPerpetualInventoryTransfers", 
-                                                                             searchArguments, 
+                return connection.Query<ManhattanPerpetualInventoryTransfer>("sp_FindManhattanPerpetualInventoryTransfers",
+                                                                             searchArguments,
                                                                              commandType: CommandType.StoredProcedure,
                                                                              commandTimeout: 120);
             }
         }
 
         public void InsertManhattanPerpetualInventoryTransferProcessing(int manhattanPerpetualInventoryProcessingId)
-        {     
+        {
             const string insertSql = @"INSERT INTO ManhattanPerpetualInventoryTransferProcessing(ManhattanPerpetualInventoryTransferId, ProcessedDate)
                                            VALUES(@ManhattanPerpetualInventoryTransferId, @ProcessedDate)";
 
@@ -99,6 +104,34 @@ namespace Middleware.Wm.Pix.Repository
 
                 connection.Open();
                 connection.Execute("sp_InsertInventoryPixProcessing", parameter, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public bool HasPurchaseOrderBeenNotified(string poNumber)
+        {
+            using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
+            {
+                var sqlSb = new StringBuilder();
+                sqlSb.AppendLine("SELECT COUNT(*) FROM ManhattanPerptualInventoryTransferPurchaseOrderNotification WHERE");
+                sqlSb.AppendLine("EXISTS(SELECT PurchaseOrderNumber FROM ManhattanPerptualInventoryTransferPurchaseOrderNotification WHERE PurchaseOrderNumber = @PurchaseOrderNumber)");
+                var sql = sqlSb.ToString();
+                var parameters = new DynamicParameters();
+                parameters.Add("@PurchaseOrderNumber", poNumber, DbType.String);
+                var poCount = connection.Execute(sql, parameters);
+                return poCount > 0;
+            }
+        }
+
+        public void InsertPurchaseOrderNotified(string poNumber)
+        {
+            const string insertSql = @"INSERT INTO ManhattanPerptualInventoryTransferPurchaseOrderNotification(PurchaseOrderNumber, NotificationDate)
+                                           VALUES(@PurchaseOrderNumber, GetDate())";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@PurchaseOrderNumber", poNumber, DbType.String);            
+            using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
+            {
+                connection.Execute(insertSql, parameters);
             }
         }
     }

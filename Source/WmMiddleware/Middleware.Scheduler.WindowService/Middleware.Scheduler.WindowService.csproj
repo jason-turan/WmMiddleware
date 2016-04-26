@@ -217,6 +217,10 @@
       <Project>{AEEDD741-C346-45BA-A867-3F54B66477A4}</Project>
       <Name>Middleware.Log</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Middleware.Wm.PixNotification\Middleware.Wm.PixNotification.csproj">
+      <Project>{8046fa2d-a3e5-4c33-a65a-dae4e1877e17}</Project>
+      <Name>Middleware.Wm.PixNotification</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Middleware.Wm.PixReturn\Middleware.Wm.PixReturn.csproj">
       <Project>{bf945c8e-81b4-4adf-8f33-e64ff48dd0b7}</Project>
       <Name>Middleware.Wm.PixReturn</Name>
@@ -296,6 +300,7 @@
     <Copy SourceFiles="..\Middleware.Wm.Aurora.Shipment\bin\$(Configuration)\Middleware.Wm.Aurora.Shipment.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\Middleware.Wm.LoggingAndFileMaintenance\bin\$(Configuration)\Middleware.Wm.LoggingAndFileMaintenance.exe.config" DestinationFolder="$(TargetDir)" />
     <Copy SourceFiles="..\Middleware.Wm.Aurora.PickTickets\bin\$(Configuration)\Middleware.Wm.Aurora.PickTickets.exe.config" DestinationFolder="$(TargetDir)" />
+    <Copy SourceFiles="..\Middleware.Wm.PixNotification\bin\$(Configuration)\Middleware.Wm.PixNotification.exe.config" DestinationFolder="$(TargetDir)" />
   </Target>
   <UsingTask TaskName="TransformXml" AssemblyFile="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Web\Microsoft.Web.Publishing.Tasks.dll" />
   <Target Name="AfterCompile" Condition="Exists('App.$(Configuration).config')">

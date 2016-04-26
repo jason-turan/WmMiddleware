@@ -34,35 +34,11 @@ namespace Middleware.Wm.Service.Inventory.Domain.QueueProcessors
             if (String.IsNullOrWhiteSpace(model.PurchaseOrderNumber))
             {
                 throw new InvalidOperationException("Cannot process event with empty purchase order number");
-            }
-            var po = _repository.GetPurchaseOrder(model.PurchaseOrderNumber);
-            if (po == null)
-            {
-                throw new InvalidOperationException("Purchase Order Number {0} not found".FormatWith(model.PurchaseOrderNumber));
-            }
-
-            var skus = model.ReceiptList.Select(receipt =>
-            {
-                var matchingItemInPo = po.ProductsStocked.FirstOrDefault(ps => ps.Upc.EqualsIgnoreCase(receipt.UPC));
-
-                if (matchingItemInPo == null)
-                {
-                    var warningMessage = String.Format("Received receipt for product that is not in PO. PO Number:{0} UPC:{1}", model.PurchaseOrderNumber, receipt.UPC);
-                    _logger.DumpWarning<ReceivedOnLocationNotifyRibaQueueProcessor>(warningMessage, new object[] { model, po });
-                }
-
-                return new Sku()
-                {
-                    UPCNo = receipt.UPC,
-                    UnitsReceived = matchingItemInPo.Quantity
-                };
-            }).ToList();
+            }                        
             var poReceipt = new PurchaseOrderReceipt()
             {
                 PONo = model.PurchaseOrderNumber,
                 ReceiveDate = model.ReceiptDateTime,
-                Skus = skus,
-                LocationCode = po.StoreId,
                 TransactionType = TransactionType.PurchaseOrderReceipt
             };
             _ribaSystem.SendPurchaseOrderReceipt(poReceipt);

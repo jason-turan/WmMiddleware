@@ -6,10 +6,11 @@ using Newtonsoft.Json;
 using Middleware.Wm.Service.Inventory.OrderManagement;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Web.Http; 
+using System.Web.Http;
 using Middleware.Wm.Service.Contracts;
+using Middleware.Wm.Service.Contracts.Models;
 
-namespace NB.DTC.Aptos.InventoryService.Controllers
+namespace Middleware.Wm.Service.Inventory.Controllers
 {
     public class InventoryController : ApiController, IIventoryServiceApi
     {
@@ -88,9 +89,9 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         /// </remarks>
         [HttpPost]
         [Route("Order/ReceivedOnLocation")]
-        public void ReceivedOnLocation(PurchaseOrderReceiptEvent purchaseOrderReceiptEvent)
-        {            
-            _poEventHandler.ReceivedOnLocation(purchaseOrderReceiptEvent);
+        public void PurchaseOrderReceived(PurchaseOrderReceiptEvent purchaseOrderReceiptEvent)
+        {
+            _poEventHandler.PurchaseOrderReceived(purchaseOrderReceiptEvent);
         }
 
         /// <summary>
@@ -100,23 +101,20 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         /// </remarks>
         /// <param name="stockedQuantities"></param>
         [HttpPost]
-        [Route("Order/InventoryStocked")]
-        public void InventoryStocked(List<ProductQuantity> stockedQuantities)
+        [Route("Order/Stocked")]
+        public void PurchaseOrderStocked(PurchaseOrderStockedEvent stockedQuantities)
         {
-            _poEventHandler.InventoryStocked(stockedQuantities);
+            _poEventHandler.PurchaseOrderStocked(stockedQuantities);
         }
 
         [HttpGet]
         [Route("HealthCheck")]
         public HealthCheckModel HealthCheck()
         {
-            var storageAccount = CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["AzureWebJobsStorage"].ToString());
-            CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
-            var queue = queueClient.GetQueueReference("queue");
             var hcm = new HealthCheckModel()
             {
                 Version = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(InventoryController).Assembly.Location).ProductVersion,
-            Running = true,
+                Running = true,
                 Components = new List<ComponentCheckModel>()
                 {
                     new ComponentCheckModel()
@@ -127,9 +125,8 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
                     }
                 }
             };
-            var queueMessage = new CloudQueueMessage(JsonConvert.SerializeObject(hcm));
-            queue.AddMessage(queueMessage);
-            return hcm;           
+            return hcm;
         }
+         
     }
 }

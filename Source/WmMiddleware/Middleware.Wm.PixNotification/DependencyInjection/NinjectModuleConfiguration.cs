@@ -2,6 +2,8 @@
 using Middleware.Jobs.Repositories;
 using Middleware.Log;
 using Middleware.Wm.Pix.Repository;
+using Middleware.Wm.Service.Contracts;
+using Ninject.Activation;
 using Ninject.Modules;
 using System;
 using System.Collections.Generic;
@@ -17,8 +19,14 @@ namespace Middleware.Wm.PixNotification.DependencyInjection
         {
             Bind<ILog>().To<Log4Net>();
             Bind<IUnitOfWork>().To<PixNotificationJob>();
-            Bind<IJobRepository>().To<JobRepository>();
+            Bind<IJobRepository>().To<JobRepository>();            
             Bind<IPerpetualInventoryTransferRepository>().To<PerpetualInventoryTransferRepository>();
+            Bind<IIventoryServiceApi>().To<InventoryServiceApiClient>().WithConstructorArgument("baseUrl", GetBaseUrl); 
+        }
+
+        private string GetBaseUrl(IContext context)
+        {
+            return System.Configuration.ConfigurationManager.AppSettings["inventoryServiceBaseUrl"];
         }
     }
 }

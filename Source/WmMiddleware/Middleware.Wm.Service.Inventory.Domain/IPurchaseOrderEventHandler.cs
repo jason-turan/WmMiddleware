@@ -1,4 +1,5 @@
-﻿using Middleware.Wm.Service.Inventory.Models;
+﻿using Middleware.Wm.Service.Contracts.Models;
+using Middleware.Wm.Service.Inventory.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace Middleware.Wm.Service.Inventory.Domain
 {
     public interface IPurchaseOrderEventHandler
     {
-        void ReceivedOnLocation(PurchaseOrderReceiptEvent purchaseOrderReceiptEvent);
-        void InventoryStocked(List<ProductQuantity> stockedQuantities);
+        void PurchaseOrderReceived(PurchaseOrderReceiptEvent purchaseOrderReceiptEvent);
+        void PurchaseOrderStocked(PurchaseOrderStockedEvent stockedQuantities);
     }
     
 }
