@@ -68,7 +68,6 @@ namespace Middleware.Wm.Jobs.Tests
         public void NotifiesOnPurchaseOrderReceipt()
         {
             AddNotificationTestRecords();
-
             _job.RunUnitOfWork(_jobKey);
             _mockInventoryService.AssertWasCalled(api =>
                 api.PurchaseOrderReceived(Any<PurchaseOrderReceiptEvent>()));

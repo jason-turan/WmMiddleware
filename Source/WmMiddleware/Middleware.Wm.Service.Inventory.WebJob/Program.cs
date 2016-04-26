@@ -3,6 +3,7 @@ using Ninject;
 using Middleware.Wm.Service.Inventory.Domain.Logging;
 using Middleware.Wm.Service.Inventory.Domain;
 using Middleware.Wm.Service.Inventory.Repository;
+using Middleware.Wm.Service.Inventory.Domain.RibaSystem;
 
 namespace Middleware.Wm.Service.Inventory.WebJob
 {
@@ -15,6 +16,9 @@ namespace Middleware.Wm.Service.Inventory.WebJob
             var hostConfiguration = new JobHostConfiguration() {
                 JobActivator = new NinjectJobActivator(kernel)
             };
+#if DEBUG
+            hostConfiguration.DashboardConnectionString = null;   
+#endif
             var host = new JobHost(hostConfiguration);
             host.RunAndBlock();
         }
@@ -23,6 +27,7 @@ namespace Middleware.Wm.Service.Inventory.WebJob
         {
             kernel.Bind<ILogger>().To<Logger>();
             kernel.Bind<IQueue>().To<Queue>();
+            kernel.Bind<IRibaSystem>().To<StubbedRibaSystem>();
             kernel.Bind<IWebsiteInventoryRepository>().To<DeckOmsWebsiteInventoryRepository>();
         }
     }

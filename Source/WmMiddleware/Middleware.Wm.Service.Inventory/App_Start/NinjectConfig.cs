@@ -1,6 +1,5 @@
 ﻿using Middleware.Wm.Service.Inventory.Domain;
-using Middleware.Wm.Service.Inventory.Domain.Logging;
-using Middleware.Wm.Service.Inventory.Domain.OrderManagement;
+using Middleware.Wm.Service.Inventory.Domain.Logging; 
 using Middleware.Wm.Service.Inventory.Factories;
 using Middleware.Wm.Service.Inventory.Repository;
 using Ninject;

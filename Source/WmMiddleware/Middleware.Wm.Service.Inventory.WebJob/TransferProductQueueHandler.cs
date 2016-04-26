@@ -1,6 +1,5 @@
 ﻿using Microsoft.Azure.WebJobs;
-using Middleware.Wm.Service.Inventory.Domain;
-using Middleware.Wm.Service.Inventory.Domain.OrderManagement;
+using Middleware.Wm.Service.Inventory.Domain; 
 using Middleware.Wm.Service.Inventory.Repository;
 using Middleware.Wm.Service.Inventory.WebJob.Models;
 using System.Threading.Tasks;

@@ -11,17 +11,14 @@ namespace Middleware.Wm.Service.Inventory.Domain.QueueProcessors
 {
     public class ReceivedOnLocationNotifyRibaQueueProcessor : IQueueProcessor<PurchaseOrderReceiptEvent>
     {
-        public IRibaSystem _ribaSystem;
-        public IPurchaseOrderRepository _repository;
+        public IRibaSystem _ribaSystem; 
         private ILogger _logger;
 
         public ReceivedOnLocationNotifyRibaQueueProcessor(
-            IRibaSystem system,
-            IPurchaseOrderRepository repository,
+            IRibaSystem system, 
             ILogger logger)
         {
-            _ribaSystem = system;
-            _repository = repository;
+            _ribaSystem = system; 
             _logger = logger;
         }
 

@@ -14,7 +14,8 @@ namespace Middleware.Wm.Service.Inventory.WebJob
 
         public T CreateInstance<T>()
         {
-            return _kernel.TryGet<T>();
+            var obj = _kernel.Get<T>();
+            return obj;
         }
     }
 }

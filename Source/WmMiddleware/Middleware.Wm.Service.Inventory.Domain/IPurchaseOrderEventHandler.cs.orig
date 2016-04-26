@@ -1,0 +1,19 @@
+<<<<<<< HEAD
+﻿using Middleware.Wm.Service.Contracts.Models;
+using Middleware.Wm.Service.Inventory.Models;
+using System;
+=======
+﻿using Middleware.Wm.Service.Inventory.Models;
+>>>>>>> a3b82e7bef2b1ff545f3dc96d8b8e01fd39ac4c6
+using System.Collections.Generic;
+
+
+namespace Middleware.Wm.Service.Inventory.Domain
+{
+    public interface IPurchaseOrderEventHandler
+    {
+        void PurchaseOrderReceived(PurchaseOrderReceiptEvent purchaseOrderReceiptEvent);
+        void PurchaseOrderStocked(PurchaseOrderStockedEvent stockedQuantities);
+    }
+    
+}

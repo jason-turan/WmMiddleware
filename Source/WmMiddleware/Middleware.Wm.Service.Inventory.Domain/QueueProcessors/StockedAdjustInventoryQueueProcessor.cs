@@ -19,7 +19,6 @@ namespace Middleware.Wm.Service.Inventory.Domain.QueueProcessors
         public void Execute(PurchaseOrderStockedEvent model)
         {
             _logger.DumpInfo<StockedAdjustInventoryQueueProcessor>(model);
-                        
         }
     }
 }
