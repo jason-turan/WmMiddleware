@@ -8,12 +8,11 @@ namespace Middleware.Wm.Service.Inventory.Repository
     {
         public List<InventoryQuantity> GetAvailableToSellInventory(InventorySearchFilter filter)
         {
-            throw new NotImplementedException();
+            return new List<InventoryQuantity> { new InventoryQuantity("storeId", "locationId", new Product("UPC123"), 5, 3) };
         }
 
-        public List<ProductQuantity> UpdateAvailableInventory(UpdateInventoryRequest request)
+        public void UpdateAvailableInventory(string SiteId, ICollection<ProductQuantity> productQuantities)
         {
-            throw new NotImplementedException();
         }
     }
 }

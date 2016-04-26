@@ -5,9 +5,12 @@
         //Convention for queue names is {ControllerActionName}-{OperationName}
 
         public const string ReceivedOnLocationNotifyRiba= "receivedonlocation-notifyriba";
+<<<<<<< HEAD
         public const string StockedAdjustInventory = "stocked-adjustinventory";
 
+=======
         public const string CreateTransferIncrementOwnership = "createtransfer-incrementownership";
+>>>>>>> a3b82e7bef2b1ff545f3dc96d8b8e01fd39ac4c6
 
     }
 }

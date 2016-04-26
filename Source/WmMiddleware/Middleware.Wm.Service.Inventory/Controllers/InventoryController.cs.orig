@@ -7,11 +7,14 @@ using Middleware.Wm.Service.Inventory.Repository;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Web.Http; 
+using System.Web.Http;
+<<<<<<< HEAD
 using Middleware.Wm.Service.Contracts;
 using Middleware.Wm.Service.Contracts.Models;
+=======
 using System.Linq;
 using Middleware.Wm.Service.Inventory.WebJob.Models;
+>>>>>>> a3b82e7bef2b1ff545f3dc96d8b8e01fd39ac4c6
 
 namespace Middleware.Wm.Service.Inventory.Controllers
 {
@@ -109,7 +112,7 @@ namespace Middleware.Wm.Service.Inventory.Controllers
         [HttpPost]
         [Route("Order/ReceivedOnLocation")]
         public void PurchaseOrderReceived(PurchaseOrderReceiptEvent purchaseOrderReceiptEvent)
-        {            
+        {
             _poEventHandler.PurchaseOrderReceived(purchaseOrderReceiptEvent);
         }
 
@@ -133,7 +136,7 @@ namespace Middleware.Wm.Service.Inventory.Controllers
             var hcm = new HealthCheckModel()
             {
                 Version = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(InventoryController).Assembly.Location).ProductVersion,
-            Running = true,
+                Running = true,
                 Components = new List<ComponentCheckModel>()
                 {
                     new ComponentCheckModel()
@@ -144,7 +147,7 @@ namespace Middleware.Wm.Service.Inventory.Controllers
                     }
                 }
             };
-            return hcm;           
+            return hcm;
         }
          
     }

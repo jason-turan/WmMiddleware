@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Azure.WebJobs;
+﻿using Microsoft.Azure.WebJobs;
 using Ninject;
 using Middleware.Wm.Service.Inventory.Domain.Logging;
+using Middleware.Wm.Service.Inventory.Domain;
+using Middleware.Wm.Service.Inventory.Repository;
 
 namespace Middleware.Wm.Service.Inventory.WebJob
 {
@@ -24,7 +21,9 @@ namespace Middleware.Wm.Service.Inventory.WebJob
 
         private static void RegisterServices(StandardKernel kernel)
         {
-            kernel.Bind<ILogger>().To<Logger>();              
+            kernel.Bind<ILogger>().To<Logger>();
+            kernel.Bind<IQueue>().To<Queue>();
+            kernel.Bind<IWebsiteInventoryRepository>().To<DeckOmsWebsiteInventoryRepository>();
         }
     }
 }

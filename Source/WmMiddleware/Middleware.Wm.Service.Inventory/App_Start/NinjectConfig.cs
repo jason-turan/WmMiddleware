@@ -1,7 +1,7 @@
 ﻿using Middleware.Wm.Service.Inventory.Domain;
 using Middleware.Wm.Service.Inventory.Domain.Logging;
+using Middleware.Wm.Service.Inventory.Domain.OrderManagement;
 using Middleware.Wm.Service.Inventory.Factories;
-using Middleware.Wm.Service.Inventory.OrderManagement;
 using Middleware.Wm.Service.Inventory.Repository;
 using Ninject;
 using Ninject.Syntax;
@@ -27,7 +27,6 @@ namespace Middleware.Wm.Service.Inventory.App_Start
         {
             kernel.Bind<IWebsiteInventoryRepository>().To<DeckOmsWebsiteInventoryRepository>();
             kernel.Bind<IWebsiteRepository>().To<DatabaseWebsiteRepository>();
-            kernel.Bind<IOrderManagementProcessor>().To<OrderManagementProcessor>();
             kernel.Bind<IPurchaseOrderEventHandler>().To<PurchaseOrderEventHandler>();
             kernel.Bind<IPurchaseOrderRepository>().To<PurchaseOrderRepository>();
             kernel.Bind<IQueueFactory>().To<QueueFactory>();

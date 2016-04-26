@@ -1,7 +1,7 @@
 ﻿using Middleware.Wm.Service.Inventory.Models;
 using System.Collections.Generic;
 
-namespace Middleware.Wm.Service.Inventory.OrderManagement
+namespace Middleware.Wm.Service.Inventory.Domain.OrderManagement
 {
     public interface IOrderManagementProcessor
     {

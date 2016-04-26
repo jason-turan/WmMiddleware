@@ -64,9 +64,12 @@
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Logging\ObjectDumper.cs" />
+<<<<<<< HEAD
+    <Compile Include="QueueProcessors\StockedAdjustInventoryQueueProcessor.cs" />
+=======
     <Compile Include="Inventory\IOrderManagementProcessor.cs" />
     <Compile Include="Inventory\OrderManagementProcessor.cs" />
-    <Compile Include="QueueProcessors\StockedAdjustInventoryQueueProcessor.cs" />
+>>>>>>> a3b82e7bef2b1ff545f3dc96d8b8e01fd39ac4c6
     <Compile Include="Queues\IQueue.cs" />
     <Compile Include="Queues\IQueueFactory.cs" />
     <Compile Include="Models\Address.cs" />
