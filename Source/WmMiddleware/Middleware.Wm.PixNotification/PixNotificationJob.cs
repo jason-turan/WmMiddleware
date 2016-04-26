@@ -31,51 +31,42 @@ namespace Middleware.Wm.PixNotification
         }
 
         public void RunUnitOfWork(string jobKey)
-        {
-            //var returnNotificationRecords = _repository.FindPerpetualInventoryTransfers(
-            //    new PerpetualInventoryTransactionCriteria()
-            //    {
-            //        ProcessType = ProcessType.PixNotification,
-            //        TransactionType = TransactionType.QuantityAdjust,
-            //        TransactionCode = TransactionCode.Return
-            //    }); 
-
+        {  
             var purchaseOrderReceiptNotificationRecords = _repository.FindPerpetualInventoryTransfers(
                new PerpetualInventoryTransactionCriteria()
                {
                    ProcessType = ProcessType.PixNotification,
                    TransactionType = TransactionType.QuantityAdjust,
                    TransactionCode = TransactionCode.PurchaseOrder
-               });
-
+               }); 
 
             foreach (var poReceiptRecordGroup in purchaseOrderReceiptNotificationRecords.GroupBy(po => po.Ponumber))
             {
-                var items = poReceiptRecordGroup.Select(r =>
-                    new Product(r.PackageBarcode)).ToList();
+                var criteria = new PerpetualInventoryTransactionCriteria()
+                {
+                    ProcessType = ProcessType.PixNotification,
+                    PurchaseOrderNumber = poReceiptRecordGroup.Key,
+                    TransactionType = TransactionType.InventoryAdjustment
+                };
+                var inventoryAdjustmentsForPo = _repository.FindPerpetualInventoryTransfers(criteria);
+                var productQuantities = inventoryAdjustmentsForPo
+                    .GroupBy(ia => ia.PackageBarcode)
+                    .Select(grp =>
+                        new ProductQuantity(
+                            grp.Key,
+                            grp.Sum(item => GetQuantity(item)))).ToList();
 
                 var poReceipt = new PurchaseOrderReceiptEvent(
                         poReceiptRecordGroup.First().Ponumber,
                         poReceiptRecordGroup.Max(poGroup =>
-                            MainframeExtensions.ParseDateTime(poGroup.DateCreated, poGroup.TimeCreated)),
-                        items);
-
-                TryNotifyService(
-                    poReceiptRecordGroup, () =>
+                        MainframeExtensions.ParseDateTime(poGroup.DateCreated, poGroup.TimeCreated)),
+                        productQuantities);
+                var toMarkComplete = poReceiptRecordGroup.Concat(inventoryAdjustmentsForPo).ToList();
+                NotifyServiceAndMarkComplete(toMarkComplete, () =>
                 {
                     _apiAccess.ReceivedOnLocation(poReceipt);
-                });
-            }
-
-            //Stocked events
-            //var itemsStockedNotificationRecords = _repository.FindPerpetualInventoryTransfers(
-            //   new PerpetualInventoryTransactionCriteria()
-            //   {
-            //       ProcessType = ProcessType.PixNotification,
-            //       TransactionType = TransactionType.InventoryAdjustment,
-            //       TransactionCode = null
-            //   });
-
+                });                
+            } 
         }
 
         private int GetQuantity(ManhattanPerpetualInventoryTransfer r)
@@ -84,7 +75,7 @@ namespace Middleware.Wm.PixNotification
             return (int)r.InventoryAdjustmentQuantity * modifier;
         }
 
-        private void TryNotifyService(IEnumerable<ManhattanPerpetualInventoryTransfer> recordsToProcess, Action notifyAction)
+        private void NotifyServiceAndMarkComplete(IEnumerable<ManhattanPerpetualInventoryTransfer> recordsToProcess, Action notifyAction)
         {
             try
             {
@@ -95,7 +86,7 @@ namespace Middleware.Wm.PixNotification
                 var ids = String.Join(",", recordsToProcess.Select(r => r.ManhattanPerpetualInventoryTransferId));
                 _log.Exception(String.Format("Failed to notify service for pix ids {0}.", ids), ex);
                 throw;
-            }
+            } 
 
             foreach (var record in recordsToProcess)
             {

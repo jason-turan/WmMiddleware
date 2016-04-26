@@ -7,7 +7,7 @@ namespace Middleware.Wm.Manhattan.Extensions
     {
         public static DateTime ParseDateTime(int date, int time, DateTimeStyles dateTimeStyles = DateTimeStyles.None)
         {
-            return DateTime.ParseExact(date.ToString("D8") + time.ToString("D6"), "yyyyMMddhhmmss", CultureInfo.InvariantCulture, dateTimeStyles);
+            return DateTime.ParseExact(date.ToString("D8") + time.ToString("D6"), "yyyyMMddHHmmss", CultureInfo.InvariantCulture, dateTimeStyles);
         }
 
         public static int ToMainframeDate(this DateTime dateTime)
