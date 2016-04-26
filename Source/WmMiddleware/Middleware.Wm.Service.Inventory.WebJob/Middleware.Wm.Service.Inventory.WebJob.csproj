@@ -99,10 +99,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\TransferProductData.cs" />
     <Compile Include="NinjectJobActivator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="QueueHandlers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TransferProductQueueHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

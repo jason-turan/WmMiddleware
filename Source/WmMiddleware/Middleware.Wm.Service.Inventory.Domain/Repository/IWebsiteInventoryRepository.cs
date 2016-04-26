@@ -5,7 +5,7 @@ namespace Middleware.Wm.Service.Inventory.Repository
 {
     public interface IWebsiteInventoryRepository
     {
-        void UpdateAvailableInventory(UpdateInventoryRequest request);
+        void UpdateAvailableInventory(string siteId, ICollection<ProductQuantity> productQuantities);
         List<InventoryQuantity> GetAvailableToSellInventory(InventorySearchFilter filter);
     }
 }

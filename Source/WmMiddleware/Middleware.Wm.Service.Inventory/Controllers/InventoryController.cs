@@ -1,26 +1,34 @@
 ﻿using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
+using Middleware.Wm.Service.Contracts;
 using Middleware.Wm.Service.Inventory.Domain;
 using Middleware.Wm.Service.Inventory.Models;
+using Middleware.Wm.Service.Inventory.Repository;
 using Newtonsoft.Json;
-using Middleware.Wm.Service.Inventory.OrderManagement;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Web.Http; 
-using Middleware.Wm.Service.Contracts;
+using System.Web.Http;
+using System.Linq;
+using Middleware.Wm.Service.Inventory.WebJob.Models;
 
 namespace NB.DTC.Aptos.InventoryService.Controllers
 {
     public class InventoryController : ApiController, IIventoryServiceApi
     {
-        private IOrderManagementProcessor _orderManagementProcessor;
+        private IQueue _queue;
+        private IWebsiteRepository _websiteRepository;
         private IPurchaseOrderEventHandler _poEventHandler;
+        private IWebsiteInventoryRepository _websiteInventoryRepository;
 
         public InventoryController(
-            IOrderManagementProcessor orderManagementProcessor,
+            IQueue queue,
+            IWebsiteRepository websiteRepository,
+            IWebsiteInventoryRepository websiteInventoryRepository,
             IPurchaseOrderEventHandler purchaseOrderEventHandler)
         {
-            _orderManagementProcessor = orderManagementProcessor;
+            _queue = queue;
+            _websiteRepository = websiteRepository;
+            _websiteInventoryRepository = websiteInventoryRepository;
             _poEventHandler = purchaseOrderEventHandler;
         }
 
@@ -70,12 +78,22 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
         [Route("Order/CreateTransfer")]
         public TransferResponse CreateTransfer(TransferRequest request)
         {
-            var response = _orderManagementProcessor.CreateTransfer(request.TransferType, request.ProductsToTransfer, request.FromStoreId, request.ToStoreId, request.FromLocation, request.ToLocation);
+            var losingWebsite = _websiteRepository.GetByStoreId(request.FromStoreId);
+            var gainingWebsite = _websiteRepository.GetByStoreId(request.ToStoreId);
 
-            //var originationWebsite = _websiteRepository.GetByStore(request.FromStore);
-            //var destinationWebsite = 
-            //_orderManagementSystem.GetAvailableToSellInventory(null);
-            return new TransferResponse();
+            var availableToSell = _websiteInventoryRepository.GetAvailableToSellInventory(new InventorySearchFilter { SiteIds = new[] { losingWebsite.SiteId } });
+            var removedProducts = availableToSell.Select(q => new ProductQuantity { Quantity = -q.QuantityAvailableToSell, Product = q.Product }).ToList();
+            var transferredProducts = availableToSell.Select(q => new ProductQuantity { Quantity = q.QuantityAvailableToSell, Product = q.Product }).ToList();
+            var queueMessage = new TransferProductData
+            {
+                GainingStoreId = request.ToStoreId,
+                ProductsTransferred = transferredProducts
+            };
+
+            _websiteInventoryRepository.UpdateAvailableInventory(losingWebsite.SiteId, removedProducts);
+            _queue.QueueWorkItem(QueueNames.CreateTransferIncrementOwnership, queueMessage);
+
+            return new TransferResponse { QuantitiesTransferred = transferredProducts };
         }
 
         /// <summary>
@@ -116,7 +134,7 @@ namespace NB.DTC.Aptos.InventoryService.Controllers
             var hcm = new HealthCheckModel()
             {
                 Version = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(InventoryController).Assembly.Location).ProductVersion,
-            Running = true,
+                Running = true,
                 Components = new List<ComponentCheckModel>()
                 {
                     new ComponentCheckModel()

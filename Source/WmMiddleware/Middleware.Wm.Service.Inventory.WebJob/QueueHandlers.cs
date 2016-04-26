@@ -1,11 +1,5 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
-using Microsoft.WindowsAzure.Storage.Queue;
-using System;
 using Ninject;
 using Middleware.Wm.Service.Inventory.Domain;
 using Middleware.Wm.Service.Inventory.Models;
@@ -21,7 +15,6 @@ namespace Middleware.Wm.Service.Inventory.WebJob
         {
             _kernel = kernel;
         }
-
 
         public Task ReceivedOnLocation_NotifyRiba(
             [QueueTrigger(QueueNames.ReceivedOnLocationNotifyRiba)] PurchaseOrderReceiptEvent message)
