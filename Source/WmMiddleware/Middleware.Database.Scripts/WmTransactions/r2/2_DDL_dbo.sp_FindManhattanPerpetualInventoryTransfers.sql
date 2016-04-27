@@ -163,10 +163,11 @@ ELSE IF (@ProcessType = 'PixNotification')
 		FROM ManhattanPerpetualInventoryTransfer mpit 
 		LEFT JOIN ManhattanPerpetualInventoryTransferNotificationProcessing prc 
 			ON mpit.ManhattanPerpetualInventoryTransferId = prc.ManhattanPerpetualInventoryTransferId		
-		WHERE prc.ProcessedDate IS NULL
-		AND TransactionType = @TransactionType
-		AND TransactionCode = @TransactionCode  OR @TransactionCode IS NULL
-		AND Ponumber = @PoNumber OR @PoNumber IS NULL
+		WHERE 
+			prc.ProcessedDate IS NULL
+		AND (TransactionType = @TransactionType)
+		AND (TransactionCode = @TransactionCode  OR @TransactionCode IS NULL)
+		AND (Ponumber = @PoNumber OR @PoNumber IS NULL)
 	END
 GO
 

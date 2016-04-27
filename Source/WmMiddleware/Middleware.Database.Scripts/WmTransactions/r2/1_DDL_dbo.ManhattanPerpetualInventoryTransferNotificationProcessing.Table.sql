@@ -10,7 +10,7 @@ GO
 
 CREATE TABLE [dbo].[ManhattanPerpetualInventoryTransferNotificationProcessing](
 	[NotificationProcessingId] [int] IDENTITY(1,1) NOT NULL,
-	[ManhattanPerpetualInventoryTransferId] [int] NULL,
+	[ManhattanPerpetualInventoryTransferId] [int] NOT NULL,
 	[ProcessedDate] [datetime] NOT NULL
 PRIMARY KEY CLUSTERED 
 (
@@ -24,4 +24,9 @@ ALTER TABLE [dbo].[ManhattanPerpetualInventoryTransferNotificationProcessing]  W
 REFERENCES [dbo].[ManhattanPerpetualInventoryTransfer] ([ManhattanPerpetualInventoryTransferId])
 GO
 
+
+ALTER TABLE [dbo].[ManhattanPerpetualInventoryTransferNotificationProcessing]  
+ADD CONSTRAINT ManhattanPerpetualInventoryTransferIdUnique 
+UNIQUE NONCLUSTERED([ManhattanPerpetualInventoryTransferId])
+GO
 

@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Reflection.AssemblyCopyright("© 2016 New Balance. All rights reserved.")]
-[assembly: System.Reflection.AssemblyConfiguration("Release")]
+[assembly: System.Reflection.AssemblyConfiguration("Dev")]
 [assembly: System.Reflection.AssemblyVersion("1.1.3.0")]
 [assembly: System.Reflection.AssemblyFileVersion("1.1.3.0")]
 [assembly: System.Reflection.AssemblyInformationalVersion("1.1.3.0")]
@@ -20,7 +20,7 @@ internal sealed partial class ThisAssembly {
     
     internal const string AssemblyCopyright = "© 2016 New Balance. All rights reserved.";
     
-    internal const string AssemblyConfiguration = "Release";
+    internal const string AssemblyConfiguration = "Dev";
     
     internal const string AssemblyVersion = "1.1.3.0";
     
