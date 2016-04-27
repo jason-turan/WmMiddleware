@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup> 
+    <DatabaseRelease>r2</DatabaseRelease>
+    <ConnectionString>Data Source=stlmwsqldev;Initial Catalog=;Integrated Security=True</ConnectionString>
+  </PropertyGroup>
+
+  <Import Project="MSBuild.Community.Tasks.targets"/>
+  <Import Project="MSBuild.Extension.Pack.targets"/> 
+  
+  <Target Name="Build">
+    <MSBuild.ExtensionPack.SqlServer.SqlExecute 
+        TaskAction="Execute" 
+        Sql="ALTER DATABASE WMTransactions SET OFFLINE WITH ROLLBACK IMMEDIATE" 
+        ConnectionString="$(ConnectionString)">
+      <Output PropertyName="ScResult" TaskParameter="ScalarResult"/>
+    </MSBuild.ExtensionPack.SqlServer.SqlExecute>
+
+    <MSBuild.ExtensionPack.SqlServer.SqlExecute
+        TaskAction="Execute"
+        Sql="RESTORE DATABASE WMTransactions
+             FROM DISK = 'D:\Microsoft SQL Server\Backup\WMTransactions_FULL_backup_20160427_0931.Bak'
+             WITH REPLACE"
+        ConnectionString="$(ConnectionString)">
+      <Output PropertyName="ScResult" TaskParameter="ScalarResult"/>
+    </MSBuild.ExtensionPack.SqlServer.SqlExecute>
+
+    <ItemGroup>
+      <ChangeScripts
+        Include="../Middleware.Database.Scripts/WmTransactions/r2/*.sql"
+        />
+    </ItemGroup> 
+    <MSBuild.ExtensionPack.SqlServer.SqlExecute 
+      TaskAction="Execute" 
+      Retry="true" 
+      UseTransaction="true" 
+      Files="@(ChangeScripts)" 
+      ConnectionString="$(ConnectionString)"/>
+
+  </Target>
+
+</Project>

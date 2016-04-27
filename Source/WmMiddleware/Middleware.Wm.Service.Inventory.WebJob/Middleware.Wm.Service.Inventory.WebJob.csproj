@@ -101,6 +101,7 @@
   <ItemGroup>
     <Compile Include="Models\TransferProductData.cs" />
     <Compile Include="NinjectJobActivator.cs" />
+    <Compile Include="PoisonQueueMonitor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="PurchaseOrderQueueHandlers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
