@@ -113,11 +113,11 @@ namespace Middleware.Wm.Pix.Repository
             {
                 var sqlSb = new StringBuilder();
                 sqlSb.AppendLine("SELECT COUNT(*) FROM ManhattanPerptualInventoryTransferPurchaseOrderNotification WHERE");
-                sqlSb.AppendLine("EXISTS(SELECT PurchaseOrderNumber FROM ManhattanPerptualInventoryTransferPurchaseOrderNotification WHERE PurchaseOrderNumber = @PurchaseOrderNumber)");
+                sqlSb.AppendLine("PurchaseOrderNumber = @PurchaseOrderNumber");
                 var sql = sqlSb.ToString();
                 var parameters = new DynamicParameters();
                 parameters.Add("@PurchaseOrderNumber", poNumber, DbType.String);
-                var poCount = connection.Execute(sql, parameters);
+                var poCount =(int) connection.ExecuteScalar(sql, parameters);
                 return poCount > 0;
             }
         }
