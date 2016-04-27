@@ -84,18 +84,19 @@ namespace Middleware.Wm.Service.Inventory.Controllers
             var gainingWebsite = _websiteRepository.GetByStoreId(request.ToStoreId);
 
             var availableToSell = _websiteInventoryRepository.GetAvailableToSellInventory(new InventorySearchFilter { SiteIds = new[] { losingWebsite.SiteId } });
-            var removedProducts = availableToSell.Select(q => new ProductQuantity { Quantity = -q.QuantityAvailableToSell, Product = q.Product }).ToList();
-            var transferredProducts = availableToSell.Select(q => new ProductQuantity { Quantity = q.QuantityAvailableToSell, Product = q.Product }).ToList();
-            var queueMessage = new TransferProductData
-            {
-                GainingStoreId = request.ToStoreId,
-                ProductsTransferred = transferredProducts
-            };
 
-            _websiteInventoryRepository.UpdateAvailableInventory(losingWebsite.SiteId, removedProducts);
-            _queue.QueueWorkItem(QueueNames.CreateTransferIncrementOwnership, queueMessage);
+            var updatedProducts = 
+                availableToSell
+                .Concat(
+                    availableToSell
+                    .Select(
+                        ats =>  new InventoryQuantity(ats.StoreId, ats.LocationId, ats.Product, -ats.QuantityOnHand, -ats.QuantityAvailableToSell)
+                    )
+                ).ToList();
 
-            return new TransferResponse { QuantitiesTransferred = transferredProducts };
+            _websiteInventoryRepository.UpdateAvailableInventory(updatedProducts);
+
+            return new TransferResponse { QuantitiesTransferred = null };
         }
 
         /// <summary>

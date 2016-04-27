@@ -23,7 +23,7 @@ namespace Middleware.Wm.Service.Inventory.WebJob
         {
             return Task.Run(() =>
             {
-                _websiteInventoryRepository.UpdateAvailableInventory(message.GainingStoreId, message.ProductsTransferred);
+                //_websiteInventoryRepository.UpdateAvailableInventory(message.GainingStoreId, message.ProductsTransferred);
                 //_queue.QueueWorkItem("next", message);
             });
         }

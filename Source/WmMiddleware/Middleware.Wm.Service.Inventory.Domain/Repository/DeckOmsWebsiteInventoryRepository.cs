@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Middleware.Wm.Service.Inventory.Models;
 
 namespace Middleware.Wm.Service.Inventory.Repository
@@ -11,7 +10,7 @@ namespace Middleware.Wm.Service.Inventory.Repository
             return new List<InventoryQuantity> { new InventoryQuantity("storeId", "locationId", new Product("UPC123"), 5, 3) };
         }
 
-        public void UpdateAvailableInventory(string SiteId, ICollection<ProductQuantity> productQuantities)
+        public void UpdateAvailableInventory(ICollection<InventoryQuantity> inventoryQuantities)
         {
         }
     }
