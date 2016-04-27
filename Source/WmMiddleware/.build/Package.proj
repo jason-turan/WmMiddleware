@@ -3,7 +3,7 @@
   <PropertyGroup>
     <MajorVersion>1</MajorVersion>
     <MinorVersion>1</MinorVersion>
-    <BuildNumber>2</BuildNumber>
+    <BuildNumber>3</BuildNumber>
     <Revision>0</Revision>
 
     <Version>$(MajorVersion).$(MinorVersion).$(BuildNumber).0</Version>

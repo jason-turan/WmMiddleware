@@ -34,6 +34,7 @@ namespace Middleware.Wm.Jobs.Tests
         [TestInitialize]
         public void TestInitialize()
         {
+            
             _mockLog = MockRepository.GenerateMock<ILog>();
             _mockRepository = MockRepository.GenerateStub<IPerpetualInventoryTransferRepository>();
             _mockInventoryService = MockRepository.GenerateMock<IIventoryServiceApi>();
