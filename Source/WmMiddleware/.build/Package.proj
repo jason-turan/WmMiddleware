@@ -16,8 +16,7 @@
   </PropertyGroup>
 
   <Import Project="MSBuild.Community.Tasks.targets"/>
-  <Import Project="MSBuild.Extension.Pack.targets"/>
-
+  <Import Project="MSBuild.Extension.Pack.targets"/> 
   <Target Name="Clean">
     <DeleteTree ContinueOnError="true" Directories="..\**\obj\**;..\**\bin\**" />
   </Target>
@@ -44,13 +43,14 @@
   <Target Name="Build" DependsOnTargets="Clean;Version">
     <MSBuild.ExtensionPack.FileSystem.Folder TaskAction="RemoveContent" Path="$(BuildFolder)"/>
     <MSBuild.ExtensionPack.FileSystem.Folder TaskAction="RemoveContent" Path="$(PackageFolder)"/>
-
-    <MSBuild Projects="../WmMiddleware.sln" Properties="Configuration=$(BuildConfiguration)" />
+    <MSBuild Projects="../WmMiddleware.sln" Properties="Configuration=$(BuildConfiguration)" />   
     <MSBuild
       Projects="../Middleware.Scheduler.Web/Middleware.Scheduler.Web.csproj"
       Properties="Configuration=$(BuildConfiguration);DeployOnBuild=true;DesktopBuildPackageLocation=$(PackageFolder)Middleware.Scheduler.Web\Middleware.Scheduler.Web.zip;PublishProfile=$(Configuration);DeployIisAppPath=Default Web Site\Jobs"
       >
     </MSBuild>
+
+
     <MSBuild Projects="../Middleware.Wm.Service.Inventory\Middleware.Wm.Service.Inventory.csproj"
             Targets="Package"
             Properties="Configuration=$(BuildConfiguration);PackageLocation=$(PackageFolder)\Middleware.Wm.Service.Inventory\Middleware.Wm.Service.Inventory.zip;DeployIisAppPath=dev-middleware-inventory;TargetFrameworkVersion=v4.5" />

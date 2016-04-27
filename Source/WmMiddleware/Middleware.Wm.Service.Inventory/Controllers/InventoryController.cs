@@ -115,7 +115,7 @@ namespace Middleware.Wm.Service.Inventory.Controllers
         }
 
         /// <summary>
-        /// Execute workflow associated with the update of sellable inventory.
+        /// Execute workflow associated completion of stocking of a purchase order into the warehouse.
         /// </summary>
         /// <remarks>
         /// </remarks>

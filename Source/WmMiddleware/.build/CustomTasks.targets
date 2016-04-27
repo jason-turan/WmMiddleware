@@ -1,0 +1,42 @@
+<Project xmlns='http://schemas.microsoft.com/developer/msbuild/2003' 
+         ToolsVersion="12.0">
+
+  <UsingTask 
+    TaskName="XmlCombine" 
+    TaskFactory="CodeTaskFactory" 
+    AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v12.0.dll">
+    
+    <ParameterGroup>
+      <Files ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
+      <OutputPath ParameterType="System.String" Required="true" />      
+    </ParameterGroup>
+    <Task>
+      <Reference Include="System.Xml" />
+      <Reference Include="System.Xml.Linq" />
+      <Using Namespace="System.Xml.Linq" />
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+        XElement xml = null;
+        XElement dependentXml = null; 
+      foreach (var file in Files)
+            { 
+                if (xml == null)
+                {
+                    xml = XElement.Load(file.ItemSpec);
+                }
+                else
+                {
+                    dependentXml = XElement.Load(file.ItemSpec);
+                    foreach (XElement ele in dependentXml.Nodes())
+                    {
+                        xml.Add(ele);
+                    }
+                }
+            }
+            xml.Save(OutputPath); 
+]]>
+      </Code>
+    </Task>
+  </UsingTask>
+ 
+</Project>

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Middleware.Wm.Service.Contracts.Models
 {
+    /// <summary>
+    /// Event to signify that a purchase order has been stocked. 
+    /// </summary>
     public class PurchaseOrderStockedEvent
     {
         [Required]
@@ -16,6 +19,9 @@ namespace Middleware.Wm.Service.Contracts.Models
         [Required]
         public DateTime ReceiptDateTime { get; set; }
 
+        /// <summary>
+        /// Actual quantities received
+        /// </summary>
         [Required]
         public List<ProductQuantity> ReceiptList { get; set; }
 

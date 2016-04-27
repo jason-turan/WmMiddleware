@@ -9,8 +9,8 @@ namespace Middleware.Wm.Service.Inventory
     public class WebApiApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
-        {
-            SwaggerConfig.Register();
+        {            
+            SwaggerConfig.Register(Server);
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalConfiguration.Configuration.Filters);

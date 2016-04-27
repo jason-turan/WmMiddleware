@@ -134,7 +134,7 @@
         ],
         "summary": "Execute workflow associated with the receipt of an Order into the Warehouse.",
         "description": "This flow is responsible for notification of a receipt of inventory into the warehouse.  \r\n            It is responsible for updating merch with the change in inventory ownership and OMS with the change \r\n            of available inventory.",
-        "operationId": "Inventory_ReceivedOnLocation",
+        "operationId": "Inventory_PurchaseOrderReceived",
         "consumes": [
           "application/json",
           "text/json",
@@ -159,19 +159,17 @@
         "deprecated": false
       }
     },
-    "/Order/InventoryStocked": {
+    "/Order/Stocked": {
       "post": {
         "tags": [
           "Inventory"
         ],
-        "summary": "Execute workflow associated with the update of sellable inventory.",
+        "summary": "Execute workflow associated completion of stocking of a purchase order into the warehouse.",
         "description": "",
-        "operationId": "Inventory_InventoryStocked",
+        "operationId": "Inventory_PurchaseOrderStocked",
         "consumes": [
           "application/json",
           "text/json",
-          "application/xml",
-          "text/xml",
           "application/x-www-form-urlencoded"
         ],
         "produces": [],
@@ -182,10 +180,7 @@
             "description": "",
             "required": true,
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/ProductQuantity"
-              }
+              "$ref": "#/definitions/PurchaseOrderStockedEvent"
             }
           }
         ],
@@ -224,6 +219,7 @@
   },
   "definitions": {
     "PhysicalAdjustment": {
+      "description": "",
       "type": "object",
       "properties": {
         "ProductQuantities": {
@@ -246,7 +242,7 @@
     "ProductQuantity": {
       "required": [
         "Quantity",
-        "UPC"
+        "Product"
       ],
       "type": "object",
       "properties": {
@@ -254,12 +250,29 @@
           "format": "int32",
           "type": "integer"
         },
+        "Product": {
+          "$ref": "#/definitions/Product"
+        },
+        "UPC": {
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "Product": {
+      "description": "Unique definition of a sellable product.",
+      "required": [
+        "UPC"
+      ],
+      "type": "object",
+      "properties": {
         "UPC": {
           "type": "string"
         }
       }
     },
     "InventorySearchFilter": {
+      "description": "List of values to use as query parameters for inventory. Use \\\"*\\\" to represent all possible values or an array of values to include multiple values.",
       "type": "object",
       "properties": {
         "SiteIds": {
@@ -301,6 +314,7 @@
       }
     },
     "InventoryQuantity": {
+      "description": "Object referencing a specific product, the quantities related to it, the location it is currently in, and the site that owns it.",
       "required": [
         "StoreId",
         "LocationId",
@@ -329,18 +343,8 @@
         }
       }
     },
-    "Product": {
-      "required": [
-        "UPC"
-      ],
-      "type": "object",
-      "properties": {
-        "UPC": {
-          "type": "string"
-        }
-      }
-    },
     "TransferRequest": {
+      "description": "Action Item - additional detail needed, source and dest detail for a PO Kyle to find out the PO data structure",
       "required": [
         "TransferType",
         "ProductsToTransfer",
@@ -352,6 +356,7 @@
       "type": "object",
       "properties": {
         "TransferType": {
+          "description": "The type of transfer being executed, these types have potential impact on the integration or workflow executed.",
           "enum": [
             "PurchaseOrder",
             "ReturnToVendor"
@@ -379,6 +384,7 @@
       }
     },
     "Location": {
+      "description": "",
       "type": "object",
       "properties": {
         "LocationName": {
@@ -430,6 +436,28 @@
       }
     },
     "PurchaseOrderReceiptEvent": {
+      "required": [
+        "PurchaseOrderNumber",
+        "ReceiptDateTime"
+      ],
+      "type": "object",
+      "properties": {
+        "PurchaseOrderNumber": {
+          "type": "string"
+        },
+        "ReceiptDateTime": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "PurchaseOrderStockedEvent": {
+      "description": "Event to signify that a purchase order has been stocked.",
+      "required": [
+        "PurchaseOrderNumber",
+        "ReceiptDateTime",
+        "ReceiptList"
+      ],
       "type": "object",
       "properties": {
         "PurchaseOrderNumber": {
@@ -440,6 +468,7 @@
           "type": "string"
         },
         "ReceiptList": {
+          "description": "Actual quantities received",
           "type": "array",
           "items": {
             "$ref": "#/definitions/ProductQuantity"
