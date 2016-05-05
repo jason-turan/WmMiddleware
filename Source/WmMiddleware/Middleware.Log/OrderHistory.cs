@@ -28,6 +28,6 @@ namespace Middleware.Log
         public string ItemSku { get; set; }
         public string Note { get; set; }
         public string JobKey { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } 
     }
 }

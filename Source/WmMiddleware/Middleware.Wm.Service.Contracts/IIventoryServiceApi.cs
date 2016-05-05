@@ -10,6 +10,7 @@ namespace Middleware.Wm.Service.Contracts
 {
     public interface IIventoryServiceApi
     {
+        void PhysicalInventoryChanged(List<PhysicalAdjustment> adjustments);
         void PurchaseOrderReceived(PurchaseOrderReceiptEvent purchaseOrderReceiptEvent);
         void PurchaseOrderStocked(PurchaseOrderStockedEvent purchaseOrderStockedEvent);
     }

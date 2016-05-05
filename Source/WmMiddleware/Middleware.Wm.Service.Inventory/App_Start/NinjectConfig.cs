@@ -31,6 +31,7 @@ namespace Middleware.Wm.Service.Inventory.App_Start
             kernel.Bind<IQueueFactory>().To<QueueFactory>();
             kernel.Bind<IQueue>().To<Queue>();
             kernel.Bind<ILogger>().To<Logger>();
+            kernel.Bind<IPhysicalAdjustmentEventHandler>().To<PhysicalAdjustmentEventHandler>();
         }
     }
 

@@ -50,8 +50,7 @@ namespace Middleware.Wm.Jobs.Tests
                             toReturn = toReturn.Where(p => p.Ponumber == crit.PurchaseOrderNumber).ToList();
                         }
                         return toReturn;
-                    });
-
+                    }); 
             _job = new PixNotificationJob(_mockLog, _mockRepository, _mockInventoryService);
         }
 
@@ -61,6 +60,8 @@ namespace Middleware.Wm.Jobs.Tests
             _job.RunUnitOfWork(_jobKey);
             _mockInventoryService.AssertWasNotCalled(api =>
                 api.PurchaseOrderReceived(Any<PurchaseOrderReceiptEvent>()));
+            _mockInventoryService.AssertWasNotCalled(api =>
+               api.PurchaseOrderStocked(Any<PurchaseOrderStockedEvent>()));
             _mockRepository.AssertWasCalled(r =>
                 r.FindPerpetualInventoryTransfers(Any<PerpetualInventoryTransactionCriteria>()));
         }
@@ -68,50 +69,17 @@ namespace Middleware.Wm.Jobs.Tests
         [TestMethod]
         public void NotifiesOnPurchaseOrderReceipt()
         {
-            AddNotificationTestRecords();
-            _job.RunUnitOfWork(_jobKey);
-            _mockInventoryService.AssertWasCalled(api =>
-                api.PurchaseOrderReceived(Any<PurchaseOrderReceiptEvent>()));
-            _mockRepository.AssertWasCalled(r =>
-                r.FindPerpetualInventoryTransfers(Any<PerpetualInventoryTransactionCriteria>()));
-            _mockRepository.AssertWasCalled(r =>
-                r.InsertPurchaseOrderNotified(_testPoNumber));            
-        }
-         
-        [TestMethod]
-        public void OnlyNotifiesServiceOfFirstPoReceipt()
-        {
-            _mockRepository.Stub(mr => mr.HasPurchaseOrderBeenNotified(_testPoNumber)).Return(true);
-            _job.RunUnitOfWork(_jobKey);
-            _mockInventoryService.AssertWasNotCalled(api =>
-                api.PurchaseOrderReceived(Any<PurchaseOrderReceiptEvent>()));
-            _mockRepository.AssertWasCalled(r =>
-                r.FindPerpetualInventoryTransfers(Any<PerpetualInventoryTransactionCriteria>()));
-            _mockRepository.AssertWasNotCalled(r =>
-                r.InsertPurchaseOrderNotified(_testPoNumber));            
-        }
-
-
-        [TestMethod]
-        public void WillNotifyWebserviceOfStockedPurchaseOrders()
-        {
-            AddTestRecords();
             var capturedWebserviceCall = _mockInventoryService
-                .Capture()
-                .Args<PurchaseOrderStockedEvent>((api, arg) => api.PurchaseOrderStocked(Any<PurchaseOrderStockedEvent>()));
-            _job.RunUnitOfWork(_jobKey);
+               .Capture()
+               .Args<PurchaseOrderReceiptEvent>((api, arg) => api.PurchaseOrderReceived(Any<PurchaseOrderReceiptEvent>()));
 
+            AddPutAwayRecords();
+            AddPoReceiptRecord();
+            _job.RunUnitOfWork(_jobKey);
             _mockInventoryService.AssertWasCalled(api =>
                 api.PurchaseOrderReceived(Any<PurchaseOrderReceiptEvent>()));
             _mockRepository.AssertWasCalled(r =>
                 r.FindPerpetualInventoryTransfers(Any<PerpetualInventoryTransactionCriteria>()));
-            _mockRepository.AssertWasCalled(r =>
-                r.InsertManhattanPerpetualInventoryNotificationProcessing(
-                    AnyInt()),
-                    options => options.Repeat.Times(
-                        _testPixRecords.Where(r =>
-                            r.TransactionType == TransactionType.InventoryAdjustment ||
-                            r.TransactionType == TransactionType.QuantityAdjust).Count()));
             var receiptEvent = capturedWebserviceCall.First();
 
             Assert.AreEqual(receiptEvent.PurchaseOrderNumber, _testPoNumber);
@@ -122,9 +90,51 @@ namespace Middleware.Wm.Jobs.Tests
             Assert.AreEqual(_testBarcode1, stockedInventory1.UPC);
             Assert.AreEqual(30, stockedInventory0.Quantity);
             Assert.AreEqual(10, stockedInventory1.Quantity);
-        }
 
-        private void AddTestRecords()
+            var expectedProcessedCount = _testPixRecords.Where(r =>
+                            r.TransactionType == TransactionType.InventoryAdjustment ||
+                            r.TransactionType == TransactionType.QuantityAdjust).Count();
+
+            _mockRepository.AssertWasCalled(r =>
+                r.InsertPixPurchaseOrderReceiptNotificationProcessing(
+                    AnyInt()),
+                    options => options.Repeat.Times(expectedProcessedCount));       
+        } 
+
+        [TestMethod]
+        public void WillNotifyWebserviceOfStockedPurchaseOrders()
+        {
+            AddPutAwayRecords();
+            var capturedWebserviceCall = _mockInventoryService
+                .Capture()
+                .Args<PurchaseOrderStockedEvent>((api, arg) => api.PurchaseOrderStocked(Any<PurchaseOrderStockedEvent>()));
+            _job.RunUnitOfWork(_jobKey);
+
+            _mockInventoryService.AssertWasNotCalled(api =>
+                api.PurchaseOrderReceived(Any<PurchaseOrderReceiptEvent>()));
+            _mockRepository.AssertWasCalled(r =>
+                r.FindPerpetualInventoryTransfers(Any<PerpetualInventoryTransactionCriteria>()));
+            var expectedProcessedCount = _testPixRecords.Where(r =>
+                            r.TransactionType == TransactionType.InventoryAdjustment ||
+                            r.TransactionType == TransactionType.QuantityAdjust).Count();
+            _mockRepository.AssertWasCalled(r =>
+                r.InsertPixInventoryAdjustmentNotificationProcessing(
+                    AnyInt()),
+                    options => options.Repeat.Times(expectedProcessedCount));
+            var stockedEvent = capturedWebserviceCall.First();
+
+            Assert.AreEqual(stockedEvent.PurchaseOrderNumber, _testPoNumber);
+            var stockedInventory0 = stockedEvent.ReceiptList.First(r => r.UPC == _testBarcode0);
+            var stockedInventory1 = stockedEvent.ReceiptList.First(r => r.UPC == _testBarcode1);
+
+            Assert.AreEqual(_testBarcode0, stockedInventory0.UPC);
+            Assert.AreEqual(_testBarcode1, stockedInventory1.UPC);
+            Assert.AreEqual(30, stockedInventory0.Quantity);
+            Assert.AreEqual(10, stockedInventory1.Quantity);
+        }
+         
+
+        private void AddPutAwayRecords()
         {
             _testPixRecords.Add(CreatePixRecord(
                TimeSpan.FromMinutes(-10),
@@ -204,26 +214,17 @@ namespace Middleware.Wm.Jobs.Tests
                _testBarcode0,
                +10,
                _testPoNumber));
+        } 
 
-            _testPixRecords.Add(CreatePixRecord(
-                TimeSpan.FromMinutes(-1),
-                TransactionType.QuantityAdjust,
-                TransactionCode.PurchaseOrder,
-                "",
-                null,
-                _testPoNumber));
-        }
-
-        private void AddNotificationTestRecords()
+        private void AddPoReceiptRecord()
         {
-            AddTestRecords();
-            foreach (var item in
-                _testPixRecords.Where(
-                    r => r.TransactionType == TransactionType.QuantityAdjust ||
-                         r.TransactionType == TransactionType.InventoryAdjustment).ToList())
-            {
-                _testPixRecords.Remove(item);
-            }
+            _testPixRecords.Add(CreatePixRecord(
+               TimeSpan.FromMinutes(-1),
+               TransactionType.QuantityAdjust,
+               TransactionCode.PurchaseOrder,
+               "",
+               null,
+               _testPoNumber));
         }
 
         private ManhattanPerpetualInventoryTransfer CreatePixRecord(

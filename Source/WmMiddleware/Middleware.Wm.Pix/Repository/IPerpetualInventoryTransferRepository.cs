@@ -11,8 +11,8 @@ namespace Middleware.Wm.Pix.Repository
         void InsertManhattanPerpetualInventoryTransferProcessing(int manhattanPerpetualInventoryProcessingId);
         void InsertPixInventoryAdjustmentProcessing(IList<PixInventoryAdjustment> pixInventoryAdjustments);
 
-        void InsertManhattanPerpetualInventoryNotificationProcessing(int manhattanPerpetualInventoryProcessingId);
-        bool HasPurchaseOrderBeenNotified(string poNumber);
-        void InsertPurchaseOrderNotified(string poNumber);
+        void InsertPixInventoryAdjustmentNotificationProcessing(int manhattanPerpetualInventoryProcessingId);
+        void InsertPixPurchaseOrderReceiptNotificationProcessing(int manhattanPerpetualInventoryProcessingId);                
+
     }
 }

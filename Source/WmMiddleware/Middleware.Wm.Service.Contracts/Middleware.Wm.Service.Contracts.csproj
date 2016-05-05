@@ -75,6 +75,8 @@
     <Compile Include="IIventoryServiceApi.cs" />
     <Compile Include="InventoryServiceApiClient.cs" />
     <Compile Include="JsonSerializer.cs" />
+    <Compile Include="Models\AdjustmentType.cs" />
+    <Compile Include="Models\PhysicalAdjustment.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductQuantity.cs" />
     <Compile Include="Models\ProductStockedQuantity.cs" />

@@ -39,6 +39,7 @@ namespace Middleware.Wm.StlInventoryUpdate
             var pixInventoryAdjustments = _pixInventoryAdjustmentRepository.GetUnprocessedInventoryAdjustments().ToList();
             var shipmentInventoryAdjustments = _shipmentInventoryAdjustmentRepository.GetUnprocessedInventoryAdjustments().ToList();
 
+
             //--group the adjustments by UPC
             var stlInventoryItems = JoinAdjustments(pixInventoryAdjustments, shipmentInventoryAdjustments).GroupBy(d => d.Upc)
                         .Select(g => new StlInventoryItem

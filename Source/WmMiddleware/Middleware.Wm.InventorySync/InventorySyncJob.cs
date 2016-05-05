@@ -63,7 +63,8 @@ namespace Middleware.Wm.InventorySync
         {
             if (transferControlFiles.Count != 1)
             {
-                throw new ArgumentOutOfRangeException("transferControlFiles", "Expected one file, found " + transferControlFiles.Count);
+                throw new ArgumentOutOfRangeException("transferControlFiles", 
+                                                      "Expected one file, found " + transferControlFiles.Count);
             }
 
             //1) STL INVENTORY UPDATE - Clean PIX/Shipments before loading the sync file.

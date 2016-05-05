@@ -65,22 +65,7 @@ namespace Middleware.Wm.Pix.Repository
             {
                 connection.Execute(insertSql, parameters);
             }
-        }
-
-        public void InsertManhattanPerpetualInventoryNotificationProcessing(int manhattanPerpetualInventoryProcessingId)
-        {
-            const string insertSql = @"INSERT INTO ManhattanPerpetualInventoryTransferNotificationProcessing(ManhattanPerpetualInventoryTransferId, ProcessedDate)
-                                           VALUES(@ManhattanPerpetualInventoryTransferId, @ProcessedDate)";
-
-            var parameters = new DynamicParameters();
-            parameters.Add("@ManhattanPerpetualInventoryTransferId", manhattanPerpetualInventoryProcessingId, DbType.Int32);
-            parameters.Add("@ProcessedDate", DateTime.Now, DbType.DateTime);
-            using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
-            {
-                connection.Execute(insertSql, parameters);
-            }
-        }
-
+        } 
 
         public void InsertPixInventoryAdjustmentProcessing(IList<PixInventoryAdjustment> pixInventoryAdjustments)
         {
@@ -107,32 +92,32 @@ namespace Middleware.Wm.Pix.Repository
             }
         }
 
-        public bool HasPurchaseOrderBeenNotified(string poNumber)
+        public void InsertPixInventoryAdjustmentNotificationProcessing(int manhattanPerpetualInventoryProcessingId)
         {
-            using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
-            {
-                var sqlSb = new StringBuilder();
-                sqlSb.AppendLine("SELECT COUNT(*) FROM ManhattanPerptualInventoryTransferPurchaseOrderNotification WHERE");
-                sqlSb.AppendLine("PurchaseOrderNumber = @PurchaseOrderNumber");
-                var sql = sqlSb.ToString();
-                var parameters = new DynamicParameters();
-                parameters.Add("@PurchaseOrderNumber", poNumber, DbType.String);
-                var poCount =(int) connection.ExecuteScalar(sql, parameters);
-                return poCount > 0;
-            }
-        }
-
-        public void InsertPurchaseOrderNotified(string poNumber)
-        {
-            const string insertSql = @"INSERT INTO ManhattanPerptualInventoryTransferPurchaseOrderNotification(PurchaseOrderNumber, NotificationDate)
-                                           VALUES(@PurchaseOrderNumber, GetDate())";
+            const string insertSql = @"INSERT INTO PixInventoryAdjustmentNotificationProcessing(ManhattanPerpetualInventoryTransferId, ProcessedDate)
+                                           VALUES(@ManhattanPerpetualInventoryTransferId, @ProcessedDate)";
 
             var parameters = new DynamicParameters();
-            parameters.Add("@PurchaseOrderNumber", poNumber, DbType.String);            
+            parameters.Add("@ManhattanPerpetualInventoryTransferId", manhattanPerpetualInventoryProcessingId, DbType.Int32);
+            parameters.Add("@ProcessedDate", DateTime.Now, DbType.DateTime);
             using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
             {
                 connection.Execute(insertSql, parameters);
             }
         }
+
+        public void InsertPixPurchaseOrderReceiptNotificationProcessing(int manhattanPerpetualInventoryProcessingId)
+        {
+            const string insertSql = @"INSERT INTO PixPurchaseOrderReceiptNotificationProcessing(ManhattanPerpetualInventoryTransferId, ProcessedDate)
+                                           VALUES(@ManhattanPerpetualInventoryTransferId, @ProcessedDate)";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@ManhattanPerpetualInventoryTransferId", manhattanPerpetualInventoryProcessingId, DbType.Int32);
+            parameters.Add("@ProcessedDate", DateTime.Now, DbType.DateTime);
+            using (var connection = DatabaseConnectionFactory.GetWarehouseManagementTransactionConnection())
+            {
+                connection.Execute(insertSql, parameters);
+            }
+        } 
     }
 }

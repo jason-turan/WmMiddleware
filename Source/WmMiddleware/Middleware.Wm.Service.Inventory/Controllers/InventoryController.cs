@@ -7,8 +7,7 @@ using Middleware.Wm.Service.Inventory.Repository;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Web.Http; 
-using Middleware.Wm.Service.Contracts;
+using System.Web.Http;  
 using Middleware.Wm.Service.Contracts.Models;
 using System.Linq;
 using Middleware.Wm.Service.Inventory.WebJob.Models;
@@ -21,17 +20,20 @@ namespace Middleware.Wm.Service.Inventory.Controllers
         private IWebsiteRepository _websiteRepository;
         private IPurchaseOrderEventHandler _poEventHandler;
         private IWebsiteInventoryRepository _websiteInventoryRepository;
+        private IPhysicalAdjustmentEventHandler _physicalAdjustmentEventHandler;
 
         public InventoryController(
             IQueue queue,
             IWebsiteRepository websiteRepository,
             IWebsiteInventoryRepository websiteInventoryRepository,
-            IPurchaseOrderEventHandler purchaseOrderEventHandler)
+            IPurchaseOrderEventHandler purchaseOrderEventHandler,
+            IPhysicalAdjustmentEventHandler physicalAdjustmentEventHandler)
         {
             _queue = queue;
             _websiteRepository = websiteRepository;
             _websiteInventoryRepository = websiteInventoryRepository;
             _poEventHandler = purchaseOrderEventHandler;
+            _physicalAdjustmentEventHandler = physicalAdjustmentEventHandler;
         }
 
         /// <summary>
@@ -40,11 +42,12 @@ namespace Middleware.Wm.Service.Inventory.Controllers
         /// <remarks>
         /// This service is used to handle the following scenarios. <br/>1) Untracked sale <br/>2) Cycle count <br/>3) Gifted <br/>4) Destroyed <br/> <br/>**Action Items** <br/>1) BNC orders need to have the export to OMS turned off in order to not double dip into site inventory - Dependent upon OMS order update logic <br/>2) **Steve/Jason/Kyle** - Determine fields currently associated with WM inventory changes
         /// </remarks>
-        /// <param name="adjustment">The adjustment</param> 
+        /// <param name="adjustments">The adjustment</param> 
         [HttpPost]
-        [Route("Adjustment/PhysicalInventoryChange")]
-        public void PhysicalInventoryChange(PhysicalAdjustment adjustment)
+        [Route("Adjustment/PhysicalInventoryChanged")]
+        public void PhysicalInventoryChanged(List<PhysicalAdjustment> adjustments)
         {
+            _physicalAdjustmentEventHandler.PhysicalInventoryChanged(adjustments);
         }
         ///<summary>
         /// Inventory search by site and warehouse.
@@ -134,7 +137,7 @@ namespace Middleware.Wm.Service.Inventory.Controllers
             var hcm = new HealthCheckModel()
             {
                 Version = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(InventoryController).Assembly.Location).ProductVersion,
-            Running = true,
+                Running = true,
                 Components = new List<ComponentCheckModel>()
                 {
                     new ComponentCheckModel()

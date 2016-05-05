@@ -65,4 +65,5 @@ namespace Middleware.Wm.Service.Inventory.Domain.Logging
             Trace.TraceInformation(message);
         }
     }
+
 }

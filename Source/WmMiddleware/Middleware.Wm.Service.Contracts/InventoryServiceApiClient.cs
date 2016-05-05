@@ -26,10 +26,17 @@ namespace Middleware.Wm.Service.Contracts
             Execute<object>(request);
         }
 
+       
+
         public void PurchaseOrderStocked(PurchaseOrderStockedEvent purchaseOrderStockedEvent)
         {
             var request = ConstructPostRequest("Order/Stocked", purchaseOrderStockedEvent);
             Execute<object>(request);
+        }
+
+        public void PhysicalInventoryChanged(List<PhysicalAdjustment> adjustment)
+        {
+            throw new NotImplementedException();
         }
 
         public T Execute<T>(RestRequest request) where T : new()

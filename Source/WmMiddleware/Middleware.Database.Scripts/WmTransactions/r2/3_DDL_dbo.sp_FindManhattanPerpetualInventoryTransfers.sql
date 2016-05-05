@@ -157,11 +157,23 @@ ELSE IF (@ProcessType = 'QuantityAdjust')
 		AND TransactionType = @TransactionType
 		AND TransactionCode = @TransactionCode
 	END
-ELSE IF (@ProcessType = 'PixNotification')
+ELSE IF (@ProcessType = 'InventoryAdjustmentNotification')
 	BEGIN
 		SELECT mpit.*
 		FROM ManhattanPerpetualInventoryTransfer mpit 
-		LEFT JOIN ManhattanPerpetualInventoryTransferNotificationProcessing prc 
+		LEFT JOIN PixInventoryAdjustmentNotificationProcessing prc 
+			ON mpit.ManhattanPerpetualInventoryTransferId = prc.ManhattanPerpetualInventoryTransferId		
+		WHERE 
+			prc.ProcessedDate IS NULL
+		AND (TransactionType = @TransactionType)
+		AND (TransactionCode = @TransactionCode  OR @TransactionCode IS NULL)
+		AND (Ponumber = @PoNumber OR @PoNumber IS NULL)
+	END
+ELSE IF (@ProcessType = 'PurchaseOrderReceiptNotification')
+	BEGIN
+		SELECT mpit.*
+		FROM ManhattanPerpetualInventoryTransfer mpit 
+		LEFT JOIN PixPurchaseOrderReceiptNotificationProcessing prc 
 			ON mpit.ManhattanPerpetualInventoryTransferId = prc.ManhattanPerpetualInventoryTransferId		
 		WHERE 
 			prc.ProcessedDate IS NULL

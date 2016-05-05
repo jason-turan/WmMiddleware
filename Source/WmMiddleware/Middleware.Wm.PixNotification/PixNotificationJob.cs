@@ -8,7 +8,7 @@ using Middleware.Wm.Service.Contracts.Models;
 using Middleware.Wm.Service.Inventory.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq; 
+using System.Linq;
 using WmMiddleware.Pix.Models.Generated;
 
 namespace Middleware.Wm.PixNotification
@@ -33,98 +33,148 @@ namespace Middleware.Wm.PixNotification
         {
             _log.Info("Running " + jobKey);
 
+            NotifyInventoryAdjustments();
             NotifyReceivedPurchaseOrders();
-            NotifyStockedPurchaseOrders();
         }
 
-        private void NotifyStockedPurchaseOrders()
+        private void NotifyInventoryAdjustments()
         {
-            _log.Info("Searching for completed purchase orders");
-            var purchaseOrderReceiptNotificationRecords = _repository.FindPerpetualInventoryTransfers(
-               new PerpetualInventoryTransactionCriteria()
-               {
-                   ProcessType = ProcessType.PixNotification,
-                   TransactionType = TransactionType.QuantityAdjust,
-                   TransactionCode = TransactionCode.PurchaseOrder
-               });
+            _log.Info("Searching for inventory adjustments");
+            var criteria = new PerpetualInventoryTransactionCriteria()
+            {
+                ProcessType = ProcessType.InventoryAdjustmentNotification,
+                TransactionType = TransactionType.InventoryAdjustment
+            };
 
-            var poReceiptGroup = purchaseOrderReceiptNotificationRecords
-                .Where(por => !String.IsNullOrWhiteSpace(por.Ponumber))
+            IEnumerable<ManhattanPerpetualInventoryTransfer> items = _repository.FindPerpetualInventoryTransfers(criteria);
+            var nonPoStockedAdjustments = items.Where(item => String.IsNullOrWhiteSpace(item.Ponumber));
+            var poStockedAdjustments = items.Except(nonPoStockedAdjustments).ToList();
+            if (nonPoStockedAdjustments.Any())
+            {
+                NotifyPhysicalInventoryChanged(nonPoStockedAdjustments);                
+            }
+            if (poStockedAdjustments.Any())
+            {
+                NotifyStockedPurchaseOrders(poStockedAdjustments);
+            }
+        }
+
+        private void NotifyPhysicalInventoryChanged(IEnumerable<ManhattanPerpetualInventoryTransfer> nonPoStockedAdjustments)
+        {
+            var physicalInventoryChanges = 
+                nonPoStockedAdjustments
+                    .GroupBy(item => item.TransactionReasonCode)
+                    .Select(grp =>
+                                {
+                                    AdjustmentType? reasonCode = TryMapReasonToAdjustmentType(grp.Key);
+                                    List<ProductQuantity> productQuantities = SumPixItems(grp);
+                                    var adj = new PhysicalAdjustment(reasonCode, productQuantities);
+                                    return adj;
+                                }).ToList();
+            _apiAccess.PhysicalInventoryChanged(physicalInventoryChanges);
+            MarkNotificationRecordsAsProcessed(nonPoStockedAdjustments, ProcessType.InventoryAdjustmentNotification);
+        }
+
+        private AdjustmentType? TryMapReasonToAdjustmentType(string reasonCode)
+        {
+            switch (reasonCode)
+            {
+                case null:
+                    return null;
+                case "01":
+                    return AdjustmentType.CycleCount;
+                case "14":
+                    return AdjustmentType.InventoryAdjustment;
+                case "RC":
+                    throw new NotImplementedException();
+                case "SB":
+                    throw new NotImplementedException();
+                default:
+                    throw new NotSupportedException($"Unrecognized reasoncode:{reasonCode}");
+            }
+
+        }
+
+        private void NotifyStockedPurchaseOrders(List<ManhattanPerpetualInventoryTransfer> purchaseOrderReceiptNotificationRecords)
+        { 
+            var poReceiptGroup = purchaseOrderReceiptNotificationRecords 
                 .GroupBy(po => po.Ponumber)
                 .ToList();
 
             foreach (var poReceiptRecordGroup in poReceiptGroup)
             {
-                _log.Info(String.Format("Processing Po Receipt {0}", poReceiptRecordGroup.Key));
-                var criteria = new PerpetualInventoryTransactionCriteria()
-                {
-                    ProcessType = ProcessType.PixNotification,
-                    PurchaseOrderNumber = poReceiptRecordGroup.Key,
-                    TransactionType = TransactionType.InventoryAdjustment
-                };
-                var inventoryAdjustmentsForPo = _repository.FindPerpetualInventoryTransfers(criteria);
-                _log.Info(String.Format(
-                            "Found {0} adjustments for Po Receipt {1}",
-                            inventoryAdjustmentsForPo.Count(),
-                            poReceiptRecordGroup.Key));
+                _log.Info(String.Format("Processing Po Receipt {0}", poReceiptRecordGroup.Key)); 
+                var productQuantities = SumPixItems(poReceiptRecordGroup.ToList());
+                var stockedEvent = new PurchaseOrderStockedEvent(
+                        poReceiptRecordGroup.First().Ponumber,
+                        poReceiptRecordGroup.Max(poGroup =>
+                            MainframeExtensions.ParseDateTime(poGroup.DateCreated, poGroup.TimeCreated)),
+                        productQuantities); 
+                _apiAccess.PurchaseOrderStocked(stockedEvent);
+                MarkNotificationRecordsAsProcessed(poReceiptRecordGroup.ToList(), ProcessType.InventoryAdjustmentNotification);
+            }
+        }
 
-                var productQuantities = inventoryAdjustmentsForPo
+        private List<ProductQuantity> SumPixItems(IEnumerable<ManhattanPerpetualInventoryTransfer> items)
+        {
+            var productQuantites = items
                     .Where(ia => !String.IsNullOrWhiteSpace(ia.PackageBarcode))
                     .GroupBy(ia => ia.PackageBarcode)
                     .Select(grp =>
                         new ProductQuantity(
                             grp.Key,
                             grp.Sum(item => GetQuantity(item)))).ToList();
-
-                var poReceipt = new PurchaseOrderStockedEvent(
-                        poReceiptRecordGroup.First().Ponumber,
-                        poReceiptRecordGroup.Max(poGroup =>
-                        MainframeExtensions.ParseDateTime(poGroup.DateCreated, poGroup.TimeCreated)),
-                        productQuantities);
-                var toMarkComplete = poReceiptRecordGroup.Concat(inventoryAdjustmentsForPo).ToList();
-                NotifyServiceAndMarkComplete(toMarkComplete, () =>
-                {
-                    _apiAccess.PurchaseOrderStocked(poReceipt);
-                });
-            }
+            return productQuantites;
         }
 
         private void NotifyReceivedPurchaseOrders()
         {
+            _log.Info("Searching for received purchase orders");
             var criteria = new PerpetualInventoryTransactionCriteria()
             {
-                ProcessType = ProcessType.PixNotification,
-                TransactionType = TransactionType.NonAllocatable
+                ProcessType = ProcessType.PurchaseOrderReceiptNotification,
+                TransactionType = TransactionType.QuantityAdjust
             };
-            var nonAllocatableInventoryAdjustments = _repository.FindPerpetualInventoryTransfers(criteria);
-            var adjustmentsToIgnore = nonAllocatableInventoryAdjustments.Where(adj => String.IsNullOrWhiteSpace(adj.Ponumber)).ToList();
-            MarkRecordsAsProcessed(adjustmentsToIgnore);
 
-            var recordsWithPos = nonAllocatableInventoryAdjustments.Except(adjustmentsToIgnore).ToList();
+            var poReceiptRecords = _repository.FindPerpetualInventoryTransfers(criteria);
+            var adjustmentsToIgnore = poReceiptRecords.Where(adj => String.IsNullOrWhiteSpace(adj.Ponumber)).ToList();
+
+            MarkNotificationRecordsAsProcessed(adjustmentsToIgnore, ProcessType.PurchaseOrderReceiptNotification);
+
+            var recordsWithPos = poReceiptRecords.Except(adjustmentsToIgnore).ToList();
             var distinctPos = recordsWithPos.Select(item => item.Ponumber).Distinct().ToList();
 
             foreach (var poNumber in distinctPos)
             {
-                var hasBeenNotified = _repository.HasPurchaseOrderBeenNotified(poNumber);
-                if (!hasBeenNotified)
+                var receiptRecord = recordsWithPos.First(r => r.Ponumber == poNumber);
+                var inventoryAdjustmentsForPo = _repository.FindPerpetualInventoryTransfers(
+                    new PerpetualInventoryTransactionCriteria()
+                    {
+                        ProcessType = ProcessType.PurchaseOrderReceiptNotification,
+                        PurchaseOrderNumber = poNumber,
+                        TransactionType = TransactionType.InventoryAdjustment
+                    });
+
+                var firstPoInventoryAdjustment = recordsWithPos
+                    .Where(r => r.Ponumber == poNumber)
+                    .OrderBy(r => MainframeExtensions.ParseDateTime(r.DateCreated, r.TimeCreated))
+                    .First();
+                var receiptList = SumPixItems(inventoryAdjustmentsForPo);
+                var receipt = new PurchaseOrderReceiptEvent(
+                    firstPoInventoryAdjustment.Ponumber,
+                    MainframeExtensions.ParseDateTime(firstPoInventoryAdjustment.DateCreated, firstPoInventoryAdjustment.TimeCreated),
+                    receiptList
+                    );
+                try
                 {
-                    var firstPoInventoryAdjustment = recordsWithPos
-                        .Where(r => r.Ponumber == poNumber)
-                        .OrderBy(r => MainframeExtensions.ParseDateTime(r.DateCreated, r.TimeCreated))
-                        .First();
-                    var receipt = new PurchaseOrderReceiptEvent(
-                        firstPoInventoryAdjustment.Ponumber,
-                        MainframeExtensions.ParseDateTime(firstPoInventoryAdjustment.DateCreated, firstPoInventoryAdjustment.TimeCreated));
-                    try
-                    {
-                        _apiAccess.PurchaseOrderReceived(receipt);
-                    }
-                    catch (Exception ex)
-                    {
-                        _log.Exception("Failed to notify service of PO Receipt", ex);
-                    }
-                    _repository.InsertPurchaseOrderNotified(poNumber);
+                    _apiAccess.PurchaseOrderReceived(receipt);
                 }
+                catch (Exception ex)
+                {
+                    _log.Exception("Failed to notify service of PO Receipt", ex);
+                }
+                var toMarkComplete = inventoryAdjustmentsForPo.Concat(new[] { receiptRecord }).ToList();
+                MarkNotificationRecordsAsProcessed(toMarkComplete, ProcessType.PurchaseOrderReceiptNotification);
             }
         }
 
@@ -134,34 +184,48 @@ namespace Middleware.Wm.PixNotification
             return (int)r.InventoryAdjustmentQuantity * modifier;
         }
 
-        private void NotifyServiceAndMarkComplete(IEnumerable<ManhattanPerpetualInventoryTransfer> recordsToProcess, Action notifyAction)
-        {
-            try
-            {
-                notifyAction();
-            }
-            catch (Exception ex)
-            {
-                var ids = String.Join(",", recordsToProcess.Select(r => r.ManhattanPerpetualInventoryTransferId));
-                _log.Exception(String.Format("Failed to notify service for pix ids {0}.", ids), ex);
-                throw;
-            }
-            MarkRecordsAsProcessed(recordsToProcess);
+        //private void NotifyServiceAndMarkComplete(IEnumerable<ManhattanPerpetualInventoryTransfer> recordsToProcess, Action notifyAction)
+        //{
+        //    try
+        //    {
+        //        notifyAction();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        var ids = String.Join(",", recordsToProcess.Select(r => r.ManhattanPerpetualInventoryTransferId));
+        //        _log.Exception(String.Format("Failed to notify service for pix ids {0}.", ids), ex);
+        //        throw;
+        //    }
+        //    MarkRecordsAsProcessed(recordsToProcess);
 
-        }
+        //}
 
-        private void MarkRecordsAsProcessed(IEnumerable<ManhattanPerpetualInventoryTransfer> recordsToProcess)
+        private void MarkNotificationRecordsAsProcessed(
+            IEnumerable<ManhattanPerpetualInventoryTransfer> recordsToProcess,
+            string processType)
         {
             foreach (var record in recordsToProcess)
             {
                 try
                 {
-                    _repository.InsertManhattanPerpetualInventoryNotificationProcessing(record.ManhattanPerpetualInventoryTransferId);
+                    if (processType == ProcessType.PurchaseOrderReceiptNotification)
+                    {
+                        _repository.InsertPixPurchaseOrderReceiptNotificationProcessing(record.ManhattanPerpetualInventoryTransferId);
+                    }
+                    else if (processType == ProcessType.InventoryAdjustmentNotification)
+                    {
+                        _repository.InsertPixInventoryAdjustmentNotificationProcessing(record.ManhattanPerpetualInventoryTransferId);
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException($"Unexpected processType {processType}");
+                    }
                 }
                 catch (Exception ex)
                 {
-                    var message = String.Format("Failed to insert notification processed record {0}", record.ManhattanPerpetualInventoryTransferId);
+                    var message = $"Failed to insert notification processed record {record.ManhattanPerpetualInventoryTransferId}";
                     _log.Exception(message, ex);
+                    throw;
                 }
             }
         }

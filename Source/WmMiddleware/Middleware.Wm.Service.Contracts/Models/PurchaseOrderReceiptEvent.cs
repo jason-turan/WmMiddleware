@@ -17,12 +17,20 @@ namespace Middleware.Wm.Service.Inventory.Models
 
         [Required]
         public DateTime ReceiptDateTime { get; set; }
-               
+
+        /// <summary>
+        /// Actual quantities received
+        /// </summary>
+        [Required]
+        public List<ProductQuantity> ReceiptList { get; set; }
+
         public PurchaseOrderReceiptEvent(string ponumber, 
-                                         DateTime receiptDateTime)
+                                         DateTime receiptDateTime,
+                                         List<ProductQuantity> receiptList)
         {
             PurchaseOrderNumber = ponumber;  
             ReceiptDateTime = receiptDateTime;
+            ReceiptList = receiptList;
         }
     }
 }

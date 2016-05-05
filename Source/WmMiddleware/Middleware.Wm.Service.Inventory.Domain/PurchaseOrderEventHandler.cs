@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Middleware.Wm.Service.Inventory.Models;
+﻿using Middleware.Wm.Service.Inventory.Models;
 using Middleware.Wm.Service.Inventory.Repository;
-using Middleware.Wm.Service.Inventory.Domain.Logging;
-using Middleware.Wm.Service.Inventory.Domain.Models;
-using Middleware.Wm.Service.Inventory.Domain.Extensions;
+using Middleware.Wm.Service.Inventory.Domain.Logging; 
 using Middleware.Wm.Service.Contracts.Models;
 
 namespace Middleware.Wm.Service.Inventory.Domain

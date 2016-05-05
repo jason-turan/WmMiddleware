@@ -7,6 +7,8 @@
         public const string GeneralLedgerInventoryAdjustment = "GeneralLedger_InventoryAdjustment";
         public const string GeneralLedgerPurchaseReturn = "GeneralLedger_PurchaseReturn";
         public const string GeneralLedgerPurchaseOrder = "GeneralLedger_PurchaseOrder";
-        public const string PixNotification = "PixNotification";
+
+        public const string InventoryAdjustmentNotification = "InventoryAdjustmentNotification";
+        public const string PurchaseOrderReceiptNotification = "PurchaseOrderReceiptNotification";
     }
 }

@@ -261,9 +261,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "r1", "r1", "{83FCF242-B3CD-
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "r2", "r2", "{1D060350-DD77-4F09-A033-B5217B50F85D}"
 	ProjectSection(SolutionItems) = preProject
-		Middleware.Database.Scripts\WmTransactions\r2\1_DDL_dbo.ManhattanPerpetualInventoryTransferNotificationProcessing.Table.sql = Middleware.Database.Scripts\WmTransactions\r2\1_DDL_dbo.ManhattanPerpetualInventoryTransferNotificationProcessing.Table.sql
-		Middleware.Database.Scripts\WmTransactions\r2\2_DDL_dbo.sp_FindManhattanPerpetualInventoryTransfers.sql = Middleware.Database.Scripts\WmTransactions\r2\2_DDL_dbo.sp_FindManhattanPerpetualInventoryTransfers.sql
-		Middleware.Database.Scripts\WmTransactions\r2\3_DDL_dbo.ManhattanPerptualInventoryTransferPurchaseOrderNotification.Table.sql = Middleware.Database.Scripts\WmTransactions\r2\3_DDL_dbo.ManhattanPerptualInventoryTransferPurchaseOrderNotification.Table.sql
+		Middleware.Database.Scripts\WmTransactions\r2\1_DDL_dbo.PixInventoryAdjustmentNotificationProcessing.Table.sql = Middleware.Database.Scripts\WmTransactions\r2\1_DDL_dbo.PixInventoryAdjustmentNotificationProcessing.Table.sql
+		Middleware.Database.Scripts\WmTransactions\r2\2_DDL_dbo.PixPurchaseOrderReceiptNotificationProcessing.Table.sql = Middleware.Database.Scripts\WmTransactions\r2\2_DDL_dbo.PixPurchaseOrderReceiptNotificationProcessing.Table.sql
+		Middleware.Database.Scripts\WmTransactions\r2\3_DDL_dbo.sp_FindManhattanPerpetualInventoryTransfers.sql = Middleware.Database.Scripts\WmTransactions\r2\3_DDL_dbo.sp_FindManhattanPerpetualInventoryTransfers.sql
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware.Wm.Service.Inventory.WebJob", "Middleware.Wm.Service.Inventory.WebJob\Middleware.Wm.Service.Inventory.WebJob.csproj", "{B750C7F1-0D59-4813-9634-95D8758EFC4C}"
